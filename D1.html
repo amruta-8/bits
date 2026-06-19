@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DNN Mid-Sem Exam Prep — AIMLCZG511</title>
+<script>
+MathJax = { tex: { inlineMath: [['\\(','\\)']], displayMath: [['$$','$$']] }, svg:{fontCache:'global'} };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+<style>
+:root{
+  --bg:#0f1221; --panel:#171a2e; --panel2:#1d2138; --ink:#e8eaf6; --muted:#a7adc9;
+  --acc:#6c8cff; --acc2:#36d6c3; --warn:#ffb454; --bad:#ff6b81; --good:#5fd38d;
+  --line:#2a2f4a; --code:#11152a; --chip:#23284a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:linear-gradient(180deg,#0c0e1a,#0f1221);color:var(--ink);
+  font:16px/1.65 "Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;}
+a{color:var(--acc);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* layout */
+.wrap{display:flex;max-width:1280px;margin:0 auto;gap:0}
+.side{position:sticky;top:0;align-self:flex-start;height:100vh;overflow-y:auto;
+  width:260px;flex:0 0 260px;padding:18px 14px;background:#0b0d18;border-right:1px solid var(--line)}
+.side h2{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:18px 0 8px}
+.side a{display:block;color:var(--ink);padding:6px 10px;border-radius:8px;font-size:14px}
+.side a:hover{background:var(--chip);text-decoration:none}
+.side .brand{font-weight:800;font-size:18px;color:#fff;line-height:1.2}
+.side .brand small{display:block;color:var(--acc2);font-size:12px;font-weight:600;letter-spacing:.04em}
+.main{flex:1;min-width:0;padding:30px 38px 120px}
+
+/* hero */
+.hero{background:radial-gradient(1200px 300px at 10% -20%,rgba(108,140,255,.25),transparent),
+  linear-gradient(135deg,#1a1f3a,#141830);border:1px solid var(--line);border-radius:18px;padding:28px 30px;margin-bottom:26px}
+.hero h1{margin:0 0 6px;font-size:30px;color:#fff}
+.hero p{margin:4px 0;color:var(--muted)}
+.countdown{display:inline-block;margin-top:12px;background:var(--bad);color:#1a0008;font-weight:800;
+  padding:6px 14px;border-radius:30px;font-size:14px}
+.pillrow{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px}
+.pill{background:var(--chip);border:1px solid var(--line);color:var(--ink);padding:5px 12px;border-radius:20px;font-size:12.5px}
+
+/* sections */
+section{margin:34px 0;scroll-margin-top:16px}
+h2.sec{font-size:24px;color:#fff;border-left:5px solid var(--acc);padding-left:12px;margin:0 0 6px}
+h3{font-size:19px;color:#cdd6ff;margin:26px 0 8px}
+h4{font-size:16px;color:var(--acc2);margin:18px 0 6px;letter-spacing:.02em}
+.modtag{display:inline-block;background:var(--acc);color:#0a0d20;font-weight:800;font-size:12px;
+  padding:3px 10px;border-radius:6px;margin-bottom:10px;letter-spacing:.05em}
+
+p{margin:10px 0}
+ul,ol{margin:10px 0 10px 4px;padding-left:22px}
+li{margin:5px 0}
+
+/* callout boxes */
+.box{border-radius:12px;padding:14px 18px;margin:16px 0;border:1px solid var(--line);background:var(--panel)}
+.box .bt{font-weight:800;font-size:12.5px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;display:block}
+.formula{background:linear-gradient(135deg,#12203a,#0e1830);border-color:#274064}
+.formula .bt{color:#7fb2ff}
+.key{background:linear-gradient(135deg,#10241f,#0e1c1a);border-color:#1f5a4f}
+.key .bt{color:var(--acc2)}
+.warn{background:linear-gradient(135deg,#2a2110,#241c0e);border-color:#5a4620}
+.warn .bt{color:var(--warn)}
+.exam{background:linear-gradient(135deg,#241024,#1d0e1d);border-color:#5a2a57}
+.exam .bt{color:#ff9ce8}
+.tip{background:linear-gradient(135deg,#101a2e,#0e1626);border-color:#28406a}
+.tip .bt{color:#8fd0ff}
+.def{background:#15182b;border-left:4px solid var(--acc2)}
+
+/* tables */
+table{border-collapse:collapse;width:100%;margin:14px 0;font-size:14.5px;background:var(--panel);border-radius:10px;overflow:hidden}
+th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
+th{background:#222748;color:#dfe5ff;font-weight:700}
+tr:nth-child(even) td{background:#141728}
+.center td,.center th{text-align:center}
+
+/* code */
+pre{background:var(--code);border:1px solid var(--line);border-radius:10px;padding:14px 16px;overflow-x:auto;
+  font:13.5px/1.55 "JetBrains Mono",Consolas,Monaco,monospace;color:#d7e0ff}
+code{background:#1a1f38;padding:1.5px 6px;border-radius:5px;font-family:Consolas,Monaco,monospace;font-size:13.5px;color:#aee0ff}
+pre code{background:none;padding:0;color:inherit}
+.blank{color:var(--warn);font-weight:700}
+
+/* Q&A */
+details{background:var(--panel2);border:1px solid var(--line);border-radius:10px;margin:12px 0;overflow:hidden}
+details[open]{border-color:var(--acc)}
+summary{cursor:pointer;padding:13px 16px;font-weight:600;color:#dfe5ff;list-style:none;position:relative}
+summary::-webkit-details-marker{display:none}
+summary:hover{background:#222748}
+summary::after{content:"▶ show solution";position:absolute;right:16px;color:var(--acc2);font-size:12px;font-weight:700}
+details[open] summary::after{content:"▼ hide"}
+.qmeta{font-size:11.5px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.sol{padding:4px 18px 16px;border-top:1px dashed var(--line)}
+.sol p:first-child{margin-top:12px}
+
+.mk{color:var(--warn);font-weight:700;font-size:12px}
+.qbox{background:#10182e;border:1px solid var(--line);border-left:4px solid var(--acc);border-radius:8px;
+  padding:12px 16px;margin:12px 0 16px;font-size:14.5px}
+.qbox .ql{display:block;font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--acc);margin-bottom:6px}
+.soln{background:#0e1c18;border:1px solid #1f5a4f;border-left:4px solid var(--acc2);border-radius:8px;padding:4px 16px 8px;margin-top:12px}
+.soln .sl{display:block;font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--acc2);margin:12px 0 2px}
+[data-theme="light"] .qbox{background:#eef3fc}
+[data-theme="light"] .soln{background:#eef8f4;border-color:#a4dac9}
+.tag{display:inline-block;background:var(--chip);color:#bcd;font-size:11px;padding:2px 8px;border-radius:5px;margin-left:6px;border:1px solid var(--line)}
+
+hr{border:none;border-top:1px solid var(--line);margin:30px 0}
+.small{font-size:13.5px;color:var(--muted)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:900px){.side{display:none}.main{padding:20px 16px}.grid2{grid-template-columns:1fr}}
+.toc-top{display:none}
+@media(max-width:900px){.toc-top{display:block}}
+mjx-container{overflow-x:auto;overflow-y:hidden}
+.backtop{position:fixed;right:18px;bottom:18px;background:var(--acc);color:#0a0d20;font-weight:800;
+  padding:10px 14px;border-radius:30px;font-size:13px;box-shadow:0 6px 20px rgba(0,0,0,.4)}
+
+/* theme toggle button */
+.theme-toggle{position:fixed;top:14px;right:18px;z-index:60;background:var(--panel2);color:var(--ink);
+  border:1px solid var(--line);padding:8px 14px;border-radius:30px;font-size:13px;font-weight:700;
+  cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.3);transition:all .15s}
+.theme-toggle:hover{border-color:var(--acc);transform:translateY(-1px)}
+
+/* ============ LIGHT THEME ============ */
+:root[data-theme="light"]{
+  --bg:#f6f8fc; --panel:#ffffff; --panel2:#f1f4fa; --ink:#1a2236; --muted:#5c6479;
+  --acc:#3a5bef; --acc2:#0d9488; --warn:#b4690e; --bad:#d92d4f; --good:#1f9d57;
+  --line:#d8deea; --code:#f3f5fb; --chip:#eef1f8;
+}
+[data-theme="light"] body{background:linear-gradient(180deg,#eef2f9,#f6f8fc);color:var(--ink)}
+[data-theme="light"] .side{background:#eef2f9}
+[data-theme="light"] .side .brand{color:#16203a}
+[data-theme="light"] .hero{background:radial-gradient(1200px 300px at 10% -20%,rgba(58,91,239,.18),transparent),linear-gradient(135deg,#e9eefb,#f3f6fc);border-color:var(--line)}
+[data-theme="light"] .hero h1{color:#16203a}
+[data-theme="light"] h2.sec{color:#16203a}
+[data-theme="light"] h3{color:#23408a}
+[data-theme="light"] .modtag{color:#fff}
+[data-theme="light"] .countdown{color:#fff}
+[data-theme="light"] .backtop{color:#fff}
+[data-theme="light"] th{background:#e8edf7;color:#1a2236}
+[data-theme="light"] tr:nth-child(even) td{background:#f4f6fc}
+[data-theme="light"] .center td{background:inherit}
+/* code blocks (kept dark for readability — classic editor look) */
+[data-theme="light"] pre{background:#1b2138;border-color:#2a3252;color:#dbe4ff}
+[data-theme="light"] code{background:#e7ecf7;color:#234b86}
+[data-theme="light"] pre code{background:none;color:inherit}
+[data-theme="light"] .blank{color:#ffcf7a}
+[data-theme="light"] summary{color:#1d2840}
+[data-theme="light"] summary:hover{background:#e8edf7}
+[data-theme="light"] .tag{color:#44506a}
+[data-theme="light"] .small{color:#5c6479}
+[data-theme="light"] p[style*="#666"]{color:#6b7283 !important}
+/* callout boxes */
+[data-theme="light"] .formula{background:#eef4ff;border-color:#b9cdf0}
+[data-theme="light"] .formula .bt{color:#2b54c4}
+[data-theme="light"] .key{background:#e8f8f2;border-color:#a4dac9}
+[data-theme="light"] .key .bt{color:#0c8276}
+[data-theme="light"] .warn{background:#fdf3e2;border-color:#e6c78f}
+[data-theme="light"] .warn .bt{color:#a85f0c}
+[data-theme="light"] .exam{background:#fbecf8;border-color:#e7b6de}
+[data-theme="light"] .exam .bt{color:#b3389e}
+[data-theme="light"] .tip{background:#eaf3fd;border-color:#aacdf0}
+[data-theme="light"] .tip .bt{color:#1f73bd}
+[data-theme="light"] .def{background:#eef1f8}
+[data-theme="light"] .small{color:var(--muted)}
+[data-theme="light"] .theme-toggle{box-shadow:0 4px 14px rgba(40,60,120,.15)}
+</style>
+</head>
+<body>
+<button id="themeToggle" class="theme-toggle" aria-label="Toggle light/dark theme">🌙 Dark</button>
+<div class="wrap">
+<nav class="side">
+  <div class="brand">DNN Mid-Sem<small>AIMLCZG511 · Exam Prep</small></div>
+  <h2>Start Here</h2>
+  <a href="#pattern">📊 Exam Pattern</a>
+  <a href="#cheat">⚡ Cheat Sheet</a>
+  <a href="#decide">🧭 Which Component?</a>
+  <a href="#hacks">🧠 Question-Reading Hacks</a>
+  <a href="#plan">🗓️ 5-Day Plan</a>
+  <h2>Theory</h2>
+  <a href="#m1">M1 · Intro to DL</a>
+  <a href="#m2">M2 · Perceptron</a>
+  <a href="#m3">M3 · Linear NN — Regression</a>
+  <a href="#m4">M4 · Linear NN — Classification</a>
+  <a href="#m5">M5 · Deep Feed-Forward NN</a>
+  <a href="#m6">M6 · CNN (partial)</a>
+  <h2>Practice (by topic)</h2>
+  <a href="#q1">Q·Perceptron</a>
+  <a href="#q2">Q·Regression</a>
+  <a href="#q3">Q·Binary Classification</a>
+  <a href="#q4">Q·Multiclass / Softmax</a>
+  <a href="#q5">Q·DFNN & Backprop</a>
+  <a href="#q6">Q·CNN</a>
+  <a href="#q7">Q·Code blanks & bug-fix</a>
+  <a href="#q8">Q·End-Sem (M1–5)</a>
+  <h2>Reference</h2>
+  <a href="#formulas">🧮 All Formulas</a>
+  <a href="#last">🎯 Last-Minute</a>
+</nav>
+
+<main class="main">
+<div class="hero">
+  <h1>Deep Neural Networks — Mid-Semester Exam Prep</h1>
+  <p><strong>AIMLCZG511</strong> · M.Tech AI&amp;ML · BITS Pilani WILP · Prof. Seetha Parameswaran / Dr. YVK Ravi Kumar</p>
+  <p class="small">Coverage: <strong>Modules 1–5 + Module 6 (CNN, partial)</strong> · Closed book · 2 hours · 100 marks · 5 questions</p>
+  <span class="countdown" id="cd">⏳ Exam in ~5 days</span>
+  <div class="pillrow">
+    <span class="pill">Built from Session 1–5 slides</span>
+    <span class="pill">+ 6 mid-sem papers (with answer keys)</span>
+    <span class="pill">+ verified explanations</span>
+  </div>
+</div>
+
+<div class="box tip">
+  <span class="bt">How to use this in 5 days</span>
+  Read each <strong>Module</strong> top-to-bottom (theory is exam-targeted, not a textbook). Then attack the
+  <strong>topic-wise solved questions</strong> — these are grouped from real EC2 papers because the
+  <em>exact</em> question won't repeat, but the <em>pattern</em> will. Keep the <a href="#cheat">Cheat Sheet</a> and
+  <a href="#formulas">Formula Sheet</a> open while practising. Do the <a href="#q7">code-blank / bug-fix bank</a> last — it's free marks.
+</div>
+
+<!-- ================= EXAM PATTERN ================= -->
+<section id="pattern">
+<h2 class="sec">📊 Exam Pattern — decoded from real papers</h2>
+<p>Across the Dec-2025 (Regular), Jan-2026 (Makeup), 2024 &amp; 2025 EC2 papers, the structure is remarkably stable.
+The recent papers (2025-26) lock to <strong>5 questions × 20 marks</strong>, one question per module, each with the same 4-part DNA.</p>
+
+<div class="box key">
+<span class="bt">The 5-question map (newest format)</span>
+<table class="center">
+<tr><th>Q</th><th>Module / Topic</th><th>What it tests</th></tr>
+<tr><td><strong>Q1</strong></td><td>M2 — Perceptron</td><td>Weighted sum, step activation, learning-rule update, logic gates, XOR limitation</td></tr>
+<tr><td><strong>Q2</strong></td><td>M3 — Linear Regression</td><td>Prediction, MSE, gradient, GD weight update, learning-rate &amp; feature-scaling effects</td></tr>
+<tr><td><strong>Q3</strong></td><td>M4 — Binary Classification</td><td>Sigmoid, BCE, logistic GD update, threshold trade-offs, confusion-matrix metrics</td></tr>
+<tr><td><strong>Q4</strong></td><td>M4 — Multiclass / Softmax</td><td>Softmax probs, CCE loss, argmax prediction, per-class precision/recall</td></tr>
+<tr><td><strong>Q5</strong></td><td>M5 — DFNN</td><td>Forward pass, ReLU/sigmoid, parameter counting, architecture design, backprop</td></tr>
+</table>
+</div>
+
+<h3>The repeating 4-part DNA inside each question</h3>
+<table>
+<tr><th>Part</th><th>Type</th><th>Marks</th><th>How to nail it</th></tr>
+<tr><td>(a)</td><td><strong>Numerical</strong> — compute by hand</td><td>~6</td><td>Show every step: \(z\), activation, loss, gradient, update. Method gets marks even if arithmetic slips.</td></tr>
+<tr><td>(b)</td><td><strong>Code blank-fill / bug-fix</strong></td><td>5–8</td><td>Memorise the ~10 standard NumPy one-liners (in <a href="#q7">bank</a>). Pure recall = easy marks.</td></tr>
+<tr><td>(c)</td><td><strong>Conceptual / applied</strong></td><td>3</td><td>Short, precise, justified. 30–50 words. Vague answers penalised.</td></tr>
+<tr><td>(d)</td><td><strong>Business / decision evaluation</strong></td><td>3</td><td>Pick a side, justify with the metric that matters (recall in medicine, latency on mobile, explainability in finance).</td></tr>
+</table>
+
+<div class="box warn">
+<span class="bt">⚠️ Two formats exist — be ready for both</span>
+The <strong>2025-26 papers</strong> use the clean 5-question (a-b-c-d) format above. The <strong>older 2024/early-2025 papers</strong>
+use <strong>6 questions × 5 marks</strong> with more standalone theory (Adam, dropout, bias term, computational graphs, CNN parameter
+counting, transfer learning). <strong>CNN (Module 6) shows up mainly in the older format</strong> — since your syllabus says
+"Module 6 partial", expect at least one CNN sub-part (output-size or parameter counting). Prepare both.
+</div>
+
+<h3>Topic frequency — where the marks live</h3>
+<table>
+<tr><th>Topic</th><th>Appears in</th><th>Priority</th></tr>
+<tr><td>Perceptron update + logic gates + XOR</td><td>Every paper</td><td>🔴 Must-know</td></tr>
+<tr><td>Gradient-descent weight update (regression)</td><td>Every paper</td><td>🔴 Must-know</td></tr>
+<tr><td>Sigmoid + BCE + logistic update</td><td>Every paper</td><td>🔴 Must-know</td></tr>
+<tr><td>Softmax + CCE + argmax</td><td>Every paper</td><td>🔴 Must-know</td></tr>
+<tr><td>Confusion matrix → precision/recall/F1</td><td>Every paper</td><td>🔴 Must-know</td></tr>
+<tr><td>DFNN forward pass + parameter counting</td><td>Every paper</td><td>🔴 Must-know</td></tr>
+<tr><td>Backprop (chain rule / dZ, dW)</td><td>2025-26 papers</td><td>🟠 High</td></tr>
+<tr><td>Code blank-fill / find-the-bug</td><td>2025-26 papers</td><td>🟠 High (easy marks)</td></tr>
+<tr><td>CNN output size + parameter counting</td><td>2024 papers</td><td>🟠 High (Module 6)</td></tr>
+<tr><td>Activation functions (ReLU vs sigmoid/tanh)</td><td>Most</td><td>🟠 High</td></tr>
+<tr><td>Overfitting / regularization / dropout</td><td>Older papers</td><td>🟡 Medium</td></tr>
+<tr><td>Optimizers (Adam, RMSprop, momentum)</td><td>Older papers</td><td>🟡 Medium</td></tr>
+<tr><td>Computational graph + gradients</td><td>Older papers</td><td>🟡 Medium</td></tr>
+<tr><td>Weight init / vanishing &amp; exploding gradients</td><td>Older papers</td><td>🟡 Medium</td></tr>
+</table>
+</section>
+
+<!-- ================= CHEAT SHEET ================= -->
+<section id="cheat">
+<h2 class="sec">⚡ One-Page Cheat Sheet (the 20 things to memorise)</h2>
+<div class="grid2">
+<div class="box formula">
+<span class="bt">Core neuron &amp; activations</span>
+$$z = w_0 + \textstyle\sum_i w_i x_i = \mathbf{w}^\top\mathbf{x}$$
+Identity (regression): \(f(z)=z\)<br>
+Sigmoid: \(\sigma(z)=\dfrac{1}{1+e^{-z}}\), \(\;\sigma'(z)=\sigma(z)(1-\sigma(z))\)<br>
+ReLU: \(\max(0,z)\), derivative \(=1\) if \(z>0\) else \(0\)<br>
+Tanh: range \((-1,1)\), zero-centred<br>
+Softmax: \(\hat y_k=\dfrac{e^{z_k}}{\sum_j e^{z_j}}\)<br>
+Step: \(1\) if \(z\ge 0\) else \(0\)
+</div>
+<div class="box formula">
+<span class="bt">Losses</span>
+MSE: \(J=\dfrac{1}{2N}\sum (\hat y-y)^2\)<br>
+BCE: \(-\big[y\log\hat y+(1-y)\log(1-\hat y)\big]\)<br>
+CCE: \(-\sum_k y_k\log\hat y_k\)<br>
+<span class="small">Lower is better; all are convex for linear models.</span>
+</div>
+<div class="box formula">
+<span class="bt">The ONE update rule (memorise this!)</span>
+$$\mathbf{w} \leftarrow \mathbf{w}-\eta\,\nabla J$$
+Magic fact — for <strong>linear regression, logistic regression AND softmax</strong>, the gradient is the same shape:
+$$\nabla J = \tfrac{1}{N}\,X^\top(\hat y - y)$$
+Perceptron (step): \(\;w_i \leftarrow w_i+\eta(y-\hat y)x_i\)
+</div>
+<div class="box formula">
+<span class="bt">Confusion-matrix metrics</span>
+Accuracy \(=\dfrac{TP+TN}{\text{all}}\)<br>
+Precision \(=\dfrac{TP}{TP+FP}\) (column)<br>
+Recall \(=\dfrac{TP}{TP+FN}\) (row)<br>
+F1 \(=2\cdot\dfrac{P\cdot R}{P+R}\)<br>
+<span class="small">FP = Type I, FN = Type II error.</span>
+</div>
+<div class="box formula">
+<span class="bt">Parameter counting (Dense)</span>
+One layer \(n_{in}\!\to\!n_{out}\): \((n_{in}\times n_{out})+n_{out}\)<br>
+<span class="small">(weights + one bias per output neuron)</span><br>
+Whole net = sum over all layers.
+</div>
+<div class="box formula">
+<span class="bt">CNN sizes &amp; params</span>
+Output \(=\left\lfloor\dfrac{N-F+2P}{S}\right\rfloor+1\)<br>
+Conv params \(=(F\!\times\!F\!\times\!C_{in}+1)\times K\)<br>
+<span class="small">\(K\)=#filters=output channels; pooling has 0 params.</span>
+</div>
+</div>
+
+<div class="box key">
+<span class="bt">15-second decision rules (Part c/d savers)</span>
+<table>
+<tr><td>Output is a real number</td><td>→ identity activation + MSE</td></tr>
+<tr><td>2 classes</td><td>→ sigmoid + BCE</td></tr>
+<tr><td>K&gt;2 mutually-exclusive classes</td><td>→ softmax + CCE</td></tr>
+<tr><td>Hidden layer activation</td><td>→ ReLU (default)</td></tr>
+<tr><td>Missing a disease / fraud / danger is costly</td><td>→ optimise <strong>Recall</strong></td></tr>
+<tr><td>False alarm is costly (e.g. spam)</td><td>→ optimise <strong>Precision</strong></td></tr>
+<tr><td>Imbalanced classes</td><td>→ accuracy is misleading; use F1 / per-class recall</td></tr>
+<tr><td>Train acc high, test acc low</td><td>→ <strong>overfitting</strong> → dropout, L2, early stop, more data</td></tr>
+<tr><td>Both acc low</td><td>→ <strong>underfitting</strong> → bigger model, train longer</td></tr>
+<tr><td>Loss = NaN / diverging</td><td>→ learning rate too big → decrease \(\eta\)</td></tr>
+<tr><td>Features on very different scales</td><td>→ normalize → faster convergence (rounder error bowl)</td></tr>
+<tr><td>XOR / not linearly separable</td><td>→ need hidden layer(s) + non-linear activation</td></tr>
+<tr><td>Mobile / real-time deployment</td><td>→ pick smaller/faster model (latency, memory, battery)</td></tr>
+</table>
+</div>
+</section>
+
+<!-- ================= 5 DAY PLAN ================= -->
+<section id="plan">
+<h2 class="sec">🗓️ 5-Day Battle Plan</h2>
+<table>
+<tr><th>Day</th><th>Focus</th><th>Deliverable</th></tr>
+<tr><td><strong>Day 1</strong></td><td>M1 Intro + M2 Perceptron (theory) → solve all <a href="#q1">Perceptron questions</a></td><td>Can derive AND/OR/NOR/NAND weights &amp; explain XOR by hand</td></tr>
+<tr><td><strong>Day 2</strong></td><td>M3 Regression + M4 Binary (theory) → <a href="#q2">Regression</a> + <a href="#q3">Binary</a> questions</td><td>One full GD iteration + one logistic update, blind</td></tr>
+<tr><td><strong>Day 3</strong></td><td>M4 Multiclass + M5 DFNN (theory) → <a href="#q4">Softmax</a> + <a href="#q5">DFNN</a> questions</td><td>Softmax+CCE by hand; forward pass through a 2-layer net; count parameters</td></tr>
+<tr><td><strong>Day 4</strong></td><td>M6 CNN (partial) + <a href="#q6">CNN questions</a> + memorise the <a href="#q7">code bank</a></td><td>CNN output sizes &amp; parameter table; all NumPy blanks from memory</td></tr>
+<tr><td><strong>Day 5</strong></td><td>Full mock: do Dec-2025 paper closed-book in 2 hrs → review <a href="#formulas">formula sheet</a> + <a href="#last">last-minute card</a></td><td>Confidence + speed</td></tr>
+</table>
+<div class="box tip"><span class="bt">Golden rule</span> In numerical questions, <strong>always write the formula first, then substitute</strong>. Method marks are awarded even when the final number is slightly off.</div>
+</section>
+
+<!-- ================= DECISION GUIDE ================= -->
+<section id="decide">
+<h2 class="sec">🧭 Which Component to Choose? — Decision Guide</h2>
+<p>DNN design questions ("design a network for…", "which activation/loss?", "which model to deploy?") all reduce to a few decisions. Use this guide to pick correctly and justify in one line.</p>
+
+<h3>Output layer + loss — driven entirely by the task</h3>
+<table>
+<tr><th>Task</th><th>Output activation</th><th>Loss</th><th>Output neurons</th></tr>
+<tr><td><strong>Regression</strong> (predict a real number)</td><td>Identity (linear)</td><td>MSE \(\frac{1}{2N}\sum(\hat y-y)^2\)</td><td>1 (or \(d\) targets)</td></tr>
+<tr><td><strong>Binary classification</strong> (2 classes)</td><td>Sigmoid</td><td>Binary cross-entropy</td><td>1</td></tr>
+<tr><td><strong>Multi-class</strong> (\(K\) mutually-exclusive classes)</td><td>Softmax</td><td>Categorical cross-entropy</td><td>\(K\) (one-hot labels)</td></tr>
+<tr><td><strong>Multi-label</strong> (classes not exclusive)</td><td>Sigmoid per output</td><td>Sum of per-class BCE</td><td>\(K\)</td></tr>
+</table>
+<div class="box key"><span class="bt">Read the task wording</span> "predict the price/temperature/amount" → regression (identity + MSE). "spam or not / disease present or absent" → binary (sigmoid + BCE). "one of K categories (digit, animal, sentiment)" → softmax + CCE. The output activation and the loss are a <strong>matched pair</strong> — pick them together.</div>
+
+<h3>Hidden-layer activation</h3>
+<table>
+<tr><th>Use</th><th>When</th><th>Why</th></tr>
+<tr><td><strong>ReLU</strong> (default)</td><td>Almost always for hidden layers</td><td>Cheap, no vanishing gradient for \(z&gt;0\), sparse</td></tr>
+<tr><td><strong>Leaky ReLU / PReLU / ELU</strong></td><td>Very deep nets, or "dying ReLU" suspected</td><td>Small negative slope keeps neurons alive</td></tr>
+<tr><td><strong>Tanh</strong></td><td>Small / shallow nets, need zero-centred output</td><td>Zero-centred but saturates (vanishing gradient)</td></tr>
+<tr><td><strong>Sigmoid</strong></td><td>Avoid in hidden layers; use only at a binary output</td><td>Strong saturation → vanishing gradients</td></tr>
+</table>
+
+<h3>Gradient-descent variant &amp; optimizer</h3>
+<table>
+<tr><th>Choose</th><th>When</th></tr>
+<tr><td><strong>Batch GD</strong></td><td>Small dataset, want a smooth/exact gradient</td></tr>
+<tr><td><strong>SGD</strong> (1 example)</td><td>Online / streaming data; escaping sharp minima; teaching</td></tr>
+<tr><td><strong>Mini-batch SGD</strong> (B = 32–256)</td><td><strong>Default</strong> — GPU-efficient, stable enough, scales to big data</td></tr>
+<tr><td><strong>Adam</strong></td><td>Default adaptive optimizer; fast convergence (β₁≈0.9 momentum, β₂≈0.999 scaling)</td></tr>
+<tr><td><strong>Momentum / RMSprop</strong></td><td>Momentum: accelerate + damp oscillation; RMSprop: non-stationary objectives</td></tr>
+</table>
+
+<h3>Diagnose-and-fix (training symptoms)</h3>
+<table>
+<tr><th>Symptom in the question</th><th>Diagnosis</th><th>Fix to state</th></tr>
+<tr><td>Train acc high, test/val acc low (big gap)</td><td><strong>Overfitting</strong></td><td>Dropout, L2/weight decay, early stopping, more/augmented data, simpler model</td></tr>
+<tr><td>Both train &amp; val accuracy low</td><td><strong>Underfitting</strong></td><td>Bigger/deeper net, train longer, lower regularization, better features</td></tr>
+<tr><td>Loss = NaN / explodes</td><td>LR too large / exploding gradients</td><td>Lower \(\eta\), gradient clipping, normalize inputs</td></tr>
+<tr><td>Loss barely decreases</td><td>LR too small / vanishing gradients / bug</td><td>Raise \(\eta\), ReLU, He/Xavier init, batch norm</td></tr>
+<tr><td>Loss oscillates</td><td>LR too large</td><td>Decrease \(\eta\), use LR schedule</td></tr>
+<tr><td>Gradients → 0 in early layers</td><td>Vanishing gradients</td><td>ReLU, residual/skip connections, batch norm, good init</td></tr>
+</table>
+
+<h3>"Which model should we deploy?" (Part-d evaluation)</h3>
+<div class="box key"><span class="bt">Pick the metric that matches the domain</span>
+<strong>Mobile / real-time / edge</strong> → favour the <em>smaller, faster, lower-memory</em> model (latency, RAM, battery beat a 1–2% accuracy gain). <strong>Cloud / unlimited compute</strong> → the accuracy gain is worth it. <strong>Medicine / fraud / safety</strong> → optimise <em>recall</em> (missing a case is worst). <strong>Spam / false-alarm-costly</strong> → optimise <em>precision</em>. <strong>Finance / regulated</strong> → favour the <em>explainable</em> model. Always: state the recommendation first, justify with the dominant constraint, then note the trade-off.</div>
+</section>
+
+<!-- ================= QUESTION-READING HACKS ================= -->
+<section id="hacks">
+<h2 class="sec">🧠 Question-Reading Hacks — set up DNN problems fast</h2>
+<p>The numeric questions are five repeating recipes. These hacks tell you how to read each one and avoid the classic traps.</p>
+
+<h3>Spotting the question type from keywords</h3>
+<table>
+<tr><th>Keywords in the question</th><th>It's asking for</th><th>Go-to method</th></tr>
+<tr><td>"weighted sum", "step activation", "update the weights", logic gate, "(bipolar)"</td><td>Perceptron</td><td>\(z=w_0+\sum w_ix_i\); step; update only if wrong: \(w_i\!\leftarrow\!w_i+\eta(y-\hat y)x_i\)</td></tr>
+<tr><td>"predict price/value", "MSE", "one gradient-descent iteration"</td><td>Linear regression</td><td>\(\hat y=Xw\) → MSE → \(\nabla J=\frac1N X^\top(\hat y-y)\) → \(w\!\leftarrow\!w-\eta\nabla J\)</td></tr>
+<tr><td>"sigmoid", "probability", "binary", "threshold 0.5"</td><td>Logistic regression</td><td>\(\hat y=\sigma(w^\top x)\); BCE; gradient \((\hat y-y)x\)</td></tr>
+<tr><td>"logits", "softmax", "one-hot", "K classes"</td><td>Softmax / multiclass</td><td>exponentiate → normalise → argmax; CCE \(=-\log(\hat y_{\text{true}})\)</td></tr>
+<tr><td>"hidden layer", "forward propagation", "ReLU then sigmoid", "parameters"</td><td>DFNN forward pass / param count</td><td>\(z^{[1]}=W^{[1]}x+b\) → ReLU → output → loss; params \((n_{in}n_{out}+n_{out})\) per layer</td></tr>
+<tr><td>"confusion matrix", "precision/recall", "accuracy misleading"</td><td>Classification metrics</td><td>TP/FP/FN; precision uses column, recall uses row</td></tr>
+<tr><td>"complete the code", "blank 1…", "find the errors"</td><td>Code blank / bug-fix</td><td>Recall the standard NumPy lines; check signs/transpose/axis</td></tr>
+</table>
+
+<h3>Numerical-setup hacks &amp; common traps</h3>
+<div class="grid2">
+<div class="box tip"><span class="bt">Perceptron</span>
+• Check the convention: \(z\ge0\) vs \(z&gt;0\), and \(\{0,1\}\) vs \(\{-1,+1\}\).<br>
+• <strong>No update if the prediction is already correct</strong> — always compare \(\hat y\) to \(y\) first.<br>
+• Present one epoch as a table (z, ŷ, Δw, new w).<br>
+• Not linearly separable (XOR, "stuck at 50/75%") → needs a hidden layer.</div>
+<div class="box tip"><span class="bt">Gradient descent</span>
+• <strong>GD subtracts</strong> the gradient; the <strong>perceptron adds</strong> the correction — don't mix.<br>
+• Error vector is \(\hat y-y\) (predicted minus true).<br>
+• \(\eta\) too big → overshoot/diverge; too small → slow.<br>
+• Different feature scales → normalize for faster convergence.</div>
+<div class="box tip"><span class="bt">Softmax / CCE</span>
+• Subtract \(\max(z)\) before exponentiating (stability) — but the ratio is unchanged.<br>
+• Predicted class = argmax of the probabilities.<br>
+• CCE only counts the true class: \(-\log(\hat y_{\text{true}})\).<br>
+• Handy: \(e^{0.5}{=}1.65,\ e^{1}{=}2.72,\ e^{1.5}{=}4.48,\ e^{2}{=}7.39\).</div>
+<div class="box tip"><span class="bt">Forward pass / params</span>
+• Mind whether \(W\) is stored \([n_{out}\times n_{in}]\) or transposed — match the given vectors' shapes.<br>
+• Params per dense layer \(=(n_{in}\!\times\!n_{out})+n_{out}\); <strong>check whether biases are included</strong>.<br>
+• ReLU loses negatives (→0); sigmoid keeps them (→(0,0.5)).<br>
+• Overfitting risk if #params approaches #samples.</div>
+<div class="box tip"><span class="bt">Metrics from a confusion matrix</span>
+• TP = the cell; FP = column total − TP; FN = row total − TP.<br>
+• Precision \(=\frac{TP}{TP+FP}\) (of predicted-positives); Recall \(=\frac{TP}{TP+FN}\) (of actual-positives).<br>
+• Imbalanced data → quote the naive-classifier baseline; accuracy alone is misleading.<br>
+• Threshold ↓ → FP↑, FN↓ (recall↑).</div>
+<div class="box tip"><span class="bt">Code blanks / bug-fixes</span>
+• Memorise the 12 NumPy lines (see the code bank).<br>
+• Bug hot-spots: wrong <strong>sign</strong> (sigmoid \(1+e^{-z}\), GD \(-\), softmax negative), missing <strong>transpose</strong> (\(X^\top\)), wrong <strong>axis</strong> (softmax axis=1), <strong>argmin vs argmax</strong>, incomplete BCE.<br>
+• "What happens if uncorrected?": sign → diverges; transpose → shape crash; argmin → inverted predictions.</div>
+</div>
+
+<h3>Reading "design / evaluate" questions</h3>
+<div class="box key"><span class="bt">Two-step read</span>
+<strong>(1) Identify the task</strong> from the wording → fixes the output activation, loss, and #output neurons (see the <a href="#decide">decision guide</a>). <strong>(2) Identify the constraint</strong> (accuracy vs latency/memory/explainability) → fixes the architecture-size or model recommendation. State your choice, then justify each with one reason tied to the task/constraint. For parameter-count parts, write the per-layer formula and sum; for a constraint like "≤ 20,000 params", set up the inequality and solve for the hidden size.</div>
+</section>
+
+<hr>
+
+<!-- ================= MODULE 1 ================= -->
+<section id="m1">
+<span class="modtag">MODULE 1</span>
+<h2 class="sec">Introduction to Deep Learning</h2>
+
+<h3>AI vs ML vs DL — the nesting dolls</h3>
+<p>These are three concentric circles, smallest inside largest:</p>
+<div class="box def">
+<strong>AI</strong> (biggest) — the science of making machines do tasks that need human intelligence (includes rule-based systems with <em>no learning</em>, e.g. a chess engine of hand-written rules).<br>
+<strong>ML</strong> — a subset of AI where the machine <em>learns from data/experience</em> instead of being explicitly programmed.<br>
+<strong>DL</strong> (smallest) — a subset of ML that uses <strong>artificial neural networks with many layers</strong> to learn <em>increasingly meaningful representations</em> of data automatically.
+</div>
+<p>The "<strong>deep</strong>" in deep learning refers to the <strong>number of layers</strong> (the model's <em>depth</em>) — successive layers each transform the data into a higher-level representation. Early layers learn simple features (edges), later layers learn complex concepts (faces).</p>
+
+<div class="box key">
+<span class="bt">Why deep learning now? (the 3 enablers)</span>
+<strong>1. Data</strong> — huge amounts of unstructured data (images, text, audio, video) + cheap storage + cheap sensors.<br>
+<strong>2. Compute</strong> — cheap GPUs and distributed clusters made training large nets feasible.<br>
+<strong>3. Algorithms</strong> — better learning methods, automatic feature generation (no hand-crafted features), scalability.
+</div>
+
+<h3>The 4 core components of any DL problem</h3>
+<p>This framework recurs in <em>every</em> module — examiners love asking you to identify these for a given scenario.</p>
+<table>
+<tr><th>#</th><th>Component</th><th>Meaning</th></tr>
+<tr><td>1</td><td><strong>Data</strong></td><td>Examples to learn from. \(D=\{X,t\}\). Each example = a feature vector (covariates); the value to predict = label/target. \(d\)=#features (dimensions), \(N\)=#examples.</td></tr>
+<tr><td>2</td><td><strong>Model</strong></td><td>The machinery that transforms input → prediction. DL chains many transformations (hence "deep").</td></tr>
+<tr><td>3</td><td><strong>Objective (loss) function</strong></td><td>Measures how bad the model is. By convention <em>lower = better</em>, so it's a "loss".</td></tr>
+<tr><td>4</td><td><strong>Learning algorithm</strong></td><td>Searches for parameters that minimise the loss. The workhorse: <strong>gradient descent</strong>.</td></tr>
+</table>
+
+<h3>Kinds of learning problems</h3>
+<table>
+<tr><th>Paradigm</th><th>Data given</th><th>Examples</th></tr>
+<tr><td><strong>Supervised</strong></td><td>Features + labels</td><td>Regression (how much/many), Classification (which class)</td></tr>
+<tr><td><strong>Unsupervised</strong></td><td>Features only</td><td>Clustering, synthetic data generation (GANs)</td></tr>
+<tr><td><strong>Reinforcement</strong></td><td>Agent + environment + rewards</td><td>Game playing, robotics over time-steps</td></tr>
+</table>
+<p class="small"><strong>Supervised tasks:</strong> regression, binary/multi-class/multi-label classification, recommender systems, sequence learning (tagging, parsing, ASR, text-to-speech, machine translation). This course (and the mid-sem) lives almost entirely in <strong>supervised learning</strong>.</p>
+
+<div class="box exam">
+<span class="bt">Likely exam asks</span>
+"Define deep learning / why is it called deep" · "Differentiate AI, ML, DL with an example" · "List &amp; explain the 4 components of a DL system for <em>[given scenario]</em>" · "Classify this task as supervised/unsupervised/RL".
+</div>
+</section>
+
+<hr>
+
+<!-- ================= MODULE 2 ================= -->
+<section id="m2">
+<span class="modtag">MODULE 2</span>
+<h2 class="sec">The Perceptron</h2>
+
+<h3>From biological to artificial neuron</h3>
+<div class="grid2">
+<div class="box def">
+<strong>Biological neuron:</strong> <em>Dendrites</em> receive signals → <em>Soma</em> (cell body) processes → <em>Axon</em> transmits output → <em>Synapses</em> connect to other neurons (knowledge stored in synaptic strengths).
+</div>
+<div class="box def">
+<strong>Artificial neuron:</strong> inputs \(x_i\) each weighted by \(w_i\) (importance) → summed → activation \(f\) → one output \(\hat y\). Knowledge stored in <strong>weights</strong>.
+</div>
+</div>
+<div class="box formula">
+<span class="bt">Artificial neuron computation</span>
+$$\hat y = f\!\left(w_0 + \sum_{i=1}^{d} w_i x_i\right) = f(\mathbf{w}^\top\mathbf{x})$$
+\(w_0\) = <strong>bias</strong> (with input \(x_0=1\)) — lets the decision boundary shift away from the origin.
+</div>
+
+<h3>What is a Perceptron?</h3>
+<p>The <strong>perceptron</strong> (Rosenblatt, 1958) is the <em>simplest</em> artificial neuron: a weighted sum followed by a <strong>step (sign) activation</strong>. It's a <strong>linear binary classifier</strong> — its decision boundary \(\mathbf{w}^\top\mathbf{x}=0\) is a hyperplane.</p>
+<div class="box formula">
+<span class="bt">Step activations (two conventions — read the question!)</span>
+Binary \(\{0,1\}\): \(\hat y = 1\) if \(z\ge 0\), else \(0\).<br>
+Bipolar \(\{-1,+1\}\): \(\hat y = \text{sign}(z) = +1\) if \(z\ge 0\), else \(-1\).
+</div>
+
+<h3>Perceptron Learning Algorithm</h3>
+<div class="box formula">
+<span class="bt">The update rule (memorise)</span>
+For each example, if misclassified, update <strong>every</strong> weight (including bias, with \(x_0=1\)):
+$$w_i \leftarrow w_i + \eta\,(y-\hat y)\,x_i$$
+\(\eta\) = learning rate, \(y\) = true label, \(\hat y\) = predicted. If \(\hat y=y\) → <strong>no change</strong>.
+</div>
+<ol>
+<li>Initialise weights (often all zeros).</li>
+<li>For each training example: compute \(z=\mathbf{w}^\top\mathbf{x}\), then \(\hat y=\text{step}(z)\).</li>
+<li>If \(\hat y\neq y\): apply the update rule to all weights.</li>
+<li>Repeat over epochs until all examples are classified correctly (guaranteed <em>only if data is linearly separable</em> — <strong>Perceptron Convergence Theorem</strong>).</li>
+</ol>
+<div class="box tip"><span class="bt">Exam shortcut</span> "One epoch" = pass through all examples once, updating as you go. Present your work as a <strong>table</strong>: columns for \(x_1,x_2,t,z,y,\Delta w_0,\Delta w_1,\Delta w_2,\) new weights. Examiners explicitly ask for this tabular form.</div>
+
+<h3>Perceptrons for logic gates</h3>
+<p>Any linearly-separable Boolean function can be realised by one perceptron. Standard weight sets (with bias):</p>
+<table class="center">
+<tr><th>Gate</th><th>\(w_0\) (bias)</th><th>\(w_1\)</th><th>\(w_2\)</th><th>Rule check</th></tr>
+<tr><td>AND</td><td>−1.5</td><td>1</td><td>1</td><td>fires only when \(x_1+x_2\ge1.5\) ⇒ both 1</td></tr>
+<tr><td>OR</td><td>−0.5</td><td>1</td><td>1</td><td>fires when \(x_1+x_2\ge0.5\) ⇒ any 1</td></tr>
+<tr><td>NAND</td><td>1.5</td><td>−1</td><td>−1</td><td>negation of AND</td></tr>
+<tr><td>NOR</td><td>0.5</td><td>−1</td><td>−1</td><td>negation of OR</td></tr>
+<tr><td>NOT</td><td>0.5</td><td>−1</td><td>—</td><td>single input</td></tr>
+</table>
+<p class="small">These aren't unique — any weights satisfying all the inequalities work. In a derivation question, set up one inequality per row of the truth table and find weights that satisfy all of them.</p>
+
+<h3>⭐ The XOR problem — the most-tested concept in Module 2</h3>
+<table class="center">
+<tr><th>\(x_1\)</th><th>\(x_2\)</th><th>XOR</th></tr>
+<tr><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>0</td><td>1</td><td>1</td></tr>
+<tr><td>1</td><td>0</td><td>1</td></tr>
+<tr><td>1</td><td>1</td><td>0</td></tr>
+</table>
+<div class="box warn">
+<span class="bt">Why a single perceptron CANNOT learn XOR</span>
+Plot the points: class-0 = (0,0) &amp; (1,1) sit on one diagonal; class-1 = (0,1) &amp; (1,0) sit on the other. <strong>No single straight line</strong> can separate them — they're <strong>not linearly separable</strong>. A perceptron only draws one hyperplane \(\mathbf{w}^\top\mathbf{x}=0\), so it gets stuck (≈50% accuracy forever). This is the fundamental limitation Minsky &amp; Papert (1969) highlighted.
+</div>
+<div class="box key">
+<span class="bt">The fix → Multi-Layer Perceptron (MLP)</span>
+Stack a <strong>hidden layer</strong> with <strong>non-linear activations</strong>. Each hidden neuron learns one linear separator; the output neuron combines them (e.g. XOR = "OR but NOT AND"). Hidden layers create new feature representations, enabling <strong>non-linear decision boundaries</strong>. This bridge motivates Module 5 (DFNN).
+</div>
+
+<h3>Linear separability</h3>
+<p>Two classes are <strong>linearly separable</strong> in \(n\)-D if a single \((n-1)\)-D hyperplane can split them (a line in 2-D, a plane in 3-D). If separable, infinitely many such lines exist and the perceptron will find one.</p>
+
+<div class="box exam">
+<span class="bt">Likely exam asks</span>
+"Derive perceptron weights for NOR/NAND using the learning algorithm (show table, verify, draw diagram)" · "Why can't a perceptron learn XOR?" · "How does an MLP overcome this — role of hidden layers &amp; non-linearity?" · "Given weights, classify these points" · "How many perceptrons/layers to separate these points with 100% accuracy?".
+</div>
+</section>
+
+<hr>
+
+<!-- ================= MODULE 3 ================= -->
+<section id="m3">
+<span class="modtag">MODULE 3</span>
+<h2 class="sec">Linear Neural Networks for Regression</h2>
+
+<h3>What is regression?</h3>
+<p>A supervised task that predicts a <strong>continuous</strong> value \(y\in\mathbb{R}\) from features \(\mathbf{x}\in\mathbb{R}^d\) (e.g. house price, temperature, salary). <strong>Linear regression</strong> assumes the output is a linear combination of inputs.</p>
+
+<div class="box formula">
+<span class="bt">Model = a single neuron with identity activation</span>
+$$\hat y = w_0 + w_1x_1+\dots+w_dx_d = \mathbf{w}^\top\mathbf{x}$$
+Vectorised over all \(N\) examples: \(\;\hat{\mathbf{y}} = X\mathbf{w}\), where \(X\in\mathbb{R}^{N\times(d+1)}\) (first column = 1s for bias).<br>
+Activation \(f(z)=z\) (identity): output can be any real number, derivative \(=1\) (gradient flows unchanged).
+</div>
+
+<div class="box formula">
+<span class="bt">Objective — Mean Squared Error (MSE)</span>
+$$J(\mathbf{w}) = \frac{1}{2N}\sum_{i=1}^{N}\big(\hat y^{(i)}-y^{(i)}\big)^2$$
+Why squared error? <strong>Differentiable</strong> (smooth), <strong>convex</strong> (single global minimum for linear models), <strong>penalises large errors</strong> quadratically, and equals max-likelihood under Gaussian noise. The \(\tfrac{1}{2}\) just makes the gradient clean.
+</div>
+<p class="small">Some papers drop the \(\tfrac12\) and use \(J=\tfrac1N\sum(\hat y-y)^2\). Use whichever the question's code/marks imply; state your assumption.</p>
+
+<h3>Gradient Descent</h3>
+<p><strong>Idea:</strong> iteratively step the weights <em>downhill</em> on the convex error surface (a bowl) until you reach the bottom (minimum).</p>
+<div class="box formula">
+<span class="bt">Gradient &amp; update (Batch GD)</span>
+$$\nabla J = \frac{1}{N}\,X^\top(\hat{\mathbf{y}}-\mathbf{y}) \qquad\quad \mathbf{w} \leftarrow \mathbf{w}-\eta\,\nabla J$$
+\(\eta\) = learning rate (step size). <strong>Batch</strong> GD uses all \(N\) examples each step.
+</div>
+<h4>One GD iteration — the exact recipe (Q2 in every paper)</h4>
+<ol>
+<li><strong>Predict:</strong> \(\hat y^{(i)} = \mathbf{w}^\top\mathbf{x}^{(i)}\) for each example.</li>
+<li><strong>Loss:</strong> \(J=\tfrac{1}{2N}\sum(\hat y-y)^2\).</li>
+<li><strong>Error vector:</strong> \(e=\hat{\mathbf{y}}-\mathbf{y}\).</li>
+<li><strong>Gradient:</strong> \(\nabla J=\tfrac1N X^\top e\).</li>
+<li><strong>Update:</strong> \(\mathbf{w}\leftarrow\mathbf{w}-\eta\,\nabla J\).</li>
+</ol>
+
+<h3>Learning rate \(\eta\) — the #1 conceptual trap</h3>
+<table>
+<tr><th>\(\eta\) too small</th><th>\(\eta\) good</th><th>\(\eta\) too large</th></tr>
+<tr><td>Tiny steps → very slow convergence; may stall.</td><td>Steady descent to the minimum.</td><td><strong>Overshooting</strong> — jumps over the minimum, oscillates or <strong>diverges</strong> (loss → ∞, NaN).</td></tr>
+</table>
+
+<div class="box key">
+<span class="bt">Feature scaling / normalization — why it speeds GD</span>
+If features have very different ranges (e.g. area 400–2000 vs rooms 1–5), the error surface is a <strong>long thin valley</strong> → GD zig-zags and needs many epochs. <strong>Z-score normalization</strong> \(\big(\tfrac{x-\mu}{\sigma}\big)\) makes the surface <strong>more spherical/round</strong> → GD takes direct steps → converges in fewer epochs. (Final weights/MSE can be identical; only <em>speed</em> differs.)
+</div>
+
+<h3>Evaluation metrics (regression)</h3>
+<div class="box formula">
+MSE \(=\tfrac1N\sum(\hat y-y)^2\) · RMSE \(=\sqrt{\text{MSE}}\) (same units as target) · MAE \(=\tfrac1N\sum|\hat y-y|\)<br>
+\(R^2 = 1-\dfrac{\sum(\hat y-y)^2}{\sum(\bar y-y)^2}\) — fraction of variance explained; 1 = perfect, 0 = no better than predicting the mean.
+</div>
+<p class="small">Watch units: if MSE = 5,000,000 then RMSE = √5,000,000 ≈ 2,236. Interpret RMSE relative to typical target values (e.g. a $2,236 error on $30k–$100k salaries ≈ 3–7% → acceptable).</p>
+
+<div class="box exam">
+<span class="bt">Likely exam asks</span>
+"Perform one batch-GD iteration: predict, MSE, gradient, update" · "Which learning rate gives larger change / what goes wrong if too large?" · "Which model converges faster — normalized vs raw features, and why (error-surface shape)?" · "Is this RMSE acceptable?".
+</div>
+</section>
+
+<hr>
+
+<!-- ================= MODULE 4 ================= -->
+<section id="m4">
+<span class="modtag">MODULE 4</span>
+<h2 class="sec">Linear Neural Networks for Classification</h2>
+<p>Classification predicts a <strong>discrete class</strong>. Three flavours: <strong>binary</strong> (\(y\in\{0,1\}\)), <strong>multi-class</strong> (one of \(K\) classes), <strong>multi-label</strong> (several classes at once).</p>
+
+<h3>Part A — Binary Classification (Logistic Regression)</h3>
+<div class="box warn"><span class="bt">Why not linear regression for classification?</span> Linear output is unbounded \((-\infty,\infty)\) and not a probability; it's sensitive to outliers and gives a poor decision rule. We need an output squashed to \([0,1]\) → the <strong>sigmoid</strong>.</div>
+
+<div class="box formula">
+<span class="bt">Sigmoid (logistic) function</span>
+$$\sigma(z)=\frac{1}{1+e^{-z}}, \qquad \sigma'(z)=\sigma(z)\,(1-\sigma(z))$$
+Range \((0,1)\) → read as \(P(y{=}1\mid x)\). Monotonic, smooth. \(\sigma(0)=0.5,\ \sigma'(0)=0.25\). Symmetry: \(\sigma(-z)=1-\sigma(z)\). As \(z\to+\infty\to1\), \(z\to-\infty\to0\).
+</div>
+<p><strong>Model:</strong> \(\hat y = \sigma(\mathbf{w}^\top\mathbf{x})\). <strong>Predict class 1</strong> if \(\hat y\ge\) threshold (default 0.5, i.e. \(z\ge0\)).</p>
+
+<div class="box formula">
+<span class="bt">Binary Cross-Entropy (BCE) loss</span>
+$$\ell = -\big[\,y\log\hat y + (1-y)\log(1-\hat y)\,\big]$$
+Derived from max-likelihood. Heavily penalises <em>confident wrong</em> predictions (loss → ∞). Convex for logistic regression; pairs perfectly with sigmoid.
+</div>
+<div class="box formula">
+<span class="bt">The beautiful gradient (same form as regression!)</span>
+For a single example: \(\;\nabla\ell = (\hat y - y)\,\mathbf{x}\). Over a batch: \(\;\nabla J = \tfrac1N X^\top(\hat{\mathbf y}-\mathbf y)\).<br>
+Update: \(\mathbf{w}\leftarrow\mathbf{w}-\eta\,\nabla\ell\). Trained with <strong>SGD</strong> (one example) or <strong>mini-batch SGD</strong>.
+</div>
+
+<h4>Gradient descent variants (know the trade-offs)</h4>
+<table>
+<tr><th>Variant</th><th>Examples per update</th><th>Pros / Cons</th></tr>
+<tr><td>Batch GD</td><td>all \(N\)</td><td>Smooth, accurate gradient; slow, memory-heavy</td></tr>
+<tr><td>SGD</td><td>1 (random)</td><td>Fast, online, noise escapes local minima; noisy/oscillates</td></tr>
+<tr><td><strong>Mini-batch SGD</strong></td><td>\(B\) (32–256)</td><td><strong>Best of both</strong> — GPU-efficient, stable enough. Standard in DL.</td></tr>
+</table>
+
+<h3>Classification metrics — confusion matrix</h3>
+<table class="center">
+<tr><th></th><th>Pred Positive</th><th>Pred Negative</th></tr>
+<tr><th>Actual Positive</th><td>TP</td><td>FN <span class="small">(Type II)</span></td></tr>
+<tr><th>Actual Negative</th><td>FP <span class="small">(Type I)</span></td><td>TN</td></tr>
+</table>
+<div class="box formula">
+Accuracy \(=\dfrac{TP+TN}{TP+TN+FP+FN}\) · Precision \(=\dfrac{TP}{TP+FP}\) · Recall \(=\dfrac{TP}{TP+FN}\) · F1 \(=2\dfrac{P\cdot R}{P+R}\)
+</div>
+<div class="box key">
+<span class="bt">When to use which (Part c/d gold)</span>
+<strong>Accuracy</strong> only if classes balanced — <em>misleading</em> on imbalanced data (a "always-healthy" classifier scores 95% if 95% are healthy!).<br>
+<strong>Precision</strong> when False Positives cost you (spam filter: don't bin real mail).<br>
+<strong>Recall (sensitivity)</strong> when False Negatives cost you (disease/fraud: don't miss the real cases).<br>
+<strong>F1</strong> when you need balance / data is imbalanced.<br>
+<strong>Threshold ↓ (0.5→0.3):</strong> more positives predicted → FP ↑, FN ↓ (recall ↑, precision ↓). And vice-versa.
+</div>
+
+<h3>Part B — Multi-class Classification (Softmax)</h3>
+<p><strong>One output neuron per class</strong> (K neurons). Labels are <strong>one-hot encoded</strong>: class \(k\) → vector of zeros with a 1 at position \(k\). Weight matrix \(W\in\mathbb{R}^{(d+1)\times K}\). Logits \(\mathbf{z}=W^\top\mathbf{x}\).</p>
+<div class="box formula">
+<span class="bt">Softmax → probability distribution</span>
+$$\hat y_k = \frac{e^{z_k}}{\sum_{j=1}^{K} e^{z_j}}$$
+Outputs are in \((0,1)\) and <strong>sum to 1</strong>. Predicted class = \(\arg\max_k \hat y_k\). (Numerical-stability trick used in code: subtract \(\max(z)\) before exponentiating.)
+</div>
+<div class="box formula">
+<span class="bt">Categorical Cross-Entropy (CCE)</span>
+$$L = -\sum_{k=1}^{K} y_k \log \hat y_k$$
+With one-hot \(y\), only the true class's term survives: \(L=-\log \hat y_{\text{true}}\). Gradient on logits: \(\nabla = \tfrac1B X^\top(\hat Y - Y)\) — <strong>same shape again</strong>. Trained with mini-batch SGD.
+</div>
+
+<h4>Softmax+CCE by hand (Q4 recipe)</h4>
+<ol>
+<li>Exponentiate each logit: \(e^{z_0}, e^{z_1}, \dots\)</li>
+<li>Sum them.</li>
+<li>Divide each by the sum → probabilities.</li>
+<li>Predicted class = highest probability (argmax).</li>
+<li>CCE = \(-\log(\text{prob of TRUE class})\).</li>
+</ol>
+<p class="small">Handy values: \(e^{0.5}{\approx}1.649,\ e^{1.0}{\approx}2.718,\ e^{1.5}{\approx}4.482,\ e^{2.0}{\approx}7.389\).</p>
+
+<h4>Multi-class metrics</h4>
+<p>Per-class precision/recall from the confusion matrix: for class \(k\), <strong>TP</strong> = diagonal cell, <strong>FP</strong> = (column sum − TP), <strong>FN</strong> = (row sum − TP). <strong>Top-K accuracy</strong>: correct if the true class is among the K highest probabilities (used for 1000-class problems like ImageNet). Averaging: <em>macro</em> (mean over classes, treats all equally) vs <em>micro/weighted</em> (accounts for class sizes).</p>
+
+<div class="box exam">
+<span class="bt">Likely exam asks</span>
+"Compute z, sigmoid prob, gradient, updated weights for one example" · "Softmax probs + CCE + predicted class + is it correct?" · "From this confusion matrix find precision/recall for class X" · "Why is accuracy misleading here? What would a naive classifier get?" · "Effect of lowering the threshold on FP/FN" · "Which model to deploy (recall vs accuracy trade-off)?".
+</div>
+</section>
+
+<hr>
+
+<!-- ================= MODULE 5 ================= -->
+<section id="m5">
+<span class="modtag">MODULE 5</span>
+<h2 class="sec">Deep Feed-Forward Neural Networks (DFNN / MLP)</h2>
+
+<h3>Why we need depth &amp; non-linearity</h3>
+<p>Linear models (one neuron) can only draw straight boundaries → fail on XOR &amp; most real problems. Stacking layers with <strong>non-linear activations</strong> lets the network learn <strong>non-linear boundaries</strong> and <strong>hierarchical features</strong>.</p>
+<div class="box warn">
+<span class="bt">Critical: without non-linearity, depth is useless</span>
+A function is non-linear if \(f(ax_1+bx_2)\neq a f(x_1)+b f(x_2)\). If you stack <em>linear</em> layers only, the whole network <strong>collapses to a single linear layer</strong> (a product of matrices is just another matrix). Non-linear activations are what make deep networks powerful.
+</div>
+
+<h3>Activation functions — comparison (heavily tested)</h3>
+<table class="center">
+<tr><th>Property</th><th>Sigmoid</th><th>Tanh</th><th>ReLU</th><th>Leaky ReLU</th></tr>
+<tr><td>Formula</td><td>\(\frac{1}{1+e^{-z}}\)</td><td>\(\tanh z\)</td><td>\(\max(0,z)\)</td><td>\(\max(\alpha z,z)\)</td></tr>
+<tr><td>Range</td><td>(0,1)</td><td>(−1,1)</td><td>[0,∞)</td><td>(−∞,∞)</td></tr>
+<tr><td>Zero-centred</td><td>✗</td><td>✓</td><td>✗</td><td>✓</td></tr>
+<tr><td>Vanishing grad</td><td>High</td><td>Moderate</td><td>No (z&gt;0)</td><td>No</td></tr>
+<tr><td>Cost</td><td>High (exp)</td><td>High</td><td>Low</td><td>Low</td></tr>
+<tr><td>Typical use</td><td>Binary output</td><td>(older) hidden</td><td><strong>Hidden (default)</strong></td><td>Deep hidden</td></tr>
+</table>
+<div class="box key">
+<span class="bt">Why ReLU is the default for hidden layers</span>
+(1) <strong>Cheap</strong> — just a threshold, no exponentials. (2) <strong>No vanishing gradient</strong> for \(z>0\) (gradient = 1, flows unchanged) → trains deep nets. (3) <strong>Sparse</strong> activations. Caveat: <strong>"dying ReLU"</strong> — neurons stuck at 0 output 0 gradient forever → fix with Leaky ReLU / PReLU / ELU.<br>
+<span class="small">Memory aid: ReLU <em>loses</em> all negative info (everything ≤0 → 0); sigmoid <em>preserves</em> negative info by squashing it into (0, 0.5).</span>
+</div>
+
+<h3>Architecture &amp; forward pass</h3>
+<p>Layers: input → hidden(s) → output. For layer \(l\): \(\;\mathbf{z}^{(l)} = W^{(l)}\mathbf{h}^{(l-1)} + \mathbf{b}^{(l)}\), \(\;\mathbf{h}^{(l)} = \sigma^{(l)}(\mathbf{z}^{(l)})\). Output layer activation depends on task (identity/sigmoid/softmax).</p>
+<div class="box formula">
+<span class="bt">Forward pass recipe (Q5 part a)</span>
+1. Hidden pre-activation \(\mathbf{z}^{[1]} = W^{[1]}\mathbf{x} + \mathbf{b}^{[1]}\)<br>
+2. Hidden activation \(\mathbf{a}^{[1]} = \text{ReLU}(\mathbf{z}^{[1]})\)<br>
+3. Output \(z^{[2]} = \mathbf{w}^{[2]}\mathbf{a}^{[1]} + b^{[2]}\), \(\;\hat y = \sigma(z^{[2]})\)<br>
+4. Loss (BCE/CCE/MSE per task)
+<p class="small">⚠️ Mind whether \(W\) is stored as \([n_{out}\times n_{in}]\) or transposed — check shapes against the given vectors.</p>
+</div>
+
+<h3>⭐ Parameter counting (asked in nearly every paper)</h3>
+<div class="box formula">
+<span class="bt">Fully-connected layer with bias</span>
+$$\text{params} = (n_{in}\times n_{out}) + n_{out}$$
+Total network = sum across all consecutive layer pairs. <em>Example:</em> [1000→8→5] = (1000·8+8)+(8·5+5) = 8008+45 = <strong>8053</strong>.<br>
+<em>MNIST [784→\(n_h\)→10]:</em> \((784n_h+n_h)+(10n_h+10)=795n_h+10\). To keep ≤20000: \(n_h\le25\).
+</div>
+<div class="box tip"><span class="bt">Overfitting rule of thumb</span> Aim for #training-samples ≥ 5–10× #parameters. If params approach data size → high overfitting risk → reduce width/depth or regularize.</div>
+
+<h3>⭐ Backpropagation — the chain rule, backwards</h3>
+<p><strong>Purpose:</strong> efficiently compute \(\partial J/\partial\) every weight by propagating an <strong>error signal</strong> \(\delta^{(l)}=\partial J/\partial \mathbf{z}^{(l)}\) from output back to input.</p>
+<div class="box formula">
+<span class="bt">Key backprop equations (single example / batch of N)</span>
+Output error: \(\;dZ^{[2]} = A^{[2]} - Y\) (for sigmoid+BCE / softmax+CCE)<br>
+Output weight grad: \(\;dW^{[2]} = \tfrac1N A^{[1]\top} dZ^{[2]}\)<br>
+Backprop to hidden: \(\;dA^{[1]} = dZ^{[2]} W^{[2]\top}\)<br>
+Through ReLU: \(\;dZ^{[1]} = dA^{[1]} \odot \mathbb{1}[Z^{[1]}>0]\)<br>
+Hidden weight grad: \(\;dW^{[1]} = \tfrac1N X^\top dZ^{[1]}\)<br>
+Update: \(\;W \leftarrow W - \eta\, dW\)
+</div>
+<p class="small">These exact lines are the most common <strong>code blanks / bug-fixes</strong> in Q5(b). Memorise the signs: it's always <code>A - Y</code> (predicted minus true) and weights <em>subtract</em> the gradient.</p>
+
+<h3>Universal Approximation Theorem (UAT)</h3>
+<div class="box def">
+<strong>UAT (Cybenko 1989; Hornik 1989):</strong> a feed-forward net with a <em>single</em> hidden layer of finitely many neurons can approximate <em>any</em> continuous function on a compact set (given a suitable activation). <strong>BUT</strong> it might need exponentially many neurons — <strong>deep</strong> networks achieve the same with far fewer parameters and learn better hierarchical representations.
+</div>
+
+<h3>Depth vs width &amp; training challenges</h3>
+<ul>
+<li><strong>Depth</strong> (more layers): hierarchical features (edges → shapes → objects), more expressive per parameter. <strong>Width</strong> (more units/layer): more capacity, higher overfitting risk.</li>
+<li><strong>Vanishing gradients:</strong> grads shrink in early layers (sigmoid/tanh) → no learning. Fix: ReLU, good init, batch norm.</li>
+<li><strong>Exploding gradients:</strong> grads blow up → NaN. Fix: gradient clipping, proper init.</li>
+<li><strong>Degradation:</strong> very deep nets harder to optimise. Fix: residual/skip connections (ResNet).</li>
+</ul>
+
+<h3>Practical knobs</h3>
+<table>
+<tr><th>Symptom</th><th>Diagnosis</th><th>Fix</th></tr>
+<tr><td>Loss = NaN/Inf</td><td>Instability</td><td>↓ \(\eta\), normalize inputs</td></tr>
+<tr><td>Loss not decreasing</td><td>\(\eta\) too small / bug</td><td>↑ \(\eta\), check gradient</td></tr>
+<tr><td>Loss oscillating</td><td>\(\eta\) too large</td><td>↓ \(\eta\), LR schedule</td></tr>
+<tr><td>Train↓ but Val↑</td><td>Overfitting</td><td>Dropout, L2, more data, early stop</td></tr>
+<tr><td>Both high</td><td>Underfitting</td><td>Bigger net, train longer</td></tr>
+<tr><td>Grads → 0</td><td>Vanishing</td><td>ReLU, He/Xavier init, batch norm</td></tr>
+</table>
+<p class="small"><strong>Initialization:</strong> never all-zeros (symmetry — all neurons learn the same thing). Use <em>Xavier/Glorot</em> for sigmoid/tanh, <em>He</em> for ReLU; biases = 0. (Detail belongs to Modules 10–11 but is referenced here.)</p>
+
+<div class="box exam">
+<span class="bt">Likely exam asks</span>
+"Forward pass through a 2-layer net (pre-acts, ReLU, output, loss)" · "Apply ReLU vs sigmoid to a vector; which preserves negative info?" · "Count total parameters / solve for max \(n_h\) under a constraint" · "Design an architecture for [task] + justify activations/loss/optimizer" · "Fill backprop code blanks / find the bug" · "Why ReLU over tanh? Explain vanishing gradients".
+</div>
+</section>
+
+<hr>
+
+<!-- ================= MODULE 6 ================= -->
+<section id="m6">
+<span class="modtag">MODULE 6 · PARTIAL</span>
+<h2 class="sec">Convolutional Neural Networks (CNN)</h2>
+<div class="box tip"><span class="bt">Scope note</span> Your syllabus marks Module 6 as <em>partial</em>. There are no Session-6 slides yet, but CNN questions appear in past mid-sems (2024 papers) — almost always <strong>output-size</strong> and <strong>parameter-counting</strong> calculations plus a short "why CNN over ANN" concept. Focus there.</div>
+
+<h3>Why CNN over a plain ANN for images?</h3>
+<ul>
+<li><strong>Local feature extraction:</strong> small filters slide over the image and learn local patterns (edges → textures → parts → objects) — a spatial hierarchy.</li>
+<li><strong>Weight sharing &amp; sparse connections:</strong> the same filter is reused across the image → <strong>far fewer parameters</strong> than a fully-connected layer → less compute, less overfitting.</li>
+<li><strong>Preserves spatial information</strong> — a flattened ANN throws away the 2-D structure; CNN keeps it.</li>
+</ul>
+
+<h3>⭐ Output size formula (memorise)</h3>
+<div class="box formula">
+<span class="bt">Spatial size after conv / pool</span>
+$$\text{Out} = \left\lfloor \frac{N - F + 2P}{S} \right\rfloor + 1$$
+\(N\)=input size, \(F\)=filter size, \(P\)=padding, \(S\)=stride.<br>
+<strong>'valid'</strong> padding → \(P=0\). <strong>'same'</strong> padding → output = input size (when \(S=1\)).<br>
+The <strong>depth</strong> of the output = <strong>number of filters \(K\)</strong> (output channels).
+</div>
+<p class="small"><em>Example:</em> input 8×8, filter 3×3, S=1, P=0 → (8−3)/1+1 = <strong>6×6</strong>. With 5 filters → 6×6×5. Then 4×4 max-pool, S=2 → (6−4)/2+1 = <strong>2×2</strong>, depth unchanged → 2×2×5.</p>
+
+<h3>⭐ Parameter counting in a CNN</h3>
+<div class="box formula">
+<span class="bt">Per layer</span>
+<strong>Conv layer:</strong> \((F\times F\times C_{in} + 1)\times K\) &nbsp;<span class="small">(filter weights + 1 bias per filter; \(C_{in}\)=input channels, \(K\)=#filters)</span><br>
+<strong>Pooling layer:</strong> <strong>0 parameters</strong> (just downsampling).<br>
+<strong>Batch-norm layer:</strong> \(2\times C\) trainable (γ scale, β shift) + \(2\times C\) non-trainable (running mean, variance).<br>
+<strong>Flatten:</strong> 0 params (just reshape \(H\times W\times C\) → vector).<br>
+<strong>FC layer:</strong> \((n_{in}\times n_{out}) + n_{out}\).
+</div>
+<div class="box tip"><span class="bt">Worked param example (RGB 64×64, Conv 64 filters 2×2)</span>
+Weights = \(2{\times}2{\times}3{\times}64 = 768\), biases = 64 → <strong>832 params</strong>. (Always include input channels \(C_{in}\)=3 for RGB!)</div>
+
+<h3>CNN building blocks &amp; hyperparameters</h3>
+<ul>
+<li><strong>Convolution layer</strong> — learnable filters detect features.</li>
+<li><strong>Pooling</strong> (max / average) — downsamples, adds translation invariance, controls overfitting (no params).</li>
+<li><strong>Fully-connected + output</strong> — final classification (softmax for multi-class).</li>
+<li><strong>Hyperparameters:</strong> #filters, kernel size, stride, padding, pooling size/stride, learning rate, batch size, epochs, dropout rate, weight init, optimizer, activation.</li>
+</ul>
+<div class="box key"><span class="bt">Transfer learning (sometimes asked)</span> Train on a large dataset, then reuse/freeze early layers and fine-tune on a small dataset. Beats training from scratch on small data (which overfits) because early layers already learned general features.</div>
+
+<div class="box exam">
+<span class="bt">Likely exam asks</span>
+"For each CNN layer, give output feature-map size + trainable/non-trainable params" · "Output shape after conv with given F,S,P; then after pooling" · "Two benefits of conv over FC layers" · "Why is CNN preferred over ANN for images?" · "Which activations in the output layer &amp; when?".
+</div>
+</section>
+
+<hr>
+<h2 class="sec" style="border-color:var(--acc2)">📝 Topic-Wise Solved Question Bank</h2>
+<p class="small">Grouped from real EC2 mid-sem papers (2022–2026). The same numbers won't repeat — but the <strong>pattern</strong> will. Try each before opening the solution.</p>
+
+<!-- ============ Q1 PERCEPTRON ============ -->
+<section id="q1">
+<h3>① Perceptron, Logic Gates &amp; XOR</h3>
+
+<details>
+<summary>P1. Perceptron one-step update <span class="qmeta">— Dec 2025 Q1(a) · 6 marks</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim) — Dec 2025 EC2 Regular, Q1(a)</span>
+Consider a perceptron with 2 input features. Current weights are \(w_0=0.5\) (bias), \(w_1=0.3\) (weight for feature \(x_1\)), \(w_2=-0.4\) (weight for feature \(x_2\)). A training example has features \(x_1=1, x_2=2\) with true label \(y=1\). Learning rate \(\eta=0.1\). The step activation function outputs 1 if \(z\ge0\), otherwise outputs 0. Compute: (i) weighted sum \(z\), (ii) predicted output \(\hat y\) using step activation, (iii) if the example is misclassified, calculate the updated weights using the perceptron learning rule for each weight (note: treat bias \(w_0\) as having input \(x_0=1\)). [6 marks]</div>
+<div class="soln"><span class="sl">Solution</span>
+<p><strong>(i) Weighted sum.</strong> The perceptron first forms a linear combination of the inputs (the bias acts like a weight on a constant input \(x_0=1\)):
+$$z = w_0 + w_1x_1 + w_2x_2 = 0.5 + 0.3(1) + (-0.4)(2) = 0.5+0.3-0.8 = \mathbf{0.0}$$</p>
+<p><strong>(ii) Prediction.</strong> Apply the step function. Because the rule fires for \(z\ge0\) (note the "greater-than-<em>or-equal</em>"), and here \(z=0\), the boundary case still outputs 1: \(\hat y = \mathbf{1}\).</p>
+<p><strong>(iii) Weight update.</strong> The perceptron only updates weights when it gets an example <em>wrong</em>. Here \(\hat y = 1\) which equals the true label \(y=1\), so the example is <strong>correctly classified → no update is performed</strong>. The weights remain \([0.5,\,0.3,\,-0.4]\).</p>
+<p class="small">Had it been misclassified, you would apply \(w_i \leftarrow w_i + \eta(y-\hat y)x_i\) to every weight (including \(w_0\), with \(x_0=1\)). The term \((y-\hat y)\) is \(+1\) if we missed a positive, \(-1\) if we wrongly fired — it nudges the boundary toward the correct side.</p>
+</div>
+<div class="box tip"><strong>Common trap:</strong> \(z\ge0\) (not \(z>0\)) means a point exactly on the boundary (\(z=0\)) is classified as 1. Many students lose the mark by assuming "no update needed" without first checking whether \(\hat y\) actually matches \(y\) — always state the comparison explicitly.</div>
+</div>
+</details>
+
+<details>
+<summary>P2. Derive NOR-gate weights via the learning algorithm (bipolar) <span class="qmeta">— Jan 2025 Q1 · 5 marks</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim) — Jan 2025 EC2 Regular, Q1</span>
+Given the following truth table for the NOR gate (bipolar): \((x_1,x_2)\to t\): \((-1,-1)\to1\), \((-1,1)\to-1\), \((1,-1)\to-1\), \((1,1)\to-1\). Assume the initial weights \(w_0=w_1=w_2=0\), learning rate \(\eta=1\), the activation function is \(h=\text{sign}(Z)\), where \(Z=w_0+w_1x_1+w_2x_2\), and the output \(Y=\text{sign}(Z)\). (1) Derive the weights \((w_0,w_1,w_2)\) and the threshold for the perceptron model after applying the perceptron learning algorithm. (2) Verify that the perceptron correctly classifies all inputs. (3) Provide a diagram of the perceptron to support your solution. [5 marks]</div>
+<div class="soln"><span class="sl">Solution</span>
+<p><strong>Strategy.</strong> We run the perceptron learning algorithm epoch by epoch. The update rule (only on misclassification) is \(\Delta w_i=\eta(t-y)x_i\) with the bias input \(x_0=1\); we adopt \(\text{sign}(0)=+1\). NOR outputs \(+1\) only when both inputs are \(-1\). We keep passing through the four rows until a full epoch produces zero updates (convergence), which is guaranteed because NOR is linearly separable.</p>
+<p><strong>Epoch 1</strong> (start \(w=[0,0,0]\)):</p>
+<table class="center">
+<tr><th>#</th><th>x₀,x₁,x₂</th><th>z</th><th>y</th><th>t</th><th>t−y</th><th>Δw=(η(t−y)x)</th><th>new w</th></tr>
+<tr><td>1</td><td>1,−1,−1</td><td>0</td><td>+1</td><td>+1</td><td>0</td><td>—</td><td>[0,0,0]</td></tr>
+<tr><td>2</td><td>1,−1,+1</td><td>0</td><td>+1</td><td>−1</td><td>−2</td><td>[−2,+2,−2]</td><td>[−2,2,−2]</td></tr>
+<tr><td>3</td><td>1,+1,−1</td><td>−2+2+2=2</td><td>+1</td><td>−1</td><td>−2</td><td>[−2,−2,+2]</td><td>[−4,0,0]</td></tr>
+<tr><td>4</td><td>1,+1,+1</td><td>−4</td><td>−1</td><td>−1</td><td>0</td><td>—</td><td>[−4,0,0]</td></tr>
+</table>
+<p><strong>Epoch 2</strong> (start \([-4,0,0]\)):</p>
+<table class="center">
+<tr><th>#</th><th>x₀,x₁,x₂</th><th>z</th><th>y</th><th>t</th><th>t−y</th><th>Δw</th><th>new w</th></tr>
+<tr><td>1</td><td>1,−1,−1</td><td>−4</td><td>−1</td><td>+1</td><td>+2</td><td>[+2,−2,−2]</td><td>[−2,−2,−2]</td></tr>
+<tr><td>2</td><td>1,−1,+1</td><td>−2+2−2=−2</td><td>−1</td><td>−1</td><td>0</td><td>—</td><td>[−2,−2,−2]</td></tr>
+<tr><td>3</td><td>1,+1,−1</td><td>−2−2+2=−2</td><td>−1</td><td>−1</td><td>0</td><td>—</td><td>[−2,−2,−2]</td></tr>
+<tr><td>4</td><td>1,+1,+1</td><td>−2−2−2=−6</td><td>−1</td><td>−1</td><td>0</td><td>—</td><td>[−2,−2,−2]</td></tr>
+</table>
+<p><strong>Epoch 3 — verify</strong> with \(w=[-2,-2,-2]\): row1 \(z=-2+2+2=+2\)→+1 ✓; row2 \(z=-2+2-2=-2\)→−1 ✓; row3 \(z=-2-2+2=-2\)→−1 ✓; row4 \(z=-6\)→−1 ✓. <strong>All correct.</strong></p>
+<p><strong>Final weights: \(w_0=-2, w_1=-2, w_2=-2\)</strong> (threshold = \(-w_0=2\), i.e. fires only when \(-2x_1-2x_2 \ge 2\)). Diagram: two inputs \(x_1,x_2\) with weights −2, bias node −2, into a sign unit.</p>
+<p class="small">Note: weights aren't unique — any \(w\) satisfying all four inequalities is accepted. The examiner rewards the <em>method</em> (correct update steps) and the <em>verification</em>, so always finish by checking all four rows and drawing the diagram (two inputs \(x_1,x_2\) with weights \(-2\), a bias unit \(-2\), feeding a sign/step unit).</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>P3. NAND perceptron — one full epoch (bipolar, tabular) <span class="qmeta">— Jun 2025 Q1 · 5 marks</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim) — Jun 2025 EC2 Regular, Q1</span>
+Consider the implementation of a perceptron for a NAND gate using bipolar representation (input and output values are either \(+1\) or \(-1\)). Assume: initial weights \(w_0=w_1=w_2=0\) (bias input \(x_0=1\)); learning rate \(\eta=1\); activation \(h=\text{sign}(z)\) where \(z=w_0+w_1x_1+w_2x_2\); output \(y=\text{sign}(z)\); weight-update rule \(\Delta w_i=\eta(t-y)x_i\), \(w_i\leftarrow w_i+\Delta w_i\). Truth table \((x_1,x_2)\to t\): \((-1,-1)\to1\), \((-1,1)\to1\), \((1,-1)\to1\), \((1,1)\to-1\). (A) Implement the perceptron learning algorithm using one full epoch (update on all four input combinations once). (B) Show the computations for \(z, y, \Delta w\), and updated weights for each input. (C) Write the final weight vector after the epoch. (D) Verify the perceptron classifies all inputs. Present the answer in tabular form. [5 marks]</div>
+<p><strong>Solution.</strong> NAND is the logical negation of AND — it outputs \(-1\) only when both inputs are \(+1\), and \(+1\) otherwise. We process all four rows once (one epoch), updating whenever \(y\neq t\).</p>
+<table class="center"><tr><th>x₁</th><th>x₂</th><th>t</th></tr><tr><td>−1</td><td>−1</td><td>+1</td></tr><tr><td>−1</td><td>+1</td><td>+1</td></tr><tr><td>+1</td><td>−1</td><td>+1</td></tr><tr><td>+1</td><td>+1</td><td>−1</td></tr></table>
+<p><strong>Epoch 1</strong> (sign(0)=+1):</p>
+<table class="center">
+<tr><th>#</th><th>x₀,x₁,x₂</th><th>z</th><th>y</th><th>t</th><th>t−y</th><th>Δw</th><th>new w</th></tr>
+<tr><td>1</td><td>1,−1,−1</td><td>0</td><td>+1</td><td>+1</td><td>0</td><td>—</td><td>[0,0,0]</td></tr>
+<tr><td>2</td><td>1,−1,+1</td><td>0</td><td>+1</td><td>+1</td><td>0</td><td>—</td><td>[0,0,0]</td></tr>
+<tr><td>3</td><td>1,+1,−1</td><td>0</td><td>+1</td><td>+1</td><td>0</td><td>—</td><td>[0,0,0]</td></tr>
+<tr><td>4</td><td>1,+1,+1</td><td>0</td><td>+1</td><td>−1</td><td>−2</td><td>[−2,−2,−2]</td><td>[−2,−2,−2]</td></tr>
+</table>
+<p><strong>Final after epoch 1: \(w=[-2,-2,-2]\).</strong> Verify: r1 \(z=-2+2+2=2\)→+1 ✓; r2 \(z=-2+2-2=-2\)→−1 ✗ (t=+1!).</p>
+<p>So after <em>one</em> epoch it's not fully correct yet (only row classification at update time matters for the "one epoch" question). Continuing would converge to e.g. \(w=[-2,-2,-2]\) needing more passes; a fully-correct NAND set is \(w_0=2,w_1=-2,w_2=-2\) (mirror of NOR logic). <strong>State final epoch-1 weights and note further epochs are needed for 100% accuracy.</strong></p>
+<div class="box tip">For "<strong>one full epoch</strong>" questions, just process all 4 rows once and report the resulting weights — you don't need full convergence unless asked.</div>
+</div>
+</details>
+
+<details>
+<summary>P4. Why XOR fails &amp; how MLP fixes it <span class="qmeta">— Jan 2026 Q1(a) · 6 marks</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim) — Jan 2026 EC2 Makeup, Q1(a)</span>
+For an XOR (exclusive OR) logical function, consider plotting the four points on a 2D coordinate plane where the x-axis represents \(x_1\) and the y-axis represents \(x_2\). The class 0 points (output = 0) are located at \((0,0)\) and \((1,1)\). The class 1 points (output = 1) are located at \((0,1)\) and \((1,0)\). (i) Attempt to draw a single straight line on this 2D plane that separates all class 0 points on one side from all class 1 points on the other side. Can you successfully draw such a line? Explain clearly why or why not, referring to the spatial arrangement of the four points. [3 marks] (ii) What fundamental limitation of the perceptron model does this reveal about its ability to learn certain types of functions? [3 marks]</div>
+<p><strong>(i) Can one straight line separate XOR?</strong> No. Plotting the four points, the class-0 points \((0,0)\) and \((1,1)\) sit at <em>opposite</em> corners of the unit square (one diagonal), while the class-1 points \((0,1)\) and \((1,0)\) sit at the other two opposite corners (the other diagonal). The two classes are interleaved diagonally. Any straight line that puts \((0,0)\) on one side and \((0,1),(1,0)\) on the other will always leave \((1,1)\) on the wrong side. Hence the data is <strong>not linearly separable</strong> — no single line works.</p>
+<p><strong>(ii) Fundamental limitation:</strong> a single perceptron computes only \(\hat y=\text{step}(w_0+w_1x_1+w_2x_2)\), whose decision boundary \(w_0+w_1x_1+w_2x_2=0\) is a single straight line (a hyperplane in higher dimensions). Therefore a perceptron can represent <strong>only linearly-separable functions</strong>. XOR requires a non-linear (or piecewise / two-line) boundary, which a single linear unit fundamentally cannot produce. This is exactly the limitation Minsky &amp; Papert (1969) used to show single perceptrons are restricted, and it motivates <strong>multi-layer networks</strong>.</p>
+<p><strong>How an MLP fixes it:</strong> add one hidden layer with non-linear activations. Each hidden neuron draws its own linear separator, and the output neuron combines them (XOR = "OR" AND "NOT-AND"), giving a non-linear overall boundary. A minimal solution is the architecture <strong>2 → 2 → 1</strong>: the hidden layer remaps the inputs into a new space where the two classes <em>become</em> linearly separable, and the output neuron then separates them.</p>
+</div>
+</details>
+
+<details>
+<summary>P5. Different learning behaviour: AND vs OR vs XOR <span class="qmeta">— Jan 2026 Q1(b) · 6 marks</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim) — Jan 2026 EC2 Makeup, Q1(b)</span>
+A student trains perceptrons to learn three different logical functions using identical initialization \((w=[0,0,0]^T)\) and learning rate \((\eta=0.1)\). The training results are: AND gate converges to 100% accuracy in 6 epochs; OR gate converges to 100% accuracy in 4 epochs; XOR gate after 100 epochs remains stuck at 50% accuracy (random guessing). Evaluate why these three functions exhibit such different learning behaviors: (i) Why XOR cannot reach 100% accuracy while AND and OR can? [3 marks] (ii) Why OR converges faster than AND (4 epochs versus 6 epochs), considering that OR has three positive examples while AND has only one. [3 marks]</div>
+<p><strong>(i) Why XOR never reaches 100% while AND/OR do.</strong> AND and OR are both <em>linearly separable</em> — a single straight line can perfectly split their positive and negative points. The <strong>Perceptron Convergence Theorem</strong> guarantees that, for linearly-separable data, the learning algorithm will find a separating boundary in a finite number of steps. XOR, however, is <em>not</em> linearly separable (its positives and negatives sit on opposite diagonals), so it violates the theorem's precondition. With no line able to satisfy all four examples, the weight updates from conflicting examples keep cancelling out — the perceptron oscillates and plateaus at ~50% (chance level) no matter how many epochs run.</p>
+<p><strong>(ii) Why OR converges faster than AND (4 vs 6 epochs).</strong> OR has <strong>three</strong> positive examples \(\{(0,1),(1,0),(1,1)\}\) and only one negative \((0,0)\); AND has only <strong>one</strong> positive \((1,1)\) and three negatives. Two effects make OR converge sooner: (1) <em>Update frequency</em> — more positive examples means more frequent corrective updates that push the weight vector in the right direction early on. (2) <em>Easier boundary placement</em> — OR only needs to fence off the single corner \((0,0)\) from everything else, a more "forgiving" boundary with a larger margin of valid lines, whereas AND must isolate the single corner \((1,1)\), so the algorithm needs more passes to position the line precisely.</p>
+</div>
+</details>
+
+<details>
+<summary>P6. Minimal MLP to separate given 2-D points <span class="qmeta">— Jul 2024 Q1–Q2 · 8+5 marks</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim) — Jul 2024 EC2 Regular, Q1 &amp; Q2</span>
+<strong>(Q1)</strong> \((x_1,x_2)\) are input features and target classes are either \(+1\) or \(-1\) as shown in the figure; \(x_2\) is never negative. A fully connected multilayer perceptron network is used for classification with 100% accuracy. Step activation functions are used at all nodes (output \(=+1\) if total input \(\ge\) bias \(b\) at a node, else \(-1\)). (a) What is the minimum number of hidden layers and minimum number of hidden nodes in each hidden layer required? (b) Obtain the equations of the decision boundaries. (c) Specify all weights and bias values at all nodes (weights only \(\pm5\) or 0, bias 0 or \(+\)ve multiples of 5); draw the minimal network. [8 marks]<br>
+<strong>(Q2)</strong> Given a set of 2D points, (a) how many perceptrons and how many layers are required to classify them with 100% accuracy? (b) Sketch the MLP architecture with appropriate weights and biases. [5 marks]</div>
+<p><strong>How to attack any "minimum network for a decision region" question:</strong></p>
+<ul>
+<li><strong>One line</strong> needed → single perceptron (no hidden layer).</li>
+<li><strong>Convex region</strong> bounded by \(k\) lines → <strong>1 hidden layer with \(k\) nodes</strong> (one per line) + 1 output node doing <strong>AND</strong> of them.</li>
+<li><strong>Non-convex / disjoint region</strong> → <strong>2 hidden layers</strong> (1st: the lines; 2nd: AND them into convex pieces; output: OR the pieces).</li>
+</ul>
+<p><strong>Per-line weights:</strong> for boundary \(ax_1+bx_2+c=0\), the neuron uses weights \([a,b]\) with bias \(c\), and you flip signs so the desired side gives a positive sum. <em>Worked (triangle example):</em> line through (3,0),(0,2): \(2x_1+3x_2-6=0\) → weights [2,3], b=−6. Line (3,0),(4,4): \(-4x_1+x_2+12>0\) → weights [−4,1], b=12. Line (0,2),(4,4): \(-x_1+2x_2-4=0\) → weights [−1,2], b=−4. <strong>Final AND neuron:</strong> weights [1,1,1], b=−3 (fires only when all three are 1).</p>
+<p><strong>XOR over 6 variables (Jun 2025 Q2c):</strong> single hidden layer needs \(2^{6-1}=32\) hidden perceptrons (one per odd-parity minterm); a <strong>deep</strong> network needs only \(O(n)\) — about \(3(6-1)=15\) neurons by chaining 2-input XORs. Depth is exponentially more parameter-efficient.</p>
+</div>
+</details>
+
+<details>
+<summary>P7. Interpreting learned perceptron weights (spam) <span class="qmeta">— Dec 2025 Q1(b) · 6 marks</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim) — Dec 2025 EC2 Regular, Q1(b)</span>
+A spam classifier perceptron has learned weights \(w=[0.2,0.8,0.9,-0.5]^T\) (bias, suspicious_words, links, length). (i) Which feature most strongly indicates spam? Explain using weight magnitudes. [2 marks] (ii) The model achieves 75% accuracy but stops improving with more training. Explain what this reveals about the data's linear separability and the perceptron's limitations. [4 marks]</div>
+<p><strong>(i) Strongest spam indicator.</strong> The feature "<strong>links</strong>" most strongly indicates spam: it has the largest <em>absolute</em> weight, \(|0.9|=0.9\). In a perceptron the magnitude of a weight measures how much that feature influences the decision, while the sign gives the direction. "links" (+0.9) and "suspicious_words" (+0.8) both push toward spam; "length" (−0.5) pushes away from spam (longer messages look less spammy). Because 0.9 is the largest magnitude, "links" dominates the prediction.</p>
+<p><strong>(ii) What the 75% plateau reveals.</strong> The accuracy stalling at 75% (and not improving with more training) is strong evidence that the data is <strong>not linearly separable</strong> — roughly 25% of the emails lie on the "wrong" side of <em>any</em> straight-line boundary. A perceptron can only learn a single linear decision boundary, so once it has positioned that line as well as possible, further training cannot help; the conflicting examples keep producing offsetting updates. The remaining errors require a <strong>non-linear</strong> model — either engineer richer/interaction features or move to a multi-layer neural network that can form non-linear boundaries.</p>
+</div>
+</details>
+</section>
+
+<!-- ============ Q2 REGRESSION ============ -->
+<section id="q2">
+<h3>② Linear Regression &amp; Gradient Descent</h3>
+
+<details>
+<summary>R1. One full batch-GD iteration (house prices) <span class="qmeta">— Dec 2025 Q2(a) · 6 marks</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim) — Dec 2025 EC2 Regular, Q2(a)</span>
+A linear regression model predicts house price (in $1000s) from area (in 100s of sq ft). The training data is: \((\text{bias}=1,\ \text{area}=10)\to\text{price}=150\) and \((1,\ 20)\to250\). Current weights are bias \(w_0=50\), area weight \(w_1=8\) and learning rate \(\eta=0.01\). Perform one batch gradient descent iteration: (i) compute predictions for both examples, (ii) calculate MSE loss, (iii) compute gradient, (iv) update weights. [6 marks]</div>
+<p><strong>(i) Predictions.</strong> The model is \(\hat y = w_0 + w_1\cdot\text{area}\), i.e. \(\hat y = Xw\). Example 1: \(50+8(10)=\mathbf{130}\). Example 2: \(50+8(20)=\mathbf{210}\). Both under-predict the true prices (150, 250).</p>
+<p><strong>(ii) MSE loss.</strong> Using \(J=\tfrac{1}{2N}\sum(\hat y-y)^2\) with \(N=2\):
+$$J=\tfrac{1}{4}\big[(130-150)^2+(210-250)^2\big]=\tfrac14[400+1600]=\mathbf{500}$$</p>
+<p><strong>(iii) Gradient.</strong> The gradient is \(\nabla J=\tfrac1N X^\top(\hat y-y)\). The error vector is \(e=\hat y-y=[130-150,\ 210-250]=[-20,-40]\). Then, summing each feature column times the error:<br>
+\(\nabla w_0 = \tfrac12\big(1(-20)+1(-40)\big)=\tfrac12(-60)=-30\) &nbsp;(bias column is all 1s)<br>
+\(\nabla w_1 = \tfrac12\big(10(-20)+20(-40)\big)=\tfrac12(-1000)=-500\)</p>
+<p><strong>(iv) Update.</strong> Move <em>opposite</em> the gradient: \(w\leftarrow w-\eta\nabla J\).<br>
+\(w_0=50-0.01(-30)=\mathbf{50.3}\); &nbsp; \(w_1=8-0.01(-500)=\mathbf{13}\).<br>
+Both weights increased — sensible, since the model was under-predicting and needs larger outputs.</p>
+</div>
+</details>
+
+<details>
+<summary>R2. Learning-rate effect on the update <span class="qmeta">— Jan 2026 Q2(a) · 6 marks</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim) — Jan 2026 EC2 Makeup, Q2(a)</span>
+A linear regression model predicts student exam scores from two features (hours studying, hours sleep). The gradient has been computed as \(\nabla J=[5,30,35]^T\). The current weights are \(w=[20,8,5]^T\). (i) Perform one weight update using learning rate \(\eta=0.01\); show all three updated weights. (ii) Now repeat from the same initial weights but with \(\eta=1.0\); show all three updated weights. (iii) Compare the magnitude of change in both cases. Which learning rate causes a larger change? What potential problems could arise from using too large a learning rate? Explain with reference to convergence behavior. [6 marks]</div>
+<p><strong>(i) With \(\eta=0.01\):</strong> \(w\leftarrow w-\eta\nabla J = [20-0.05,\ 8-0.30,\ 5-0.35]=\mathbf{[19.95,\,7.70,\,4.65]}\). The weights barely move — small, careful steps.</p>
+<p><strong>(ii) With \(\eta=1.0\):</strong> \(w\leftarrow w-\eta\nabla J = [20-5,\ 8-30,\ 5-35]=\mathbf{[15,\,-22,\,-30]}\). Huge jumps — two weights even flipped sign.</p>
+<p><strong>(iii) Comparison.</strong> The changes are \([-0.05,-0.30,-0.35]\) vs \([-5,-30,-35]\) — \(\eta=1.0\) produces changes <strong>100× larger</strong>. A learning rate that is too large makes gradient descent <strong>overshoot</strong> the minimum: each step jumps past the bottom of the loss bowl to the other side, so the loss <em>oscillates</em> and may even <strong>diverge</strong> (loss grows without bound, eventually NaN). Conversely, too small a learning rate (like 0.01 here) is stable but converges <em>very slowly</em>, wasting many epochs. The art is choosing \(\eta\) large enough for speed yet small enough for stability — often via a learning-rate schedule or an adaptive optimizer like Adam.</p>
+</div>
+</details>
+
+<details>
+<summary>R3. Prediction + RMSE interpretation (salary) <span class="qmeta">— Dec 2025 Q2(c) · 6 marks</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim) — Dec 2025 EC2 Regular, Q2(c)</span>
+A linear regression model predicts annual salary (in dollars) based on years of education and years of work experience. The learned weights are \(w_0=30000\) (bias), \(w_1=2500\) (education coefficient), \(w_2=3000\) (experience coefficient). (i) Calculate the predicted salary for a person with 4 years of education and 2 years of work experience. Show your calculation. Discuss whether this predicted salary seems reasonable for an entry-level position. [3 marks] (ii) The model has RMSE of $2,236 on the test set, calculated from MSE = 5,000,000. For salary predictions in a typical job market, is an average prediction error of $2,236 considered acceptable? Explain your reasoning considering typical salary ranges. [3 marks]</div>
+<p><strong>(i) Predicted salary.</strong> Substitute into \(\hat y = w_0 + w_1\cdot\text{edu} + w_2\cdot\text{exp}\):
+$$\hat y = 30000 + 2500(4) + 3000(2) = 30000+10000+6000 = \mathbf{\$46{,}000}$$
+This is a realistic figure for an entry-level professional role with a few years of education and some experience, so the prediction passes a basic sanity check.</p>
+<p><strong>(ii) Is the RMSE acceptable?</strong> RMSE \(=\sqrt{\text{MSE}}=\sqrt{5{,}000{,}000}\approx\mathbf{\$2{,}236}\). The key idea is that <strong>RMSE has the same units as the target</strong>, so we judge it relative to typical salaries. If salaries range roughly $30k–$100k, a \$2,236 typical error is only about <strong>3–7%</strong> of a salary — quite small. For most business purposes this level of accuracy is <strong>acceptable</strong>. (Always interpret RMSE against the scale of the target rather than as an absolute "big or small" number.)</p>
+</div>
+</details>
+
+<details>
+<summary>R4. Normalized vs raw features — which trains faster? <span class="qmeta">— Dec 2025 Q2(d) · 3 marks</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim) — Dec 2025 EC2 Regular, Q2(d)</span>
+Two linear regression models are trained to predict apartment rent based on area (in square feet). Both have identical parameters, make identical predictions, and achieve the same MSE on test data. The only difference is the training process: <strong>Model A</strong> trained using batch gradient descent on original features (area 400–2000 sq ft); <strong>Model B</strong> trained using batch gradient descent on z-score normalized features. Evaluate which model would train faster (converge in fewer epochs) using gradient descent. Explain your answer with reference to the shape of the error surface and how feature scaling affects gradient descent convergence. [3 marks]</div>
+<p><strong>Answer: Model B (normalized features) converges in fewer epochs.</strong></p>
+<p>The reason lies in the <em>shape of the error surface</em>. When features have very different scales (area 400–2000 vs, say, a bias term of 1), the loss surface becomes a <strong>long, narrow, elongated valley</strong>. Gradient descent steps perpendicular to the contour lines, so on an elongated valley it <strong>zig-zags</strong> back and forth across the narrow direction and creeps slowly along the long axis — many iterations are wasted. <strong>Z-score normalization</strong> \(\big(x'=\tfrac{x-\mu}{\sigma}\big)\) rescales every feature to mean 0, standard deviation 1, which makes the error surface much more <strong>spherical/round (well-conditioned)</strong>. On a round bowl the negative gradient points almost straight at the minimum, so GD takes <strong>direct steps</strong> and converges far faster. Note both models reach the <em>same</em> final weights and MSE — feature scaling changes only the <em>speed</em> of convergence, not the destination.</p>
+</div>
+</details>
+
+<details>
+<summary>R5. Simple vs complex model — which to deploy? (real estate) <span class="qmeta">— Jan 2026 Q2(b) · 6 marks</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim) — Jan 2026 EC2 Makeup, Q2(b)</span>
+A real estate company wants to deploy a linear regression model for instant online property valuations. <strong>Model A</strong>: 2 features (area, location score), training RMSE $35,000, simple and easily explainable ("valued at X because of Y sq ft and location Z"). <strong>Model B</strong>: 15 features (area, location, age, bedrooms, bathrooms, garage, school rating, crime rate, …), training RMSE $28,000, more accurate but harder to explain. Evaluate which model the company should deploy on their public website, considering: (i) the $7,000 RMSE improvement (a 20% reduction) — is it significant for real estate? (ii) the importance of customer trust and transparency; (iii) legal/regulatory requirements mandating explainability for high-value automated decisions. [6 marks]</div>
+<p><strong>Recommendation: deploy Model A (the simple, explainable model).</strong></p>
+<p><strong>(i) Is the accuracy gain decisive?</strong> The $7,000 RMSE improvement is a 20% relative reduction, which sounds large, but in context it is only ~2% of a typical $350,000 home — and both models still carry tens of thousands of dollars of uncertainty. Real-estate decisions rarely hinge on a $7,000 difference, so the gain is real but <em>not decisive</em>.</p>
+<p><strong>(ii) Customer trust and transparency.</strong> Property valuation is a high-stakes, trust-dependent transaction. Model A lets the company justify a number ("$X because of 1,800 sq ft and an excellent location score"), which customers can verify and challenge. A 15-feature black box invites skepticism ("why does your system say $350k?"), drives customers to competitors for second opinions, and increases support burden.</p>
+<p><strong>(iii) Legal/regulatory.</strong> Automated valuation is increasingly regulated — the EU GDPR's "right to explanation", fair-lending laws, and some jurisdictions explicitly require explainable automated property decisions. A simple model is inherently auditable (easy to show no protected attribute drives the price), whereas Model B's opaque feature interactions create compliance and liability risk (e.g., crime-rate could act as a proxy for protected characteristics). <strong>Conclusion:</strong> transparency and compliance outweigh the marginal accuracy gain, so Model A wins.</p>
+<div class="box tip"><strong>Template for every "which model should we deploy?" part (worth 3–6 marks):</strong> (1) state your recommendation up front; (2) quantify the metric gain <em>in context</em>; (3) name the domain's dominant priority (recall in medicine/fraud, latency &amp; memory on mobile, explainability in finance/real-estate); (4) close with the trade-off. Examiners reward a clear stance + justification, not fence-sitting.</div>
+</div>
+</details>
+</section>
+
+<!-- ============ Q3 BINARY CLASSIFICATION ============ -->
+<section id="q3">
+<h3>③ Binary Classification / Logistic Regression</h3>
+
+<details>
+<summary>B1. Logistic one-example update (loan approval) <span class="qmeta">— Dec 2025 Q3(a) · 6 marks</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim) — Dec 2025 EC2 Regular, Q3(a)</span>
+A binary classifier for loan approval uses logistic regression with sigmoid activation. The current weights are \(w_0=0\) (bias), \(w_1=0.6\) (credit score weight), \(w_2=0.8\) (income weight). The learning rate is \(\eta=0.1\). Process one training example: credit score = 0.7, income = 0.5, true label approve = 1. Calculate: (i) the weighted sum \(z\); (ii) the predicted probability using the sigmoid activation; (iii) the gradient for this single training example where \(y=1\); (iv) the updated weights using gradient descent. [6 marks]</div>
+<p><strong>Solution.</strong> Logistic regression = linear combination → sigmoid → probability, trained by SGD. The per-example gradient is \((\hat y-y)\mathbf{x}\), and weights move opposite it.</p>
+<p><strong>(i)</strong> \(z=0+0.6(0.7)+0.8(0.5)=0.42+0.40=\mathbf{0.82}\).</p>
+<p><strong>(ii)</strong> \(\hat y=\sigma(0.82)=\dfrac{1}{1+e^{-0.82}}\approx\dfrac{1}{1+0.440}\approx\mathbf{0.694}\).</p>
+<p><strong>(iii) Gradient</strong> \(=(\hat y-y)\,\mathbf{x}=(0.694-1)[1,\,0.7,\,0.5]=(-0.306)[1,0.7,0.5]=[-0.306,\,-0.214,\,-0.153]\).</p>
+<p><strong>(iv) Update</strong> \(w-\eta\nabla\): \(w_0=0-0.1(-0.306)=\mathbf{0.0306}\); \(w_1=0.6+0.0214=\mathbf{0.6214}\); \(w_2=0.8+0.0153=\mathbf{0.8153}\).</p>
+</div>
+</details>
+
+<details>
+<summary>B2. Classify points &amp; threshold trade-off <span class="qmeta">— Jan 2026 Q3(a) · 6 marks</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim) — Jan 2026 EC2 Makeup, Q3(a)</span>
+A binary logistic regression classifier operates on 2D input data with learned weights \(w=[-1,0.5,0.8]^T\). (i) Consider two test points \((x_1{=}0,x_2{=}0)\) and \((x_1{=}4,x_2{=}2)\). For each, calculate the weighted sum \(z\) and determine whether \(\hat y=\sigma(z)\ge0.5\). Which point is classified as class 1? (ii) For a customer purchase model with weights \(w=[-2,0.05,0.03]^T\), a customer (age=30, income=50) gives \(\hat y\approx0.62\). Using threshold 0.5, what class is predicted? With threshold 0.7? (iii) If the true class is 1, which threshold produces the correct prediction? Explain the trade-off: what happens to false positives and false negatives when you increase the threshold from 0.5 to higher values? [6 marks]</div>
+<p><strong>(i)</strong> Point \((0,0)\): \(z=-1+0.5(0)+0.8(0)=-1\), so \(\sigma(-1)\approx0.27<0.5\) → <strong>class 0</strong>. Point \((4,2)\): \(z=-1+0.5(4)+0.8(2)=-1+2+1.6=2.6\), so \(\sigma(2.6)\approx0.93\ge0.5\) → <strong>class 1</strong>. Only the second point is classified as class 1.</p>
+<p><strong>(ii)</strong> With \(\hat y=0.62\): threshold 0.5 → \(0.62\ge0.5\) → predict <strong>class 1</strong> (purchase). Threshold 0.7 → \(0.62<0.7\) → predict <strong>class 0</strong> (no purchase). Same probability, different decision — the threshold alone changes the outcome.</p>
+<p><strong>(iii)</strong> Since the true class is 1, the <strong>0.5 threshold gives the correct prediction</strong> (it predicts 1); the 0.7 threshold is wrong. <strong>Trade-off:</strong> raising the threshold makes the model demand more confidence before saying "positive", so it predicts fewer positives — <strong>false positives go down but false negatives go up</strong> (precision ↑, recall ↓). You should only raise the threshold when false positives are more costly than false negatives; lower it when missing a positive is worse.</p>
+</div>
+</details>
+
+<details>
+<summary>B3. Accuracy is misleading on imbalanced data (disease) <span class="qmeta">— Dec 2025 Q3(c) · 6 marks</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim) — Dec 2025 EC2 Regular, Q3(c)</span>
+A medical diagnostic system uses logistic regression to detect a disease. Tested on 1000 patients: 50 diseased, 950 healthy, threshold 0.5. Performance: True Positives = 40/50, False Negatives = 10/50, False Positives = 95/950, True Negatives = 855/950 (recall 80%). (i) Calculate the overall accuracy. Then explain why an accuracy of 89% is misleading for this highly imbalanced problem (95% healthy). What would a naive classifier that always predicts "healthy" achieve? (ii) For life-threatening disease detection, explain why recall (sensitivity) is more critical than precision for the positive class. If the threshold is lowered from 0.5 to 0.3, explain how this affects (a) false positives and (b) false negatives. [6 marks]</div>
+<p><strong>(i) Accuracy and why it misleads.</strong> Accuracy \(=\dfrac{TP+TN}{\text{total}}=\dfrac{40+855}{1000}=\mathbf{0.895=89.5\%}\). This number is <em>misleading</em> because the dataset is heavily imbalanced (95% healthy). A trivial "always predict healthy" classifier would be right on all 950 healthy patients and score \(950/1000=\mathbf{95\%}\) — <em>higher</em> than the real model — despite detecting <strong>zero</strong> diseased patients. So high accuracy here merely reflects the dominant healthy class and hides the model's true job: catching the 50 sick patients (where recall is only 80%).</p>
+<p><strong>(ii) Recall vs precision, and lowering the threshold.</strong> In life-threatening disease detection a <strong>false negative (a missed disease) is far more dangerous</strong> than a false positive (an extra confirmatory test) — a missed case can mean disease progression or death, while a false alarm only causes temporary anxiety and a follow-up test. Therefore we prioritise <strong>recall (sensitivity)</strong>. Lowering the threshold from 0.5 to 0.3 makes the model flag "disease" on weaker evidence, so it predicts more positives: <strong>(a) false positives increase</strong> (more healthy people flagged) and <strong>(b) false negatives decrease</strong> (fewer sick people missed → recall rises). This trade-off is acceptable and desirable in screening, where catching every real case matters most.</p>
+</div>
+</details>
+
+<details>
+<summary>B4. Conservative vs balanced threshold model (diabetes) <span class="qmeta">— Jan 2026 Q3(b) · 6 marks</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim) — Jan 2026 EC2 Makeup, Q3(b)</span>
+A healthcare startup develops a logistic regression model to identify patients at risk for diabetes. <strong>Model A (Conservative, threshold 0.3):</strong> identifies 85% of true diabetic/pre-diabetic patients (high recall), flags 40% of healthy patients as false positives, causing many unnecessary follow-up tests. <strong>Model B (Balanced, threshold 0.5):</strong> identifies 65% of at-risk patients (moderate recall), flags 15% of healthy patients, misses 35% of at-risk patients. Evaluate which model the startup should deploy, considering: (i) the medical and financial cost of missing early diabetes detection; (ii) the burden of excessive false positives (testing cost + patient anxiety); (iii) the ethical responsibility — is it better to over-diagnose or under-diagnose a serious but manageable chronic condition? [6 marks]</div>
+<p><strong>Recommendation: deploy Model A (conservative, high-recall).</strong></p>
+<p><strong>(i) Cost of missed detection.</strong> Undetected diabetes progresses to severe, expensive complications — kidney disease, cardiovascular events, neuropathy. Model B's 35% miss rate means roughly one in three at-risk patients gets no early intervention, leading to far higher long-term treatment costs and worse outcomes. Catching disease early is both cheaper and clinically far better.</p>
+<p><strong>(ii) Burden of false positives.</strong> Model A's 40% false-positive rate does load the system with unnecessary follow-up tests and causes patient anxiety. But these costs (a confirmatory test, temporary worry) are <em>much smaller</em> than the cost of a missed diagnosis — a key follow-up test is cheap relative to late-stage complication care.</p>
+<p><strong>(iii) Ethics.</strong> For a serious-but-manageable chronic condition, <strong>over-diagnosis</strong> (inconvenience, extra screening) is ethically preferable to <strong>under-diagnosis</strong> (permanent, avoidable harm). The asymmetry of consequences favours the high-recall model — provided the app clearly communicates it is a <em>screening</em> tool, not a diagnosis, so flagged users understand a positive means "go get checked", not "you have diabetes".</p>
+</div>
+</details>
+</section>
+
+<!-- ============ Q4 MULTICLASS ============ -->
+<section id="q4">
+<h3>④ Multi-class Classification &amp; Softmax</h3>
+
+<details>
+<summary>M1. Softmax probabilities + CCE (3-class sentiment) <span class="qmeta">— Dec 2025 Q4(a) · 6 marks</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim) — Dec 2025 EC2 Regular, Q4(a)</span>
+A 3-class sentiment classifier uses softmax regression to categorize reviews: negative (class 0), neutral (class 1), positive (class 2). For a review the model produces logits \(z=[2.0,1.0,0.5]\). The true sentiment is "neutral" (class 1), one-hot \([0,1,0]\). Calculate: (i) the softmax probabilities for all three classes (show the denominator sum); (ii) the Categorical Cross-Entropy (CCE) loss \(L=-\sum_k y_k\log(\hat y_k)\); (iii) identify which class the model predicts; (iv) state whether the prediction is correct by comparing predicted class with the true label. [6 marks]</div>
+<p><strong>(i) Softmax probabilities.</strong> Exponentiate each logit: \(e^{2.0}\approx7.389,\ e^{1.0}\approx2.718,\ e^{0.5}\approx1.649\). Denominator sum \(=7.389+2.718+1.649=11.756\). Divide:<br>
+\(\hat y_0=7.389/11.756\approx\mathbf{0.628}\); \(\hat y_1=2.718/11.756\approx\mathbf{0.231}\); \(\hat y_2=1.649/11.756\approx\mathbf{0.140}\). (They sum to 1, as softmax guarantees.)</p>
+<p><strong>(ii) CCE loss.</strong> With one-hot \(y=[0,1,0]\) only the true class (k=1) contributes: \(L=-\log(\hat y_1)=-\log(0.231)\approx\mathbf{1.466}\).</p>
+<p><strong>(iii) Predicted class.</strong> The model predicts the class with the highest probability (argmax) = <strong>class 0</strong> (0.628).</p>
+<p><strong>(iv) Correct?</strong> <strong>No — incorrect.</strong> The true label is class 1 (neutral) but the model predicts class 0 (negative). The relatively high loss (1.466) reflects that the model put most of its probability on the wrong class while assigning only 0.231 to the correct one.</p>
+</div>
+</details>
+
+<details>
+<summary>M2. Softmax + confidence analysis (3-class) <span class="qmeta">— Jan 2026 Q4(a) · 8 marks</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim) — Jan 2026 EC2 Makeup, Q4(a)</span>
+A 3-class softmax classifier produces logit values \(z=[2.0,0.5,1.5]\) for classes 0, 1, 2. The true label is class 2, one-hot \([0,0,1]\). (i) Compute the exponential \(e^{z_k}\) for each class, the sum \(\sum_j e^{z_j}\), then the softmax probabilities for all three classes. Which class does the model predict? (ii) Calculate the CCE loss \(L=-\sum_k y_k\log(\hat y_k)\). The model predicts class 0 but the true label is class 2 — what does the magnitude of the loss reveal about the model's confidence in its incorrect prediction? Explain the relationship between prediction confidence and loss. [8 marks]</div>
+<p><strong>(i) Softmax.</strong> \(e^{2.0}\approx7.389,\ e^{0.5}\approx1.649,\ e^{1.5}\approx4.482\). Sum \(=13.520\). Probabilities: \(\hat y_0=7.389/13.520\approx\mathbf{0.546}\), \(\hat y_1\approx\mathbf{0.122}\), \(\hat y_2=4.482/13.520\approx\mathbf{0.331}\). Predicted class = argmax = <strong>class 0</strong> (0.546).</p>
+<p><strong>(ii) CCE and confidence.</strong> \(L=-\log(\hat y_{\text{true}})=-\log(\hat y_2)=-\log(0.331)\approx\mathbf{1.105}\). This is a fairly high loss, and it tells us the model is <strong>confidently wrong</strong>: it assigned 54.6% probability to the incorrect class 0 while giving only 33.1% to the correct class 2. The relationship is monotonic — CCE depends only on the probability of the <em>true</em> class: the lower that probability, the higher the loss (loss → 0 as \(\hat y_{\text{true}}\to1\), loss → ∞ as \(\hat y_{\text{true}}\to0\)). So CCE penalises both being wrong and being under-confident in the right answer, which is exactly what pushes training to raise the true-class probability.</p>
+</div>
+</details>
+
+<details>
+<summary>M3. Per-class precision &amp; recall from confusion matrix (Bird) <span class="qmeta">— Dec 2025 Q4(c) · 6 marks</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim) — Dec 2025 EC2 Regular, Q4(c)</span>
+An image classifier for 3 animal types (cat, dog, bird) has the test-set confusion matrix: True Cat row \([280,15,5]\), True Dog row \([20,350,30]\), True Bird row \([10,40,250]\) (columns = Pred Cat, Pred Dog, Pred Bird); column totals \([310,405,285]\), grand total 1000. (i) Calculate precision and recall for the "Bird" class. Clearly identify TP, FP, and FN from the confusion matrix. (ii) Most bird misclassifications are predicted as "Dog" (40 of 50 bird errors). What does this confusion pattern suggest about the features the model learned? Does the 88% overall accuracy guarantee good performance for each individual class? [6 marks]</div>
+<p><strong>(i) Precision &amp; recall for Bird.</strong> Read the matrix using the mnemonic below. <strong>TP</strong> = the Bird diagonal cell = <strong>250</strong>. <strong>FP</strong> = (Pred-Bird column total) − TP = 285 − 250 = <strong>35</strong> (cats/dogs wrongly called bird). <strong>FN</strong> = (True-Bird row total) − TP = 300 − 250 = <strong>50</strong> (birds wrongly called something else). Therefore:<br>
+Precision \(=\dfrac{TP}{TP+FP}=\dfrac{250}{285}\approx\mathbf{87.7\%}\); &nbsp; Recall \(=\dfrac{TP}{TP+FN}=\dfrac{250}{300}\approx\mathbf{83.3\%}\).</p>
+<p><strong>(ii) Interpretation.</strong> That 40 of the 50 bird errors are predicted as "Dog" suggests the model has learned features that birds and dogs <em>share</em> (outdoor/nature backgrounds, similar size or posture) but is <em>missing</em> the distinctive bird cues (feathers, beak, wings). The confusion is concentrated, not random, which points to a specific feature gap rather than general noise. And no — the 88% overall accuracy does <strong>not</strong> guarantee good per-class performance: bird recall is only 83.3%, so about 1 in 6 birds is misclassified. Aggregate accuracy can stay high while a specific (often minority or harder) class performs poorly, which is why per-class precision/recall must always be checked.</p>
+<div class="box tip">Confusion-matrix mnemonic: <strong>TP = diagonal cell · FP = column total − TP · FN = row total − TP.</strong></div>
+</div>
+</details>
+
+<details>
+<summary>M4. Overall accuracy + precision + opposite-class confusion (4-class) <span class="qmeta">— Jan 2026 Q4(b) · 6 marks</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim) — Jan 2026 EC2 Makeup, Q4(b)</span>
+A product review classifier uses softmax regression for 4 sentiment classes: Very Negative (0), Negative (1), Positive (2), Very Positive (3). Confusion matrix on 800 reviews (rows = true, columns = pred 0–3): True 0 \([85,12,2,1]\), True 1 \([18,220,50,12]\), True 2 \([3,45,180,22]\), True 3 \([0,8,30,112]\); column totals \([106,285,262,147]\). (i) Calculate overall accuracy. Then calculate the precision for class 1 (Negative), showing TP and FP clearly. (ii) Observe that many class-1 (Negative) reviews are misclassified as class 2 (Positive) — 50 cases — and many class-2 as class-1 — 45 cases. What does this mutual confusion between opposite sentiments suggest about the model's decision boundaries? Is this a serious problem for a business using this classifier? [6 marks]</div>
+<p><strong>(i) Accuracy and precision.</strong> Correct predictions are the diagonal: \(85+220+180+112=597\). Accuracy \(=597/800=\mathbf{0.746=74.6\%}\). For class 1 (Negative): <strong>TP</strong> = diagonal = 220; <strong>FP</strong> = (Pred-1 column total) − TP = 285 − 220 = 65. Precision \(=\dfrac{TP}{TP+FP}=\dfrac{220}{285}\approx\mathbf{77.2\%}\).</p>
+<p><strong>(ii) What the confusion means.</strong> The large two-way confusion between Negative (1) and Positive (2) — 50 + 45 = 95 cases — is alarming because these are <strong>semantically opposite</strong> classes. It indicates the decision boundary between them is <em>weak and fuzzy</em>: their feature distributions overlap, and the model lacks features that clearly separate negative from positive sentiment (it may be keying on neutral words common to both). <strong>Yes, this is serious for a business:</strong> confusing opposite sentiments is far worse than confusing adjacent ones (e.g. Negative vs Very Negative). A company acting on this feedback could read genuine complaints as praise (and vice-versa), leading to wrong decisions and eroded trust in the analytics. It calls for better features/embeddings or more training data around the negative/positive boundary.</p>
+</div>
+</details>
+
+<details>
+<summary>M5. Activation/loss/SoftMax design choices <span class="qmeta">— Jan 2025 Q2.3 / Jun 2025 Q3 · 4–5 marks</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim) — Jan 2025 EC2 Q2.3 &amp; Jun 2025 EC2 Q3</span>
+In a binary classification task to distinguish a dog from a cat, and a multi-class task to classify an image into one of 5 animal categories, what activation functions and loss functions would be used for each task? Explain your reasoning. (Jun 2025) Model A detects COVID-19 (yes/no); Model B classifies patients into one of five disease categories. (B) Which loss function is appropriate for each? (C) What is the role of the SoftMax activation in Model B's output layer? (D) Can SoftMax be used in Model A? Explain why or why not.</div>
+<p><strong>Binary task (dog vs cat / COVID yes-no):</strong> output activation = <strong>sigmoid</strong> (one neuron giving \(P(\text{class 1})\in(0,1)\)); loss = <strong>binary cross-entropy</strong>. The pairing gives a clean convex objective and a stable gradient \((\hat y - y)\).</p>
+<p><strong>Multi-class task (5 animals / 5 diseases):</strong> output activation = <strong>softmax</strong> (K neurons); loss = <strong>categorical cross-entropy</strong> over one-hot labels.</p>
+<p><strong>Role of softmax (Model B):</strong> it converts the K raw logits into a valid <em>probability distribution</em> — each output in \((0,1)\) and all outputs summing to 1 — so the network expresses how likely each of the 5 classes is, lets us pick the prediction via argmax, and makes CCE meaningful. It also exaggerates the largest logit (soft "winner-take-all"), sharpening the decision.</p>
+<p><strong>Can softmax be used for the binary Model A?</strong> Technically yes — softmax with K=2 is mathematically equivalent to a single sigmoid (the two outputs would sum to 1 and mirror sigmoid's \(p\) and \(1-p\)). In practice we use a single sigmoid for binary problems because it needs only one output neuron and is simpler/standard, but it is not "wrong" to use a 2-way softmax.</p>
+</div>
+</details>
+</section>
+
+<!-- ============ Q5 DFNN ============ -->
+<section id="q5">
+<h3>⑤ Deep Feed-Forward Networks &amp; Backpropagation</h3>
+
+<details>
+<summary>D1. Forward pass through a 2-layer net <span class="qmeta">— Dec 2025 Q5(a) · 6 marks</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim) — Dec 2025 EC2 Regular, Q5(a)</span>
+Perform forward propagation through a 2-layer DFNN for binary classification. Architecture: input layer 2 features; hidden layer 2 neurons with ReLU; output layer 1 neuron with sigmoid. Parameters: \(W^{[1]}=\begin{bmatrix}1.0&0.5\\-0.5&1.5\end{bmatrix}\), \(b^{[1]}=[0.2,-0.3]^T\), \(w^{[2]}=[1.2,0.8]\), \(b^{[2]}=0.1\). Input \(x=[0.5,0.8]^T\), true label \(y=1\). Calculate: (i) pre-activation values for the hidden layer; (ii) hidden activations after ReLU; (iii) output prediction; (iv) Binary Cross-Entropy loss with \(y=1\). [6 marks]</div>
+<p><strong>(i) Hidden pre-activation</strong> \(z^{[1]}=W^{[1]}x+b^{[1]}\):<br>
+\(z^{[1]}_1=1.0(0.5)+0.5(0.8)+0.2=0.5+0.4+0.2=\mathbf{0.3}\) (using row form per answer key)<br>
+\(z^{[1]}_2=-0.5(0.5)+1.5(0.8)-0.3=-0.25+1.2-0.3=\mathbf{1.15}\)<br>
+<span class="small">(The key applies \(W^{[1]\top}\); follow the convention that matches the given shapes — show your working either way.)</span></p>
+<p><strong>(ii) ReLU</strong> \(a^{[1]}=\max(0,z^{[1]})=[\mathbf{0.3},\,\mathbf{1.15}]\).</p>
+<p><strong>(iii) Output</strong> \(z^{[2]}=1.2(0.3)+0.8(1.15)+0.1=0.36+0.92+0.1=1.38\); \(\hat y=\sigma(1.38)=\dfrac{1}{1+e^{-1.38}}\approx\mathbf{0.799}\).</p>
+<p><strong>(iv) BCE</strong> \(=-[y\log\hat y+(1-y)\log(1-\hat y)]=-\log(0.799)\approx\mathbf{0.224}\).</p>
+</div>
+</details>
+
+<details>
+<summary>D2. ReLU vs Sigmoid on a vector — info preservation <span class="qmeta">— Jan 2026 Q5(a) · 5 marks</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim) — Jan 2026 EC2 Makeup, Q5(a)</span>
+Consider a hidden layer that receives pre-activation values \(z=[-2.0, 0.0, 1.5]^T\) for three neurons. (i) Apply the ReLU activation \(\text{ReLU}(z)=\max(0,z)\) to each component; show the output for each neuron. (ii) Now apply the Sigmoid activation \(\sigma(z)=\frac{1}{1+e^{-z}}\) to each component (round to 3 decimals). Based on your results, which activation (ReLU or Sigmoid) preserves information about negative input values? Explain briefly how this affects the network's ability to learn. [5 marks]</div>
+<p><strong>ReLU</strong> \(=\max(0,z)=[\mathbf{0},\,\mathbf{0},\,\mathbf{1.5}]\).</p>
+<p><strong>Sigmoid:</strong> \(\sigma(-2)=\dfrac{1}{1+e^{2}}=\dfrac{1}{8.389}\approx\mathbf{0.119}\); \(\sigma(0)=\mathbf{0.5}\); \(\sigma(1.5)=\dfrac{1}{1+e^{-1.5}}\approx\mathbf{0.818}\).</p>
+<p><strong>Sigmoid preserves</strong> negative-input information (maps them to distinct values in (0,0.5)); ReLU collapses all ≤0 to 0 (info lost → "dying ReLU"). Trade-off: ReLU still preferred for hidden layers — cheap &amp; avoids vanishing gradients, enabling deeper nets.</p>
+</div>
+</details>
+
+<details>
+<summary>D3. Parameter counting + max hidden size under constraint <span class="qmeta">— Jan 2026 Q5(b) · 5 marks · MNIST</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim) — Jan 2026 EC2 Makeup, Q5(b)</span>
+Design a DFNN with one hidden layer for handwritten digit classification (MNIST-style): input \(28\times28=784\) pixels; output 10 classes; training data 10,000 samples; constraint — total parameters must not exceed 20,000. (i) Write the formula for total parameters (including biases) in terms of \(n_h\), the hidden-layer size. Set up the inequality \(\le 20{,}000\) and solve for maximum \(n_h\). (ii) Choose a reasonable \(n_h\) below your maximum; calculate exact parameters. Is this reasonable given 10,000 training samples? Explain the risk if \(n_h\) is too large relative to the training data. [5 marks]</div>
+<p><strong>(i) Parameter formula.</strong> Architecture [784 → \(n_h\) → 10]. Layer 1 (input→hidden) has \(784n_h\) weights + \(n_h\) biases; layer 2 (hidden→output) has \(10n_h\) weights + 10 biases. Total:
+$$(784n_h+n_h)+(10n_h+10)=795n_h+10$$</p>
+<p><strong>Constraint:</strong> \(795n_h+10\le20000 \Rightarrow n_h\le\dfrac{19990}{795}\approx25.14 \Rightarrow \mathbf{n_h^{max}=25}\) (integer).</p>
+<p><strong>Pick \(n_h=20\):</strong> params \(=795(20)+10=\mathbf{15{,}910}\). With 10,000 samples that's reasonable; if \(n_h\) too large (e.g. 25 → 19,885 params), samples/params ≈ 0.5 → severe <strong>overfitting</strong> risk &amp; poor sample efficiency.</p>
+</div>
+</details>
+
+<details>
+<summary>D4. Other parameter-counting variants <span class="qmeta">— Jan 2025 Q2.1 / Jun 2025 Q6C</span></summary>
+<div class="sol">
+<p><strong>(a)</strong> Input 15, four hidden layers of 8, scalar output, <em>with</em> biases:<br>
+\((15{\cdot}8+8)+(8{\cdot}8+8)\times3+(8{\cdot}1+1)=128+72{\cdot}3+9=128+216+9=\mathbf{353}\).</p>
+<p><strong>(b)</strong> [8 → 10 → 6 → 4], weights only (no bias):<br>
+\(8{\cdot}10+10{\cdot}6+6{\cdot}4=80+60+24=\mathbf{164}\) weights.</p>
+<p><strong>(c)</strong> [1000 → 8 → 5] with bias: \((1000{\cdot}8+8)+(8{\cdot}5+5)=8008+45=\mathbf{8053}\).</p>
+<div class="box tip">Read carefully whether <strong>biases are included</strong> — it changes the answer. Default: include them unless told otherwise.</div>
+</div>
+</details>
+
+<details>
+<summary>D5. Design a DFNN + justify (sentiment, 1000→5) <span class="qmeta">— Dec 2025 Q5(c) · 6 marks</span></summary>
+<div class="sol">
+<p><strong>(i) Architecture:</strong> input 1000 neurons; one hidden layer (e.g. 8–128, say <strong>nₕ=8</strong>); output 5 neurons → <strong>[1000 → 8 → 5]</strong>.</p>
+<p><strong>(ii) Activations:</strong> hidden = <strong>ReLU</strong> (fast, no vanishing gradient, non-linearity); output = <strong>softmax</strong> (probability distribution over 5 classes).</p>
+<p><strong>(iii) Loss:</strong> <strong>categorical cross-entropy</strong> — correct for multi-class one-hot targets; penalises confident wrong predictions.</p>
+<p><strong>(iv) Learning algorithm:</strong> <strong>mini-batch SGD</strong> (batch 32–64) — batch GD too slow for 50k samples, pure SGD too noisy; mini-batch balances speed &amp; stability.</p>
+<p><strong>(v) Params:</strong> \((1000{\cdot}8+8)+(8{\cdot}5+5)=\mathbf{8053}\). With 50,000 samples → ratio ≈ 6:1 (samples:params) → reasonable, low overfitting risk (rule of thumb: ≥5–10× more samples than params).</p>
+</div>
+</details>
+
+<details>
+<summary>D6. Mobile vs cloud architecture choice <span class="qmeta">— Dec 2025 Q5(d) · 3 marks</span></summary>
+<div class="sol">
+<p><strong>A.</strong> Deploy <strong>Architecture A (lighter)</strong> on mobile. (i) The 2% accuracy gain doesn't justify 9× slower inference: at 1M images/day, A ≈ 5×10⁶ ms ≈ 1.4 hrs vs B ≈ 12.5 hrs → far more battery. (ii) B's 3.4 GB exceeds typical 4–6 GB shared RAM → crashes/memory pressure; A's 200 MB is fine. (iii) On <strong>cloud</strong> (unlimited compute, no battery), the recommendation flips → Architecture B's higher accuracy wins.</p>
+<p class="small">Mobile/real-time keyword → choose small/fast/low-memory; accuracy is secondary to latency &amp; energy.</p>
+</div>
+</details>
+
+<details>
+<summary>D7. Computational graph + gradients <span class="qmeta">— Jan 2025 Q4 / Jun 2025 Q4</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim) — Jan 2025 EC2 Q4 / Jun 2025 EC2 Q4</span>
+Consider the following equation in a neural network: \(g=(ax_1+bx_2)\,w_1+w_2\), where \(a=1.5, b=2.5, x_1=0.2, x_2=0.4, w_1=0.1, w_2=0.5\). (1) Draw a computational graph illustrating the flow of computations to determine the output \(g\). (2) Write the equations for computing the output and the gradients with respect to \(w_1, w_2, a,\) and \(b\). (3) Illustrate how these gradients are used in updating the weights during training. [5 marks]</div>
+<p><strong>Forward:</strong> let \(u=ax_1+bx_2=1.5(0.2)+2.5(0.4)=0.3+1.0=1.3\). Then \(g=u\,w_1+w_2=1.3(0.1)+0.5=0.13+0.5=\mathbf{0.63}\).</p>
+<p><strong>Computational graph:</strong> (a,x₁)→×→p₁; (b,x₂)→×→p₂; (p₁,p₂)→+→u; (u,w₁)→×→m; (m,w₂)→+→g.</p>
+<p><strong>Gradients</strong> (treat \(g\) as output, \(\partial g/\partial g=1\)):<br>
+\(\dfrac{\partial g}{\partial w_1}=u=1.3\); \(\dfrac{\partial g}{\partial w_2}=1\); \(\dfrac{\partial g}{\partial a}=w_1 x_1=0.1(0.2)=0.02\); \(\dfrac{\partial g}{\partial b}=w_1 x_2=0.1(0.4)=0.04\).</p>
+<p><strong>Update:</strong> each parameter \(\theta\leftarrow\theta-\eta\,\dfrac{\partial L}{\partial\theta}\) (chain \(\partial L/\partial g\) through these local gradients during backprop).</p>
+</div>
+</details>
+
+<details>
+<summary>D8. Concept rapid-fire: Adam, dropout, bias, vanishing gradients, init <span class="qmeta">— Jan 2025 Q2/Q6, Jun 2025 Q6</span></summary>
+<div class="sol">
+<p><strong>Adam β₁, β₂:</strong> β₁ (≈0.9) controls the exponential moving average of <strong>gradients</strong> (1st moment / momentum); β₂ (≈0.999) controls the EMA of <strong>squared gradients</strong> (2nd moment / adaptive scaling). Together → fast, adaptive convergence.</p>
+<p><strong>Dropout count:</strong> 6 nodes, each kept/dropped (2 choices) → \(2^6=\mathbf{64}\) possible thinned networks.</p>
+<p><strong>Bias term:</strong> lets the activation/decision boundary <strong>shift away from the origin</strong>, so the model can fit data not passing through 0 — added as \(w_0\) with input \(x_0=1\).</p>
+<p><strong>Vanishing gradients:</strong> in deep nets with sigmoid/tanh, gradients shrink layer-by-layer (derivatives &lt;1 multiply) → early layers barely update → slow/stalled learning. <strong>Fix:</strong> ReLU (gradient 1 for z&gt;0), good init (He/Xavier), batch norm, residual connections.</p>
+<p><strong>Weight init:</strong> too large → <strong>exploding gradients</strong> (unstable); too small → <strong>vanishing gradients</strong> (slow). All-zeros → symmetry (all neurons identical). Use He (ReLU) / Xavier (sigmoid-tanh).</p>
+<p><strong>Why ReLU beats tanh here (Jun 2025 Q6B):</strong> tanh saturates for large |z| → tiny derivatives → vanishing gradients → slow training. ReLU has gradient 1 for z&gt;0 → gradients flow → faster convergence.</p>
+<p><strong>Train 100% / test 45% (Jul 2024 Q3b):</strong> <strong>overfitting</strong>. Fix: L1/L2, dropout, early stopping, more/augmented data, simpler model, cross-validation.</p>
+<p><strong>"Train on 20 samples, high training loss; will 10,000 samples fix it?" (Jun 2025 Q6A):</strong> No — high <em>training</em> loss = <strong>underfitting</strong> (model too weak / bug / lr issue), not a data-quantity problem. More data won't help; instead increase capacity, train longer, tune learning rate, check features. (More data fixes <em>over</em>fitting, not <em>under</em>fitting.)</p>
+</div>
+</details>
+</section>
+
+<!-- ============ Q6 CNN ============ -->
+<section id="q6">
+<h3>⑥ CNN (Module 6 — partial)</h3>
+
+<details>
+<summary>C1. Conv + pooling output shapes <span class="qmeta">— Jul 2024 Makeup Q2 · 5 marks</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim) — Jul 2024 EC2 Makeup, Q2</span>
+(a) Given an input matrix of size \(8\times8\) and a kernel size of \(3\times3\) with stride 1 and no padding, determine the output shape after applying the convolution operation. [2M] (b) If there are 5 such filters applied, what will be the output shape? [1M] (c) Apply a \(4\times4\) max-pooling filter with stride 2 to the output from part (b). What will be the final output shape? [2M]</div>
+<p><strong>(a)</strong> \(\dfrac{N-F+2P}{S}+1=\dfrac{8-3+0}{1}+1=\mathbf{6\times6}\).</p>
+<p><strong>(b)</strong> 5 filters → 5 output channels → \(\mathbf{6\times6\times5}\).</p>
+<p><strong>(c)</strong> Pool: \(\dfrac{6-4}{2}+1=\mathbf{2}\) → \(2\times2\), depth unchanged → \(\mathbf{2\times2\times5}\).</p>
+</div>
+</details>
+
+<details>
+<summary>C2. Full CNN layer-by-layer params &amp; sizes <span class="qmeta">— Jul 2024 Regular Q4 · 6 marks</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim) — Jul 2024 EC2 Regular, Q4</span>
+Consider the following simple CNN architecture: Input 64×64×3 (RGB); Conv Layer 1 [64 filters 2×2, stride 2, padding 'valid']; Batch Normalization after Conv1; Pooling Layer 1 [max pooling 2×2, stride 2, 'valid']; Conv Layer 2 [32 filters 3×3, stride 1, 'valid']; Pooling Layer 2 [average pooling 4×4, stride 2, 'valid']; Flatten; Fully Connected [128 neurons]; Output Layer [10 neurons]. For each layer, calculate the number of feature maps/neurons, size of the feature maps, trainable parameters, and non-trainable parameters. [6 marks]</div>
+<table>
+<tr><th>Layer</th><th>Output size</th><th>Trainable params</th><th>Non-trainable</th></tr>
+<tr><td>Conv1 (64×2×2, S2)</td><td>32×32×64 <span class="small">((64−2)/2+1=32)</span></td><td>(2·2·3+1)·64 = <strong>832</strong> <span class="small">(768 w + 64 b)</span></td><td>0</td></tr>
+<tr><td>BatchNorm</td><td>32×32×64</td><td>γ 64 + β 64 = <strong>128</strong></td><td>mean 64 + var 64 = 128</td></tr>
+<tr><td>MaxPool 2×2 S2</td><td>16×16×64</td><td>0</td><td>0</td></tr>
+<tr><td>Conv2 (32×3×3, S1)</td><td>14×14×32 <span class="small">((16−3)/1+1=14)</span></td><td>(3·3·64+1)·32 = <strong>18,464</strong></td><td>0</td></tr>
+<tr><td>AvgPool 4×4 S2</td><td>6×6×32 <span class="small">((14−4)/2+1=6)</span></td><td>0</td><td>0</td></tr>
+<tr><td>Flatten</td><td>6·6·32 = 1152</td><td>0</td><td>0</td></tr>
+<tr><td>FC 128</td><td>128</td><td>1152·128 + 128 = <strong>147,584</strong></td><td>0</td></tr>
+<tr><td>Output 10</td><td>10</td><td>128·10 + 10 = <strong>1,290</strong></td><td>0</td></tr>
+<tr><td><strong>Total</strong></td><td></td><td><strong>168,298</strong></td><td>128</td></tr>
+</table>
+<div class="box tip">Conv params formula: <strong>(F·F·C_in + 1) · K</strong>. Don't forget input channels (3 for RGB) and the +1 bias per filter. Pooling &amp; flatten have 0 params. BatchNorm: 2·C trainable + 2·C non-trainable.</div>
+</div>
+</details>
+
+<details>
+<summary>C3. Conv vs FC, why CNN over ANN, hyperparameters <span class="qmeta">— Jul 2024 Q5/Q6 · concepts</span></summary>
+<div class="sol">
+<p><strong>Two benefits of conv over FC layers:</strong> (1) <strong>Local feature extraction</strong> — filters capture spatial patterns (edges→textures→objects) hierarchically. (2) <strong>Far fewer parameters</strong> via weight sharing + sparse connections → less compute, less overfitting (FC layers are dense → parameter explosion).</p>
+<p><strong>Why CNN preferred over ANN for images:</strong> a plain ANN flattens the image, ignoring <strong>spatial structure</strong>, and needs huge parameter counts; CNN preserves 2-D locality and shares weights → efficient &amp; accurate on images.</p>
+<p><strong>Key CNN hyperparameters:</strong> #filters, kernel size, stride, padding, pooling size/stride, learning rate, batch size, epochs, dropout rate, weight init, optimizer, activation.</p>
+<p><strong>Regularization "except output layer":</strong> True — dropout/L2/batch-norm are applied to conv &amp; FC layers (which have many params and overfit), but not the output layer (its job is just to map to class probabilities; regularizing it doesn't control feature complexity).</p>
+<p><strong>Output-layer activations:</strong> softmax (multi-class), sigmoid (binary), linear (regression), tanh (output in (−1,1)).</p>
+</div>
+</details>
+
+<details>
+<summary>C4. Transfer learning vs training from scratch <span class="qmeta">— Jul 2024 Makeup Q3 · 4 marks</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim) — Jul 2024 EC2 Makeup, Q3</span>
+Mr Ram has a dataset data_1.csv with 1 million labelled training examples for classification, and dataset data_2.csv with 100 labelled training examples. Mr Rakesh trains a model from scratch on data_2.csv. Mr Ram decides to train on data_1.csv, then apply transfer learning to train on data_2.csv. Differentiate between these approaches and the advantages/problems both face, and how to solve them if possible. State one problem Mr Rakesh is likely to face, and how Mr Ram's approach addresses it. [4 marks]</div>
+<p><strong>Scratch on 100 examples → overfitting</strong>: too few examples for the parameter count → poor generalization. <strong>Transfer learning</strong>: pretrain on the large dataset, then <strong>freeze early layers</strong> (reuse general features) and fine-tune later layers on the small set → fewer learnable parameters, leverages knowledge from abundant data → much better generalization on the small dataset.</p>
+</div>
+</details>
+</section>
+
+<!-- ============ Q7 CODE BANK ============ -->
+<section id="q7">
+<h3>⑦ Code Blank-Fill &amp; Bug-Fix Bank <span class="tag">free marks — pure recall</span></h3>
+<div class="box key"><span class="bt">Strategy</span> Part (b) of every recent question is code. The same ~12 NumPy lines recur. Memorise these and you bank 5–8 marks per paper with near-zero thinking.</div>
+
+<h4>The 12 lines you must know cold</h4>
+<table>
+<tr><th>Purpose</th><th>NumPy expression</th></tr>
+<tr><td>Weighted sum / logits</td><td><code>np.dot(X, weights)</code></td></tr>
+<tr><td>Sigmoid</td><td><code>1 / (1 + np.exp(-z))</code></td></tr>
+<tr><td>ReLU</td><td><code>np.maximum(0, Z)</code></td></tr>
+<tr><td>Softmax (stable)</td><td><code>exp_Z / np.sum(exp_Z, axis=1, keepdims=True)</code></td></tr>
+<tr><td>MSE loss</td><td><code>np.mean((y_pred - y)**2)</code> (or /2)</td></tr>
+<tr><td>BCE loss</td><td><code>-np.mean(y*np.log(p)+(1-y)*np.log(1-p))</code></td></tr>
+<tr><td>CCE loss</td><td><code>-np.mean(np.sum(Y*np.log(P),axis=1))</code></td></tr>
+<tr><td>Gradient (lin/log/softmax)</td><td><code>np.dot(X.T, (y_pred - y)) / len(y)</code></td></tr>
+<tr><td>Weight update (GD)</td><td><code>weights - lr * gradient</code></td></tr>
+<tr><td>Perceptron update</td><td><code>weights + lr * error * X[i]</code></td></tr>
+<tr><td>Binary predict</td><td><code>(sigmoid(np.dot(X,w)) >= 0.5).astype(int)</code></td></tr>
+<tr><td>Multiclass predict</td><td><code>np.argmax(softmax(np.dot(X,W)), axis=1)</code></td></tr>
+</table>
+
+<details>
+<summary>K1. Perceptron training blanks <span class="qmeta">— Dec 2025 Q1(d)</span></summary>
+<div class="sol">
+<pre><code>z = <span class="blank">np.dot(X[i], weights)</span>          # Blank 1
+error = <span class="blank">y[i] - y_pred</span>              # Blank 2
+weights = weights + <span class="blank">learning_rate * error * X[i]</span>   # Blank 3
+preds = <span class="blank">(np.dot(X, w) >= 0).astype(int)</span>          # Blank 4
+acc = <span class="blank">np.mean(preds == y)</span>          # Blank 5</code></pre>
+</div>
+</details>
+
+<details>
+<summary>K2. Batch GD for linear regression blanks <span class="qmeta">— Dec 2025 Q2(b)</span></summary>
+<div class="sol">
+<pre><code>y_pred = <span class="blank">np.dot(X, weights)</span>                 # Blank 1
+loss = <span class="blank">np.mean((y_pred - y)**2) / 2</span>       # Blank 2
+gradient = <span class="blank">np.dot(X.T, error) / N</span>         # Blank 3
+weights = <span class="blank">weights - lr * gradient</span>          # Blank 4
+w = <span class="blank">train_linear(X, y, lr=0.01, epochs=100)</span> # Blank 5</code></pre>
+</div>
+</details>
+
+<details>
+<summary>K3. Mini-batch logistic regression blanks <span class="qmeta">— Dec 2025 Q3(b)</span></summary>
+<div class="sol">
+<pre><code>def sigmoid(z): return <span class="blank">1 / (1 + np.exp(-z))</span>   # Blank 1
+y_pred = <span class="blank">sigmoid(z)</span>                          # Blank 2
+gradient = <span class="blank">np.dot(X_batch.T, (y_pred - y_batch)) / len(y_batch)</span>  # Blank 3
+weights = <span class="blank">weights - lr * gradient</span>           # Blank 4
+def predict(X, w): return <span class="blank">(sigmoid(np.dot(X, w)) >= 0.5).astype(int)</span>  # Blank 5</code></pre>
+</div>
+</details>
+
+<details>
+<summary>K4. Mini-batch softmax blanks <span class="qmeta">— Dec 2025 Q4(b)</span></summary>
+<div class="sol">
+<pre><code>return <span class="blank">exp_Z / np.sum(exp_Z, axis=1, keepdims=True)</span>   # Blank 1 (softmax)
+Z = <span class="blank">np.dot(X_batch, W)</span>                       # Blank 2
+gradient = <span class="blank">np.dot(X_batch.T, (Y_pred - Y_batch)) / len(Y_batch)</span>  # Blank 3
+W = <span class="blank">W - lr * gradient</span>                        # Blank 4
+return <span class="blank">np.argmax(softmax(Z), axis=1)</span>        # Blank 5</code></pre>
+</div>
+</details>
+
+<details>
+<summary>K5. 2-layer DFNN forward + backprop blanks <span class="qmeta">— Dec 2025 Q5(b)</span></summary>
+<div class="sol">
+<pre><code>def relu(Z): return <span class="blank">np.maximum(0, Z)</span>          # Blank 1
+A1 = <span class="blank">relu(Z1)</span>                               # Blank 2
+dW2 = <span class="blank">np.dot(A1.T, dZ2) / N</span>                # Blank 3
+dA1 = <span class="blank">np.dot(dZ2, W2.T)</span>                    # Blank 4
+dW1 = <span class="blank">np.dot(X.T, dZ1) / N</span>                 # Blank 5
+# given: dZ2 = A2 - Y ; dZ1 = dA1 * (Z1 > 0)</code></pre>
+</div>
+</details>
+
+<h4>Find-the-bug — the recurring 3 errors</h4>
+<details>
+<summary>K6. Common deliberate bugs &amp; fixes <span class="qmeta">— Jan 2026 Q1–Q5(c/d)</span></summary>
+<div class="sol">
+<table>
+<tr><th>Buggy line</th><th>Fix</th><th>Why</th></tr>
+<tr><td><code>1/(1 - np.exp(-z))</code></td><td><code>1/(1 + np.exp(-z))</code></td><td>Sigmoid sign — wrong sign breaks the squashing.</td></tr>
+<tr><td><code>-np.mean(y*np.log(p))</code></td><td><code>-np.mean(y*np.log(p)+(1-y)*np.log(1-p))</code></td><td>Incomplete BCE — only penalises class 1 → model biased toward class 1.</td></tr>
+<tr><td><code>np.mean(residuals)</code></td><td><code>np.mean(residuals**2)</code></td><td>MSE must square — else loss meaningless.</td></tr>
+<tr><td><code>np.dot(X, error)</code></td><td><code>np.dot(X.T, error)</code></td><td>Missing transpose → shape mismatch / crash.</td></tr>
+<tr><td><code>weights + lr*gradient</code></td><td><code>weights - lr*gradient</code></td><td>GD goes <em>downhill</em> → must subtract → else diverges.</td></tr>
+<tr><td>perceptron <code>weights - lr*error*X[i]</code></td><td><code>weights + lr*error*X[i]</code></td><td>Perceptron rule ADDS the correction.</td></tr>
+<tr><td><code>z > 0</code> (step)</td><td><code>z >= 0</code></td><td>Boundary convention (must match training/predict).</td></tr>
+<tr><td>softmax <code>axis=0</code></td><td><code>axis=1, keepdims=True</code></td><td>Sum over classes (rows), not over the batch.</td></tr>
+<tr><td><code>np.mean(Y*np.log(P))</code> (no minus)</td><td><code>-np.mean(...)</code></td><td>CCE needs the negative sign.</td></tr>
+<tr><td><code>np.argmin(probs)</code></td><td><code>np.argmax(probs, axis=1)</code></td><td>Predict the <em>highest</em> probability class → else inverted predictions (~1/K accuracy).</td></tr>
+<tr><td>backprop <code>dZ2 = A2 + Y</code></td><td><code>dZ2 = A2 - Y</code></td><td>Output gradient is predicted − true → wrong sign → loss diverges.</td></tr>
+</table>
+<div class="box tip">For "explain what happens if uncorrected": <strong>sign errors → loss diverges/increases (training fails)</strong>; <strong>transpose errors → shape crash (no training)</strong>; <strong>incomplete loss → biased boundary</strong>; <strong>argmin → systematically inverted predictions</strong>.</div>
+</div>
+</details>
+</section>
+
+<!-- ============ Q8 END-SEM M1-5 ============ -->
+<section id="q8">
+<h3>⑧ End-Sem (EC3 / Comprehensive) Questions — Modules 1–5 only</h3>
+<div class="box tip"><span class="bt">Why these help</span> The end-sem (EC3) papers are open-book and cover all 11 modules, but their <strong>Module 1–5 questions</strong> are pitched at the same skills your mid-sem tests — often with a richer "design + justify" flavour. Pulled here are every M1–5 question from the Mar-2026 (Regular &amp; Makeup), 2024 (Regular &amp; Makeup) comprehensive papers. (CNN/RNN/Transformer parts are out of mid-sem scope and omitted.)</div>
+
+<details>
+<summary>E1. Neuron inference + Softmax vs ReLU + activation definitions <span class="qmeta">— Mar 2026 EC3 Regular, Q1(a)</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+A DFNN with two hidden layers classifies medical X-ray images into 10 categories. A neuron in Hidden Layer 1 receives input \(x=[0.8,-0.5,0.2]\), weights \(w=[0.4,0.1,-0.2]\), bias \(b=0.5\). (i) Compute the activation by applying ReLU. Compare Softmax vs ReLU outputs for this 10-class problem — which is appropriate and why? [4 marks] (ii) Define activation functions for Hidden Layer 1 (ReLU), Hidden Layer 2 (Leaky ReLU), and the Output Layer (Softmax) with mathematical formulas. [3 marks]</div>
+<p><strong>(i) ReLU activation.</strong> First the net input: \(z=w^\top x+b = 0.4(0.8)+0.1(-0.5)+(-0.2)(0.2)+0.5 = 0.32-0.05-0.04+0.5 = \mathbf{0.73}\). Then \(\text{ReLU}(0.73)=\max(0,0.73)=\mathbf{0.73}\).</p>
+<p><strong>Softmax vs ReLU for the 10-class output.</strong> ReLU is the right choice <em>inside hidden layers</em> — it adds non-linearity cheaply and avoids vanishing gradients — but it acts on each neuron independently and does not produce probabilities. For the <strong>10-class output layer you need Softmax</strong>, because it turns the 10 logits into a valid probability distribution (each in \((0,1)\), summing to 1), which is exactly what multi-class classification and cross-entropy require. So: ReLU for hidden, Softmax for the output.</p>
+<p><strong>(ii) Definitions.</strong> Hidden 1 — ReLU: \(f(z)=\max(0,z)\). Hidden 2 — Leaky ReLU: \(f(z)=\max(\alpha z, z)\) with small \(\alpha\) (e.g. 0.01), i.e. \(z\) for \(z>0\) and \(\alpha z\) for \(z\le0\). Output — Softmax: \(\hat y_i=\dfrac{e^{z_i}}{\sum_{j=1}^{10} e^{z_j}}\).</p>
+</div>
+</details>
+
+<details>
+<summary>E2. Why a Perceptron can't do 10 classes + vanishing gradients <span class="qmeta">— Mar 2026 EC3 Regular, Q1(b)</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+(i) Explain why a Perceptron cannot solve this 10-class task, referencing linear separability, decision boundaries, and the XOR problem as analogy. [4 marks] (ii) During DFNN training, gradients near the input layers vanish. Identify the cause, explain the impact on learning, and recommend TWO architectural fixes with justification. [4 marks]</div>
+<p><strong>(i) Perceptron limitation.</strong> A perceptron forms only a single <em>linear</em> decision boundary (a hyperplane) per neuron, so it can only separate classes that are <strong>linearly separable</strong>. Real X-ray categories share overlapping visual features and need complex, <strong>non-linear</strong> decision regions that one hyperplane cannot carve out. Just as a single perceptron famously fails on <strong>XOR</strong> (whose classes can't be split by any straight line), it fails here. It also has <em>no hidden layers</em>, so it cannot learn intermediate feature representations (edges, textures, shapes) — a direct pixel-to-class linear map is far too weak for 10-way medical diagnosis. This is why we need a multi-layer, non-linear network.</p>
+<p><strong>(ii) Vanishing gradients.</strong> <em>Cause:</em> saturating activations (sigmoid/tanh) have derivatives \(<1\) (sigmoid's max is 0.25); backprop multiplies these derivatives across layers via the chain rule, so the product shrinks <em>exponentially</em> as it travels back to the early layers. <em>Impact:</em> gradients near the input become ≈0, so early-layer weights barely update — those layers stop learning useful low-level features and the network behaves as if it were shallow. <em>Two architectural fixes:</em> (1) <strong>ReLU-family activations</strong> — derivative is 1 for positive inputs, so gradients flow undiminished through active neurons. (2) <strong>Residual / skip connections</strong> — \(y=F(x)+x\) creates "gradient highways" that let gradients bypass layers and reach early layers strongly. (Batch-norm or He/Xavier init are also accepted.)</p>
+</div>
+</details>
+
+<details>
+<summary>E3. Binary churn: activation, loss, threshold + logistic vs DFNN <span class="qmeta">— Mar 2026 EC3 Regular, Q2(a)</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+A telecom company predicts subscriber churn. (i) Identify the output activation and loss function for binary churn prediction. Provide formulas, justify their pairing, and explain what a classification threshold of 0.5 represents in this context. [4 marks] (ii) A logistic regression model achieves 88% accuracy but 54% recall for churners. Identify TWO architectural reasons why a DFNN captures churn signals better than logistic regression. [3 marks]</div>
+<p><strong>(i) Activation + loss + threshold.</strong> Output activation = <strong>sigmoid</strong> \(\sigma(z)=\frac{1}{1+e^{-z}}\), giving a churn probability in \((0,1)\). Loss = <strong>binary cross-entropy</strong> \(L=-[y\log\hat y+(1-y)\log(1-\hat y)]\). They are paired because (a) the gradient simplifies beautifully to \(\hat y-y\) (stable training), (b) sigmoid emits a probability and BCE measures the divergence of that probability from the true label, and (c) together they form a convex objective for logistic regression. A <strong>threshold of 0.5</strong> is the decision boundary: customers with predicted churn probability \(\ge0.5\) are flagged as churners (for retention action). It can be tuned — lowering it (say 0.3) catches more churners (higher recall) at the cost of more false alarms.</p>
+<p><strong>(ii) Why a DFNN beats logistic regression here.</strong> The 88% accuracy with only 54% recall shows the linear model misses nearly half the churners. Two architectural reasons a DFNN does better: (1) <strong>Non-linear feature interactions</strong> — hidden layers with non-linear activations automatically learn interactions like "high data usage AND many complaints → churn", which logistic regression (a purely linear combination) can only capture with manual feature engineering. (2) <strong>Hierarchical representations</strong> — stacked layers build progressively abstract features (raw usage → behavioural profiles → latent churn-risk segments), discovering predictive structure logistic regression cannot represent.</p>
+</div>
+</details>
+
+<details>
+<summary>E4. Design a complete DFNN for churn + ReLU vs Leaky ReLU <span class="qmeta">— Mar 2026 EC3 Regular, Q2(b)</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+Design a complete DFNN for churn prediction (features: call duration, data usage, complaints, contract type). (i) Justify the choice of ReLU for Hidden Layer 1 and Leaky ReLU for Hidden Layer 2, addressing computational efficiency and the dying ReLU problem. [3 marks] (ii) Specify the complete architecture: input dimension, hidden layers, neurons per layer, activations, loss function, and output configuration. Justify each choice. [5 marks]</div>
+<p><strong>(i) ReLU then Leaky ReLU.</strong> <strong>ReLU</strong> in Hidden Layer 1 is computationally cheap (\(\max(0,z)\), no exponentials), has a simple 0/1 gradient, produces sparse activations, and does not saturate for positive inputs (no vanishing gradient). Its weakness is the <strong>dying ReLU</strong> problem: a neuron stuck with negative pre-activations outputs 0 with 0 gradient and never recovers. Deeper in the network this risk grows, so Hidden Layer 2 uses <strong>Leaky ReLU</strong> \(f(z)=\max(\alpha z, z)\) (\(\alpha\approx0.01\)): it allows a small negative gradient, keeping all neurons alive and preserving capacity to model churn patterns.</p>
+<p><strong>(ii) Full architecture.</strong> <em>Input:</em> 4 neurons (call duration, data usage, complaints, contract type) — one-hot encode the categorical contract type. <em>Hidden Layer 1:</em> 16–32 neurons, ReLU (wide enough to capture diverse patterns). <em>Hidden Layer 2:</em> 8–16 neurons, Leaky ReLU (a bottleneck that compresses to higher-level features; decreasing width gives a sensible funnel). <em>Output:</em> 1 neuron with <strong>sigmoid</strong> → churn probability. <em>Loss:</em> <strong>binary cross-entropy</strong> (paired with sigmoid; can be class-weighted to handle churn imbalance). <em>Training:</em> mini-batch SGD/Adam. Each choice maps to the task: small input, modest depth (avoids over-complication on 4 features), sigmoid+BCE for a binary target.</p>
+</div>
+</details>
+
+<details>
+<summary>E5. Forward pass + activations + CCE vs MSE + gradient flow <span class="qmeta">— Mar 2026 EC3 Makeup, Q1</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+Feedforward NN with input \(X=[0.1,0.3,0.5]\), first weight matrix \(W_{ij}=\begin{bmatrix}0.2&0.4&0.5\\0.3&0.7&0.1\\0.2&0.6&0.9\end{bmatrix}\), biases zero. (i) Compute Hidden Layer 1 pre-activations and apply ReLU. (ii) Define the ReLU, Sigmoid and Softmax activation functions. (iii) State the cross-entropy loss and its advantages over MSE. (iv) Gradient-flow analysis: which layer has the largest gradient and which the smallest, and why?</div>
+<p><strong>(i) Forward pass to Hidden Layer 1.</strong> \(z^{(1)}=X\,W_{ij}\). Neuron 1: \(0.1(0.2)+0.3(0.3)+0.5(0.2)=0.02+0.09+0.10=0.21\). Neuron 2: \(0.1(0.4)+0.3(0.7)+0.5(0.6)=0.04+0.21+0.30=0.55\). Neuron 3: \(0.1(0.5)+0.3(0.1)+0.5(0.9)=0.05+0.03+0.45=0.53\). Apply ReLU (all positive, unchanged): \(h^{(1)}=[\mathbf{0.21,\,0.55,\,0.53}]\).</p>
+<p><strong>(ii) Activations.</strong> ReLU \(=\max(0,x)\) (cheap, avoids vanishing gradients, sparse); Sigmoid \(=\frac{1}{1+e^{-x}}\) (bounded \((0,1)\) representation); Softmax \(=\frac{e^{z_i}}{\sum_j e^{z_j}}\) (probability distribution for multi-class output).</p>
+<p><strong>(iii) Cross-entropy vs MSE.</strong> CCE \(=-\sum_i y_i\log(\hat y_i)\). Advantages over MSE for classification: <strong>stronger gradients</strong> (doesn't suffer the flat-gradient/saturation problem MSE has with sigmoid/softmax outputs), a clean <strong>probabilistic interpretation</strong> (maximum-likelihood), and consequently <strong>faster convergence</strong>. MSE gives weak gradient signals and slower learning on classification tasks.</p>
+<p><strong>(iv) Gradient flow.</strong> The <strong>largest gradients are at the output layer</strong> (closest to the loss — the error signal hasn't been attenuated yet). The <strong>smallest gradients are at Hidden Layer 1</strong> (farthest from the loss): the error must be back-propagated through every later layer, and each saturating-activation derivative \(<1\) shrinks it — the vanishing-gradient effect.</p>
+</div>
+</details>
+
+<details>
+<summary>E6. Overfitting diagnosis + weight-symmetry ratios <span class="qmeta">— Mar 2026 EC3 Makeup, Q4</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+(A) A network shows training accuracy 99% and validation accuracy 72%. Diagnose the problem with evidence, and explain how Dropout helps. (B) Given weight symmetry where \(w_1=w_3\) and \(w_2=w_4\) (identical gradients), what are the ratios \(w_1/w_3\) and \(w_2/w_4\) throughout training and at convergence?</div>
+<p><strong>(A) Diagnosis: overfitting.</strong> Evidence: a large train-validation gap (99% vs 72%) with validation accuracy stagnating/falling while training keeps rising — the model is memorising training data, not generalising. <strong>Dropout</strong> fixes this by randomly zeroing a fraction of neurons each step (\(h_i=r_i a_i\) with \(r_i\sim\text{Bernoulli}\)): this prevents neurons from <em>co-adapting</em> (relying on specific partners), effectively trains an ensemble of sub-networks, and forces redundant, robust features — improving generalisation. (Early stopping, L2, more/augmented data also help.)</p>
+<p><strong>(B) Weight-symmetry ratios.</strong> If two weights start equal and always receive <em>identical gradients</em>, they update identically forever, so they stay equal: \(w_1/w_3=1\) and \(w_2/w_4=1\) <strong>at every step and at convergence</strong>. This is exactly why you must <em>not</em> initialise all weights equally (e.g. all zeros) — symmetric neurons never differentiate, and the layer learns only one distinct feature. Random initialisation breaks this symmetry.</p>
+</div>
+</details>
+
+<details>
+<summary>E7. Capacity, initialization &amp; overfitting (quick concepts) <span class="qmeta">— 2024 EC3 Regular, Q1</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+(A) Training on 100×100 images for 5 classes. Net A = single linear layer + softmax. Net B = layers of size 128, 512, 32 + softmax (neither has hidden activations). With identical training, what do you expect about A vs B on test data? (B) After converging to a final loss, is it possible to reach a lower loss by ONLY changing the network initialization? (C) Four models' loss plots are shown — which is overfitting?</div>
+<p><strong>(A)</strong> Trick question: <em>without hidden activations</em>, stacking linear layers (128→512→32) still collapses to a single linear map, so Net B has the <strong>same representational power</strong> as Net A — a linear classifier. So you'd expect roughly similar (limited) test performance; B's extra parameters add no capacity (only redundancy / mild overfitting risk). The lesson: depth without non-linearity buys nothing. <span class="small">(If B <em>did</em> have ReLU between layers, it would have far more capacity and likely outperform A, at some overfitting risk.)</span></p>
+<p><strong>(B) Yes.</strong> Different random initialisations lead to different optimisation paths and different local minima/basins, so changing only the initialisation can land you at a lower final loss — initialisation genuinely matters.</p>
+<p><strong>(C)</strong> The overfitting model is the one whose <strong>training loss keeps decreasing while its validation loss rises/diverges</strong> (the two curves separate). High training accuracy with worsening validation = overfitting.</p>
+</div>
+</details>
+
+<details>
+<summary>E8. Task type + end-to-end DL pipeline + computational graph <span class="qmeta">— 2024 EC3 Regular, Q2</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+(A) An app must predict which kind of bird is in an image. Which kind of task is this? List and explain the steps you would follow to solve it using deep learning. (B) Draw the computational graph for \(o=a(w\cdot x+b)\) and for \(o=f(g_1(h_1(x),h_2(x)), g_2(h_2(x),h_3(x)))\).</div>
+<p><strong>(A) Task type:</strong> supervised, multi-class image classification. <strong>End-to-end pipeline:</strong> (1) collect a large labelled dataset of the bird species and split into train/validation/test; (2) preprocess and augment (resize, normalize, flips/rotations); (3) choose a model — for images, use <strong>transfer learning</strong> from a CNN pre-trained on a related domain to cut data/time needs; (4) replace the final layers with a new classifier head and train (initially freezing the feature extractor, then optionally fine-tuning the whole network); (5) pick a loss (cross-entropy), an optimizer (e.g. Adam) that uses backprop-computed gradients, and a metric (accuracy); (6) evaluate on the held-out test set and deploy. The core "ingredients" are: a dataset, a loss function, a gradient algorithm (backprop), a weight-update rule (optimizer), and a performance metric.</p>
+<p><strong>(B) Computational graphs.</strong> Eq.1: inputs \(x\) and \(w\) → multiply → add bias \(b\) (weighted sum node \(z=w\cdot x+b\)) → activation node \(a(\cdot)\) → output \(o\). Eq.2: input \(x\) branches to three functions \(h_1,h_2,h_3\); then \(h_1,h_2\) feed \(g_1\) and \(h_2,h_3\) feed \(g_2\) (note \(h_2\) is shared by both); finally \(g_1,g_2\) feed \(f\) → output \(o\). Each node is an operation; edges show the forward data flow (and, in reverse, the paths backprop uses).</p>
+</div>
+</details>
+
+<details>
+<summary>E9. Reduce near-zero gradients + Dropout max/min (numeric) <span class="qmeta">— 2024 EC3 Makeup, Q1</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+(A) Gradients close to zero can be a problem when training a network. Suggest four different techniques to reduce the problem. (B/C) For a dense layer with inputs/weights giving terms \(\{5{\cdot}2,\,1{\cdot}1,\,7{\cdot}1,\,2{\cdot}2\}\) and dropout \(p=0.5\) (inverted dropout scales surviving units by \(1/(1-p)=2\)), what are the maximum and minimum possible outputs? Give two interpretation cases each.</div>
+<p><strong>(A) Four fixes for vanishing (near-zero) gradients:</strong> (1) use <strong>ReLU-family activations</strong> (ReLU/Leaky ReLU) instead of sigmoid/tanh; (2) use proper <strong>weight initialization</strong> (He for ReLU, Xavier/Glorot for tanh); (3) add <strong>normalization layers</strong> (Batch/Layer Norm); (4) add <strong>residual / skip connections</strong>. (Gradient clipping helps the exploding case.)</p>
+<p><strong>(B) Maximum output.</strong> Inverted dropout divides surviving activations by \((1-p)=0.5\) (i.e. ×2). <em>Case 1 — exactly 50% of nodes active:</em> keep the two largest terms \(5{\cdot}2=10\) and \(7{\cdot}1=7\): \((10+0+7+0)/0.5=\mathbf{34}\). <em>Case 2 — over many steps all nodes can be on:</em> \((10+1+7+4)/0.5=\mathbf{44}\).</p>
+<p><strong>(C) Minimum output.</strong> <em>Case 1 — 50% active, keep the two smallest:</em> \((0+1{\cdot}1+0+2{\cdot}2)/0.5=(1+4)/0.5=\mathbf{10}\). <em>Case 2 — all nodes dropped:</em> output \(=\mathbf{0}\).</p>
+<p class="small">Key idea being tested: dropout randomly removes units during training and the survivors are rescaled by \(1/(1-p)\) so the expected activation is preserved.</p>
+</div>
+</details>
+
+<details>
+<summary>E10. Init, multiclass loss, why backprop, batch-size vs iterations <span class="qmeta">— 2024 EC3 Makeup, Q2</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+(A) After converging, is it possible to reach a lower loss by ONLY changing the network initialization? (B) What loss is commonly used for multi-class classification? (C) What is the key reason backpropagation is so important? (D) On a plot of "SGD iterations to reach a target loss vs batch size": (i) why do iterations <em>decrease</em> as batch size grows for small batches? (ii) why do iterations barely change for large batches?</div>
+<p><strong>(A)</strong> Yes — a different initialization can follow a different optimization path to a different (lower) minimum, even with everything else fixed.</p>
+<p><strong>(B)</strong> <strong>Categorical cross-entropy</strong> is standard for multi-class classification (paired with a softmax output).</p>
+<p><strong>(C)</strong> Backpropagation efficiently computes the gradient of the loss w.r.t. <em>all</em> parameters by applying the chain rule layer-by-layer, reusing intermediate results — this is what makes training large networks computationally feasible.</p>
+<p><strong>(D)(i)</strong> For small batches, a larger batch reduces <strong>gradient noise</strong> and gives a more accurate estimate of the true gradient, so each step is more effective → fewer iterations to hit the target. <strong>(ii)</strong> For large batches the gradient estimate is already accurate, so enlarging it further yields <strong>diminishing returns</strong> — convergence rate (in iterations) barely improves even though each iteration costs more compute.</p>
+</div>
+</details>
+
+<details>
+<summary>E11. Represent a time-series dynamics exactly with one hidden layer (UAT/ReLU) <span class="qmeta">— 2024 EC3 Makeup, Q6(I)</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+A time series satisfies \(u_{t+1}=5\max(2u_t-3u_{t-1}-u_{t-2}+1,\ 0)\) (with \(u_t=0\) for \(t<0\)). We want a neural network taking \(x=[u_{t-2},u_{t-1},u_t]^\top\) and returning \(y=u_{t+1}\). Show the dynamics can be represented exactly by a network with a single hidden layer — give the dimension, weights, and activation of both the hidden and output layers.</div>
+<p><strong>Solution.</strong> The recurrence is already in the form "linear combination → ReLU → scale", which is exactly one ReLU hidden unit followed by a linear output. So:</p>
+<ul>
+<li><strong>Hidden layer:</strong> dimension <strong>1</strong> (a single neuron), activation <strong>ReLU</strong>. Weights on \([u_{t-2},u_{t-1},u_t]\) are \(\mathbf{w=[-1,-3,2]}\) with bias \(\mathbf{b=+1}\). Its output is \(h=\text{ReLU}(2u_t-3u_{t-1}-u_{t-2}+1)=\max(2u_t-3u_{t-1}-u_{t-2}+1,0)\) — matching the inner term exactly.</li>
+<li><strong>Output layer:</strong> dimension <strong>1</strong>, activation <strong>linear (identity)</strong>, weight \(\mathbf{5}\), bias 0: \(y=5h=u_{t+1}\).</li>
+</ul>
+<p>This is a concrete instance of the <strong>Universal Approximation Theorem</strong> idea: a single hidden layer with a non-linear activation (ReLU here) can represent this piecewise-linear dynamics exactly.</p>
+</div>
+</details>
+</section>
+
+<hr>
+
+<!-- ============ FORMULA SHEET ============ -->
+<section id="formulas">
+<h2 class="sec">🧮 Master Formula Sheet</h2>
+<div class="box formula">
+<span class="bt">Neuron &amp; activations</span>
+\(z=\mathbf{w}^\top\mathbf{x}=w_0+\sum w_ix_i\) · Identity \(f(z)=z\) · Sigmoid \(\sigma(z)=\frac{1}{1+e^{-z}}\), \(\sigma'=\sigma(1-\sigma)\) · ReLU \(\max(0,z)\), \(f'=\mathbb{1}[z>0]\) · Tanh \(\in(-1,1)\) · Softmax \(\hat y_k=\frac{e^{z_k}}{\sum_j e^{z_j}}\) · Step \(=1\) if \(z\ge0\)
+</div>
+<div class="box formula">
+<span class="bt">Losses</span>
+MSE \(=\frac{1}{2N}\sum(\hat y-y)^2\) · RMSE \(=\sqrt{\text{MSE}}\) · MAE \(=\frac1N\sum|\hat y-y|\) · \(R^2=1-\frac{SS_{res}}{SS_{tot}}\) · BCE \(=-[y\log\hat y+(1-y)\log(1-\hat y)]\) · CCE \(=-\sum_k y_k\log\hat y_k\)
+</div>
+<div class="box formula">
+<span class="bt">Gradients &amp; updates</span>
+Linear/Logistic/Softmax gradient \(\nabla J=\frac1N X^\top(\hat y-y)\) · GD update \(\mathbf{w}\leftarrow\mathbf{w}-\eta\nabla J\) · Perceptron \(w_i\leftarrow w_i+\eta(y-\hat y)x_i\) · Backprop: \(dZ^{[L]}=A^{[L]}-Y\), \(dW^{[l]}=\frac1N A^{[l-1]\top}dZ^{[l]}\), \(dZ^{[l]}=(dZ^{[l+1]}W^{[l+1]\top})\odot f'(Z^{[l]})\)
+</div>
+<div class="box formula">
+<span class="bt">Metrics</span>
+Acc \(=\frac{TP+TN}{\text{all}}\) · Prec \(=\frac{TP}{TP+FP}\) · Rec \(=\frac{TP}{TP+FN}\) · F1 \(=2\frac{PR}{P+R}\) · (multiclass: TP=diagonal, FP=col−TP, FN=row−TP)
+</div>
+<div class="box formula">
+<span class="bt">Counting</span>
+Dense layer params \(=(n_{in}n_{out})+n_{out}\) · Conv output \(=\lfloor\frac{N-F+2P}{S}\rfloor+1\) · Conv params \(=(F^2 C_{in}+1)K\) · Pool/Flatten = 0 params · BatchNorm = \(2C\) trainable + \(2C\) non-trainable
+</div>
+<div class="box formula">
+<span class="bt">Useful constants</span>
+\(e^{0.5}=1.649\) · \(e^{1.0}=2.718\) · \(e^{1.5}=4.482\) · \(e^{2.0}=7.389\) · \(\sigma(0)=0.5\) · \(\sigma(1)=0.731\) · \(\sigma(2)=0.881\) · \(\sigma(-1)=0.269\) · \(\ln(0.5)=-0.693\)
+</div>
+</section>
+
+<hr>
+
+<!-- ============ LAST MINUTE ============ -->
+<section id="last">
+<h2 class="sec">🎯 Last-Minute Exam-Hall Card</h2>
+<div class="box key">
+<span class="bt">In the first 2 minutes</span>
+Scan all 5 questions. Note which format (5×20 a-b-c-d, or 6×5). Start with the question you know best (usually Q1 perceptron or Q5 forward-pass) to bank confidence.
+</div>
+<ol>
+<li><strong>Always write the formula, then substitute.</strong> Method marks survive arithmetic slips.</li>
+<li><strong>Step activation:</strong> check \(z\ge0\) vs \(z>0\), and \(\{0,1\}\) vs \(\{-1,+1\}\) before computing.</li>
+<li><strong>Perceptron:</strong> no update when correct; present as a table; ADD the correction.</li>
+<li><strong>GD update SUBTRACTS</strong> the gradient; perceptron ADDS. Don't mix them up.</li>
+<li><strong>The gradient is always</strong> \(X^\top(\hat y-y)/N\) for regression, logistic AND softmax.</li>
+<li><strong>Softmax:</strong> exponentiate → sum → divide → argmax; CCE \(=-\log(\text{prob of true class})\).</li>
+<li><strong>Confusion matrix:</strong> Precision uses the column (FP), Recall uses the row (FN).</li>
+<li><strong>Imbalanced data → accuracy lies.</strong> Mention the naive-classifier baseline.</li>
+<li><strong>Parameter count:</strong> \((n_{in}n_{out})+n_{out}\) per layer; check if biases are included.</li>
+<li><strong>CNN:</strong> output \(=\frac{N-F+2P}{S}+1\); conv params \((F^2C_{in}+1)K\); pooling = 0.</li>
+<li><strong>"Which model" parts:</strong> recommend first, justify with the metric that matters (recall=medicine/fraud, latency/memory=mobile, explainability=finance).</li>
+<li><strong>Code blanks:</strong> recall the 12 lines. Bug-fixes: look for wrong signs, missing transpose, axis, argmin/argmax.</li>
+<li><strong>Concept answers:</strong> 30–50 words, precise, with a tiny example. Vague = penalised.</li>
+<li><strong>Overfitting</strong> (train≫test) → dropout/L2/early-stop/more data. <strong>Underfitting</strong> (both low) → bigger model/longer training.</li>
+<li><strong>ReLU</strong> for hidden, <strong>sigmoid+BCE</strong> for binary, <strong>softmax+CCE</strong> for multiclass, <strong>identity+MSE</strong> for regression.</li>
+</ol>
+<div class="box tip"><span class="bt">You've got this</span> Every numerical question is one of five recipes you've now practised. Show your steps, manage your time (~24 min/question), and don't leave concept parts blank — partial credit is real. Good luck, Akash! 🚀</div>
+</section>
+
+<p class="small" style="margin-top:40px;color:#666">Built from Session 1–5 slides + 6 EC2 mid-sem papers (2022–2026, several with official answer keys) + verified explanations. Sources are linked below the response. Formulas rendered with MathJax — give the page a second to typeset.</p>
+
+<a href="#" class="backtop">↑ Top</a>
+</main>
+</div>
+<script>
+// theme toggle (persists across reloads)
+(function(){
+  var btn=document.getElementById('themeToggle');
+  var root=document.documentElement;
+  function apply(t){
+    if(t==='light'){root.setAttribute('data-theme','light');btn.textContent='☀️ Light';}
+    else{root.removeAttribute('data-theme');btn.textContent='🌙 Dark';}
+  }
+  var saved=null; try{saved=localStorage.getItem('dnn-theme');}catch(e){}
+  apply(saved||'dark');
+  btn.addEventListener('click',function(){
+    var now=root.getAttribute('data-theme')==='light'?'dark':'light';
+    apply(now);
+    try{localStorage.setItem('dnn-theme',now);}catch(e){}
+  });
+})();
+// countdown to exam (~5 days from build date)
+(function(){
+  var exam = new Date(); exam.setDate(exam.getDate()+5);
+  var el = document.getElementById('cd');
+  function tick(){
+    var d = Math.ceil((exam - new Date())/86400000);
+    if(el) el.textContent = '⏳ ~' + Math.max(d,0) + ' days to the mid-sem — make them count';
+  }
+  tick();
+})();
+</script>
+</body>
+</html>
