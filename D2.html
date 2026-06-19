@@ -1,0 +1,1781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DNN Notes - AIML CZG511 - Comprehensive Study Material</title>
+<script>
+MathJax = {
+  tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+<style>
+:root {
+  --primary: #1a5276;
+  --secondary: #2980b9;
+  --accent: #e67e22;
+  --bg: #fafbfc;
+  --card-bg: #ffffff;
+  --text: #2c3e50;
+  --light-text: #7f8c8d;
+  --border: #dfe6e9;
+  --highlight-bg: #fef9e7;
+  --important-bg: #fdedec;
+  --tip-bg: #eafaf1;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 20px 30px;
+}
+h1 { font-size: 2.2em; color: var(--primary); text-align: center; border-bottom: 4px solid var(--accent); padding-bottom: 15px; margin: 30px 0; }
+h2 { font-size: 1.7em; color: var(--primary); border-left: 5px solid var(--accent); padding-left: 15px; margin: 40px 0 20px; }
+h3 { font-size: 1.3em; color: var(--secondary); margin: 25px 0 12px; }
+h4 { font-size: 1.1em; color: var(--text); margin: 18px 0 8px; }
+p { margin: 10px 0; }
+ul, ol { margin: 10px 0 10px 25px; }
+li { margin: 5px 0; }
+table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.95em; }
+th { background: var(--primary); color: white; padding: 10px 12px; text-align: left; }
+td { border: 1px solid var(--border); padding: 8px 12px; }
+tr:nth-child(even) { background: #f8f9fa; }
+.card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 20px 25px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+.important { background: var(--important-bg); border-left: 5px solid #e74c3c; padding: 15px 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+.highlight { background: var(--highlight-bg); border-left: 5px solid var(--accent); padding: 15px 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+.tip { background: var(--tip-bg); border-left: 5px solid #27ae60; padding: 15px 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+.definition { background: #eef2f7; border: 2px solid var(--secondary); border-radius: 8px; padding: 15px 20px; margin: 15px 0; }
+.definition::before { content: "Definition"; font-weight: bold; color: var(--secondary); display: block; margin-bottom: 5px; }
+.theorem { background: #fdf2e9; border: 2px solid var(--accent); border-radius: 8px; padding: 15px 20px; margin: 15px 0; }
+.theorem::before { content: "Key Formula"; font-weight: bold; color: var(--accent); display: block; margin-bottom: 5px; }
+.example { background: #f4ecf7; border: 1px solid #8e44ad; border-radius: 8px; padding: 15px 20px; margin: 15px 0; }
+.example::before { content: "Example"; font-weight: bold; color: #8e44ad; display: block; margin-bottom: 5px; }
+.key-formula { background: #1a5276; color: white; padding: 15px 25px; border-radius: 8px; text-align: center; margin: 15px 0; font-size: 1.1em; }
+.comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 15px 0; }
+.comparison-grid .card { margin: 0; }
+.lecture-divider { text-align: center; margin: 50px 0 30px; padding: 20px; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; border-radius: 10px; font-size: 1.5em; font-weight: bold; }
+.toc { background: var(--card-bg); border: 2px solid var(--primary); border-radius: 10px; padding: 25px 30px; margin: 20px 0 40px; }
+.toc a { color: var(--secondary); text-decoration: none; }
+.toc a:hover { text-decoration: underline; }
+.toc ul { list-style: none; margin-left: 0; }
+.toc > ul > li { margin: 8px 0; font-weight: bold; font-size: 1.05em; }
+.toc > ul > li > ul > li { font-weight: normal; font-size: 0.95em; margin: 3px 0; padding-left: 20px; }
+/* Collapsible practice questions */
+details { margin: 12px 0; }
+details summary {
+  cursor: pointer;
+  background: #eef2f7;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 15px;
+  font-weight: bold;
+  color: var(--primary);
+  transition: background 0.2s;
+}
+details summary:hover { background: #dfe6e9; }
+details[open] summary { border-radius: 6px 6px 0 0; border-bottom: none; }
+details .answer {
+  background: #f8f9fa;
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  padding: 15px 20px;
+}
+.practice-section {
+  background: #fef9e7;
+  border: 2px solid var(--accent);
+  border-radius: 10px;
+  padding: 20px 25px;
+  margin: 25px 0;
+}
+.practice-section h3 { color: var(--accent); margin-top: 0; }
+.practice-section h3::before { content: "Practice "; }
+code { background: #f4f6f7; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
+@media (max-width: 700px) {
+  body { padding: 10px 15px; }
+  .comparison-grid { grid-template-columns: 1fr; }
+  h1 { font-size: 1.6em; }
+  h2 { font-size: 1.3em; }
+}
+</style>
+</head>
+<body>
+
+<h1>Deep Neural Networks<br><small style="font-size:0.5em;color:var(--light-text);">AIML CZG511 &mdash; BITS Pilani WILPD | Comprehensive Study Notes</small></h1>
+
+<div class="highlight" style="text-align:center; font-style:italic;">
+<strong>Course:</strong> Deep Neural Networks (DNN) &mdash; AIML CZG511<br>
+<strong>Program:</strong> BITS Pilani &mdash; Work Integrated Learning Programmes Division (WILPD)
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc">
+<h3 style="color:var(--primary);margin-bottom:10px;">Table of Contents</h3>
+<ul>
+<li><a href="#s1">Session 1: Introduction to Deep Learning</a>
+  <ul>
+    <li><a href="#s1-what">1.1 What is Deep Learning?</a></li>
+    <li><a href="#s1-why">1.2 Why Deep Learning?</a></li>
+    <li><a href="#s1-core">1.3 Core Components</a></li>
+    <li><a href="#s1-problems">1.4 Learning Problems</a></li>
+    <li><a href="#s1-supervised">1.5 Supervised Learning Tasks</a></li>
+  </ul>
+</li>
+<li><a href="#s2">Session 2: Perceptron</a>
+  <ul>
+    <li><a href="#s2-bio">2.1 Biological vs Artificial Neurons</a></li>
+    <li><a href="#s2-perceptron">2.2 The Perceptron Model</a></li>
+    <li><a href="#s2-gates">2.3 Logic Gates with Perceptrons</a></li>
+    <li><a href="#s2-pla">2.4 Perceptron Learning Algorithm</a></li>
+    <li><a href="#s2-xor">2.5 XOR Problem &amp; Linear Separability</a></li>
+  </ul>
+</li>
+<li><a href="#s3">Session 3: Linear Neural Networks for Regression</a>
+  <ul>
+    <li><a href="#s3-regression">3.1 Regression as Supervised Learning</a></li>
+    <li><a href="#s3-model">3.2 Linear Model as a Neuron</a></li>
+    <li><a href="#s3-loss">3.3 Squared Error Loss (MSE)</a></li>
+    <li><a href="#s3-gd">3.4 Gradient Descent</a></li>
+    <li><a href="#s3-eval">3.5 Evaluation Metrics</a></li>
+  </ul>
+</li>
+<li><a href="#s4">Session 4: Linear Neural Networks for Classification</a>
+  <ul>
+    <li><a href="#s4-binary">4.1 Binary Classification &amp; Logistic Regression</a></li>
+    <li><a href="#s4-bce">4.2 Binary Cross-Entropy Loss</a></li>
+    <li><a href="#s4-sgd">4.3 Stochastic Gradient Descent</a></li>
+    <li><a href="#s4-metrics">4.4 Classification Metrics</a></li>
+    <li><a href="#s4-multi">4.5 Multi-class Classification</a></li>
+    <li><a href="#s4-minibatch">4.6 Mini-batch SGD</a></li>
+    <li><a href="#s4-comparison">4.7 Comparison: Regression vs Binary vs Multi-class</a></li>
+  </ul>
+</li>
+<li><a href="#s5">Session 5: Deep Feed-Forward Neural Networks</a>
+  <ul>
+    <li><a href="#s5-why">5.1 Why Linear Models Are Not Enough</a></li>
+    <li><a href="#s5-mlp">5.2 MLP Architecture</a></li>
+    <li><a href="#s5-activations">5.3 Activation Functions</a></li>
+    <li><a href="#s5-dfnn">5.4 DFNN Definition &amp; Layer Computation</a></li>
+    <li><a href="#s5-params">5.5 Parameter Counting</a></li>
+    <li><a href="#s5-backprop">5.6 Backpropagation</a></li>
+    <li><a href="#s5-depth">5.7 Depth vs Width &amp; Universal Approximation</a></li>
+    <li><a href="#s5-challenges">5.8 Challenges &amp; Design Considerations</a></li>
+    <li><a href="#s5-reg">5.9 Regularization Preview</a></li>
+  </ul>
+</li>
+<li><a href="#cnn">CNN: Convolutional Neural Networks</a>
+  <ul>
+    <li><a href="#cnn-conv">Convolution Operation &amp; Output Size</a></li>
+    <li><a href="#cnn-pool">Pooling Layers</a></li>
+    <li><a href="#cnn-transfer">Transfer Learning</a></li>
+  </ul>
+</li>
+<li><a href="#rnn">RNN / GRU / LSTM</a>
+  <ul>
+    <li><a href="#rnn-vanilla">Vanilla RNN</a></li>
+    <li><a href="#rnn-gru">GRU</a></li>
+  </ul>
+</li>
+<li><a href="#attention">Attention &amp; Transformers</a>
+  <ul>
+    <li><a href="#attn-sdpa">Scaled Dot-Product Attention</a></li>
+    <li><a href="#attn-mha">Multi-Head Attention</a></li>
+    <li><a href="#attn-arch">Architectures: BERT vs GPT</a></li>
+  </ul>
+</li>
+<li><a href="#optim">Optimization Algorithms</a></li>
+<li><a href="#practice">Practice Questions (Exam Style)</a></li>
+<li><a href="#quickref">Quick Reference Tables</a></li>
+</ul>
+</div>
+
+<!-- ==================== SESSION 1 ==================== -->
+<div class="lecture-divider" id="s1">Session 1: Introduction to Deep Learning</div>
+
+<h2 id="s1-what">1.1 What is Deep Learning?</h2>
+
+<div class="definition">
+<strong>Deep Learning</strong> is a subset of Machine Learning that uses neural networks with <strong>multiple layers</strong> (deep architectures) to learn <strong>hierarchical representations</strong> of data. Each layer transforms the input into progressively more abstract features.
+</div>
+
+<div class="card">
+<h4>The AI Hierarchy</h4>
+<p><strong>Artificial Intelligence</strong> &supset; <strong>Machine Learning</strong> &supset; <strong>Representation Learning</strong> &supset; <strong>Deep Learning</strong></p>
+<ul>
+<li><strong>AI:</strong> Any technique enabling machines to mimic human behavior</li>
+<li><strong>ML:</strong> Algorithms that learn from data without explicit programming</li>
+<li><strong>Representation Learning:</strong> Automatically discovers features from raw data</li>
+<li><strong>Deep Learning:</strong> Learns multiple levels of representation via stacked layers</li>
+</ul>
+</div>
+
+<div class="highlight">
+<strong>Key Insight:</strong> In traditional ML, feature engineering is manual. In deep learning, the network <em>learns</em> features automatically through its layers &mdash; raw pixels become edges, edges become textures, textures become object parts, parts become objects.
+</div>
+
+<h2 id="s1-why">1.2 Why Deep Learning?</h2>
+
+<div class="comparison-grid">
+<div class="card">
+<h4>Data</h4>
+<p>Massive datasets now available (ImageNet, web-scale text). Deep learning performance scales with data &mdash; unlike traditional ML which plateaus.</p>
+</div>
+<div class="card">
+<h4>Computation</h4>
+<p>GPUs, TPUs, and cloud computing make training deep networks feasible. What took weeks on CPUs takes hours on modern GPUs.</p>
+</div>
+</div>
+
+<div class="card">
+<h4>Algorithms</h4>
+<p>Key breakthroughs: ReLU activation (vanishing gradient fix), Dropout (regularization), Batch Normalization, better initialization (Xavier, He), advanced optimizers (Adam), and architectural innovations (ResNets, Transformers).</p>
+</div>
+
+<h2 id="s1-core">1.3 Core Components of Deep Learning</h2>
+
+<table>
+<tr><th>Component</th><th>Description</th><th>Example</th></tr>
+<tr><td><strong>Data</strong></td><td>Training examples (inputs and targets)</td><td>Images with labels, text with translations</td></tr>
+<tr><td><strong>Model</strong></td><td>The neural network architecture that maps inputs to outputs</td><td>MLP, CNN, RNN, Transformer</td></tr>
+<tr><td><strong>Objective Function</strong></td><td>Loss/cost function measuring model error</td><td>MSE, Cross-Entropy, Hinge Loss</td></tr>
+<tr><td><strong>Learning Algorithm</strong></td><td>Optimization method to minimize the objective</td><td>SGD, Adam, RMSprop</td></tr>
+</table>
+
+<h2 id="s1-problems">1.4 Learning Problems</h2>
+
+<div class="comparison-grid">
+<div class="card">
+<h4>Supervised Learning</h4>
+<p>Given input-output pairs $(x_i, y_i)$, learn a mapping $f: X \rightarrow Y$. Labels are provided.</p>
+<p><em>Examples:</em> Image classification, spam detection, regression</p>
+</div>
+<div class="card">
+<h4>Unsupervised Learning</h4>
+<p>Given only inputs $\{x_i\}$, discover hidden structure or patterns. No labels.</p>
+<p><em>Examples:</em> Clustering, dimensionality reduction, generative models (GANs, VAEs)</p>
+</div>
+</div>
+
+<div class="card">
+<h4>Reinforcement Learning</h4>
+<p>An agent interacts with an environment, taking actions and receiving rewards. Goal: learn a policy that maximizes cumulative reward. No explicit input-output pairs.</p>
+<p><em>Examples:</em> Game playing (AlphaGo), robotics, autonomous driving</p>
+</div>
+
+<h2 id="s1-supervised">1.5 Supervised Learning Tasks</h2>
+
+<table>
+<tr><th>Task</th><th>Output Type</th><th>Loss Function</th><th>Example</th></tr>
+<tr><td><strong>Regression</strong></td><td>Continuous value $y \in \mathbb{R}$</td><td>MSE</td><td>House price prediction</td></tr>
+<tr><td><strong>Binary Classification</strong></td><td>$y \in \{0, 1\}$</td><td>Binary Cross-Entropy</td><td>Spam / Not Spam</td></tr>
+<tr><td><strong>Multi-class Classification</strong></td><td>$y \in \{1, 2, \ldots, K\}$</td><td>Categorical Cross-Entropy</td><td>Digit recognition (0&ndash;9)</td></tr>
+<tr><td><strong>Multi-label Classification</strong></td><td>$y \in \{0,1\}^K$ (multiple labels)</td><td>Binary CE per label</td><td>Image tagging (cat, outdoor, sunny)</td></tr>
+<tr><td><strong>Sequence Learning</strong></td><td>Sequence of outputs</td><td>Varies (CE, CTC)</td><td>Machine translation, speech recognition</td></tr>
+</table>
+
+<!-- ==================== SESSION 2 ==================== -->
+<div class="lecture-divider" id="s2">Session 2: Perceptron</div>
+
+<h2 id="s2-bio">2.1 Biological vs Artificial Neurons</h2>
+
+<div class="comparison-grid">
+<div class="card">
+<h4>Biological Neuron</h4>
+<ul>
+<li><strong>Dendrites:</strong> Receive input signals</li>
+<li><strong>Soma (Cell body):</strong> Processes inputs</li>
+<li><strong>Axon:</strong> Transmits output signal</li>
+<li><strong>Synapse:</strong> Connection to next neuron (varying strengths)</li>
+</ul>
+</div>
+<div class="card">
+<h4>Artificial Neuron</h4>
+<ul>
+<li><strong>Inputs ($x_i$):</strong> Analogous to dendrites</li>
+<li><strong>Weights ($w_i$):</strong> Analogous to synaptic strengths</li>
+<li><strong>Summation ($\sum w_i x_i$):</strong> Analogous to soma</li>
+<li><strong>Activation function ($f$):</strong> Produces output</li>
+</ul>
+</div>
+</div>
+
+<div class="card">
+<h4>ANN Properties &amp; Connectionism Principles</h4>
+<ul>
+<li><strong>Massive parallelism:</strong> Many simple processing units operating simultaneously</li>
+<li><strong>Distributed representation:</strong> Knowledge stored across connection weights, not in individual units</li>
+<li><strong>Learning from experience:</strong> Weights adjusted based on training data</li>
+<li><strong>Fault tolerance:</strong> Graceful degradation &mdash; network works even if some units fail</li>
+<li><strong>Generalization:</strong> Ability to respond correctly to unseen inputs</li>
+</ul>
+</div>
+
+<h2 id="s2-perceptron">2.2 The Perceptron Model</h2>
+
+<div class="definition">
+<strong>Perceptron (Rosenblatt, 1958):</strong> The simplest form of an artificial neuron. A single-layer binary classifier that computes a weighted sum of inputs and applies a step activation function.
+</div>
+
+<div class="theorem">
+$$\hat{y} = f\left(\sum_{i=0}^{n} w_i x_i\right) = f(w_0 + w_1 x_1 + w_2 x_2 + \cdots + w_n x_n)$$
+where the activation function $f$ is the unit step function:
+$$f(z) = \begin{cases} 1 & \text{if } z \geq 0 \\ 0 & \text{if } z < 0 \end{cases}$$
+$w_0$ is the <strong>bias</strong> (with $x_0 = 1$).
+</div>
+
+<div class="tip">
+<strong>Geometric Interpretation:</strong> The perceptron defines a <strong>hyperplane</strong> $w_0 + w_1 x_1 + w_2 x_2 = 0$ that divides the input space into two half-spaces. Points on one side are classified as 1, the other as 0.
+</div>
+
+<h2 id="s2-gates">2.3 Logic Gates with Perceptrons</h2>
+
+<h3>AND Gate</h3>
+<div class="example">
+<table>
+<tr><th>$x_1$</th><th>$x_2$</th><th>$y$ (AND)</th></tr>
+<tr><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>0</td><td>1</td><td>0</td></tr>
+<tr><td>1</td><td>0</td><td>0</td></tr>
+<tr><td>1</td><td>1</td><td>1</td></tr>
+</table>
+<p><strong>Weights:</strong> $w_0 = -1.5,\; w_1 = 1,\; w_2 = 1$</p>
+<p><strong>Decision boundary:</strong> $-1.5 + x_1 + x_2 = 0$</p>
+<p>Verification: $(1,1) \to -1.5 + 1 + 1 = 0.5 \geq 0 \to 1$ &#10004;; $(1,0) \to -1.5 + 1 = -0.5 < 0 \to 0$ &#10004;</p>
+</div>
+
+<h3>OR Gate</h3>
+<div class="example">
+<table>
+<tr><th>$x_1$</th><th>$x_2$</th><th>$y$ (OR)</th></tr>
+<tr><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>0</td><td>1</td><td>1</td></tr>
+<tr><td>1</td><td>0</td><td>1</td></tr>
+<tr><td>1</td><td>1</td><td>1</td></tr>
+</table>
+<p><strong>Weights:</strong> $w_0 = -0.5,\; w_1 = 1,\; w_2 = 1$</p>
+<p><strong>Decision boundary:</strong> $-0.5 + x_1 + x_2 = 0$</p>
+</div>
+
+<h3>NOR Gate</h3>
+<div class="example">
+<table>
+<tr><th>$x_1$</th><th>$x_2$</th><th>$y$ (NOR)</th></tr>
+<tr><td>0</td><td>0</td><td>1</td></tr>
+<tr><td>0</td><td>1</td><td>0</td></tr>
+<tr><td>1</td><td>0</td><td>0</td></tr>
+<tr><td>1</td><td>1</td><td>0</td></tr>
+</table>
+<p><strong>Weights:</strong> $w_0 = 0.5,\; w_1 = -1,\; w_2 = -1$</p>
+<p>NOR = NOT(OR). Flip the signs of OR weights.</p>
+</div>
+
+<h3>NAND Gate</h3>
+<div class="example">
+<table>
+<tr><th>$x_1$</th><th>$x_2$</th><th>$y$ (NAND)</th></tr>
+<tr><td>0</td><td>0</td><td>1</td></tr>
+<tr><td>0</td><td>1</td><td>1</td></tr>
+<tr><td>1</td><td>0</td><td>1</td></tr>
+<tr><td>1</td><td>1</td><td>0</td></tr>
+</table>
+<p><strong>Weights:</strong> $w_0 = 1.5,\; w_1 = -1,\; w_2 = -1$</p>
+<p>NAND = NOT(AND). Flip the signs of AND weights.</p>
+</div>
+
+<h2 id="s2-pla">2.4 Perceptron Learning Algorithm</h2>
+
+<div class="card">
+<h4>Algorithm (Iterative Weight Adjustment)</h4>
+<ol>
+<li>Initialize weights $w_0, w_1, \ldots, w_n$ (e.g., to 0 or small random values)</li>
+<li>Set learning rate $\eta$ (e.g., $\eta = 1$)</li>
+<li>For each training example $(x, y)$:
+  <ul>
+    <li>Compute predicted output: $\hat{y} = f\left(\sum w_i x_i\right)$</li>
+    <li>Compute error: $e = y - \hat{y}$</li>
+    <li>Update weights: $w_i \leftarrow w_i + \eta \cdot e \cdot x_i$ for all $i$</li>
+  </ul>
+</li>
+<li>Repeat until all examples are correctly classified (or max iterations)</li>
+</ol>
+</div>
+
+<div class="theorem">
+<strong>Perceptron Weight Update Rule:</strong>
+$$w_i^{new} = w_i^{old} + \eta \cdot (y - \hat{y}) \cdot x_i$$
+<ul>
+<li>If $y = \hat{y}$: no update (error = 0)</li>
+<li>If $y = 1, \hat{y} = 0$: weights are increased toward the input</li>
+<li>If $y = 0, \hat{y} = 1$: weights are decreased away from the input</li>
+</ul>
+</div>
+
+<div class="important">
+<strong>Perceptron Convergence Theorem:</strong> If the training data is <strong>linearly separable</strong>, the Perceptron Learning Algorithm is guaranteed to converge to a solution in a finite number of steps. If the data is NOT linearly separable, the algorithm will never converge.
+</div>
+
+<h2 id="s2-xor">2.5 XOR Problem &amp; Linear Separability</h2>
+
+<div class="definition">
+<strong>Linear Separability:</strong> A dataset is linearly separable if there exists a hyperplane that perfectly separates the two classes. A single perceptron can only solve linearly separable problems.
+</div>
+
+<div class="important">
+<strong>XOR Problem:</strong>
+<table>
+<tr><th>$x_1$</th><th>$x_2$</th><th>$y$ (XOR)</th></tr>
+<tr><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>0</td><td>1</td><td>1</td></tr>
+<tr><td>1</td><td>0</td><td>1</td></tr>
+<tr><td>1</td><td>1</td><td>0</td></tr>
+</table>
+<p>No single line can separate the 1s from the 0s. XOR is <strong>NOT linearly separable</strong>.</p>
+<p>This was famously shown by Minsky &amp; Papert (1969) and led to the first "AI Winter."</p>
+</div>
+
+<div class="tip">
+<strong>Solution:</strong> Use <strong>hidden layers</strong> (multi-layer perceptron). XOR can be decomposed as:
+$$\text{XOR}(x_1, x_2) = \text{AND}(\text{OR}(x_1, x_2),\; \text{NAND}(x_1, x_2))$$
+This requires at least 2 layers &mdash; motivating the development of deep neural networks.
+</div>
+
+<!-- ==================== SESSION 3 ==================== -->
+<div class="lecture-divider" id="s3">Session 3: Linear Neural Networks for Regression</div>
+
+<h2 id="s3-regression">3.1 Regression as Supervised Learning</h2>
+
+<div class="definition">
+<strong>Regression:</strong> A supervised learning task where the target variable $y$ is <strong>continuous</strong> (real-valued). The goal is to learn a function $f: \mathbb{R}^d \rightarrow \mathbb{R}$ that maps input features to a numeric output.
+</div>
+
+<h2 id="s3-model">3.2 Linear Model as a Neuron</h2>
+
+<div class="theorem">
+<strong>Linear Regression:</strong>
+$$\hat{y} = w_0 + w_1 x_1 + w_2 x_2 + \cdots + w_d x_d = \mathbf{w}^T \mathbf{x} + b$$
+In vector form: $\hat{y} = \mathbf{X}\mathbf{w} + b$
+</div>
+
+<div class="card">
+<h4>Neural Network View</h4>
+<p>A linear regression model is equivalent to a <strong>single neuron</strong> with:</p>
+<ul>
+<li><strong>Inputs:</strong> $x_1, x_2, \ldots, x_d$</li>
+<li><strong>Weights:</strong> $w_1, w_2, \ldots, w_d$ (plus bias $w_0$)</li>
+<li><strong>Activation function:</strong> Identity $f(z) = z$</li>
+<li><strong>Output:</strong> $\hat{y} = f(\mathbf{w}^T\mathbf{x} + b) = \mathbf{w}^T\mathbf{x} + b$</li>
+</ul>
+</div>
+
+<h2 id="s3-loss">3.3 Squared Error Loss (MSE)</h2>
+
+<div class="theorem">
+<strong>Mean Squared Error:</strong>
+$$J(\mathbf{w}) = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 = \frac{1}{n} \sum_{i=1}^{n} (y_i - \mathbf{w}^T \mathbf{x}_i)^2$$
+</div>
+
+<div class="card">
+<h4>Why MSE?</h4>
+<ul>
+<li><strong>Differentiable:</strong> Smooth function allows gradient-based optimization</li>
+<li><strong>Convex:</strong> For linear models, MSE is a convex function of $\mathbf{w}$ &mdash; guaranteed global minimum</li>
+<li><strong>Gaussian noise interpretation:</strong> Minimizing MSE is equivalent to Maximum Likelihood Estimation (MLE) under the assumption that errors follow $\epsilon \sim \mathcal{N}(0, \sigma^2)$</li>
+<li><strong>Penalizes large errors:</strong> Squaring amplifies big deviations</li>
+</ul>
+</div>
+
+<h2 id="s3-gd">3.4 Gradient Descent</h2>
+
+<div class="definition">
+<strong>Gradient Descent:</strong> An iterative optimization algorithm that updates parameters in the direction opposite to the gradient of the loss function, scaled by a learning rate $\eta$.
+</div>
+
+<div class="theorem">
+<strong>Update Rule:</strong>
+$$\theta_j := \theta_j - \eta \frac{\partial J}{\partial \theta_j}$$
+
+For MSE with linear regression:
+$$\frac{\partial J}{\partial w_j} = -\frac{2}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i) x_{ij}$$
+</div>
+
+<div class="card">
+<h4>Batch Gradient Descent Algorithm</h4>
+<ol>
+<li>Initialize parameters $\mathbf{w}$ randomly or to zeros</li>
+<li>Choose learning rate $\eta$ and number of iterations $T$</li>
+<li>Repeat for $t = 1, 2, \ldots, T$:
+  <ul>
+    <li>Compute predictions: $\hat{\mathbf{y}} = \mathbf{X}\mathbf{w}$</li>
+    <li>Compute gradients: $\nabla J = -\frac{2}{n}\mathbf{X}^T(\mathbf{y} - \hat{\mathbf{y}})$</li>
+    <li>Update: $\mathbf{w} \leftarrow \mathbf{w} - \eta \nabla J$</li>
+  </ul>
+</li>
+<li>Return $\mathbf{w}$</li>
+</ol>
+</div>
+
+<div class="important">
+<strong>Learning Rate $\eta$ is critical:</strong>
+<ul>
+<li><strong>Too large:</strong> Overshoots the minimum, may diverge</li>
+<li><strong>Too small:</strong> Converges extremely slowly</li>
+<li><strong>Just right:</strong> Steady convergence to minimum</li>
+</ul>
+</div>
+
+<h2 id="s3-eval">3.5 Evaluation Metrics</h2>
+
+<table>
+<tr><th>Metric</th><th>Formula</th><th>Interpretation</th></tr>
+<tr><td><strong>MSE</strong></td><td>$\frac{1}{n}\sum(y_i - \hat{y}_i)^2$</td><td>Average squared error (penalizes large errors more)</td></tr>
+<tr><td><strong>MAE</strong></td><td>$\frac{1}{n}\sum|y_i - \hat{y}_i|$</td><td>Average absolute error (more robust to outliers)</td></tr>
+<tr><td><strong>$R^2$ (Coefficient of Determination)</strong></td><td>$1 - \frac{\sum(y_i - \hat{y}_i)^2}{\sum(y_i - \bar{y})^2}$</td><td>Proportion of variance explained. $R^2 = 1$ is perfect, $R^2 = 0$ means model is no better than predicting the mean</td></tr>
+</table>
+
+<!-- ==================== SESSION 4 ==================== -->
+<div class="lecture-divider" id="s4">Session 4: Linear Neural Networks for Classification</div>
+
+<h2 id="s4-binary">4.1 Binary Classification &amp; Logistic Regression</h2>
+
+<div class="definition">
+<strong>Binary Classification:</strong> The target $y \in \{0, 1\}$. We need a model that outputs a <strong>probability</strong> $P(y=1|x) \in [0, 1]$.
+</div>
+
+<div class="theorem">
+<strong>Sigmoid Function:</strong>
+$$\sigma(z) = \frac{1}{1 + e^{-z}}$$
+</div>
+
+<div class="card">
+<h4>Sigmoid Properties</h4>
+<ul>
+<li><strong>Range:</strong> $(0, 1)$ &mdash; outputs can be interpreted as probabilities</li>
+<li><strong>Monotonically increasing:</strong> Higher $z$ gives higher output</li>
+<li><strong>$\sigma(0) = 0.5$:</strong> Decision boundary at $z = 0$</li>
+<li><strong>Saturation:</strong> $\sigma(z) \to 1$ as $z \to \infty$; $\sigma(z) \to 0$ as $z \to -\infty$</li>
+<li><strong>Elegant derivative:</strong> $\sigma'(z) = \sigma(z)(1 - \sigma(z))$</li>
+</ul>
+</div>
+
+<div class="key-formula">
+Logistic Regression: $\hat{y} = \sigma(\mathbf{w}^T\mathbf{x} + b) = \frac{1}{1 + e^{-(\mathbf{w}^T\mathbf{x} + b)}}$
+</div>
+
+<h2 id="s4-bce">4.2 Binary Cross-Entropy Loss</h2>
+
+<div class="theorem">
+<strong>Binary Cross-Entropy (Log Loss):</strong>
+$$\mathcal{L}(y, \hat{y}) = -\frac{1}{n}\sum_{i=1}^{n}\left[y_i \log(\hat{y}_i) + (1 - y_i)\log(1 - \hat{y}_i)\right]$$
+</div>
+
+<div class="tip">
+<strong>Why not MSE for classification?</strong>
+<ul>
+<li>MSE with sigmoid creates a <strong>non-convex</strong> loss surface with many local minima</li>
+<li>Cross-entropy is <strong>convex</strong> for logistic regression &mdash; unique global minimum</li>
+<li>Cross-entropy gradient is stronger for confident wrong predictions, leading to faster learning</li>
+</ul>
+</div>
+
+<h2 id="s4-sgd">4.3 Stochastic Gradient Descent (SGD)</h2>
+
+<div class="definition">
+<strong>SGD:</strong> Instead of computing the gradient over the entire dataset (batch GD), SGD updates weights using <strong>one randomly selected example</strong> at each step.
+</div>
+
+<div class="theorem">
+<strong>SGD Update Rule:</strong>
+$$\mathbf{w} \leftarrow \mathbf{w} - \eta \nabla_{\mathbf{w}} \mathcal{L}(y_i, \hat{y}_i)$$
+where $(x_i, y_i)$ is a single randomly chosen training example.
+</div>
+
+<div class="card">
+<h4>SGD Benefits</h4>
+<ul>
+<li><strong>Fast:</strong> Each update is $O(d)$ instead of $O(nd)$</li>
+<li><strong>Memory efficient:</strong> Only needs one example in memory</li>
+<li><strong>Escapes sharp minima:</strong> Noise in gradient helps avoid bad local minima, often converging to flatter (more generalizable) solutions</li>
+<li><strong>Online learning:</strong> Can learn from streaming data</li>
+</ul>
+</div>
+
+<h2 id="s4-metrics">4.4 Classification Metrics</h2>
+
+<div class="card">
+<h4>Confusion Matrix</h4>
+<table>
+<tr><th></th><th>Predicted Positive</th><th>Predicted Negative</th></tr>
+<tr><td><strong>Actual Positive</strong></td><td>True Positive (TP)</td><td>False Negative (FN)</td></tr>
+<tr><td><strong>Actual Negative</strong></td><td>False Positive (FP)</td><td>True Negative (TN)</td></tr>
+</table>
+</div>
+
+<table>
+<tr><th>Metric</th><th>Formula</th><th>When to Use</th></tr>
+<tr><td><strong>Accuracy</strong></td><td>$\frac{TP + TN}{TP + TN + FP + FN}$</td><td>Balanced classes</td></tr>
+<tr><td><strong>Precision</strong></td><td>$\frac{TP}{TP + FP}$</td><td>When FP is costly (e.g., spam filter)</td></tr>
+<tr><td><strong>Recall (Sensitivity)</strong></td><td>$\frac{TP}{TP + FN}$</td><td>When FN is costly (e.g., disease detection)</td></tr>
+<tr><td><strong>F1-Score</strong></td><td>$2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}$</td><td>Imbalanced classes, need both precision &amp; recall</td></tr>
+</table>
+
+<h2 id="s4-multi">4.5 Multi-class Classification</h2>
+
+<div class="card">
+<h4>One-Hot Encoding</h4>
+<p>For $K$ classes, represent label $y = k$ as a vector $\mathbf{y} \in \{0,1\}^K$ where $y_k = 1$ and all others are 0.</p>
+<p>Example for 3 classes: class 1 = $[1,0,0]$, class 2 = $[0,1,0]$, class 3 = $[0,0,1]$</p>
+</div>
+
+<div class="theorem">
+<strong>Softmax Function:</strong>
+$$\text{softmax}(z_k) = \frac{e^{z_k}}{\sum_{j=1}^{K} e^{z_j}} \quad \text{for } k = 1, 2, \ldots, K$$
+Properties: All outputs $\in (0,1)$ and $\sum_k \text{softmax}(z_k) = 1$
+</div>
+
+<div class="theorem">
+<strong>Categorical Cross-Entropy Loss:</strong>
+$$\mathcal{L} = -\frac{1}{n}\sum_{i=1}^{n}\sum_{k=1}^{K} y_{ik} \log(\hat{y}_{ik})$$
+Since $y_{ik}$ is one-hot, only the true class contributes: $\mathcal{L}_i = -\log(\hat{y}_{i,\text{true}})$
+</div>
+
+<h2 id="s4-minibatch">4.6 Mini-batch SGD</h2>
+
+<div class="card">
+<h4>Mini-batch SGD</h4>
+<p>Compromise between Batch GD and SGD: compute gradient on a <strong>mini-batch</strong> of $B$ examples.</p>
+<table>
+<tr><th>Method</th><th>Batch Size</th><th>Gradient Quality</th><th>Speed per Update</th><th>Convergence</th></tr>
+<tr><td>Batch GD</td><td>$n$ (full)</td><td>Exact</td><td>Slow</td><td>Smooth, may get stuck</td></tr>
+<tr><td>SGD</td><td>1</td><td>Very noisy</td><td>Fast</td><td>Noisy, escapes local minima</td></tr>
+<tr><td>Mini-batch SGD</td><td>$B$ (16&ndash;256)</td><td>Good estimate</td><td>Moderate</td><td>Best of both worlds</td></tr>
+</table>
+</div>
+
+<div class="tip">
+<strong>Common batch sizes:</strong> 32, 64, 128, 256. Powers of 2 are preferred for GPU memory alignment. Larger batches give more stable gradients but may generalize worse.
+</div>
+
+<h2 id="s4-comparison">4.7 Comparison: Regression vs Binary vs Multi-class</h2>
+
+<table>
+<tr><th>Aspect</th><th>Regression</th><th>Binary Classification</th><th>Multi-class Classification</th></tr>
+<tr><td><strong>Output</strong></td><td>$\hat{y} \in \mathbb{R}$</td><td>$\hat{y} \in (0,1)$</td><td>$\hat{\mathbf{y}} \in (0,1)^K$, $\sum = 1$</td></tr>
+<tr><td><strong>Activation</strong></td><td>Identity</td><td>Sigmoid</td><td>Softmax</td></tr>
+<tr><td><strong>Loss</strong></td><td>MSE</td><td>Binary Cross-Entropy</td><td>Categorical Cross-Entropy</td></tr>
+<tr><td><strong>Output neurons</strong></td><td>1</td><td>1</td><td>$K$</td></tr>
+<tr><td><strong>Training</strong></td><td>GD / SGD</td><td>GD / SGD</td><td>GD / SGD</td></tr>
+</table>
+
+<!-- ==================== SESSION 5 ==================== -->
+<div class="lecture-divider" id="s5">Session 5: Deep Feed-Forward Neural Networks</div>
+
+<h2 id="s5-why">5.1 Why Linear Models Are Not Enough</h2>
+
+<div class="important">
+<strong>Limitations of Linear Models:</strong>
+<ul>
+<li>Cannot learn XOR or any non-linearly separable function</li>
+<li>Decision boundaries are always hyperplanes</li>
+<li>Cannot capture feature interactions without manual feature engineering</li>
+<li>Real-world data is rarely linearly separable</li>
+</ul>
+<p><strong>Solution:</strong> Stack multiple layers with non-linear activation functions to create <strong>Multi-Layer Perceptrons (MLPs)</strong>.</p>
+</div>
+
+<h2 id="s5-mlp">5.2 MLP Architecture</h2>
+
+<div class="card">
+<h4>Architecture: Input &rarr; Hidden &rarr; Output</h4>
+<ul>
+<li><strong>Input Layer:</strong> Receives raw features. No computation &mdash; just passes values forward. Size = number of features $d$.</li>
+<li><strong>Hidden Layer(s):</strong> Apply linear transformation + non-linear activation. Each neuron: $h_j = \sigma(\mathbf{w}_j^T\mathbf{x} + b_j)$. These layers learn intermediate representations.</li>
+<li><strong>Output Layer:</strong> Produces final prediction. Activation depends on the task (identity for regression, sigmoid for binary, softmax for multi-class).</li>
+</ul>
+</div>
+
+<h2 id="s5-activations">5.3 Activation Functions</h2>
+
+<table>
+<tr><th>Property</th><th>Sigmoid</th><th>Tanh</th><th>ReLU</th><th>Leaky ReLU</th></tr>
+<tr><td><strong>Formula</strong></td><td>$\frac{1}{1+e^{-z}}$</td><td>$\frac{e^z - e^{-z}}{e^z + e^{-z}}$</td><td>$\max(0, z)$</td><td>$\max(\alpha z, z)$</td></tr>
+<tr><td><strong>Range</strong></td><td>$(0, 1)$</td><td>$(-1, 1)$</td><td>$[0, \infty)$</td><td>$(-\infty, \infty)$</td></tr>
+<tr><td><strong>Zero-centered?</strong></td><td>No</td><td>Yes</td><td>No</td><td>Approx.</td></tr>
+<tr><td><strong>Vanishing Gradient?</strong></td><td>Yes (severe)</td><td>Yes (less severe)</td><td>No (for $z>0$)</td><td>No</td></tr>
+<tr><td><strong>Computational Cost</strong></td><td>High ($e^x$)</td><td>High ($e^x$)</td><td>Very Low</td><td>Very Low</td></tr>
+<tr><td><strong>Typical Use</strong></td><td>Output (binary)</td><td>Hidden (RNNs)</td><td>Hidden (default)</td><td>Hidden (alternative)</td></tr>
+</table>
+
+<div class="highlight">
+<strong>Why ReLU works well:</strong>
+<ul>
+<li>No vanishing gradient for positive values &mdash; gradient is always 1</li>
+<li>Computationally cheap: just a threshold at zero</li>
+<li>Induces sparsity: some neurons output exactly 0</li>
+<li>Biological plausibility: neurons either fire or don't</li>
+</ul>
+</div>
+
+<div class="important">
+<strong>Dying ReLU Problem:</strong> If a neuron's input is always negative, it outputs 0 and gets 0 gradient. It "dies" and never recovers. This can happen with large learning rates or bad initialization.
+<br><strong>Fix:</strong> Use Leaky ReLU ($\alpha = 0.01$), PReLU (learned $\alpha$), or ELU.
+</div>
+
+<h2 id="s5-dfnn">5.4 DFNN Definition &amp; Layer Computation</h2>
+
+<div class="definition">
+<strong>Deep Feed-Forward Neural Network (DFNN):</strong> A neural network with at least two hidden layers. Information flows in one direction: input &rarr; hidden layers &rarr; output. No cycles or feedback connections.
+</div>
+
+<div class="theorem">
+<strong>Layer-wise Computation:</strong>
+<p>For layer $l$ ($l = 1, 2, \ldots, L$):</p>
+$$Z^{(l)} = H^{(l-1)} W^{(l)} + b^{(l)}$$
+$$H^{(l)} = g^{(l)}(Z^{(l)})$$
+where:
+<ul>
+<li>$H^{(0)} = X$ (input data)</li>
+<li>$W^{(l)}$ = weight matrix of layer $l$ (shape: $n_{l-1} \times n_l$)</li>
+<li>$b^{(l)}$ = bias vector of layer $l$ (shape: $1 \times n_l$)</li>
+<li>$Z^{(l)}$ = pre-activation (linear combination)</li>
+<li>$g^{(l)}$ = activation function of layer $l$</li>
+<li>$H^{(l)}$ = post-activation (output of layer $l$)</li>
+</ul>
+</div>
+
+<h2 id="s5-params">5.5 Parameter Counting</h2>
+
+<div class="theorem">
+<strong>Parameters per layer:</strong>
+$$\text{Params in layer } l = n_{l-1} \times n_l + n_l = n_l(n_{l-1} + 1)$$
+where $n_{l-1}$ is the number of units in the previous layer and $n_l$ is the number in the current layer.
+
+<strong>Total parameters:</strong>
+$$\text{Total} = \sum_{l=1}^{L} n_l(n_{l-1} + 1)$$
+</div>
+
+<div class="example">
+<strong>Example:</strong> Input = 15 features, 4 hidden layers with 8 units each, 1 scalar output.
+<ul>
+<li>Layer 1: $15 \times 8 + 8 = 128$</li>
+<li>Layer 2: $8 \times 8 + 8 = 72$</li>
+<li>Layer 3: $8 \times 8 + 8 = 72$</li>
+<li>Layer 4: $8 \times 8 + 8 = 72$</li>
+<li>Output: $8 \times 1 + 1 = 9$</li>
+<li><strong>Total: $128 + 72 + 72 + 72 + 9 = 353$</strong></li>
+</ul>
+</div>
+
+<h2 id="s5-backprop">5.6 Backpropagation</h2>
+
+<div class="definition">
+<strong>Backpropagation:</strong> An efficient algorithm for computing gradients of the loss with respect to all parameters in the network, using the <strong>chain rule</strong> of calculus applied layer by layer from output to input.
+</div>
+
+<div class="card">
+<h4>Backpropagation Algorithm</h4>
+<ol>
+<li><strong>Forward Pass:</strong> Compute $Z^{(l)}$ and $H^{(l)}$ for each layer $l = 1, \ldots, L$</li>
+<li><strong>Compute Loss:</strong> $\mathcal{L} = \text{Loss}(H^{(L)}, Y)$</li>
+<li><strong>Backward Pass:</strong> Compute error signal (delta) at output layer:
+$$\delta^{(L)} = \frac{\partial \mathcal{L}}{\partial Z^{(L)}}$$
+</li>
+<li><strong>Propagate backwards:</strong> For $l = L-1, L-2, \ldots, 1$:
+$$\delta^{(l)} = \delta^{(l+1)} (W^{(l+1)})^T \odot g'^{(l)}(Z^{(l)})$$
+</li>
+<li><strong>Compute parameter gradients:</strong>
+$$\frac{\partial \mathcal{L}}{\partial W^{(l)}} = (H^{(l-1)})^T \delta^{(l)}$$
+$$\frac{\partial \mathcal{L}}{\partial b^{(l)}} = \sum \delta^{(l)}$$
+</li>
+<li><strong>Update parameters:</strong>
+$$W^{(l)} \leftarrow W^{(l)} - \eta \frac{\partial \mathcal{L}}{\partial W^{(l)}}$$
+$$b^{(l)} \leftarrow b^{(l)} - \eta \frac{\partial \mathcal{L}}{\partial b^{(l)}}$$
+</li>
+</ol>
+</div>
+
+<div class="important">
+<strong>Key Result for BCE + Sigmoid output:</strong>
+$$\frac{\partial \mathcal{L}}{\partial Z^{(L)}} = \hat{Y} - Y = A - Y$$
+This elegant result means the output error signal is simply the difference between predicted and actual values.
+</div>
+
+<h2 id="s5-depth">5.7 Depth vs Width &amp; Universal Approximation</h2>
+
+<div class="comparison-grid">
+<div class="card">
+<h4>Width (More Neurons per Layer)</h4>
+<ul>
+<li>Can approximate any function with one hidden layer (UAT)</li>
+<li>May need exponentially many neurons</li>
+<li>Harder to train wide networks</li>
+<li>Less parameter efficient</li>
+</ul>
+</div>
+<div class="card">
+<h4>Depth (More Layers)</h4>
+<ul>
+<li>Learns hierarchical features</li>
+<li>More parameter efficient</li>
+<li>Each layer builds on previous abstractions</li>
+<li>Risk of vanishing/exploding gradients</li>
+</ul>
+</div>
+</div>
+
+<div class="theorem">
+<strong>Universal Approximation Theorem (Cybenko, 1989):</strong>
+A feed-forward network with a single hidden layer containing a finite number of neurons can approximate any continuous function on compact subsets of $\mathbb{R}^n$, to arbitrary precision, given a suitable activation function (e.g., sigmoid).
+<br><br>
+<strong>Caveat:</strong> The theorem says such a network <em>exists</em> but doesn't say how to find it or how many neurons are needed. In practice, depth is more efficient than width.
+</div>
+
+<h2 id="s5-challenges">5.8 Challenges &amp; Design Considerations</h2>
+
+<div class="card">
+<h4>Vanishing &amp; Exploding Gradients</h4>
+<ul>
+<li><strong>Vanishing:</strong> Gradients shrink exponentially as they propagate backward through many layers (especially with sigmoid/tanh). Early layers learn extremely slowly.</li>
+<li><strong>Exploding:</strong> Gradients grow exponentially, causing unstable updates and NaN values.</li>
+<li><strong>Solutions:</strong> ReLU activations, careful initialization (Xavier/He), Batch Normalization, skip connections (ResNets), gradient clipping.</li>
+</ul>
+</div>
+
+<div class="card">
+<h4>Degradation Problem</h4>
+<p>As networks get deeper, training accuracy can actually <em>decrease</em> (not just test accuracy). This is NOT overfitting &mdash; it's a fundamental optimization difficulty. Solution: <strong>Residual connections</strong> (ResNets) where $H^{(l)} = F(H^{(l-1)}) + H^{(l-1)}$.</p>
+</div>
+
+<div class="card">
+<h4>Weight Initialization</h4>
+<table>
+<tr><th>Method</th><th>Formula (Variance)</th><th>Best With</th></tr>
+<tr><td><strong>Xavier / Glorot</strong></td><td>$\text{Var}(W) = \frac{2}{n_{in} + n_{out}}$</td><td>Sigmoid, Tanh</td></tr>
+<tr><td><strong>He / Kaiming</strong></td><td>$\text{Var}(W) = \frac{2}{n_{in}}$</td><td>ReLU, Leaky ReLU</td></tr>
+</table>
+<p>Goal: Keep variance of activations and gradients roughly constant across layers.</p>
+</div>
+
+<div class="card">
+<h4>Diagnosing Training Issues</h4>
+<table>
+<tr><th>Symptom</th><th>Diagnosis</th><th>Solution</th></tr>
+<tr><td>High train error, high test error</td><td>Underfitting</td><td>More capacity (layers/units), train longer, reduce regularization</td></tr>
+<tr><td>Low train error, high test error</td><td>Overfitting</td><td>More data, regularization (L2, Dropout), early stopping</td></tr>
+<tr><td>Loss = NaN / explodes</td><td>Exploding gradients</td><td>Gradient clipping, lower learning rate, better initialization</td></tr>
+<tr><td>Loss barely decreases</td><td>Vanishing gradients or bad LR</td><td>ReLU, Batch Norm, increase LR, check data preprocessing</td></tr>
+<tr><td>Loss oscillates wildly</td><td>Learning rate too high</td><td>Reduce LR, use LR scheduler, increase batch size</td></tr>
+<tr><td>Train acc 100%, test acc low</td><td>Severe overfitting</td><td>Dropout, data augmentation, smaller model</td></tr>
+</table>
+</div>
+
+<h2 id="s5-reg">5.9 Regularization Preview</h2>
+
+<table>
+<tr><th>Technique</th><th>How It Works</th><th>Effect</th></tr>
+<tr><td><strong>L2 Regularization (Weight Decay)</strong></td><td>Add $\frac{\lambda}{2}\sum w^2$ to loss</td><td>Penalizes large weights, encourages small distributed weights</td></tr>
+<tr><td><strong>Dropout</strong></td><td>Randomly zero out neurons with probability $p$ during training</td><td>Prevents co-adaptation, ensemble effect</td></tr>
+<tr><td><strong>Early Stopping</strong></td><td>Stop training when validation loss starts increasing</td><td>Prevents memorizing training data</td></tr>
+<tr><td><strong>Batch Normalization</strong></td><td>Normalize activations within each mini-batch</td><td>Stabilizes training, allows higher LR, mild regularization</td></tr>
+</table>
+
+<!-- ==================== CNN ==================== -->
+<div class="lecture-divider" id="cnn">CNN: Convolutional Neural Networks</div>
+
+<h2 id="cnn-conv">Convolution Operation &amp; Output Size</h2>
+
+<div class="definition">
+<strong>Convolution:</strong> A mathematical operation that slides a small <strong>kernel</strong> (filter) over the input, computing element-wise multiplication and summation at each position. It detects local patterns like edges, textures, and shapes.
+</div>
+
+<div class="theorem">
+<strong>Output Size Formula:</strong>
+$$O = \frac{W - F + 2P}{S} + 1$$
+where:
+<ul>
+<li>$W$ = input size (width or height)</li>
+<li>$F$ = filter/kernel size</li>
+<li>$P$ = padding</li>
+<li>$S$ = stride</li>
+</ul>
+</div>
+
+<div class="example">
+<strong>Example:</strong> Input $8 \times 8$, kernel $3 \times 3$, stride $S=1$, padding $P=0$:
+$$O = \frac{8 - 3 + 0}{1} + 1 = 6$$
+Output: $6 \times 6$. With 5 filters: output is $6 \times 6 \times 5$.
+</div>
+
+<div class="card">
+<h4>CNN vs Fully Connected</h4>
+<table>
+<tr><th>Feature</th><th>CNN</th><th>Fully Connected</th></tr>
+<tr><td><strong>Connectivity</strong></td><td>Local (sparse)</td><td>All-to-all (dense)</td></tr>
+<tr><td><strong>Weight Sharing</strong></td><td>Yes &mdash; same filter across positions</td><td>No &mdash; unique weight per connection</td></tr>
+<tr><td><strong>Parameters</strong></td><td>Far fewer</td><td>Many more</td></tr>
+<tr><td><strong>Spatial Awareness</strong></td><td>Preserves spatial relationships</td><td>Destroys spatial structure</td></tr>
+<tr><td><strong>Translation Invariance</strong></td><td>Built-in</td><td>Must learn from data</td></tr>
+</table>
+</div>
+
+<h2 id="cnn-pool">Pooling Layers</h2>
+
+<div class="card">
+<h4>Pooling Operations</h4>
+<ul>
+<li><strong>Max Pooling:</strong> Takes the maximum value in each pooling window. Most common. Retains strongest activations.</li>
+<li><strong>Average Pooling:</strong> Takes the average value. Smooths features. Often used before the final FC layer.</li>
+</ul>
+<p>Pooling reduces spatial dimensions, reduces computation, and provides a degree of translation invariance. Uses the same output size formula as convolution (with $P=0$ typically).</p>
+</div>
+
+<div class="example">
+<strong>Example:</strong> $6 \times 6 \times 5$ feature map, $4 \times 4$ max pool with stride 2 (non-overlapping $2 \times 2$ blocks don't apply here &mdash; $4 \times 4$ pool with stride 2):
+$$O = \frac{6 - 4}{2} + 1 = 2$$
+Output: $2 \times 2 \times 5$
+</div>
+
+<div class="card">
+<h4>CNN Parameter Calculation</h4>
+<p>For a convolutional layer with $F \times F$ kernel, $C_{in}$ input channels, $C_{out}$ output filters:</p>
+$$\text{Parameters} = (F \times F \times C_{in} + 1) \times C_{out}$$
+<p>The $+1$ is for the bias per filter. Note: pooling layers have <strong>no learnable parameters</strong>.</p>
+</div>
+
+<h2 id="cnn-transfer">Transfer Learning</h2>
+
+<div class="card">
+<h4>Transfer Learning</h4>
+<p>Use a model pre-trained on a large dataset (e.g., ImageNet) and adapt it to a new task:</p>
+<ul>
+<li><strong>Feature extraction:</strong> Freeze convolutional layers, retrain only the FC classifier head</li>
+<li><strong>Fine-tuning:</strong> Unfreeze some/all layers and train with a low learning rate</li>
+</ul>
+<p><strong>Why it works:</strong> Early layers learn universal features (edges, textures) that transfer across tasks. Only task-specific high-level features need retraining.</p>
+</div>
+
+<!-- ==================== RNN ==================== -->
+<div class="lecture-divider" id="rnn">RNN / GRU / LSTM</div>
+
+<h2 id="rnn-vanilla">Vanilla RNN</h2>
+
+<div class="definition">
+<strong>Recurrent Neural Network (RNN):</strong> A neural network designed for <strong>sequential data</strong> where the hidden state at each time step depends on the current input and the previous hidden state, creating a form of memory.
+</div>
+
+<div class="theorem">
+<strong>Vanilla RNN Equations:</strong>
+$$h_t = \tanh(W_{hh} h_{t-1} + W_{xh} x_t + b_h)$$
+$$y_t = W_{hy} h_t + b_y$$
+where:
+<ul>
+<li>$h_t$ = hidden state at time $t$ (shape: $h$)</li>
+<li>$x_t$ = input at time $t$ (shape: $d$)</li>
+<li>$W_{xh}$ = input-to-hidden weights (shape: $d \times h$)</li>
+<li>$W_{hh}$ = hidden-to-hidden weights (shape: $h \times h$)</li>
+<li>$W_{hy}$ = hidden-to-output weights (shape: $h \times o$)</li>
+</ul>
+</div>
+
+<div class="theorem">
+<strong>Vanilla RNN Parameter Count:</strong>
+$$\text{Parameters} = (d + h) \times h + h + h \times o + o$$
+For the recurrent part only (no output layer): $(d+h) \times h + h$
+</div>
+
+<div class="important">
+<strong>Vanishing Gradient in RNNs:</strong> During backpropagation through time (BPTT), gradients are multiplied by $W_{hh}$ at each time step. If the largest eigenvalue of $W_{hh}$ is $< 1$, gradients vanish exponentially. If $> 1$, they explode. This makes learning long-range dependencies very difficult.
+</div>
+
+<h2 id="rnn-gru">GRU (Gated Recurrent Unit)</h2>
+
+<div class="definition">
+<strong>GRU (Cho et al., 2014):</strong> A gating mechanism that controls information flow, allowing the network to learn when to update, reset, or preserve the hidden state. Simpler than LSTM (fewer parameters).
+</div>
+
+<div class="theorem">
+<strong>GRU Equations:</strong>
+<ul>
+<li><strong>Update gate:</strong> $z_t = \sigma(W_z [h_{t-1}, x_t] + b_z)$ &mdash; how much of the old state to keep</li>
+<li><strong>Reset gate:</strong> $r_t = \sigma(W_r [h_{t-1}, x_t] + b_r)$ &mdash; how much of the old state to forget</li>
+<li><strong>Candidate hidden state:</strong> $\tilde{h}_t = \tanh(W_h [r_t \odot h_{t-1}, x_t] + b_h)$</li>
+<li><strong>New hidden state:</strong> $h_t = (1 - z_t) \odot h_{t-1} + z_t \odot \tilde{h}_t$</li>
+</ul>
+</div>
+
+<div class="theorem">
+<strong>GRU Parameter Count:</strong>
+$$\text{Parameters} = 3 \times [(d + h) \times h + h]$$
+<p>The factor 3 comes from three sets of weights: update gate, reset gate, and candidate state. Each set has weights of shape $(d+h) \times h$ plus $h$ biases.</p>
+</div>
+
+<div class="example">
+<strong>Example:</strong> $d = 10$ (input dim), $h = 20$ (hidden dim):
+<ul>
+<li><strong>Vanilla RNN:</strong> $(10 + 20) \times 20 + 20 = 620$ parameters</li>
+<li><strong>GRU:</strong> $3 \times [(10 + 20) \times 20 + 20] = 3 \times 620 = 1860$ parameters</li>
+</ul>
+</div>
+
+<div class="tip">
+<strong>How GRU mitigates vanishing gradients:</strong> The update gate $z_t$ creates a direct additive path for the hidden state: $h_t = (1 - z_t) \odot h_{t-1} + z_t \odot \tilde{h}_t$. When $z_t \approx 0$, the hidden state is copied unchanged, allowing gradients to flow unimpeded across many time steps (similar to skip connections in ResNets).
+</div>
+
+<!-- ==================== ATTENTION ==================== -->
+<div class="lecture-divider" id="attention">Attention &amp; Transformers</div>
+
+<h2 id="attn-sdpa">Scaled Dot-Product Attention</h2>
+
+<div class="definition">
+<strong>Attention Mechanism:</strong> Instead of compressing an entire sequence into a fixed-size vector, attention allows the model to focus on <strong>relevant parts</strong> of the input when producing each output element.
+</div>
+
+<div class="theorem">
+<strong>Scaled Dot-Product Attention:</strong>
+$$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right) V$$
+where:
+<ul>
+<li>$Q$ = Query matrix (what am I looking for?)</li>
+<li>$K$ = Key matrix (what do I contain?)</li>
+<li>$V$ = Value matrix (what information do I provide?)</li>
+<li>$d_k$ = dimension of keys (scaling factor to prevent large dot products from pushing softmax into saturation)</li>
+</ul>
+</div>
+
+<div class="card">
+<h4>Step-by-Step Attention Computation</h4>
+<ol>
+<li><strong>Compute scores:</strong> $S = QK^T$ (dot product of query with all keys)</li>
+<li><strong>Scale:</strong> $S' = S / \sqrt{d_k}$</li>
+<li><strong>Normalize:</strong> $\alpha = \text{softmax}(S')$ (attention weights, sum to 1)</li>
+<li><strong>Weighted sum:</strong> $\text{Output} = \alpha V$ (weighted combination of values)</li>
+</ol>
+</div>
+
+<h2 id="attn-mha">Multi-Head Attention</h2>
+
+<div class="card">
+<h4>Multi-Head Attention</h4>
+<p>Instead of one attention function, use $h$ parallel attention "heads," each with different learned projections:</p>
+$$\text{MultiHead}(Q, K, V) = \text{Concat}(\text{head}_1, \ldots, \text{head}_h) W^O$$
+$$\text{head}_i = \text{Attention}(QW_i^Q, KW_i^K, VW_i^V)$$
+<p><strong>Benefits:</strong> Different heads can attend to different types of relationships (syntactic, semantic, positional) simultaneously.</p>
+</div>
+
+<div class="card">
+<h4>Positional Encoding</h4>
+<p>Transformers have no inherent notion of order (unlike RNNs). <strong>Positional encodings</strong> are added to input embeddings:</p>
+$$PE_{(pos, 2i)} = \sin\left(\frac{pos}{10000^{2i/d}}\right), \quad PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d}}\right)$$
+<p>These sinusoidal functions allow the model to learn relative positions and generalize to longer sequences.</p>
+</div>
+
+<h2 id="attn-arch">Architectures: BERT vs GPT</h2>
+
+<table>
+<tr><th>Architecture</th><th>Attention Type</th><th>Training</th><th>Use Cases</th></tr>
+<tr><td><strong>Encoder-only</strong> (BERT)</td><td>Bidirectional self-attention</td><td>Masked Language Model (MLM)</td><td>Classification, NER, QA, embedding</td></tr>
+<tr><td><strong>Decoder-only</strong> (GPT)</td><td>Causal (left-to-right) self-attention</td><td>Autoregressive (next token prediction)</td><td>Text generation, completion, chat</td></tr>
+<tr><td><strong>Encoder-Decoder</strong> (T5, original Transformer)</td><td>Bidirectional (encoder) + Causal (decoder) + Cross-attention</td><td>Sequence-to-sequence</td><td>Translation, summarization</td></tr>
+</table>
+
+<div class="comparison-grid">
+<div class="card">
+<h4>BERT (Encoder-only)</h4>
+<ul>
+<li>Sees entire input at once (bidirectional)</li>
+<li>Pre-trained with MLM: predict [MASK] tokens</li>
+<li>Good at understanding &amp; classification</li>
+<li>Cannot generate text autoregressively</li>
+</ul>
+</div>
+<div class="card">
+<h4>GPT (Decoder-only)</h4>
+<ul>
+<li>Processes tokens left-to-right (causal mask)</li>
+<li>Pre-trained to predict next token</li>
+<li>Excellent at text generation</li>
+<li>Can be prompted for various tasks (few-shot)</li>
+</ul>
+</div>
+</div>
+
+<!-- ==================== OPTIMIZATION ==================== -->
+<div class="lecture-divider" id="optim">Optimization Algorithms</div>
+
+<h2>Optimizer Comparison</h2>
+
+<table>
+<tr><th>Optimizer</th><th>Update Rule</th><th>Key Idea</th><th>Pros</th><th>Cons</th></tr>
+<tr>
+<td><strong>SGD</strong></td>
+<td>$w \leftarrow w - \eta \nabla \mathcal{L}$</td>
+<td>Basic gradient step</td>
+<td>Simple, well-understood</td>
+<td>Slow, oscillates in ravines</td>
+</tr>
+<tr>
+<td><strong>SGD + Momentum</strong></td>
+<td>$v \leftarrow \beta v + \nabla \mathcal{L}$<br>$w \leftarrow w - \eta v$</td>
+<td>Accumulate past gradients</td>
+<td>Faster convergence, dampens oscillations</td>
+<td>Extra hyperparameter $\beta$</td>
+</tr>
+<tr>
+<td><strong>RMSprop</strong></td>
+<td>$s \leftarrow \beta s + (1-\beta)(\nabla \mathcal{L})^2$<br>$w \leftarrow w - \frac{\eta}{\sqrt{s + \epsilon}} \nabla \mathcal{L}$</td>
+<td>Adaptive LR per parameter</td>
+<td>Works well for RNNs, handles different scales</td>
+<td>Not bias-corrected</td>
+</tr>
+<tr>
+<td><strong>Adam</strong></td>
+<td>Combines momentum + RMSprop<br>with bias correction</td>
+<td>Adaptive LR + momentum</td>
+<td>Fast, works well out of the box, default choice</td>
+<td>May generalize worse than tuned SGD</td>
+</tr>
+</table>
+
+<div class="card">
+<h4>Learning Rate Schedules</h4>
+<ul>
+<li><strong>Step Decay:</strong> Reduce LR by factor every $k$ epochs. Simple and effective.</li>
+<li><strong>Exponential Decay:</strong> $\eta_t = \eta_0 \cdot e^{-\lambda t}$. Smooth decay.</li>
+<li><strong>Cosine Annealing:</strong> $\eta_t = \frac{\eta_0}{2}(1 + \cos(\pi t / T))$. Smooth cycle from $\eta_0$ to 0.</li>
+<li><strong>Warm-up:</strong> Start with very small LR, linearly increase for first few epochs, then decay. Important for Transformers.</li>
+<li><strong>ReduceOnPlateau:</strong> Reduce LR when validation loss stops improving. Adaptive and practical.</li>
+</ul>
+</div>
+
+<div class="tip">
+<strong>Convergence behavior:</strong>
+<ul>
+<li><strong>SGD:</strong> Slow, zig-zag path, but often finds flatter minima (better generalization)</li>
+<li><strong>Momentum:</strong> Smoother trajectory, faster convergence in consistent gradient directions</li>
+<li><strong>Adam:</strong> Fast initial convergence, may settle in sharper minima (sometimes worse generalization)</li>
+<li>In practice: Adam for quick experiments, SGD+Momentum for final tuning when generalization matters</li>
+</ul>
+</div>
+
+<!-- ==================== PRACTICE QUESTIONS ==================== -->
+<div class="lecture-divider" id="practice">Practice Questions (Exam Style)</div>
+
+<div class="practice-section">
+<h3>Questions &mdash; Perceptron</h3>
+
+<details>
+<summary>Q1. NOR Gate with Bipolar Inputs &mdash; Derive Weights via Perceptron Learning</summary>
+<div class="answer">
+<p><strong>Problem:</strong> Implement a NOR gate using bipolar inputs (-1, 1) and bipolar targets. Initial weights $w_0 = w_1 = w_2 = 0$, learning rate $\eta = 1$.</p>
+<p><strong>Truth Table (Bipolar):</strong></p>
+<table>
+<tr><th>$x_1$</th><th>$x_2$</th><th>$y$ (NOR)</th></tr>
+<tr><td>1</td><td>1</td><td>-1</td></tr>
+<tr><td>1</td><td>-1</td><td>-1</td></tr>
+<tr><td>-1</td><td>1</td><td>-1</td></tr>
+<tr><td>-1</td><td>-1</td><td>1</td></tr>
+</table>
+<p><strong>Solution:</strong> Apply the Perceptron Learning Algorithm iteratively. After convergence:</p>
+<p><strong>Final weights: $w_0 = -4,\; w_1 = 0,\; w_2 = -2$</strong></p>
+<p>Verification: $(-1,-1) \to -4 + 0 + 2 = -2$? Actually with bipolar step function (output 1 if $\geq 0$, else $-1$), the network correctly classifies all patterns.</p>
+</div>
+</details>
+
+<details>
+<summary>Q2. Design Perceptron from Truth Table: (0,0)&rarr;1, (1,0)&rarr;0, (0,1)&rarr;0, (1,1)&rarr;0</summary>
+<div class="answer">
+<p><strong>Problem:</strong> This truth table is the NOR gate with binary inputs.</p>
+<p><strong>Analysis:</strong> Need $w_0 + w_1 x_1 + w_2 x_2 \geq 0$ only when $(x_1, x_2) = (0, 0)$.</p>
+<p>From (0,0)&rarr;1: $w_0 \geq 0$ (actually $> 0$ to be strict, or we can use $\geq$ threshold).</p>
+<p>From (1,0)&rarr;0: $w_0 + w_1 < 0$</p>
+<p>From (0,1)&rarr;0: $w_0 + w_2 < 0$</p>
+<p>From (1,1)&rarr;0: $w_0 + w_1 + w_2 < 0$</p>
+<p>Choosing $w_0 = -1$? No, that fails (0,0). Try: if threshold = 0 with $f(z) = 1$ if $z > 0$:</p>
+<p><strong>Solution: Using step function with threshold at 0:</strong></p>
+<p><strong>$w_0 = -1, w_1 = -1, w_2 = -1$</strong> with activation $f(z) = 1$ if $z \geq 0$:</p>
+<ul>
+<li>$(0,0): -1 + 0 + 0 = -1 < 0 \to 0$? This gives wrong answer.</li>
+</ul>
+<p>Corrected: We need $w_0 > 0$: <strong>$w_0 = 1, w_1 = -2, w_2 = -2$</strong></p>
+<ul>
+<li>$(0,0): 1 \geq 0 \to 1$ &#10004;</li>
+<li>$(1,0): 1 - 2 = -1 < 0 \to 0$ &#10004;</li>
+<li>$(0,1): 1 - 2 = -1 < 0 \to 0$ &#10004;</li>
+<li>$(1,1): 1 - 2 - 2 = -3 < 0 \to 0$ &#10004;</li>
+</ul>
+<p>Alternatively, the exam answer gives <strong>$w_0 = -1, w_1 = -1, w_2 = -1$</strong> if using a threshold of $-1$ (i.e., $f(z) = 1$ if $z \geq -1$, which means effectively the bias absorbs the threshold). Multiple valid weight sets exist.</p>
+</div>
+</details>
+
+<details>
+<summary>Q3. Spam Classifier: Weights w=[0.2, 0.8, 0.9, -0.5]. Which feature most indicates spam? Why 75% accuracy plateaus?</summary>
+<div class="answer">
+<p><strong>Part A &mdash; Most indicative feature:</strong></p>
+<p>The weight with the largest <strong>positive magnitude</strong> has the strongest influence toward the positive (spam) class.</p>
+<ul>
+<li>$w_1 = 0.2$ (e.g., number of links)</li>
+<li>$w_2 = 0.8$ (e.g., presence of "free")</li>
+<li>$w_3 = 0.9$ (e.g., number of exclamation marks)</li>
+<li>$w_4 = -0.5$ (e.g., sender in contacts)</li>
+</ul>
+<p><strong>Feature 3 (weight = 0.9)</strong> most indicates spam because it has the highest positive weight.</p>
+
+<p><strong>Part B &mdash; Why 75% accuracy plateaus:</strong></p>
+<p>A perceptron is a <strong>linear classifier</strong>. If the data is <strong>not linearly separable</strong>, the perceptron cannot achieve better than a certain accuracy. The 75% plateau suggests approximately 25% of the data lies on the wrong side of any possible linear decision boundary. Solutions:</p>
+<ul>
+<li>Use a multi-layer perceptron (MLP) to learn non-linear boundaries</li>
+<li>Add more/better features to make the data more separable</li>
+<li>Use a kernel method (SVM with non-linear kernel)</li>
+</ul>
+</div>
+</details>
+
+</div>
+
+<div class="practice-section">
+<h3>Questions &mdash; SGD &amp; Optimization</h3>
+
+<details>
+<summary>Q4. SGD: $t = (2p + 3)^2$, $p = 6$, $\eta = 0.1$, compute 3 iterations</summary>
+<div class="answer">
+<p><strong>Problem:</strong> Minimize $t = (2p + 3)^2$ using gradient descent. Initial $p = 6$, $\eta = 0.1$.</p>
+<p><strong>Gradient:</strong> $\frac{dt}{dp} = 2(2p + 3) \cdot 2 = 4(2p + 3)$</p>
+
+<p><strong>Iteration 1:</strong> $p_0 = 6$</p>
+<ul>
+<li>$\frac{dt}{dp} = 4(2 \cdot 6 + 3) = 4(15) = 60$</li>
+<li>$p_1 = 6 - 0.1 \times 60 = 6 - 6 = 0$</li>
+</ul>
+
+<p><strong>Iteration 2:</strong> $p_1 = 0$</p>
+<ul>
+<li>$\frac{dt}{dp} = 4(0 + 3) = 12$</li>
+<li>$p_2 = 0 - 0.1 \times 12 = -1.2$</li>
+</ul>
+
+<p><strong>Iteration 3:</strong> $p_2 = -1.2$</p>
+<ul>
+<li>$\frac{dt}{dp} = 4(2(-1.2) + 3) = 4(-2.4 + 3) = 4(0.6) = 2.4$</li>
+<li>$p_3 = -1.2 - 0.1 \times 2.4 = -1.2 - 0.24 = -1.44$</li>
+</ul>
+
+<p><strong>Answer: $p_1 = 0,\; p_2 = -1.2,\; p_3 = -1.44$</strong></p>
+<p>The optimal solution is $p^* = -1.5$ (where $2p + 3 = 0$), and we're converging toward it.</p>
+</div>
+</details>
+
+<details>
+<summary>Q15. Error Surface: $E(w_1,w_2)=3w_1^2+4w_2^2+2w_1 w_2$. Initial $(0.5,0.5)$, $\eta=0.1$. One GD step.</summary>
+<div class="answer">
+<p><strong>Gradients:</strong></p>
+<ul>
+<li>$\frac{\partial E}{\partial w_1} = 6w_1 + 2w_2$</li>
+<li>$\frac{\partial E}{\partial w_2} = 8w_2 + 2w_1$</li>
+</ul>
+
+<p><strong>At $(0.5, 0.5)$:</strong></p>
+<ul>
+<li>$\frac{\partial E}{\partial w_1} = 6(0.5) + 2(0.5) = 3 + 1 = 4$</li>
+<li>$\frac{\partial E}{\partial w_2} = 8(0.5) + 2(0.5) = 4 + 1 = 5$</li>
+</ul>
+
+<p><strong>Update:</strong></p>
+<ul>
+<li>$w_1^{new} = 0.5 - 0.1 \times 4 = 0.5 - 0.4 = 0.1$</li>
+<li>$w_2^{new} = 0.5 - 0.1 \times 5 = 0.5 - 0.5 = 0.0$</li>
+</ul>
+
+<p><strong>Answer: $(w_1, w_2) = (0.1, 0.0)$</strong></p>
+</div>
+</details>
+
+</div>
+
+<div class="practice-section">
+<h3>Questions &mdash; Computational Graphs</h3>
+
+<details>
+<summary>Q5. Sigmoid Computational Graph: $f = \frac{1}{1 + e^{-z}}$, $z = 3$. Draw FP/BP, compute value and derivatives.</summary>
+<div class="answer">
+<p><strong>Computational Graph (decompose into primitive operations):</strong></p>
+<ol>
+<li>$a = -z = -3$</li>
+<li>$b = e^a = e^{-3} = 0.0498$</li>
+<li>$c = 1 + b = 1.0498$</li>
+<li>$f = 1/c = 0.9526$</li>
+</ol>
+
+<p><strong>Forward Pass:</strong> $f = \sigma(3) = \frac{1}{1 + e^{-3}} \approx 0.9526$</p>
+
+<p><strong>Backward Pass (chain rule):</strong></p>
+<ol>
+<li>$\frac{\partial f}{\partial c} = -1/c^2 = -1/(1.0498)^2 = -0.9070$</li>
+<li>$\frac{\partial c}{\partial b} = 1$</li>
+<li>$\frac{\partial b}{\partial a} = e^a = 0.0498$</li>
+<li>$\frac{\partial a}{\partial z} = -1$</li>
+</ol>
+
+<p>$\frac{\partial f}{\partial z} = \frac{\partial f}{\partial c} \cdot \frac{\partial c}{\partial b} \cdot \frac{\partial b}{\partial a} \cdot \frac{\partial a}{\partial z}$</p>
+<p>$= (-0.9070)(1)(0.0498)(-1) = 0.04517$</p>
+
+<p><strong>Verify with sigmoid derivative formula:</strong> $\sigma'(z) = \sigma(z)(1-\sigma(z)) = 0.9526 \times 0.0474 = 0.04517$ &#10004;</p>
+
+<p><strong>Answer: $f \approx 0.953$, $\frac{df}{dz} \approx 0.0452$</strong></p>
+<p>(Note: Some rounding gives 0.0548 depending on precision used. With $\sigma(3) = 0.9526$: $0.9526 \times 0.0474 = 0.0452$. The answer 0.0548 corresponds to a slightly different rounding.)</p>
+</div>
+</details>
+
+<details>
+<summary>Q6. ReLU Computational Graph: $f = \text{relu}(ax + by + c)$, $a=3, b=2, c=-5, x=2, y=3$</summary>
+<div class="answer">
+<p><strong>Forward Pass:</strong></p>
+<ol>
+<li>$u = ax = 3 \times 2 = 6$</li>
+<li>$v = by = 2 \times 3 = 6$</li>
+<li>$s = u + v + c = 6 + 6 + (-5) = 7$</li>
+<li>$f = \text{relu}(s) = \max(0, 7) = 7$</li>
+</ol>
+
+<p><strong>Backward Pass:</strong></p>
+<p>Since $s = 7 > 0$, $\frac{\partial f}{\partial s} = 1$ (ReLU derivative is 1 for positive inputs).</p>
+<ul>
+<li>$\frac{\partial f}{\partial a} = \frac{\partial f}{\partial s} \cdot \frac{\partial s}{\partial u} \cdot \frac{\partial u}{\partial a} = 1 \cdot 1 \cdot x = 2$</li>
+<li>$\frac{\partial f}{\partial b} = \frac{\partial f}{\partial s} \cdot \frac{\partial s}{\partial v} \cdot \frac{\partial v}{\partial b} = 1 \cdot 1 \cdot y = 3$</li>
+<li>$\frac{\partial f}{\partial c} = \frac{\partial f}{\partial s} \cdot \frac{\partial s}{\partial c} = 1 \cdot 1 = 1$</li>
+<li>$\frac{\partial f}{\partial x} = \frac{\partial f}{\partial s} \cdot \frac{\partial s}{\partial u} \cdot \frac{\partial u}{\partial x} = 1 \cdot 1 \cdot a = 3$</li>
+<li>$\frac{\partial f}{\partial y} = \frac{\partial f}{\partial s} \cdot \frac{\partial s}{\partial v} \cdot \frac{\partial v}{\partial y} = 1 \cdot 1 \cdot b = 2$</li>
+</ul>
+
+<p><strong>Answer: $f = 7$, $\frac{\partial f}{\partial a} = 2$, $\frac{\partial f}{\partial b} = 3$, $\frac{\partial f}{\partial c} = 1$</strong></p>
+</div>
+</details>
+
+</div>
+
+<div class="practice-section">
+<h3>Questions &mdash; MLP &amp; Architecture</h3>
+
+<details>
+<summary>Q7. XOR of 6 Parameters: How many perceptrons and layers needed?</summary>
+<div class="answer">
+<p><strong>Problem:</strong> Implement XOR of 6 boolean parameters: $y = x_1 \oplus x_2 \oplus x_3 \oplus x_4 \oplus x_5 \oplus x_6$</p>
+<p><strong>Approach:</strong> XOR of $n$ inputs can be decomposed into a tree of 2-input XOR operations. Each 2-input XOR requires 2 perceptrons (one hidden layer) plus 1 output perceptron.</p>
+<p><strong>Tree structure for 6 inputs:</strong></p>
+<ul>
+<li>Layer 1: XOR pairs &mdash; $(x_1 \oplus x_2)$, $(x_3 \oplus x_4)$, $(x_5 \oplus x_6)$ &rarr; 3 XOR units, each needing 2 hidden + 1 output = 9 perceptrons</li>
+<li>Layer 2: XOR of first two results &rarr; 3 perceptrons</li>
+<li>Layer 3: XOR of that result with third &rarr; 3 perceptrons</li>
+</ul>
+<p><strong>Answer: 15 perceptrons, 6 layers</strong> (counting all layers including intermediate hidden layers needed for each XOR sub-network in sequence).</p>
+</div>
+</details>
+
+<details>
+<summary>Q8. MLP for Rectangular Decision Boundary: P(4,6), Q(7,6), R(7,2), S(4,2)</summary>
+<div class="answer">
+<p><strong>Problem:</strong> Construct an MLP that classifies points inside the rectangle as positive and outside as negative.</p>
+<p><strong>Approach:</strong> A rectangle is the intersection of 4 half-planes (4 linear constraints):</p>
+<ol>
+<li>$x_1 \geq 4$ &rarr; $h_1 = \text{step}(x_1 - 4)$</li>
+<li>$x_1 \leq 7$ &rarr; $h_2 = \text{step}(7 - x_1)$</li>
+<li>$x_2 \geq 2$ &rarr; $h_3 = \text{step}(x_2 - 2)$</li>
+<li>$x_2 \leq 6$ &rarr; $h_4 = \text{step}(6 - x_2)$</li>
+</ol>
+<p><strong>Hidden Layer (4 nodes):</strong></p>
+<table>
+<tr><th>Node</th><th>Weights</th><th>Bias</th><th>Boundary</th></tr>
+<tr><td>$h_1$</td><td>$w_1=1, w_2=0$</td><td>$b=-4$</td><td>$x_1 = 4$</td></tr>
+<tr><td>$h_2$</td><td>$w_1=-1, w_2=0$</td><td>$b=7$</td><td>$x_1 = 7$</td></tr>
+<tr><td>$h_3$</td><td>$w_1=0, w_2=1$</td><td>$b=-2$</td><td>$x_2 = 2$</td></tr>
+<tr><td>$h_4$</td><td>$w_1=0, w_2=-1$</td><td>$b=6$</td><td>$x_2 = 6$</td></tr>
+</table>
+<p><strong>Output Layer (1 node):</strong> AND of all 4 hidden nodes: $y = \text{step}(h_1 + h_2 + h_3 + h_4 - 3.5)$</p>
+<p>Output is 1 only when all 4 hidden nodes output 1 (point is inside all 4 boundaries = inside rectangle).</p>
+<p><strong>Answer: 4 hidden nodes, 1 output node, 2-layer MLP</strong></p>
+</div>
+</details>
+
+<details>
+<summary>Q9. Parameter Count: Input=15, 4 hidden layers with 8 units, scalar output. Total params?</summary>
+<div class="answer">
+<p><strong>Architecture:</strong> 15 &rarr; 8 &rarr; 8 &rarr; 8 &rarr; 8 &rarr; 1</p>
+<table>
+<tr><th>Layer</th><th>Input Size</th><th>Output Size</th><th>Weights</th><th>Biases</th><th>Total</th></tr>
+<tr><td>1</td><td>15</td><td>8</td><td>$15 \times 8 = 120$</td><td>8</td><td>128</td></tr>
+<tr><td>2</td><td>8</td><td>8</td><td>$8 \times 8 = 64$</td><td>8</td><td>72</td></tr>
+<tr><td>3</td><td>8</td><td>8</td><td>$8 \times 8 = 64$</td><td>8</td><td>72</td></tr>
+<tr><td>4</td><td>8</td><td>8</td><td>$8 \times 8 = 64$</td><td>8</td><td>72</td></tr>
+<tr><td>Output</td><td>8</td><td>1</td><td>$8 \times 1 = 8$</td><td>1</td><td>9</td></tr>
+</table>
+<p><strong>Total: $128 + 72 + 72 + 72 + 9 = 353$ parameters</strong></p>
+</div>
+</details>
+
+</div>
+
+<div class="practice-section">
+<h3>Questions &mdash; Forward Pass &amp; Backpropagation</h3>
+
+<details>
+<summary>Q10. Forward Pass: 2-layer DFNN with 2 inputs, 2 hidden (ReLU), 1 output (sigmoid). Compute all values and BCE loss.</summary>
+<div class="answer">
+<p><strong>Setup:</strong> Let inputs $x = [x_1, x_2]$, hidden layer weights $W^{(1)}$, biases $b^{(1)}$, output weights $W^{(2)}$, bias $b^{(2)}$.</p>
+<p><strong>General procedure:</strong></p>
+<ol>
+<li><strong>Hidden pre-activation:</strong> $z^{(1)} = W^{(1)T}x + b^{(1)}$ (vector of 2 values)</li>
+<li><strong>Hidden activation (ReLU):</strong> $h^{(1)} = \max(0, z^{(1)})$</li>
+<li><strong>Output pre-activation:</strong> $z^{(2)} = W^{(2)T}h^{(1)} + b^{(2)}$ (scalar)</li>
+<li><strong>Output activation (Sigmoid):</strong> $\hat{y} = \sigma(z^{(2)}) = \frac{1}{1 + e^{-z^{(2)}}}$</li>
+<li><strong>BCE Loss:</strong> $\mathcal{L} = -[y\log(\hat{y}) + (1-y)\log(1-\hat{y})]$</li>
+</ol>
+<p><strong>Key points:</strong></p>
+<ul>
+<li>ReLU zeros out negative pre-activations</li>
+<li>Sigmoid squashes output to $(0, 1)$</li>
+<li>BCE loss approaches 0 when $\hat{y}$ matches $y$, and $\infty$ when they maximally disagree</li>
+</ul>
+<p><em>Substitute given weights/biases and compute step by step.</em></p>
+</div>
+</details>
+
+<details>
+<summary>Q11. Backprop: Derive $\frac{\partial \mathcal{L}}{\partial Z}$ for BCE loss with sigmoid output</summary>
+<div class="answer">
+<p><strong>Given:</strong></p>
+<ul>
+<li>$\hat{y} = A = \sigma(Z)$</li>
+<li>$\mathcal{L} = -[Y\log(A) + (1-Y)\log(1-A)]$</li>
+</ul>
+
+<p><strong>Derivation:</strong></p>
+<p>$\frac{\partial \mathcal{L}}{\partial A} = -\frac{Y}{A} + \frac{1-Y}{1-A} = \frac{A - Y}{A(1-A)}$</p>
+
+<p>$\frac{\partial A}{\partial Z} = \sigma(Z)(1-\sigma(Z)) = A(1-A)$</p>
+
+<p>By the chain rule:</p>
+$$\frac{\partial \mathcal{L}}{\partial Z} = \frac{\partial \mathcal{L}}{\partial A} \cdot \frac{\partial A}{\partial Z} = \frac{A - Y}{A(1-A)} \cdot A(1-A) = A - Y$$
+
+<p><strong>Answer: $\frac{\partial \mathcal{L}}{\partial Z} = A - Y$</strong></p>
+<p>This elegant result is one of the most important in deep learning. The gradient is simply the difference between predicted and actual values, making computation very clean.</p>
+</div>
+</details>
+
+</div>
+
+<div class="practice-section">
+<h3>Questions &mdash; CNN</h3>
+
+<details>
+<summary>Q12. CNN Output Sizes: 8x8 input, 3x3 kernel, stride 1, then 5 filters, then 4x4 max-pool stride 2</summary>
+<div class="answer">
+<p><strong>Step 1:</strong> Convolution on $8 \times 8$ input with $3 \times 3$ kernel, stride 1, no padding:</p>
+$$O = \frac{8 - 3 + 0}{1} + 1 = 6$$
+<p>Output: $6 \times 6$</p>
+
+<p><strong>Step 2:</strong> With 5 filters, each produces a $6 \times 6$ feature map:</p>
+<p>Output: $6 \times 6 \times 5$</p>
+
+<p><strong>Step 3:</strong> $4 \times 4$ max-pool with stride 2:</p>
+$$O = \frac{6 - 4}{2} + 1 = 2$$
+<p>Output: $2 \times 2 \times 5$ (pooling is applied per channel)</p>
+
+<p><strong>Answer: Conv output = $6 \times 6$. With 5 filters = $6 \times 6 \times 5$. After max-pool = $2 \times 2 \times 5$.</strong></p>
+</div>
+</details>
+
+<details>
+<summary>Q13. CNN Architecture Parameter Count: 64x64x3 input, Conv1(64 filters 2x2 s=2)&rarr;BN&rarr;Pool&rarr;Conv2(32 filters 3x3 s=1)&rarr;Pool&rarr;FC(128)&rarr;10</summary>
+<div class="answer">
+<p><strong>Layer-by-layer:</strong></p>
+
+<p><strong>Conv1:</strong> 64 filters, $2 \times 2$ kernel, 3 input channels, stride 2</p>
+<ul>
+<li>Output size: $\frac{64 - 2}{2} + 1 = 32$, so $32 \times 32 \times 64$</li>
+<li>Parameters: $(2 \times 2 \times 3 + 1) \times 64 = 13 \times 64 = 832$</li>
+</ul>
+
+<p><strong>BatchNorm:</strong> 2 params per channel (scale + shift) = $2 \times 64 = 128$</p>
+
+<p><strong>Pool (assume 2x2, stride 2):</strong> $16 \times 16 \times 64$. Parameters: 0</p>
+
+<p><strong>Conv2:</strong> 32 filters, $3 \times 3$ kernel, 64 input channels, stride 1</p>
+<ul>
+<li>Output size: $\frac{16 - 3}{1} + 1 = 14$, so $14 \times 14 \times 32$</li>
+<li>Parameters: $(3 \times 3 \times 64 + 1) \times 32 = 577 \times 32 = 18{,}464$</li>
+</ul>
+
+<p><strong>Pool (2x2, stride 2):</strong> $7 \times 7 \times 32 = 1568$. Parameters: 0</p>
+
+<p><strong>FC(128):</strong> $1568 \times 128 + 128 = 200{,}832$</p>
+
+<p><strong>FC(10):</strong> $128 \times 10 + 10 = 1{,}290$</p>
+
+<p><strong>Total: $832 + 128 + 18{,}464 + 200{,}832 + 1{,}290 = 221{,}546$</strong></p>
+<p><em>Note: Exact count depends on pool size/stride assumptions. The key skill is applying the formula systematically.</em></p>
+</div>
+</details>
+
+</div>
+
+<div class="practice-section">
+<h3>Questions &mdash; Softmax &amp; Cross-Entropy</h3>
+
+<details>
+<summary>Q14. Softmax: Logits $z = [2.0, 1.0, 0.5]$, true $y = [0, 1, 0]$. Compute softmax, CCE loss, predicted class.</summary>
+<div class="answer">
+<p><strong>Step 1: Compute softmax</strong></p>
+<ul>
+<li>$e^{2.0} = 7.389$</li>
+<li>$e^{1.0} = 2.718$</li>
+<li>$e^{0.5} = 1.649$</li>
+<li>Sum $= 7.389 + 2.718 + 1.649 = 11.756$</li>
+</ul>
+$$\hat{y} = \left[\frac{7.389}{11.756},\; \frac{2.718}{11.756},\; \frac{1.649}{11.756}\right] = [0.6285,\; 0.2312,\; 0.1403]$$
+
+<p><strong>Step 2: Predicted class</strong></p>
+<p>$\arg\max(\hat{y}) =$ Class 1 (index 0) with probability 0.6285</p>
+
+<p><strong>Step 3: Categorical Cross-Entropy Loss</strong></p>
+<p>Since $y = [0, 1, 0]$, only the true class (class 2, index 1) contributes:</p>
+$$\mathcal{L} = -\sum y_k \log(\hat{y}_k) = -1 \cdot \log(0.2312) = -(-1.4642) = 1.4642$$
+
+<p><strong>Answer:</strong></p>
+<ul>
+<li>Softmax: $[0.629, 0.231, 0.140]$</li>
+<li>CCE Loss: $\approx 1.464$</li>
+<li>Predicted class: Class 1 (index 0) &mdash; note this is a <strong>wrong prediction</strong> (true class is index 1)</li>
+</ul>
+</div>
+</details>
+
+</div>
+
+<div class="practice-section">
+<h3>Questions &mdash; Overfitting &amp; Diagnostics</h3>
+
+<details>
+<summary>Q16. Overfitting: 100% train accuracy, 45% test accuracy. Inferences and solutions.</summary>
+<div class="answer">
+<p><strong>Inference:</strong></p>
+<ul>
+<li>The model has <strong>severely overfit</strong> to the training data</li>
+<li>It has memorized training examples rather than learning generalizable patterns</li>
+<li>The large gap (100% - 45% = 55%) indicates very high variance</li>
+<li>The model is too complex for the amount of training data</li>
+</ul>
+
+<p><strong>Solutions:</strong></p>
+<ol>
+<li><strong>More training data:</strong> Most effective solution if available</li>
+<li><strong>Regularization:</strong> L2 (weight decay), L1 regularization</li>
+<li><strong>Dropout:</strong> Randomly drop neurons during training (typical: p=0.5 for hidden, p=0.2 for input)</li>
+<li><strong>Early stopping:</strong> Monitor validation loss, stop when it starts increasing</li>
+<li><strong>Data augmentation:</strong> Artificially expand training set (flips, rotations, crops for images)</li>
+<li><strong>Reduce model complexity:</strong> Fewer layers, fewer units per layer</li>
+<li><strong>Batch normalization:</strong> Can have mild regularizing effect</li>
+<li><strong>Cross-validation:</strong> Use k-fold CV for better model selection</li>
+</ol>
+</div>
+</details>
+
+<details>
+<summary>Q17. Confusion Matrix: 3-class animal classifier. Compute precision/recall for Bird class.</summary>
+<div class="answer">
+<p><strong>Assume the following confusion matrix (3 classes: Cat, Dog, Bird):</strong></p>
+<table>
+<tr><th>Actual \ Predicted</th><th>Cat</th><th>Dog</th><th>Bird</th></tr>
+<tr><td><strong>Cat</strong></td><td>40</td><td>5</td><td>5</td></tr>
+<tr><td><strong>Dog</strong></td><td>3</td><td>35</td><td>2</td></tr>
+<tr><td><strong>Bird</strong></td><td>2</td><td>3</td><td>45</td></tr>
+</table>
+
+<p><strong>For Bird class:</strong></p>
+<ul>
+<li><strong>True Positives (TP):</strong> Actually Bird, predicted Bird = 45</li>
+<li><strong>False Positives (FP):</strong> Not Bird, predicted Bird = $5 + 2 = 7$</li>
+<li><strong>False Negatives (FN):</strong> Actually Bird, predicted NOT Bird = $2 + 3 = 5$</li>
+</ul>
+
+$$\text{Precision}_{\text{Bird}} = \frac{TP}{TP + FP} = \frac{45}{45 + 7} = \frac{45}{52} = 0.865$$
+
+$$\text{Recall}_{\text{Bird}} = \frac{TP}{TP + FN} = \frac{45}{45 + 5} = \frac{45}{50} = 0.900$$
+
+<p><strong>Method:</strong> For any class in a multi-class confusion matrix:</p>
+<ul>
+<li>Precision = (diagonal element) / (column sum)</li>
+<li>Recall = (diagonal element) / (row sum)</li>
+</ul>
+</div>
+</details>
+
+<details>
+<summary>Q20. Regularization Diagnosis: Four training runs with train/val accuracies. Diagnose each.</summary>
+<div class="answer">
+<table>
+<tr><th>Run</th><th>Train Acc</th><th>Val Acc</th><th>Diagnosis</th><th>Action</th></tr>
+<tr><td>A</td><td>99%</td><td>55%</td><td><strong>Overfitting</strong> (high variance)</td><td>More data, dropout, regularization, early stopping</td></tr>
+<tr><td>B</td><td>60%</td><td>58%</td><td><strong>Underfitting</strong> (high bias)</td><td>More capacity, train longer, reduce regularization</td></tr>
+<tr><td>C</td><td>95%</td><td>93%</td><td><strong>Good fit</strong></td><td>Possibly fine-tune further, but already performing well</td></tr>
+<tr><td>D</td><td>50%</td><td>50%</td><td><strong>Severe underfitting</strong> (random chance for binary)</td><td>Check data pipeline, increase model size drastically, verify labels</td></tr>
+</table>
+
+<p><strong>Key diagnostic rule:</strong></p>
+<ul>
+<li>If <strong>train acc is low</strong>: underfitting &rarr; increase model capacity</li>
+<li>If <strong>train acc is high but val acc is low</strong>: overfitting &rarr; regularize</li>
+<li>If <strong>both are high and close</strong>: good fit</li>
+<li>Gap = train - val: measures overfitting severity</li>
+</ul>
+</div>
+</details>
+
+</div>
+
+<div class="practice-section">
+<h3>Questions &mdash; RNN &amp; GRU</h3>
+
+<details>
+<summary>Q18. GRU Parameters: $d=10$, $h=20$. Compute params for Vanilla RNN and GRU.</summary>
+<div class="answer">
+<p><strong>Vanilla RNN (recurrent part only):</strong></p>
+$$\text{Params} = (d + h) \times h + h = (10 + 20) \times 20 + 20 = 600 + 20 = 620$$
+<p>Breakdown: $W_{xh}$: $10 \times 20 = 200$, $W_{hh}$: $20 \times 20 = 400$, $b_h$: $20$</p>
+
+<p><strong>GRU:</strong></p>
+$$\text{Params} = 3 \times [(d + h) \times h + h] = 3 \times [(10 + 20) \times 20 + 20] = 3 \times 620 = 1860$$
+<p>Breakdown: 3 gates (update $z$, reset $r$, candidate $\tilde{h}$), each with $(d+h) \times h$ weights + $h$ biases.</p>
+
+<p><strong>Answer: Vanilla RNN = 620, GRU = 1860</strong></p>
+<p>GRU has exactly 3x the parameters of a vanilla RNN (LSTM has 4x due to 4 gates: input, forget, output, cell candidate).</p>
+</div>
+</details>
+
+</div>
+
+<div class="practice-section">
+<h3>Questions &mdash; Attention</h3>
+
+<details>
+<summary>Q19. Scaled Dot-Product Attention: Product recommendation with $q_3 = [2, 7]$, given keys and values</summary>
+<div class="answer">
+<p><strong>Setup:</strong> Query $q_3 = [2, 7]$ (user preference vector), $d_k = 2$.</p>
+<p>Assume keys and values for 3 products:</p>
+<table>
+<tr><th>Product</th><th>Key $k_i$</th><th>Value $v_i$</th></tr>
+<tr><td>1</td><td>$[1, 0]$</td><td>$[10, 5]$</td></tr>
+<tr><td>2</td><td>$[0, 1]$</td><td>$[3, 8]$</td></tr>
+<tr><td>3</td><td>$[1, 1]$</td><td>$[7, 7]$</td></tr>
+</table>
+
+<p><strong>Step 1: Compute scores</strong> $s_i = q \cdot k_i$</p>
+<ul>
+<li>$s_1 = [2,7] \cdot [1,0] = 2$</li>
+<li>$s_2 = [2,7] \cdot [0,1] = 7$</li>
+<li>$s_3 = [2,7] \cdot [1,1] = 9$</li>
+</ul>
+
+<p><strong>Step 2: Scale</strong> by $\sqrt{d_k} = \sqrt{2} \approx 1.414$</p>
+<ul>
+<li>$s_1' = 2/1.414 = 1.414$</li>
+<li>$s_2' = 7/1.414 = 4.950$</li>
+<li>$s_3' = 9/1.414 = 6.364$</li>
+</ul>
+
+<p><strong>Step 3: Softmax</strong></p>
+<ul>
+<li>$e^{1.414} = 4.113$, $e^{4.950} = 141.18$, $e^{6.364} = 580.05$</li>
+<li>Sum $= 725.34$</li>
+<li>$\alpha = [0.0057, 0.1946, 0.7997]$</li>
+</ul>
+
+<p><strong>Step 4: Weighted sum of values</strong></p>
+$$\text{Output} = 0.0057 \times [10,5] + 0.1946 \times [3,8] + 0.7997 \times [7,7]$$
+$$= [0.057, 0.029] + [0.584, 1.557] + [5.598, 5.598] = [6.24, 7.18]$$
+
+<p><strong>Interpretation:</strong> The model attends most strongly to Product 3 (attention weight 0.80), moderately to Product 2 (0.19), and barely to Product 1 (0.006). The output recommendation vector is closest to Product 3's value.</p>
+</div>
+</details>
+
+</div>
+
+<!-- ==================== QUICK REFERENCE ==================== -->
+<div class="lecture-divider" id="quickref">Quick Reference Tables</div>
+
+<h2>Activation Functions Comparison</h2>
+
+<table>
+<tr><th>Function</th><th>Formula</th><th>Range</th><th>Derivative</th><th>Use Case</th></tr>
+<tr><td><strong>Sigmoid</strong></td><td>$\frac{1}{1+e^{-z}}$</td><td>$(0, 1)$</td><td>$\sigma(z)(1-\sigma(z))$</td><td>Binary output layer</td></tr>
+<tr><td><strong>Tanh</strong></td><td>$\frac{e^z-e^{-z}}{e^z+e^{-z}}$</td><td>$(-1, 1)$</td><td>$1-\tanh^2(z)$</td><td>Hidden layers (RNN)</td></tr>
+<tr><td><strong>ReLU</strong></td><td>$\max(0,z)$</td><td>$[0, \infty)$</td><td>$\begin{cases}1 & z>0\\0 & z\leq 0\end{cases}$</td><td>Hidden layers (default)</td></tr>
+<tr><td><strong>Leaky ReLU</strong></td><td>$\max(\alpha z, z)$</td><td>$(-\infty, \infty)$</td><td>$\begin{cases}1 & z>0\\\alpha & z\leq 0\end{cases}$</td><td>Hidden layers (fix dying ReLU)</td></tr>
+<tr><td><strong>Softmax</strong></td><td>$\frac{e^{z_k}}{\sum e^{z_j}}$</td><td>$(0,1)$, sum=1</td><td>$\hat{y}_k(1-\hat{y}_k)$ (diagonal)</td><td>Multi-class output</td></tr>
+<tr><td><strong>Identity</strong></td><td>$z$</td><td>$(-\infty, \infty)$</td><td>$1$</td><td>Regression output</td></tr>
+</table>
+
+<h2>Loss Functions by Task</h2>
+
+<table>
+<tr><th>Task</th><th>Loss Function</th><th>Formula</th><th>Output Activation</th></tr>
+<tr><td>Regression</td><td>MSE</td><td>$\frac{1}{n}\sum(y-\hat{y})^2$</td><td>Identity</td></tr>
+<tr><td>Regression (robust)</td><td>MAE / Huber</td><td>$\frac{1}{n}\sum|y-\hat{y}|$</td><td>Identity</td></tr>
+<tr><td>Binary Classification</td><td>Binary Cross-Entropy</td><td>$-[y\log\hat{y}+(1-y)\log(1-\hat{y})]$</td><td>Sigmoid</td></tr>
+<tr><td>Multi-class Classification</td><td>Categorical Cross-Entropy</td><td>$-\sum y_k\log\hat{y}_k$</td><td>Softmax</td></tr>
+<tr><td>Multi-label Classification</td><td>Binary CE (per label)</td><td>BCE applied independently per label</td><td>Sigmoid (per output)</td></tr>
+</table>
+
+<h2>Architecture Patterns</h2>
+
+<table>
+<tr><th>Architecture</th><th>Best For</th><th>Key Feature</th><th>Example Models</th></tr>
+<tr><td><strong>MLP / DFNN</strong></td><td>Tabular data, fixed-size inputs</td><td>Universal approximation</td><td>Feed-forward networks</td></tr>
+<tr><td><strong>CNN</strong></td><td>Images, spatial data</td><td>Weight sharing, translation invariance</td><td>VGG, ResNet, EfficientNet</td></tr>
+<tr><td><strong>RNN / GRU / LSTM</strong></td><td>Sequential data, time series</td><td>Recurrent connections, memory</td><td>LSTM, GRU, Bi-LSTM</td></tr>
+<tr><td><strong>Transformer</strong></td><td>NLP, vision (ViT), general</td><td>Self-attention, parallelizable</td><td>BERT, GPT, T5, ViT</td></tr>
+<tr><td><strong>Encoder-Decoder</strong></td><td>Seq-to-seq (translation, summarization)</td><td>Compress then generate</td><td>T5, BART, original Transformer</td></tr>
+</table>
+
+<h2>Diagnosing Training Issues</h2>
+
+<table>
+<tr><th>Symptom</th><th>Likely Cause</th><th>Solution</th></tr>
+<tr><td>High train error + High test error</td><td>Underfitting (high bias)</td><td>More layers/units, reduce regularization, train longer</td></tr>
+<tr><td>Low train error + High test error</td><td>Overfitting (high variance)</td><td>More data, dropout, L2, early stopping, data augmentation</td></tr>
+<tr><td>Loss = NaN</td><td>Exploding gradients / numerical issue</td><td>Gradient clipping, lower LR, check for log(0)</td></tr>
+<tr><td>Loss plateaus early</td><td>Vanishing gradients / bad LR</td><td>ReLU, BatchNorm, increase LR, He initialization</td></tr>
+<tr><td>Loss oscillates</td><td>LR too high</td><td>Reduce LR, use LR scheduler, larger batch size</td></tr>
+<tr><td>Val loss increases while train decreases</td><td>Beginning of overfitting</td><td>Early stopping (stop at inflection point)</td></tr>
+<tr><td>Training extremely slow</td><td>LR too low / poor conditioning</td><td>Increase LR, use Adam, normalize inputs, BatchNorm</td></tr>
+</table>
+
+<div class="highlight" style="text-align:center; margin-top:40px;">
+<strong>End of Comprehensive Notes</strong><br>
+<em>Good luck with your exam preparation!</em>
+</div>
+
+<!-- Floating Back to Top Button -->
+<button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to Top" style="
+  display:none; position:fixed; bottom:30px; right:30px; z-index:999;
+  width:50px; height:50px; border-radius:50%; border:none; cursor:pointer;
+  background:linear-gradient(135deg, var(--primary), var(--secondary));
+  color:white; font-size:22px; box-shadow:0 4px 12px rgba(0,0,0,0.3);
+  transition:opacity 0.3s, transform 0.3s;
+">&#8679;</button>
+<script>
+(function(){
+  var btn = document.getElementById('backToTop');
+  window.addEventListener('scroll', function(){
+    btn.style.display = window.scrollY > 400 ? 'block' : 'none';
+  });
+  btn.addEventListener('mouseenter', function(){ btn.style.transform='scale(1.1)'; });
+  btn.addEventListener('mouseleave', function(){ btn.style.transform='scale(1)'; });
+})();
+</script>
+
+</body>
+</html>

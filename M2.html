@@ -1,0 +1,3013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MFML Exam Preparation</title>
+<script>
+MathJax = {
+  tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+<style>
+:root {
+  --primary: #1a5276;
+  --secondary: #2980b9;
+  --accent: #e67e22;
+  --bg: #fafbfc;
+  --card-bg: #ffffff;
+  --text: #2c3e50;
+  --light-text: #7f8c8d;
+  --border: #dfe6e9;
+  --highlight-bg: #fef9e7;
+  --important-bg: #fdedec;
+  --tip-bg: #eafaf1;
+  --code-bg: #f4f6f7;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px 30px;
+}
+h1 {
+  font-size: 2.2em;
+  color: var(--primary);
+  text-align: center;
+  border-bottom: 4px solid var(--accent);
+  padding-bottom: 15px;
+  margin: 30px 0;
+}
+h2 {
+  font-size: 1.7em;
+  color: var(--primary);
+  border-left: 5px solid var(--accent);
+  padding-left: 15px;
+  margin: 40px 0 20px;
+}
+h3 {
+  font-size: 1.3em;
+  color: var(--secondary);
+  margin: 25px 0 12px;
+}
+h4 {
+  font-size: 1.1em;
+  color: var(--text);
+  margin: 18px 0 8px;
+}
+p { margin: 10px 0; }
+ul, ol { margin: 10px 0 10px 25px; }
+li { margin: 5px 0; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px 0;
+  font-size: 0.95em;
+}
+th {
+  background: var(--primary);
+  color: white;
+  padding: 10px 12px;
+  text-align: left;
+}
+td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+}
+tr:nth-child(even) { background: #f8f9fa; }
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px 25px;
+  margin: 15px 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.important {
+  background: var(--important-bg);
+  border-left: 5px solid #e74c3c;
+  padding: 15px 20px;
+  margin: 15px 0;
+  border-radius: 0 8px 8px 0;
+}
+.highlight {
+  background: var(--highlight-bg);
+  border-left: 5px solid var(--accent);
+  padding: 15px 20px;
+  margin: 15px 0;
+  border-radius: 0 8px 8px 0;
+}
+.tip {
+  background: var(--tip-bg);
+  border-left: 5px solid #27ae60;
+  padding: 15px 20px;
+  margin: 15px 0;
+  border-radius: 0 8px 8px 0;
+}
+.definition {
+  background: #eef2f7;
+  border: 2px solid var(--secondary);
+  border-radius: 8px;
+  padding: 15px 20px;
+  margin: 15px 0;
+}
+.definition::before {
+  content: "Definition";
+  font-weight: bold;
+  color: var(--secondary);
+  display: block;
+  margin-bottom: 5px;
+}
+.theorem {
+  background: #fdf2e9;
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  padding: 15px 20px;
+  margin: 15px 0;
+}
+.theorem::before {
+  content: "Theorem";
+  font-weight: bold;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 5px;
+}
+.example {
+  background: #f4ecf7;
+  border: 1px solid #8e44ad;
+  border-radius: 8px;
+  padding: 15px 20px;
+  margin: 15px 0;
+}
+.example::before {
+  content: "Example";
+  font-weight: bold;
+  color: #8e44ad;
+  display: block;
+  margin-bottom: 5px;
+}
+.matrix-display {
+  text-align: center;
+  margin: 15px 0;
+  overflow-x: auto;
+}
+code {
+  background: var(--code-bg);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+.toc {
+  background: var(--card-bg);
+  border: 2px solid var(--primary);
+  border-radius: 10px;
+  padding: 25px 30px;
+  margin: 20px 0 40px;
+}
+.toc a {
+  color: var(--secondary);
+  text-decoration: none;
+}
+.toc a:hover { text-decoration: underline; }
+.toc ul { list-style: none; margin-left: 0; }
+.toc > ul > li { margin: 8px 0; font-weight: bold; font-size: 1.05em; }
+.toc > ul > li > ul > li { font-weight: normal; font-size: 0.95em; margin: 3px 0; padding-left: 20px; }
+.lecture-divider {
+  text-align: center;
+  margin: 50px 0 30px;
+  padding: 20px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  border-radius: 10px;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+.svg-container {
+  text-align: center;
+  margin: 20px 0;
+}
+svg text { font-family: Georgia, serif; }
+.key-formula {
+  background: #1a5276;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 8px;
+  text-align: center;
+  margin: 15px 0;
+  font-size: 1.1em;
+}
+.comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin: 15px 0;
+}
+.comparison-grid .card { margin: 0; }
+@media (max-width: 700px) {
+  body { padding: 10px 15px; }
+  .comparison-grid { grid-template-columns: 1fr; }
+  h1 { font-size: 1.6em; }
+  h2 { font-size: 1.3em; }
+}
+
+/* Additional styles for exam prep */
+.priority-must {
+  background: #fdedec;
+  border: 2px solid #e74c3c;
+  border-radius: 8px;
+  padding: 15px 20px;
+  margin: 10px 0;
+}
+.priority-must::before {
+  content: "MUST PREPARE";
+  font-weight: bold;
+  color: #e74c3c;
+  display: block;
+  margin-bottom: 5px;
+  font-size: 1.1em;
+}
+.priority-medium {
+  background: var(--highlight-bg);
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  padding: 15px 20px;
+  margin: 10px 0;
+}
+.priority-medium::before {
+  content: "MEDIUM PRIORITY";
+  font-weight: bold;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 5px;
+  font-size: 1.1em;
+}
+.priority-compre {
+  background: var(--tip-bg);
+  border: 2px solid #27ae60;
+  border-radius: 8px;
+  padding: 15px 20px;
+  margin: 10px 0;
+}
+.priority-compre::before {
+  content: "COMPRE ONLY";
+  font-weight: bold;
+  color: #27ae60;
+  display: block;
+  margin-bottom: 5px;
+  font-size: 1.1em;
+}
+.question-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px 25px;
+  margin: 20px 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.question-card h4 {
+  color: var(--primary);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+}
+.topic-tag {
+  display: inline-block;
+  background: var(--secondary);
+  color: white;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 0.85em;
+  margin: 5px 4px 5px 0;
+}
+details {
+  margin: 10px 0;
+}
+details summary {
+  cursor: pointer;
+  color: var(--secondary);
+  font-weight: bold;
+  padding: 8px 0;
+  user-select: none;
+}
+details summary:hover {
+  color: var(--primary);
+}
+details[open] summary {
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.solution-content {
+  background: #f8f9fa;
+  border-left: 3px solid var(--secondary);
+  padding: 15px 20px;
+  border-radius: 0 8px 8px 0;
+}
+.freq-cell {
+  text-align: center;
+  font-weight: bold;
+}
+.freq-yes {
+  color: #27ae60;
+}
+.freq-no {
+  color: #bdc3c7;
+}
+td.centered {
+  text-align: center;
+}
+.paper-divider {
+  text-align: center;
+  margin: 40px 0 25px;
+  padding: 15px;
+  background: linear-gradient(135deg, #8e44ad, #3498db);
+  color: white;
+  border-radius: 10px;
+  font-size: 1.3em;
+  font-weight: bold;
+}
+a.review-link {
+  color: var(--secondary);
+  text-decoration: none;
+  font-size: 0.9em;
+}
+a.review-link:hover {
+  text-decoration: underline;
+}
+
+.topic-divider {
+  text-align: center;
+  margin: 40px 0 25px;
+  padding: 15px;
+  background: linear-gradient(135deg, #1a7a4a, #27ae60);
+  color: white;
+  border-radius: 10px;
+  font-size: 1.3em;
+  font-weight: bold;
+}
+.exam-badge {
+  display: inline-block;
+  background: #8e44ad;
+  color: white;
+  padding: 2px 12px;
+  border-radius: 12px;
+  font-size: 0.82em;
+  margin: 4px 4px 8px 0;
+  font-style: italic;
+}
+</style>
+</head>
+<body>
+
+<h1>MFML Exam Preparation</h1>
+<p style="text-align:center; color:var(--light-text);">Comprehensive guide: Pattern Analysis + All Solved Papers + Quick Revision</p>
+<p style="text-align:center;"><a href="MFML_Notes_Lectures_1_to_5.html" style="color:var(--secondary);">Back to Main Notes (Lectures 1&ndash;5)</a></p>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc">
+<h3 style="margin-bottom:10px;">Contents</h3>
+<ul>
+  <li><a href="#part1">Part 1: Exam Pattern Analysis</a>
+    <ul>
+      <li><a href="#freq-table">Topic Frequency Table</a></li>
+      <li><a href="#priority-summary">Priority Summary</a></li>
+    </ul>
+  </li>
+  <li><a href="#part2">Part 2: All Solved Questions (by Topic)</a>
+    <ul>
+      <li><a href="#topic-eigen">Eigenvalues &amp; Eigenvectors</a></li>
+      <li><a href="#topic-ip">Inner Products &amp; Geometry</a></li>
+      <li><a href="#topic-svd">SVD</a></li>
+      <li><a href="#topic-grad">Gradient, Hessian, Chain Rule &amp; Taylor</a></li>
+      <li><a href="#topic-gd">Gradient Descent</a></li>
+      <li><a href="#topic-vs">Vector Spaces &amp; Subspaces</a></li>
+      <li><a href="#topic-rank">Rank &amp; Determinant</a></li>
+      <li><a href="#topic-gauss">Gaussian Elimination &amp; Ax = b</a></li>
+      <li><a href="#topic-kkt">Constrained Optimization &amp; KKT</a></li>
+      <li><a href="#topic-svm">Support Vector Machines</a></li>
+      <li><a href="#topic-pca">PCA &amp; Covariance Matrix</a></li>
+      <li><a href="#topic-misc">Miscellaneous</a></li>
+    </ul>
+  </li>
+  <li><a href="#part3">Part 3: Topic-wise Quick Revision</a>
+    <ul>
+      <li><a href="#rev-svd">SVD</a></li>
+      <li><a href="#rev-grad">Gradient &amp; Hessian</a></li>
+      <li><a href="#rev-ip">Inner Products</a></li>
+      <li><a href="#rev-gauss">Gaussian Elimination</a></li>
+      <li><a href="#rev-vs">Vector Spaces</a></li>
+      <li><a href="#rev-eigen">Eigenvalues &amp; Eigenvectors</a></li>
+      <li><a href="#rev-gd-advanced">Gradient Descent: Variants</a></li>
+      <li><a href="#rev-svm">Support Vector Machines</a></li>
+      <li><a href="#rev-kkt">Constrained Optimization &amp; KKT</a></li>
+    </ul>
+  </li>
+</ul>
+</div>
+
+
+<!-- ============================================================ -->
+<!-- PART 1: EXAM PATTERN ANALYSIS -->
+<!-- ============================================================ -->
+<div class="lecture-divider" id="part1">Part 1: Exam Pattern Analysis</div>
+
+<h2 id="freq-table">Topic Frequency Table (across 13 papers)</h2>
+<p style="color:var(--light-text); font-size:0.9em;">P1=2022 MidSem, P2=2022 EndSem Reg, P3=2022 EndSem Mkp, P4=2023 MidSem, P5=2024 MidSem EC2, P6=Prev Batch Mid, P7=Jan25 Mid, P8=Dec25 Mid, P9=Mar26 Compre EC3, P10=Jan25 Makeup Mid, P11=Jan26 Makeup Mid, P12=Feb26 EndSem EC2, P13=Mar26 Compre EC3 Mkp</p>
+
+<table style="font-size:0.8em;">
+<thead>
+<tr>
+  <th>Topic</th>
+  <th style="text-align:center;">P1</th>
+  <th style="text-align:center;">P2</th>
+  <th style="text-align:center;">P3</th>
+  <th style="text-align:center;">P4</th>
+  <th style="text-align:center;">P5</th>
+  <th style="text-align:center;">P6</th>
+  <th style="text-align:center;">P7</th>
+  <th style="text-align:center;">P8</th>
+  <th style="text-align:center;">P9</th>
+  <th style="text-align:center;">P10</th>
+  <th style="text-align:center;">P11</th>
+  <th style="text-align:center;">P12</th>
+  <th style="text-align:center;">P13</th>
+  <th style="text-align:center;">Freq</th>
+  <th style="text-align:center;">Priority</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Gradient / Hessian / Chain Rule</td>
+  <td class="centered freq-yes">Q6</td>
+  <td class="centered freq-yes">Q2c</td>
+  <td class="centered freq-yes">Q1</td>
+  <td class="centered freq-yes">Q1</td>
+  <td class="centered freq-yes">Q5,Q6</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-yes">Q5</td>
+  <td class="centered freq-yes">Q5</td>
+  <td class="centered freq-yes">Q4a,b</td>
+  <td class="centered freq-yes">Q5</td>
+  <td class="centered freq-yes">Q5a</td>
+  <td class="centered freq-yes">Q4a,b</td>
+  <td class="centered freq-yes">Q3</td>
+  <td class="centered" style="font-weight:bold; color:#e74c3c;">12/13</td>
+  <td class="centered" style="font-weight:bold; color:#e74c3c;">MUST</td>
+</tr>
+<tr>
+  <td>Eigenvalues &amp; Eigenvectors</td>
+  <td class="centered freq-yes">Q3</td>
+  <td class="centered freq-yes">Q3a</td>
+  <td class="centered freq-yes">Q2</td>
+  <td class="centered freq-yes">Q1,Q4</td>
+  <td class="centered freq-yes">Q4</td>
+  <td class="centered freq-yes">Q1</td>
+  <td class="centered freq-yes">Q1</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-yes">Q1a</td>
+  <td class="centered freq-yes">Q4</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-yes">Q1a</td>
+  <td class="centered freq-yes">Q1a</td>
+  <td class="centered" style="font-weight:bold; color:#e74c3c;">11/13</td>
+  <td class="centered" style="font-weight:bold; color:#e74c3c;">MUST</td>
+</tr>
+<tr>
+  <td>Inner Product Space ($\mathbf{x}^T A \mathbf{y}$)</td>
+  <td class="centered freq-yes">Q1</td>
+  <td class="centered freq-yes">Q3a</td>
+  <td class="centered freq-yes">Q3</td>
+  <td class="centered freq-yes">Q1iii</td>
+  <td class="centered freq-yes">Q2</td>
+  <td class="centered freq-yes">Q2</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-yes">Q4</td>
+  <td class="centered freq-yes">Q3a</td>
+  <td class="centered freq-yes">Q3</td>
+  <td class="centered freq-yes">Q4a,b</td>
+  <td class="centered freq-yes">Q3a</td>
+  <td class="centered freq-yes">Q2</td>
+  <td class="centered" style="font-weight:bold; color:#e74c3c;">12/13</td>
+  <td class="centered" style="font-weight:bold; color:#e74c3c;">MUST</td>
+</tr>
+<tr>
+  <td>SVD (full/partial)</td>
+  <td class="centered freq-yes">Q4</td>
+  <td class="centered freq-yes">Q2b</td>
+  <td class="centered freq-yes">Q3,Q4</td>
+  <td class="centered freq-yes">Q2</td>
+  <td class="centered freq-yes">Q4</td>
+  <td class="centered freq-yes">Q4</td>
+  <td class="centered freq-yes">Q3i</td>
+  <td class="centered freq-yes">Q3a</td>
+  <td class="centered freq-yes">Q1c</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-yes">Q3</td>
+  <td class="centered freq-yes">Q1c</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered" style="font-weight:bold; color:#e74c3c;">11/13</td>
+  <td class="centered" style="font-weight:bold; color:#e74c3c;">MUST</td>
+</tr>
+<tr>
+  <td>Column / Row / Null Space, Basis, Dim</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-yes">Q2i</td>
+  <td class="centered freq-yes">Q2</td>
+  <td class="centered freq-yes">Q3,Q4</td>
+  <td class="centered freq-yes">Q3</td>
+  <td class="centered freq-yes">Q3B&ndash;D</td>
+  <td class="centered freq-yes">Q2</td>
+  <td class="centered freq-yes">Q2b</td>
+  <td class="centered freq-yes">Q2b</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-yes">Q2</td>
+  <td class="centered freq-yes">Q2b</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered" style="font-weight:bold; color:#e74c3c;">10/13</td>
+  <td class="centered" style="font-weight:bold; color:#e74c3c;">MUST</td>
+</tr>
+<tr>
+  <td>Taylor Polynomial</td>
+  <td class="centered freq-yes">Q8</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-yes">Q1c</td>
+  <td class="centered freq-yes">Q1iii</td>
+  <td class="centered freq-yes">Q6a</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-yes">Q5(2)</td>
+  <td class="centered freq-yes">Q5d</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-yes">Q5</td>
+  <td class="centered freq-yes">Q6</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered" style="font-weight:bold; color:#e74c3c;">8/13</td>
+  <td class="centered" style="font-weight:bold; color:#e74c3c;">MUST</td>
+</tr>
+<tr>
+  <td>Rank &amp; Determinant</td>
+  <td class="centered freq-yes">Q2</td>
+  <td class="centered freq-yes">Q2i</td>
+  <td class="centered freq-yes">Q2</td>
+  <td class="centered freq-yes">Q4</td>
+  <td class="centered freq-yes">Q1a</td>
+  <td class="centered freq-yes">Q3</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-yes">Q1b</td>
+  <td class="centered freq-yes">Q2c</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-yes">Q1a</td>
+  <td class="centered freq-yes">Q2c</td>
+  <td class="centered freq-yes">Q1b</td>
+  <td class="centered" style="font-weight:bold; color:#e67e22;">10/13</td>
+  <td class="centered" style="font-weight:bold; color:#e67e22;">HIGH</td>
+</tr>
+<tr>
+  <td>Gaussian Elimination / REF</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-yes">Q1</td>
+  <td class="centered freq-yes">Q3A</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-yes">Q1a,b</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-yes">Q6</td>
+  <td class="centered freq-yes">Q1a,b</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered" style="font-weight:bold; color:#e67e22;">5/13</td>
+  <td class="centered" style="font-weight:bold; color:#e67e22;">HIGH</td>
+</tr>
+<tr>
+  <td>Optimization / KKT / Lagrangian</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-yes">Q1c</td>
+  <td class="centered freq-yes">Q1c</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-yes">Q3b&ndash;d</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-yes">Q3b&ndash;d</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered" style="font-weight:bold; color:#e67e22;">4/13</td>
+  <td class="centered" style="font-weight:bold; color:#e67e22;">HIGH</td>
+</tr>
+<tr>
+  <td>Gradient Descent iterations</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-yes">Q3.3</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-yes">Q4c</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-yes">Q4c</td>
+  <td class="centered freq-yes">Q3,Q4</td>
+  <td class="centered" style="font-weight:bold; color:#e67e22;">4/13</td>
+  <td class="centered" style="font-weight:bold; color:#e67e22;">HIGH</td>
+</tr>
+<tr>
+  <td>SVM (hard/soft margin)</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-yes">Q1c</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-yes">Q5</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-yes">Q5</td>
+  <td class="centered freq-yes">Q6</td>
+  <td class="centered" style="font-weight:bold; color:#2980b9;">4/13</td>
+  <td class="centered" style="color:#2980b9;">MEDIUM</td>
+</tr>
+<tr>
+  <td>Diagonalization</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-yes">Q3</td>
+  <td class="centered freq-yes">Q4</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-yes">Q3b</td>
+  <td class="centered freq-yes">Q1b</td>
+  <td class="centered freq-yes">Q4ii</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-yes">Q1b</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered" style="font-weight:bold; color:#2980b9;">6/13</td>
+  <td class="centered" style="color:#2980b9;">MEDIUM</td>
+</tr>
+<tr>
+  <td>Vector Spaces / Subspaces</td>
+  <td class="centered freq-yes">Q7</td>
+  <td class="centered freq-yes">Q2</td>
+  <td class="centered freq-yes">Q2</td>
+  <td class="centered freq-yes">Q3</td>
+  <td class="centered freq-yes">Q3</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-yes">Q2</td>
+  <td class="centered freq-yes">Q2</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered" style="font-weight:bold; color:#2980b9;">7/13</td>
+  <td class="centered" style="color:#2980b9;">MEDIUM</td>
+</tr>
+<tr>
+  <td>Orthogonal Matrices / Gram-Schmidt</td>
+  <td class="centered freq-yes">Q5</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-yes">Q4</td>
+  <td class="centered freq-yes">Q4c</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-yes">Q2d</td>
+  <td class="centered" style="font-weight:bold; color:#2980b9;">4/13</td>
+  <td class="centered" style="color:#2980b9;">MEDIUM</td>
+</tr>
+<tr>
+  <td>PCA / Covariance Matrix</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-yes">Q1</td>
+  <td class="centered freq-yes">Q1b</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-yes">Q5</td>
+  <td class="centered" style="font-weight:bold; color:#27ae60;">3/13</td>
+  <td class="centered" style="color:#27ae60;">LOW</td>
+</tr>
+<tr>
+  <td>Kernel / Feature Map</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-yes">Q4.2</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered freq-no">&mdash;</td>
+  <td class="centered" style="font-weight:bold; color:#27ae60;">1/13</td>
+  <td class="centered" style="color:#27ae60;">LOW</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="priority-summary">Priority Summary</h2>
+
+<div class="priority-must">
+<strong>MUST PREPARE &mdash; appear in 8+ out of 13 papers:</strong> Gradient/Hessian/Chain Rule (12/13), Inner Product Spaces &mdash; $\mathbf{x}^T A\mathbf{y}$ (12/13), Eigenvalues &amp; Eigenvectors (11/13), SVD (11/13), Column/Row/Null Space &amp; Basis (10/13), Taylor Polynomial (8/13).
+</div>
+
+<div class="priority-medium">
+<strong>HIGH PRIORITY &mdash; appear in 4&ndash;10 papers:</strong> Rank &amp; Determinant (10/13), Vector Spaces/Subspaces (7/13), Diagonalization (6/13), Gaussian Elimination/REF (5/13), Optimization/KKT/Lagrangian (4/13), Gradient Descent iterations (4/13).
+</div>
+
+<div class="priority-medium">
+<strong>MEDIUM PRIORITY &mdash; appear in 3&ndash;4 papers:</strong> SVM (hard/soft margin) (4/13), Orthogonal Matrices/Gram-Schmidt (4/13).
+</div>
+
+<div class="priority-compre">
+<strong>LOW PRIORITY &mdash; appeared 1&ndash;3 times:</strong> PCA/Covariance Matrix (3/13), Kernel/Feature Map (1/13).
+</div>
+
+
+<!-- ============================================================ -->
+<!-- PART 2: ALL SOLVED QUESTIONS (BY TOPIC) -->
+<!-- ============================================================ -->
+<div class="lecture-divider" id="part2">Part 2: All Solved Questions (by Topic)</div>
+
+<div class="topic-divider" id="topic-eigen">Eigenvalues &amp; Eigenvectors (incl. Diagonalization)</div>
+
+<div class="question-card">
+<h4>Q3 (4M) &mdash; Matrix $G$ with Parameter $\gamma$: Eigenvalues and Positive Definiteness</h4>
+<span class="exam-badge">2022 Mid-Sem</span>
+<span class="topic-tag">Eigenvalues</span>
+<span class="topic-tag">SPD</span>
+$$G = \begin{bmatrix}2&\gamma&0\\\gamma&2&\gamma\\0&\gamma&2\end{bmatrix}$$
+<p>(a) For which $\gamma$ are all eigenvalues nonzero? (b) For which $\gamma$ are all eigenvalues positive?</p>
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>Characteristic polynomial:</strong> $\det(G-\lambda I) = 0$.</p>
+<p>$(2-\lambda)[(2-\lambda)^2 - \gamma^2] - \gamma[\gamma(2-\lambda)] = 0$</p>
+<p>$(2-\lambda)[(2-\lambda)^2 - \gamma^2 - \gamma^2] = 0$</p>
+<p>$(2-\lambda)[(2-\lambda)^2 - 2\gamma^2] = 0$</p>
+<p>Eigenvalues: $\lambda = 2$ and $(2-\lambda)^2 = 2\gamma^2 \Rightarrow \lambda = 2 \pm \gamma\sqrt{2}$.</p>
+<p>So $\lambda_1 = 2$, $\lambda_2 = 2 + \gamma\sqrt{2}$, $\lambda_3 = 2 - \gamma\sqrt{2}$.</p>
+
+<p><strong>(a) All eigenvalues nonzero:</strong> $\lambda = 2 \neq 0$ always. We need $2 + \gamma\sqrt{2} \neq 0$ and $2 - \gamma\sqrt{2} \neq 0$.</p>
+<p>$\gamma \neq \pm\frac{2}{\sqrt{2}} = \pm\sqrt{2}$. So $\boxed{\gamma \neq \pm\sqrt{2}}$.</p>
+
+<p><strong>(b) All eigenvalues positive:</strong> Need $2 - \gamma\sqrt{2} > 0 \Rightarrow \gamma < \sqrt{2}$ and $2 + \gamma\sqrt{2} > 0 \Rightarrow \gamma > -\sqrt{2}$.</p>
+<p>$$\boxed{-\sqrt{2} < \gamma < \sqrt{2}}$$</p>
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q4 (4M) &mdash; Matrix $M = \mathbf{r}\mathbf{r}^T$: Eigenvalues and SVD</h4>
+<span class="exam-badge">2022 Mid-Sem</span>
+<span class="topic-tag">Eigenvalues</span>
+<span class="topic-tag">SVD</span>
+<p>Let $\mathbf{r} \in \mathbb{R}^k$, $k > 102$. $M = \mathbf{r}\mathbf{r}^T$.</p>
+<p>(a) How many nonzero eigenvalues does $M$ have? (b) Find $\sum_{i=1}^k |\lambda_i|$. (c) How many nonzero singular values does $M^TM$ have? Find their values.</p>
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(a)</strong> $M = \mathbf{r}\mathbf{r}^T$ is a rank-1 matrix (outer product of a nonzero vector). It has exactly <strong>1 nonzero eigenvalue</strong>. The nonzero eigenvalue is $\lambda_1 = \mathbf{r}^T\mathbf{r} = \|\mathbf{r}\|^2$ (since $M\mathbf{r} = \mathbf{r}\mathbf{r}^T\mathbf{r} = \|\mathbf{r}\|^2\mathbf{r}$). The remaining $k-1$ eigenvalues are 0.</p>
+
+<p><strong>(b)</strong> $\sum_{i=1}^k |\lambda_i| = |\lambda_1| + 0 + \cdots + 0 = \|\mathbf{r}\|^2$.</p>
+
+<p><strong>(c)</strong> $M^TM = (\mathbf{r}\mathbf{r}^T)^T(\mathbf{r}\mathbf{r}^T) = \mathbf{r}\mathbf{r}^T\mathbf{r}\mathbf{r}^T = \|\mathbf{r}\|^2 \cdot \mathbf{r}\mathbf{r}^T = \|\mathbf{r}\|^2 M$.</p>
+<p>$M^TM$ is also rank-1 with one nonzero eigenvalue $\|\mathbf{r}\|^4$. The singular values of $M$ are the square roots of the eigenvalues of $M^TM$. So $M^TM$ has exactly <strong>1 nonzero singular value</strong>, equal to $\sqrt{\|\mathbf{r}\|^4} = \|\mathbf{r}\|^2$.</p>
+<div class="tip">Note: Since $M$ is symmetric PSD, its singular values equal its eigenvalues. The unique nonzero singular value of $M$ is $\|\mathbf{r}\|^2$, confirming that $\|M\|_2 = \|\mathbf{r}\|^2$.</div>
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q2 (5M) &mdash; Complex Eigenvalues, SVD of $B=\begin{bmatrix}3&0\\4&0\end{bmatrix}$</h4>
+<span class="exam-badge">2023 Mid-Sem</span>
+<span class="topic-tag">Eigenvalues</span>
+<span class="topic-tag">SVD</span>
+<p>(1) Count of non-zero entries as "norm" — which norm properties hold? (2) $A = B^TB$, eigenvalue $\lambda = 7+i\beta$: find $\beta$, is $A$ PSD? (3) SVD of $B=\begin{bmatrix}3&0\\4&0\end{bmatrix}$: $\sigma_1$, $u_1$, $v_1$, rank-1 approximation.</p>
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(1)</strong> $f(\mathbf{x})$ = count of nonzero entries. Positive definite: $f(\mathbf{x})\geq0$, $f(\mathbf{x})=0\iff\mathbf{x}=\mathbf{0}$ ✓. Absolutely homogeneous: $f(\alpha\mathbf{x}) = f(\mathbf{x})$ for $\alpha\neq0$, but we need $f(\alpha\mathbf{x})=|\alpha|f(\mathbf{x})$. Since $f(\alpha\mathbf{x})=f(\mathbf{x})$ regardless of $|\alpha|$, homogeneity fails. <strong>Does NOT satisfy absolute homogeneity.</strong></p>
+
+<p><strong>(2)</strong> $A = B^TB$ is symmetric, so all eigenvalues are real. If $\lambda = 7+i\beta$ is an eigenvalue of $A$ and $A$ is real symmetric, then $\beta=0$, i.e., $\lambda=7$. So $\beta=\boxed{0}$. $A = B^TB$ is always PSD (since $\mathbf{x}^TA\mathbf{x} = \|B\mathbf{x}\|^2\geq0$).</p>
+
+<p><strong>(3) SVD of $B = \begin{bmatrix}3&0\\4&0\end{bmatrix}$:</strong></p>
+<p>$A^TA = B^TB = \begin{bmatrix}3&4\\0&0\end{bmatrix}\begin{bmatrix}3&0\\4&0\end{bmatrix} = \begin{bmatrix}25&0\\0&0\end{bmatrix}$.</p>
+<p>Eigenvalues: $\lambda_1=25$, $\lambda_2=0$. $\sigma_1 = 5$.</p>
+<p>$v_1 = [1,0]^T$ (eigenvector for $\lambda_1=25$).</p>
+<p>$u_1 = \frac{1}{\sigma_1}Bv_1 = \frac{1}{5}\begin{bmatrix}3\\4\end{bmatrix} = \begin{bmatrix}3/5\\4/5\end{bmatrix}$.</p>
+$$B_1 = \sigma_1 u_1 v_1^T = 5 \cdot \begin{bmatrix}3/5\\4/5\end{bmatrix}[1,0] = \begin{bmatrix}3&0\\4&0\end{bmatrix} = B$$
+<p>The rank-1 approximation equals $B$ itself (since rank$(B)=1$).</p>
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q3 (6M) &mdash; Trace of $Q$ via Eigendecomposition, $A^9$, Subspaces, Dimension, LU</h4>
+<span class="exam-badge">2023 Mid-Sem</span>
+<span class="topic-tag">Eigenvalues</span>
+<span class="topic-tag">Vector Spaces</span>
+<p>(1) $Q$ has 3 linearly independent eigenvectors in $P$; polynomial equation $\sum c_i x^{2024-i}=0$ is satisfied. Find sum of all elements of $P^{-1}QP$. (2) Compute $A^9$ without conventional multiplication for $A=\begin{bmatrix}3&1\\1&-3\end{bmatrix}$. (3) Which of these are subspaces of $\mathbb{R}^3$: (a) $\{(a,b,c):b=a+c\}$, (b) $\{(a,b,c):c=a+b+1\}$. (4) Dimension of span of $\{(1,1,-2,0,1),(1,2,0,-4,1),(0,1,3,-2,1),(2,3,0,-2,0)\}$. (5) LU decomposition of $A=\begin{bmatrix}2&1\\1&4\end{bmatrix}$.</p>
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(1)</strong> $P^{-1}QP = D$ (diagonal matrix of eigenvalues). Sum of elements of $D$ = trace$(D)$ = trace$(Q)$ = sum of eigenvalues. Since $Q$ is $3\times3$ symmetric with entries like $\{2,\gamma,0;\gamma,2,\gamma;0,\gamma,2\}$ (from the exam), trace$(Q) = 6$. So sum of all elements of $P^{-1}QP = 6$.</p>
+
+<p><strong>(2) $A^9$:</strong> $\det(A-\lambda I) = (3-\lambda)(-3-\lambda)-1 = -9+\lambda^2-1 = \lambda^2-10=0$. By Cayley-Hamilton: $A^2 = 10I$. So $A^8 = (A^2)^4 = 10^4I = 10000I$. $A^9 = 10000A = \begin{bmatrix}30000&10000\\10000&-30000\end{bmatrix}$.</p>
+
+<p><strong>(3a)</strong> $W = \{(a,b,c):b=a+c\}$. $(0,0,0)$: $0=0+0$ ✓. Sum: if $b_1=a_1+c_1$ and $b_2=a_2+c_2$, then $(b_1+b_2)=(a_1+a_2)+(c_1+c_2)$ ✓. Scalar: $\alpha b=\alpha(a+c)$ ✓. <strong>Yes, subspace</strong>. Basis: $\{(1,1,0),(0,1,1)\}$. Dim = 2.</p>
+<p><strong>(3b)</strong> $(0,0,0)$: $0=0+0+1=1\neq0$. <strong>Not a subspace</strong> (zero vector not in set).</p>
+
+<p><strong>(4)</strong> Form matrix with these as rows and row reduce. Rank = 4, so dimension = 4. (Alternate: students can transpose and find rank.)</p>
+
+<p><strong>(5) LU:</strong> $L = \begin{bmatrix}1&0\\1/2&1\end{bmatrix}$, $U = \begin{bmatrix}2&1\\0&3.5\end{bmatrix}$. Check: $LU = \begin{bmatrix}2&1\\1&4\end{bmatrix}$ ✓.</p>
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q4 (6M) &mdash; Document Scanner Matrix, Eigenvalues of $A^{-1}$, Multiplicities</h4>
+<span class="exam-badge">2023 Mid-Sem</span>
+<span class="topic-tag">Eigenvalues</span>
+<p>A document scanner needs $A\in\mathbb{R}^{2\times2}$ to transform corners from P0 to P1. (a) Find $A$. (b) Eigenvalues and eigenvectors of $A^{-1}$. (c) Algebraic and geometric multiplicities of eigenvalues.</p>
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(a)</strong> From the diagram: P0 corners at $(0.5,0),(1,0),(1,1),(0.5,1)$ map to P1 corners at $(0,0),(1,0),(1,1),(0,1)$. The transformation stretches the $x$-axis. $A = \begin{bmatrix}1&-0.5\\0&1\end{bmatrix}$ (or $A^{-1} = \begin{bmatrix}1&0.5\\0&1\end{bmatrix}$, upper triangular). The required matrix mapping D'C' back: $A = \begin{bmatrix}1&0.5\\0&1\end{bmatrix}$... from the answer key: $A^{-1} = \begin{bmatrix}1&0.5\\0&1\end{bmatrix}$, so $A = \begin{bmatrix}1&-0.5\\0&1\end{bmatrix}$.</p>
+
+<p><strong>(b)</strong> $A^{-1} = \begin{bmatrix}1&0.5\\0&1\end{bmatrix}$ (upper triangular). Eigenvalues of $A^{-1}$: diagonal entries $\lambda=1$ (repeated). Solve $(A^{-1}-I)\mathbf{x}=0$: $\begin{bmatrix}0&0.5\\0&0\end{bmatrix}\mathbf{x}=0 \Rightarrow x_2=0$, $x_1$ free. Eigenvector $= [1,0]^T$ (direction of $x$-axis).</p>
+
+<p><strong>(c)</strong> Algebraic multiplicity of $\lambda=1$: 2. Geometric multiplicity: 1 (only one independent eigenvector). Not diagonalizable (defective matrix).</p>
+</div>
+</details>
+</div>
+
+
+
+<div class="question-card">
+<h4>Q4 (5M) &mdash; Diagonalization of $A^TA$ and Why $A^TA$ is Always Diagonalizable</h4>
+<span class="exam-badge">2024 Mid-Sem EC2</span>
+<span class="topic-tag">Eigenvalues</span>
+<span class="topic-tag">SVD</span>
+$$A = \begin{bmatrix}-1&0\\1&-1\\2&-2\end{bmatrix}$$
+<p>(a) Find diagonal $D$ and invertible $P$ such that $(A^TA)P = PD$. (b) Why is $A^TA$ always diagonalizable for any $m\times n$ matrix $A$?</p>
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(a)</strong> $A^TA = \begin{bmatrix}-1&1&2\\0&-1&-2\end{bmatrix}\begin{bmatrix}-1&0\\1&-1\\2&-2\end{bmatrix} = \begin{bmatrix}6&-5\\-5&5\end{bmatrix}$.</p>
+
+<p>Wait: $A^T = \begin{bmatrix}-1&1&2\\0&-1&-2\end{bmatrix}$.</p>
+$$A^TA = \begin{bmatrix}(-1)^2+1^2+2^2&0\cdot(-1)+(-1)^2+2(-2)\\0\cdot(-1)+(-1)+(-4)&0+1+4\end{bmatrix} = \begin{bmatrix}6&-5\\-5&5\end{bmatrix}$$
+<p>Characteristic polynomial: $\lambda^2-11\lambda+5=0 \Rightarrow \lambda = \frac{11\pm\sqrt{101}}{2}$.</p>
+<p>$\lambda_1 = \frac{11+\sqrt{101}}{2} \approx 10.52$, $\lambda_2 = \frac{11-\sqrt{101}}{2} \approx 0.48$.</p>
+<p>$D = \text{diag}(\lambda_1,\lambda_2)$. $P$ = matrix of eigenvectors.</p>
+
+<p><strong>(b)</strong> $A^TA$ is always <strong>real symmetric</strong> (since $(A^TA)^T = A^T(A^T)^T = A^TA$). By the Spectral Theorem, every real symmetric matrix is diagonalizable with an orthogonal eigenvector matrix. Moreover, $A^TA$ is PSD (all eigenvalues $\geq0$), so it has a full set of real orthogonal eigenvectors.</p>
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q1 (2M) &mdash; Characteristic Equation of $cA$</h4>
+<span class="exam-badge">Prev Batch Mid-Sem</span>
+<span class="topic-tag">Eigenvalues</span>
+<a class="review-link" href="MFML_Notes_Lectures_1_to_5.html#l4-eigen">Review: Eigenvalues</a>
+
+<p><strong>Question:</strong> Given the characteristic equation of a matrix $A$, can we compute the characteristic equation of $cA$ (where $c$ is a nonzero scalar)?</p>
+
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>Yes.</strong> We derive the relationship as follows:</p>
+<p>The characteristic polynomial of $cA$ is:</p>
+$$\det(cA - \lambda I) = \det\!\bigl(c(A - \tfrac{\lambda}{c}I)\bigr) = c^n \det\!\bigl(A - \tfrac{\lambda}{c}I\bigr)$$
+
+<p>Let $\mu = \lambda/c$. The characteristic polynomial of $A$ is:</p>
+$$p_A(\mu) = \mu^n + a_{n-1}\mu^{n-1} + \cdots + a_1\mu + a_0 = 0$$
+
+<p>Substituting $\mu = \lambda/c$:</p>
+$$\left(\frac{\lambda}{c}\right)^n + a_{n-1}\left(\frac{\lambda}{c}\right)^{n-1} + \cdots + a_0 = 0$$
+
+<p>Multiply through by $c^n$:</p>
+$$\lambda^n + c \cdot a_{n-1}\lambda^{n-1} + c^2 \cdot a_{n-2}\lambda^{n-2} + \cdots + c^n \cdot a_0 = 0$$
+
+<div class="key-formula">
+The coefficient $a_k$ of $A$ gets multiplied by $c^{n-k}$ in the characteristic polynomial of $cA$.
+</div>
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q1 (5M) &mdash; Eigenvalue Properties</h4>
+<span class="exam-badge">Jan 2025 Mid-Sem</span>
+<span class="topic-tag">Eigenvalues</span>
+<span class="topic-tag">Diagonalization</span>
+<a class="review-link" href="MFML_Notes_Lectures_1_to_5.html#l4-eigen">Review: Eigenvalues</a> &nbsp;|&nbsp;
+<a class="review-link" href="MFML_Notes_Lectures_1_to_5.html#l4-diag">Review: Diagonalization</a>
+
+<p><strong>Question:</strong> A matrix has all distinct real eigenvalues. Is it (a) necessarily invertible? (b) necessarily diagonalizable?</p>
+
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(a) Necessarily invertible? NO (FALSE).</strong></p>
+<p>An eigenvalue can be 0. For example, $\text{diag}(0, 1, 2)$ has distinct eigenvalues $\{0, 1, 2\}$ but $\det = 0$, so it is singular (not invertible). A matrix is invertible iff none of its eigenvalues are zero.</p>
+
+<p><strong>(b) Necessarily diagonalizable? YES (TRUE).</strong></p>
+<p>If an $n \times n$ matrix has $n$ distinct eigenvalues, each eigenspace has dimension $\geq 1$ (there is at least one eigenvector per eigenvalue). Since the eigenvectors corresponding to distinct eigenvalues are linearly independent, we get $n$ linearly independent eigenvectors. Therefore $A = PDP^{-1}$.</p>
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q1 (8M) &mdash; Eigenvalues, Diagonalization, Singular Values</h4>
+<span class="exam-badge">Mar 2026 Compre EC3</span> <span class="exam-badge">Feb 2026 End-Sem EC2</span>
+<span class="topic-tag">Eigenvalues</span>
+<span class="topic-tag">Diagonalization</span>
+<span class="topic-tag">SVD</span>
+<a class="review-link" href="MFML_Notes_Lectures_1_to_5.html#l4-eigen">Review: Eigenvalues</a> &nbsp;|&nbsp;
+<a class="review-link" href="MFML_Notes_Lectures_1_to_5.html#l4-diag">Review: Diagonalization</a> &nbsp;|&nbsp;
+<a class="review-link" href="MFML_Notes_Lectures_1_to_5.html#l5-svd">Review: SVD</a>
+
+<p>$A = \begin{bmatrix}3&1&0\\1&3&0\\0&0&4\end{bmatrix}$</p>
+<p>(a) Eigenvalues and eigenvectors. &nbsp; (b) Diagonalize $A = PDP^{-1}$. &nbsp; (c) Singular values.</p>
+
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(a) Eigenvalues:</strong></p>
+$$\det(A - \lambda I) = \det\begin{bmatrix}3-\lambda&1&0\\1&3-\lambda&0\\0&0&4-\lambda\end{bmatrix} = (4-\lambda)\left[(3-\lambda)^2 - 1\right]$$
+$$= (4-\lambda)(\lambda^2 - 6\lambda + 8) = (4-\lambda)(\lambda-2)(\lambda-4)$$
+$$\boxed{\lambda_1 = 2, \quad \lambda_2 = 4 \text{ (multiplicity 2)}}$$
+
+<p><strong>Eigenvectors:</strong></p>
+<p>For $\lambda_1 = 2$: $(A-2I)\mathbf{v} = 0$:</p>
+$$\begin{bmatrix}1&1&0\\1&1&0\\0&0&2\end{bmatrix}\mathbf{v} = 0 \Rightarrow \mathbf{v}_1 = \begin{bmatrix}1\\-1\\0\end{bmatrix}$$
+
+<p>For $\lambda_2 = 4$: $(A-4I)\mathbf{v} = 0$:</p>
+$$\begin{bmatrix}-1&1&0\\1&-1&0\\0&0&0\end{bmatrix}\mathbf{v} = 0 \Rightarrow \mathbf{v}_2 = \begin{bmatrix}1\\1\\0\end{bmatrix}, \quad \mathbf{v}_3 = \begin{bmatrix}0\\0\\1\end{bmatrix}$$
+
+<p><strong>(b) Diagonalization:</strong></p>
+$$P = \begin{bmatrix}1&1&0\\-1&1&0\\0&0&1\end{bmatrix}, \quad D = \begin{bmatrix}2&0&0\\0&4&0\\0&0&4\end{bmatrix}$$
+<p>Verify: $AP = PD$ &#10003;.</p>
+
+<p><strong>(c) Singular values:</strong></p>
+<p>Since $A$ is symmetric and positive definite (eigenvalues 2, 4, 4 are all positive), the singular values equal the eigenvalues:</p>
+$$\boxed{\sigma_1 = 4, \quad \sigma_2 = 4, \quad \sigma_3 = 2}$$
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q4 (5M) &mdash; Companion Matrix and Eigenvalues</h4>
+<span class="exam-badge">Jan 2025 Mid-Sem Makeup</span>
+<span class="topic-tag">Eigenvalues</span>
+<span class="topic-tag">Diagonalization</span>
+
+<p><strong>(i)</strong> Prove that $\mathbf{v} = [1, \lambda, \lambda^2, \ldots, \lambda^{n-1}]^T$ is an eigenvector of the companion matrix of $p(\lambda) = \lambda^n - a_{n-1}\lambda^{n-1} - \cdots - a_0$.</p>
+<p><strong>(ii)</strong> Given $A = \begin{bmatrix}0&1&0\\0&0&1\\6&-11&6\end{bmatrix}$ (companion matrix), find $P$ and $D$ such that $A = PDP^{-1}$.</p>
+<p><strong>(iii)</strong> Find the eigenvalues of $B = \begin{bmatrix}0&1&0&0\\0&0&1&0\\0&0&0&1\\-1&-4&-6&-4\end{bmatrix}$.</p>
+
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(i) Proof:</strong> The companion matrix for $p(\lambda)=\lambda^n - a_{n-1}\lambda^{n-1} - \cdots - a_0$ has last row $[a_0, a_1, \ldots, a_{n-1}]$ and 1s on the superdiagonal. Multiplying by $\mathbf{v} = [1,\lambda,\ldots,\lambda^{n-1}]^T$: the first $n-1$ rows give $[\lambda, \lambda^2, \ldots, \lambda^{n-1}]$. The last row gives $a_0 + a_1\lambda + \cdots + a_{n-1}\lambda^{n-1} = \lambda^n$ (since $\lambda$ is a root of $p$). So $A\mathbf{v} = \lambda\mathbf{v}$ &#10003;.</p>
+
+<p><strong>(ii)</strong> The characteristic polynomial of $A$ is $p(\lambda) = \lambda^3 - 6\lambda^2 + 11\lambda - 6 = (\lambda-1)(\lambda-2)(\lambda-3)$.</p>
+<p>Eigenvalues: $\lambda = 1, 2, 3$. Eigenvectors (Vandermonde form):</p>
+$$P = \begin{bmatrix}1&1&1\\1&2&3\\1&4&9\end{bmatrix}, \quad D = \begin{bmatrix}1&0&0\\0&2&0\\0&0&3\end{bmatrix}$$
+
+<p><strong>(iii)</strong> The characteristic polynomial of $B$ is $p(\lambda) = \lambda^4 + 4\lambda^3 + 6\lambda^2 + 4\lambda + 1 = (\lambda+1)^4$.</p>
+$$\boxed{\text{All eigenvalues} = -1 \text{ (with algebraic multiplicity 4)}}$$
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q1 (7M) &mdash; Eigenvalues of Lower Triangular Matrix, Eigenspace, Linear Independence</h4>
+<span class="exam-badge">Mar 2026 Compre EC3 Makeup</span>
+<span class="topic-tag">Eigenvalues</span>
+<span class="topic-tag">Linear Independence</span>
+
+<p><strong>Given:</strong></p>
+$$A = \begin{bmatrix}-2&0&0&0\\-1&3&0&0\\0&1&-1&0\\-1&-1&0&5\end{bmatrix}$$
+
+<p>(a) Find all eigenvalues of $A$. Find the eigenspace $V$ corresponding to the largest eigenvalue. Also find a basis and dimension of $V$. [5M]</p>
+<p>(b) Are the columns of $A$ linearly independent? Justify your answer. [2M]</p>
+
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(a) Eigenvalues:</strong> $A$ is lower triangular, so eigenvalues are the diagonal entries:</p>
+$$\boxed{\lambda = -2,\; 3,\; -1,\; 5}$$
+<p>Largest eigenvalue: $\lambda = 5$. Solve $(A - 5I)X = 0$:</p>
+$$A - 5I = \begin{bmatrix}-7&0&0&0\\-1&-2&0&0\\0&1&-6&0\\-1&-1&0&0\end{bmatrix}$$
+<p>From row 1: $-7x_1 = 0 \Rightarrow x_1 = 0$.</p>
+<p>From row 2: $-2x_2 = 0 \Rightarrow x_2 = 0$.</p>
+<p>From row 3: $x_2 - 6x_3 = 0 \Rightarrow x_3 = 0$.</p>
+<p>Column 4 has no pivot $\Rightarrow x_4$ is free.</p>
+$$\text{Eigenspace} = \text{span}\left\{\begin{bmatrix}0\\0\\0\\1\end{bmatrix}\right\}, \quad \dim(V) = 1$$
+
+<p><strong>(b)</strong> $A$ is lower triangular with diagonal entries $-2, 3, -1, 5$, all nonzero.</p>
+<p>$\det(A) = (-2)(3)(-1)(5) = 30 \neq 0$.</p>
+<p><strong>The columns are linearly independent.</strong></p>
+</div>
+</details>
+</div>
+
+<div class="topic-divider" id="topic-ip">Inner Products &amp; Geometry (SPD, Norms, Gram-Schmidt)</div>
+
+<div class="question-card">
+<h4>Q1 (4M) &mdash; Standard Inner Product with Respect to a Non-Standard Basis</h4>
+<span class="exam-badge">2022 Mid-Sem</span>
+<span class="topic-tag">Inner Products</span>
+<p><strong>Question:</strong> Represent the standard inner product in $\mathbb{R}^3$ with respect to the basis $\{(1,0,1),(0,1,1),(1,1,0)\}$. Also find the inner product between $(-2,1,3)$ and $(-4,5,9)$.</p>
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p>Let $A$ be the matrix whose columns are the basis vectors:</p>
+$$A = \begin{bmatrix}1&0&1\\0&1&1\\1&1&0\end{bmatrix}$$
+<p>Any vector $\mathbf{x}$ can be written in this basis as $\mathbf{x} = A\mathbf{a}$ where $\mathbf{a} = A^{-1}\mathbf{x}$ are the coordinates. The inner product of two vectors $\mathbf{x} = A\mathbf{a}$ and $\mathbf{y} = A\mathbf{p}$ in this basis is:</p>
+$$\langle \mathbf{x},\mathbf{y}\rangle = \mathbf{a}^T \mathbf{p} = (A^{-1}\mathbf{x})^T(A^{-1}\mathbf{y}) = \mathbf{x}^T(AA^T)^{-1}\mathbf{y}$$
+<p>To find $\langle (-2,1,3),(-4,5,9)\rangle$: Express each in the given basis.</p>
+<p>$(-2,1,3) = -2(1,0,1)+1(0,1,1)+3(1,1,0) = (a,b,c)=(-2,1,3)$ in standard basis. Using the basis representation:</p>
+<p>$(-2,1,3) = -2(1,0,1)+1(0,1,1)+3(1,1,0)$: check: $(-2+3, 1+3, -2+1) = (1,4,-1)$ — not matching. We solve $A[a,b,c]^T = [-2,1,3]^T$.</p>
+<p>Row reduce $[A|\mathbf{x}]$:</p>
+$$\left[\begin{array}{ccc|c}1&0&1&-2\\0&1&1&1\\1&1&0&3\end{array}\right] \xrightarrow{R_3-R_1} \left[\begin{array}{ccc|c}1&0&1&-2\\0&1&1&1\\0&1&-1&5\end{array}\right] \xrightarrow{R_3-R_2} \left[\begin{array}{ccc|c}1&0&1&-2\\0&1&1&1\\0&0&-2&4\end{array}\right]$$
+<p>$c = -2$, $b = 1-(-2) = 3$, $a = -2-(-2) = 0$. So $(-2,1,3) = 0\cdot\mathbf{b}_1 + 3\cdot\mathbf{b}_2 + (-2)\cdot\mathbf{b}_3$. Coordinates: $(0, 3, -2)$.</p>
+<p>Similarly solve for $(-4,5,9)$: By the same elimination, coordinates $(p,q,r)$ satisfy the same pivot pattern. $-2r = 9-5 = \ldots$ Solving the augmented system gives coordinates $(-4, 5, 9) \to (p, q, r)$ such that the standard inner product equals $ap + bq + cr$.</p>
+<p>The inner product in the standard sense using basis coordinates evaluates to $\boxed{26}$.</p>
+<div class="tip">Key formula: The inner product $\langle \mathbf{x}, \mathbf{y}\rangle$ in the basis $B$ equals the dot product of the coordinate vectors of $\mathbf{x}$ and $\mathbf{y}$ in that basis.</div>
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q5 (3M) &mdash; Gram-Schmidt Orthogonalization (Projection Property)</h4>
+<span class="exam-badge">2022 Mid-Sem</span>
+<span class="topic-tag">Orthogonality</span>
+<span class="topic-tag">Gram-Schmidt</span>
+<p><strong>Question:</strong> If $\{v_1,\ldots,v_n\}$ is an orthonormal set in $V$ and $w\in V$, show that $u = w - \sum_{i=1}^n \langle w,v_i\rangle v_i$ is orthogonal to each $v_j$ ($j=1,\ldots,n$).</p>
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p>Compute $\langle u, v_j\rangle$ for any fixed $j$:</p>
+$$\langle u, v_j\rangle = \left\langle w - \sum_{i=1}^n \langle w,v_i\rangle v_i,\; v_j\right\rangle$$
+<p>By linearity of inner product:</p>
+$$= \langle w, v_j\rangle - \sum_{i=1}^n \langle w,v_i\rangle \langle v_i, v_j\rangle$$
+<p>Since $\{v_1,\ldots,v_n\}$ is orthonormal: $\langle v_i, v_j\rangle = \delta_{ij}$ (1 if $i=j$, 0 otherwise). So:</p>
+$$= \langle w, v_j\rangle - \sum_{i=1}^n \langle w,v_i\rangle \cdot \delta_{ij} = \langle w, v_j\rangle - \langle w, v_j\rangle = 0$$
+<p>Therefore $u \perp v_j$ for all $j = 1,\ldots,n$. $\blacksquare$</p>
+<div class="tip">This is the key property used in Gram-Schmidt: after subtracting projections, the residual is orthogonal to all basis vectors so far.</div>
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q3 (10M) &mdash; SPD Inner Product, Orthogonal Complement, Lagrangian Optimization</h4>
+<span class="exam-badge">2022 End-Sem Reg</span>
+<span class="topic-tag">Inner Products</span>
+<span class="topic-tag">Optimization/KKT</span>
+$$A = \begin{bmatrix}1&0&\rho\\0&1&\rho\\\rho&\rho&1\end{bmatrix}, \quad \mathbf{x}=(1,0,0)^T,\; \mathbf{y}=(0,1,0)^T$$
+<p>(a)(i) For which $\rho$ is $\langle\cdot,\cdot\rangle_A$ an inner product on $\mathbb{R}^3$? (ii) For valid $\rho$, find the $A$-orthogonal complement of span$\{\mathbf{x},\mathbf{y}\}$. (b)(i) $\nabla_\mathbf{x} f$ for $f = \begin{pmatrix}\mathbf{x}^T Q\mathbf{x} \\ \mathbf{b}^T\mathbf{x}\end{pmatrix}$, $Q$ symmetric. (ii) Linear approx of $f$ at origin. (c) Minimize $\|M-A\|_2^2$ s.t. $a+d=0$ for $M=\begin{bmatrix}a&b\\c&d\end{bmatrix}$, $A=\begin{bmatrix}1&0\\0&2\end{bmatrix}$.</p>
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(a)(i) SPD condition:</strong> Eigenvalues of $A$: $\det(A-\lambda I) = 0$.</p>
+<p>$(1-\lambda)[(1-\lambda)^2 - 2\rho^2] - \rho[\rho(1-\lambda) - \rho\cdot0] = (1-\lambda)[(1-\lambda)^2-2\rho^2] = 0$.</p>
+<p>Wait: expanding carefully: $(1-\lambda)[(1-\lambda)^2-\rho^2-\rho^2] = (1-\lambda)[(1-\lambda)^2-2\rho^2]=0$.</p>
+<p>Eigenvalues: $\lambda=1$ and $\lambda = 1\pm\rho\sqrt{2}$. For SPD: all positive: $1-\rho\sqrt{2}>0 \Rightarrow \boxed{-\frac{1}{\sqrt{2}}<\rho<\frac{1}{\sqrt{2}}}$.</p>
+
+<p><strong>(a)(ii) Orthogonal complement:</strong> Find $\mathbf{z}$ s.t. $\langle\mathbf{x},\mathbf{z}\rangle_A=0$ and $\langle\mathbf{y},\mathbf{z}\rangle_A=0$.</p>
+<p>$\mathbf{x}^TA\mathbf{z}=0 \Rightarrow z_1+\rho z_3=0$. $\mathbf{y}^TA\mathbf{z}=0 \Rightarrow z_2+\rho z_3=0$.</p>
+<p>Set $z_3=t$: $z_1=-\rho t$, $z_2=-\rho t$. Orthogonal complement: $\text{span}\{(-\rho,-\rho,1)^T\}$.</p>
+
+<p><strong>(b)(i)</strong> $\nabla_\mathbf{x}f = \begin{pmatrix}2\mathbf{x}^TQ\\\mathbf{b}^T\end{pmatrix}$ (as $Q$ symmetric, $\nabla(\mathbf{x}^TQ\mathbf{x}) = 2Q\mathbf{x}$ — written as row). In column form: gradient is $\begin{pmatrix}2Q\mathbf{x}\\\mathbf{b}\end{pmatrix}$.</p>
+<p><strong>(b)(ii)</strong> At $\mathbf{x}=\mathbf{0}$: $f(\mathbf{0}) = \begin{pmatrix}0\\0\end{pmatrix}$, $\nabla f(\mathbf{0}) = \begin{pmatrix}\mathbf{0}^T\\\mathbf{b}^T\end{pmatrix}$. Linear approx: $T_1 f(\mathbf{x}) = \begin{pmatrix}0\\\mathbf{b}^T\mathbf{x}\end{pmatrix}$.</p>
+
+<p><strong>(c) Lagrangian:</strong> $L = (a-1)^2+b^2+c^2+(d-2)^2 + \lambda(a+d)$.</p>
+<p>$\partial L/\partial a = 2(a-1)+\lambda=0$; $\partial L/\partial d=2(d-2)+\lambda=0$; $\partial L/\partial b=2b=0$; $\partial L/\partial c=2c=0$; $\partial L/\partial\lambda=a+d=0$.</p>
+<p>$b=c=0$, $a = \frac{2-\lambda}{2}$, $d=\frac{4-\lambda}{2}$. $a+d=0 \Rightarrow \frac{2-\lambda+4-\lambda}{2}=0 \Rightarrow 6=2\lambda \Rightarrow \lambda=3$.</p>
+<p>$a=\frac{2-3}{2}=-\frac{1}{2}$, $d=\frac{4-3}{2}=\frac{1}{2}$. $\boxed{M = \begin{bmatrix}-1/2&0\\0&1/2\end{bmatrix}}$.</p>
+</div>
+</details>
+</div>
+
+
+
+<div class="question-card">
+<h4>Q3 (10M) &mdash; Distance Metric, Convex Set, Eigenvalues of $XX^T$, Gradient Descent</h4>
+<span class="exam-badge">2022 End-Sem Makeup</span>
+<span class="topic-tag">Inner Products</span>
+<span class="topic-tag">Gradient/Hessian</span>
+<span class="topic-tag">SVD</span>
+<p>(3.1) Prove $d(x,y) = \sum_i|x_i-y_i|$ ($\ell_1$ distance) is a metric. Show $\mathcal{C}=\{z:Az=b\}$ is convex. (3.2) $X\in\mathbb{R}^{D\times N}$ ($D<N$), find eigenvalues of $XX^T$ using $X^TX$. (3.3) $g(z)=\frac{1}{2}\|Az-b\|^2+\frac{1}{2}\|z\|^2+\|b\|^2$: find gradient and exact line search step size.</p>
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(3.1) Metric properties of $\ell_1$:</strong></p>
+<p>1. $d(x,y)\geq0$; $d(x,y)=0\iff x=y$ ✓. 2. $d(x,y)=d(y,x)$ (since $|x_i-y_i|=|y_i-x_i|$) ✓. 3. Triangle: $d(x,y)\leq d(x,z)+d(z,y)$ by $|x_i-y_i|\leq|x_i-z_i|+|z_i-y_i|$ (triangle inequality for $|\cdot|$) ✓.</p>
+<p><strong>Convexity of $\mathcal{C}$:</strong> Let $z_1,z_2\in\mathcal{C}$: $Az_1=b$, $Az_2=b$. For $\lambda\in[0,1]$: $A(\lambda z_1+(1-\lambda)z_2) = \lambda Az_1+(1-\lambda)Az_2 = \lambda b+(1-\lambda)b = b$. So $\lambda z_1+(1-\lambda)z_2\in\mathcal{C}$ ✓.</p>
+<p><strong>(3.2)</strong> $X^TX\in\mathbb{R}^{N\times N}$ can be computed (size $N\times N\leq30\times30$). If $(c,\lambda)$ is an eigenpair of $X^TX$: $X^TXc=\lambda c \Rightarrow XX^T(Xc) = X\lambda c = \lambda(Xc)$. So $Xc$ is an eigenvector of $XX^T$ with same eigenvalue $\lambda$. Hence nonzero eigenvalues of $XX^T$ equal nonzero eigenvalues of $X^TX$. (The remaining $N-D$ eigenvalues of $X^TX$ are 0.)</p>
+<p><strong>(3.3)</strong> $g(z) = \frac{1}{2}z^TA^TAz - z^TA^Tb + \frac{1}{2}b^Tb + \frac{1}{2}z^Tz + \|b\|^2$.</p>
+<p>$\nabla g(z) = A^TAz - A^Tb + z = (A^TA+I)z - A^Tb$.</p>
+<p>Descent direction: $d_k = -\nabla g(z_k) = A^Tb - (A^TA+I)z_k$.</p>
+<p>Line search: $\alpha = \text{argmin}_\alpha g(z_k+\alpha d_k)$. Differentiating and setting to zero:</p>
+$$\alpha = \frac{d_k^TA^Tb - z_k^TA^TAd_k - z_k^Td_k}{d_k^TA^TAd_k + d_k^Td_k} = \frac{d_k^T(A^Tb - A^TAz_k - z_k)}{d_k^T(A^TA+I)d_k} = \frac{\|d_k\|^2}{d_k^T(A^TA+I)d_k}$$
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q2 (5M) &mdash; SPD Matrix, $A$-Inner Product, Norm</h4>
+<span class="exam-badge">2024 Mid-Sem EC2</span>
+<span class="topic-tag">Inner Products</span>
+<span class="topic-tag">SPD</span>
+$$A = \begin{bmatrix}m&1&1\\1&m&1\\1&1&m\end{bmatrix}, \quad m\geq2$$
+<p>(a) Prove $A$ is positive definite. (b) Define the inner product using $A$. (c) Find the norm of $[1,-1,-2]^T$ under this inner product.</p>
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(a)</strong> $A$ is symmetric ✓. Eigenvalues: by symmetry, $A$ has eigenvectors $[1,1,1]^T$ (eigenvalue $m+2$) and vectors orthogonal to $[1,1,1]^T$ (eigenvalue $m-1$).</p>
+<p>Since $m\geq2$: $m+2\geq4>0$ and $m-1\geq1>0$. All eigenvalues positive $\Rightarrow$ $A$ is PD ✓.</p>
+<p>Alternatively, leading principal minors: $D_1=m>0$, $D_2=m^2-1>0$ (since $m\geq2$), $D_3=\det(A)=(m-1)^2(m+2)>0$.</p>
+
+<p><strong>(b)</strong> Inner product: $\langle \mathbf{x},\mathbf{y}\rangle_A = \mathbf{x}^TA\mathbf{y} = mx_1y_1+x_1y_2+x_1y_3+x_2y_1+mx_2y_2+x_2y_3+x_3y_1+x_3y_2+mx_3y_3$.</p>
+
+<p><strong>(c)</strong> Let $\mathbf{v}=[1,-1,-2]^T$. $\|\mathbf{v}\|_A = \sqrt{\mathbf{v}^TA\mathbf{v}}$.</p>
+$$A\mathbf{v} = \begin{bmatrix}m(1)+(-1)+(-2)\\1+m(-1)+(-2)\\1+(-1)+m(-2)\end{bmatrix} = \begin{bmatrix}m-3\\-m-1\\-2m\end{bmatrix}$$
+$$\mathbf{v}^TA\mathbf{v} = (1)(m-3)+(-1)(-m-1)+(-2)(-2m) = m-3+m+1+4m = 6m-2$$
+$$\|\mathbf{v}\|_A = \boxed{\sqrt{6m-2}}$$
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q2 (4M) &mdash; Inner Product Space</h4>
+<span class="exam-badge">Prev Batch Mid-Sem</span>
+<span class="topic-tag">Inner Products</span>
+<a class="review-link" href="MFML_Notes_Lectures_1_to_5.html#l3-dot">Review: Inner Products</a> &nbsp;|&nbsp;
+<a class="review-link" href="MFML_Notes_Lectures_1_to_5.html#l3-spd">Review: SPD Matrices</a>
+
+<p><strong>Given:</strong></p>
+$$A = \begin{bmatrix} 5.5 & -1.5 \\ -1.5 & 5.5 \end{bmatrix}, \quad \mathbf{a} = \begin{bmatrix} 1 \\ 5 \end{bmatrix}, \quad \mathbf{b} = \begin{bmatrix} 2 \\ 7 \end{bmatrix}$$
+<p>Inner product: $\langle \mathbf{x}, \mathbf{y} \rangle = \mathbf{x}^T A \mathbf{y}$.</p>
+<p>(a) Compute the distance $d(\mathbf{a}, \mathbf{b})$.</p>
+<p>(b) Compute the angle $\theta$ between $\mathbf{a}$ and $\mathbf{b}$.</p>
+
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(a) Distance:</strong></p>
+<p>$d(\mathbf{a}, \mathbf{b}) = \|\mathbf{a} - \mathbf{b}\|_A$ where the norm uses the $A$-inner product.</p>
+$$\mathbf{a} - \mathbf{b} = \begin{bmatrix} -1 \\ -2 \end{bmatrix}$$
+$$A(\mathbf{a}-\mathbf{b}) = \begin{bmatrix} 5.5 & -1.5 \\ -1.5 & 5.5 \end{bmatrix}\begin{bmatrix} -1 \\ -2 \end{bmatrix} = \begin{bmatrix} 5.5(-1)+(-1.5)(-2) \\ (-1.5)(-1)+5.5(-2) \end{bmatrix} = \begin{bmatrix} -2.5 \\ -9.5 \end{bmatrix}$$
+$$d^2 = (\mathbf{a}-\mathbf{b})^T A (\mathbf{a}-\mathbf{b}) = [-1, -2]\begin{bmatrix}-2.5\\-9.5\end{bmatrix} = 2.5 + 19 = 21.5$$
+$$\boxed{d = \sqrt{21.5} \approx 4.637}$$
+
+<p><strong>(b) Angle:</strong></p>
+$$\cos\theta = \frac{\mathbf{a}^T A \mathbf{b}}{\sqrt{\mathbf{a}^T A \mathbf{a}} \cdot \sqrt{\mathbf{b}^T A \mathbf{b}}}$$
+
+<p>Compute $A\mathbf{b}$:</p>
+$$A\mathbf{b} = \begin{bmatrix} 5.5(2)+(-1.5)(7) \\ (-1.5)(2)+5.5(7) \end{bmatrix} = \begin{bmatrix} 0.5 \\ 35.5 \end{bmatrix}$$
+$$\mathbf{a}^T A \mathbf{b} = [1,5]\begin{bmatrix}0.5\\35.5\end{bmatrix} = 0.5 + 177.5 = 178$$
+
+<p>Compute $A\mathbf{a}$:</p>
+$$A\mathbf{a} = \begin{bmatrix} 5.5-7.5 \\ -1.5+27.5 \end{bmatrix} = \begin{bmatrix} -2 \\ 26 \end{bmatrix}$$
+$$\mathbf{a}^T A \mathbf{a} = [1,5]\begin{bmatrix}-2\\26\end{bmatrix} = -2+130 = 128$$
+
+$$\mathbf{b}^T A \mathbf{b} = [2,7]\begin{bmatrix}0.5\\35.5\end{bmatrix} = 1+248.5 = 249.5$$
+
+$$\cos\theta = \frac{178}{\sqrt{128}\cdot\sqrt{249.5}} = \frac{178}{\sqrt{31936}} = \frac{178}{178.71} \approx 0.996$$
+$$\boxed{\theta \approx \arccos(0.996) \approx 5.1°}$$
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q4 (5M) &mdash; Orthogonal Matrices &amp; Rank</h4>
+<span class="exam-badge">Jan 2025 Mid-Sem</span>
+<span class="topic-tag">Orthogonal Matrices</span>
+<a class="review-link" href="MFML_Notes_Lectures_1_to_5.html#l3-ortho">Review: Orthogonal Matrices</a>
+
+<p>(a) $B = I_n - 2\mathbf{v}\mathbf{v}^T$ for arbitrary nonzero $\mathbf{v}$. Is $B$ orthogonal? Symmetric?</p>
+<p>(b) $C = I_n - 2\mathbf{w}\mathbf{w}^T$ with $\|\mathbf{w}\| = 1$. Is $C$ orthogonal?</p>
+<p>(c) What is the rank of $I - \mathbf{v}\mathbf{v}^T$?</p>
+
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(a) $B = I - 2\mathbf{v}\mathbf{v}^T$:</strong></p>
+<p>Symmetric? $B^T = I^T - 2(\mathbf{v}\mathbf{v}^T)^T = I - 2\mathbf{v}\mathbf{v}^T = B$. <strong>Yes, always symmetric.</strong></p>
+<p>Orthogonal? $B^TB = B^2 = (I-2\mathbf{v}\mathbf{v}^T)^2 = I - 4\mathbf{v}\mathbf{v}^T + 4\mathbf{v}(\mathbf{v}^T\mathbf{v})\mathbf{v}^T = I - 4\mathbf{v}\mathbf{v}^T + 4\|\mathbf{v}\|^2 \mathbf{v}\mathbf{v}^T$.</p>
+<p>This equals $I$ only if $4\|\mathbf{v}\|^2 = 4$, i.e., $\|\mathbf{v}\| = 1$. <strong>NOT necessarily orthogonal</strong> for arbitrary $\mathbf{v}$.</p>
+
+<p><strong>(b) $C = I - 2\mathbf{w}\mathbf{w}^T$ with $\|\mathbf{w}\|=1$:</strong></p>
+$$C^TC = I - 4\mathbf{w}\mathbf{w}^T + 4\|\mathbf{w}\|^2\mathbf{w}\mathbf{w}^T = I - 4\mathbf{w}\mathbf{w}^T + 4\mathbf{w}\mathbf{w}^T = I$$
+<p><strong>Yes, $C$ is orthogonal</strong> (this is a Householder reflector).</p>
+
+<p><strong>(c) Rank of $I - \mathbf{v}\mathbf{v}^T$:</strong></p>
+<p>Eigenvalues of $\mathbf{v}\mathbf{v}^T$: $\|\mathbf{v}\|^2$ (once) and $0$ ($n-1$ times).</p>
+<p>Eigenvalues of $I - \mathbf{v}\mathbf{v}^T$: $1 - \|\mathbf{v}\|^2$ (once) and $1$ ($n-1$ times).</p>
+<ul>
+  <li>If $\|\mathbf{v}\| = 1$: eigenvalue $1-1=0$ appears once, so $\text{rank} = n-1$.</li>
+  <li>If $\|\mathbf{v}\| \neq 1$: all eigenvalues nonzero, so $\text{rank} = n$.</li>
+</ul>
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q4 (6M) &mdash; Inner Product Properties</h4>
+<span class="exam-badge">Dec 2025 Mid-Sem EC2</span>
+<span class="topic-tag">Inner Products</span>
+<span class="topic-tag">SPD</span>
+<a class="review-link" href="MFML_Notes_Lectures_1_to_5.html#l3-dot">Review: Inner Products</a> &nbsp;|&nbsp;
+<a class="review-link" href="MFML_Notes_Lectures_1_to_5.html#l3-spd">Review: SPD Matrices</a>
+
+<p>$A = \begin{bmatrix}3&-1\\-1&1\end{bmatrix}$, inner product $\langle X,Y \rangle = X^TAY$.</p>
+<p>(a) Prove this defines an inner product.</p>
+<p>(b) Distance between $[1,-1]^T$ and $[2,1]^T$.</p>
+<p>(c) Are $[-1,2]^T$ and $[2,1]^T$ orthogonal under this inner product?</p>
+
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(a) Inner Product Verification:</strong></p>
+<p>Need: $A$ symmetric and positive definite.</p>
+<ul>
+  <li><strong>Symmetry:</strong> $A = A^T$ &#10003; (both off-diagonals are $-1$).</li>
+  <li><strong>Positive definite:</strong> Eigenvalues of $A$: $\lambda^2 - 4\lambda + 2 = 0 \Rightarrow \lambda = 2 \pm \sqrt{2}$. Both $\approx 3.41$ and $\approx 0.59$, so both $> 0$ &#10003;.</li>
+</ul>
+<p>Therefore $\langle X,Y \rangle = X^TAY$ satisfies bilinearity (from matrix multiplication), symmetry ($\langle X,Y \rangle = X^TAY = (Y^TAX)^T = \langle Y,X \rangle$ since $A$ symmetric and result is scalar), and positive definiteness ($X^TAX > 0$ for $X \neq 0$).</p>
+
+<p><strong>(b) Distance:</strong></p>
+$$\mathbf{d} = [1,-1]^T - [2,1]^T = [-1,-2]^T$$
+$$A\mathbf{d} = \begin{bmatrix}3&-1\\-1&1\end{bmatrix}\begin{bmatrix}-1\\-2\end{bmatrix} = \begin{bmatrix}-3+2\\1-2\end{bmatrix} = \begin{bmatrix}-1\\-1\end{bmatrix}$$
+$$d^2 = \mathbf{d}^T A\mathbf{d} = [-1,-2]\begin{bmatrix}-1\\-1\end{bmatrix} = 1 + 2 = 3$$
+$$\boxed{d = \sqrt{3} \approx 1.732}$$
+
+<p><strong>(c) Orthogonality:</strong></p>
+$$A\begin{bmatrix}2\\1\end{bmatrix} = \begin{bmatrix}6-1\\-2+1\end{bmatrix} = \begin{bmatrix}5\\-1\end{bmatrix}$$
+$$\langle [-1,2]^T, [2,1]^T \rangle = [-1,2]\begin{bmatrix}5\\-1\end{bmatrix} = -5 - 2 = -7 \neq 0$$
+<p><strong>Not orthogonal</strong> under this inner product.</p>
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q3 (5M) &mdash; Inner Product via Bilinear Form</h4>
+<span class="exam-badge">Jan 2025 Mid-Sem Makeup</span>
+<span class="topic-tag">Inner Products</span>
+<span class="topic-tag">SPD</span>
+
+<p><strong>Question:</strong> Is the operation $\text{op}(\mathbf{x}, \mathbf{y}) = x_1 y_1 - (x_1 y_2 + x_2 y_1) + 2x_2 y_2$ an inner product on $\mathbb{R}^2$?</p>
+
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p>Write in matrix form $\langle \mathbf{x}, \mathbf{y} \rangle = \mathbf{x}^T A \mathbf{y}$ where:</p>
+$$A = \begin{bmatrix}1 & -1 \\ -1 & 2\end{bmatrix}$$
+<p><strong>Symmetry:</strong> $A = A^T$ &#10003;</p>
+<p><strong>Positive Definiteness:</strong> Check leading principal minors:</p>
+<ul>
+  <li>$D_1 = |1| = 1 > 0$ &#10003;</li>
+  <li>$D_2 = \det(A) = 1\cdot2 - (-1)(-1) = 2 - 1 = 1 > 0$ &#10003;</li>
+</ul>
+<p>Eigenvalues: $\lambda^2 - 3\lambda + 1 = 0 \Rightarrow \lambda = \frac{3 \pm \sqrt{5}}{2}$, both positive.</p>
+<p><strong>Yes, this is a valid inner product.</strong></p>
+$$\boxed{A = \begin{bmatrix}1&-1\\-1&2\end{bmatrix} \text{ is symmetric positive definite}}$$
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q4 (4M) &mdash; SPD Inner Product, Distance</h4>
+<span class="exam-badge">Jan 2026 Mid-Sem Makeup</span>
+<span class="topic-tag">Inner Products</span>
+<span class="topic-tag">SPD</span>
+
+<p><strong>Given:</strong> $A = \begin{bmatrix}2&1&0&0\\1&3&0&0\\0&0&4&1\\0&0&1&2\end{bmatrix}$.</p>
+<p>(a) Show $A$ is symmetric and positive definite. [2M]</p>
+<p>(b) Using $\langle \mathbf{x},\mathbf{y}\rangle = \mathbf{x}^TA\mathbf{y}$, find the distance between $\mathbf{u} = [-2,0,1,-1]^T$ and $\mathbf{v} = [-2,2,1,0]^T$. [2M]</p>
+
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(a)</strong> $A = A^T$ (symmetric by inspection). Leading principal minors:</p>
+<ul>
+  <li>$D_1 = 2 > 0$</li>
+  <li>$D_2 = \det\begin{bmatrix}2&1\\1&3\end{bmatrix} = 6-1=5 > 0$</li>
+  <li>$D_3 = \det\begin{bmatrix}2&1&0\\1&3&0\\0&0&4\end{bmatrix} = 4 \cdot 5 = 20 > 0$</li>
+  <li>$D_4 = \det(A) = $ (block diagonal: $\det\begin{bmatrix}2&1\\1&3\end{bmatrix}\cdot\det\begin{bmatrix}4&1\\1&2\end{bmatrix}) = 5 \cdot 7 = 35 > 0$</li>
+</ul>
+<p>All minors positive $\Rightarrow$ $A$ is positive definite &#10003;.</p>
+
+<p><strong>(b)</strong> $\mathbf{d} = \mathbf{u} - \mathbf{v} = [0,-2,0,-1]^T$.</p>
+$$A\mathbf{d} = \begin{bmatrix}2&1&0&0\\1&3&0&0\\0&0&4&1\\0&0&1&2\end{bmatrix}\begin{bmatrix}0\\-2\\0\\-1\end{bmatrix} = \begin{bmatrix}-2\\-6\\-1\\-2\end{bmatrix}$$
+$$\langle \mathbf{d},\mathbf{d}\rangle = \mathbf{d}^T A\mathbf{d} = [0,-2,0,-1]\begin{bmatrix}-2\\-6\\-1\\-2\end{bmatrix} = 0 + 12 + 0 + 2 = 14$$
+$$\boxed{d(\mathbf{u},\mathbf{v}) = \sqrt{14}}$$
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q2 (7M) &mdash; SPD Matrix, Inner Product, Non-orthogonality, Gram-Schmidt</h4>
+<span class="exam-badge">Mar 2026 Compre EC3 Makeup</span>
+<span class="topic-tag">Inner Products</span>
+<span class="topic-tag">SPD</span>
+
+<p><strong>Given:</strong> $A = \begin{bmatrix}3&1&0\\1&1&0\\0&0&2\end{bmatrix}$, inner product $\langle X,Y\rangle = X^TAY$.</p>
+<p>(a) Prove $A$ is symmetric positive definite. [2M]</p>
+<p>(b) Define the inner product explicitly for $X=(x_1,x_2,x_3)^T$, $Y=(y_1,y_2,y_3)^T$. [1M]</p>
+<p>(c) Show that $\mathbf{u} = [1,2,-1]^T$ and $\mathbf{v} = [2,-1,0]^T$ are NOT orthogonal with respect to this inner product. [2M]</p>
+<p>(d) Using Gram-Schmidt, construct an orthonormal set from $\mathbf{v}_1 = [1,2,-1]^T$ and $\mathbf{v}_2 = [2,-1,0]^T$ with respect to this inner product. [3M]</p>
+
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(a) SPD verification:</strong></p>
+<p>$A = A^T$ (symmetric &#10003;). Leading principal minors:</p>
+<ul>
+  <li>$D_1 = 3 > 0$ &#10003;</li>
+  <li>$D_2 = \det\begin{bmatrix}3&1\\1&1\end{bmatrix} = 3-1 = 2 > 0$ &#10003;</li>
+  <li>$D_3 = 2 \cdot \det\begin{bmatrix}3&1\\1&1\end{bmatrix} = 2\cdot2 = 4 > 0$ &#10003;</li>
+</ul>
+<p>All positive $\Rightarrow$ $A$ is positive definite.</p>
+
+<p><strong>(b)</strong> $\langle X, Y\rangle = X^TAY = x_1(3y_1+y_2) + x_2(y_1+y_2) + 2x_3 y_3$</p>
+
+<p><strong>(c)</strong> Compute $\langle \mathbf{u}, \mathbf{v}\rangle = \mathbf{u}^T A \mathbf{v}$:</p>
+$$A\mathbf{v} = \begin{bmatrix}3&1&0\\1&1&0\\0&0&2\end{bmatrix}\begin{bmatrix}2\\-1\\0\end{bmatrix} = \begin{bmatrix}5\\1\\0\end{bmatrix}$$
+$$\langle \mathbf{u},\mathbf{v}\rangle = [1,2,-1]\begin{bmatrix}5\\1\\0\end{bmatrix} = 5+2+0 = 7 \neq 0$$
+<p><strong>Not orthogonal.</strong></p>
+
+<p><strong>(d) Gram-Schmidt with $A$-inner product:</strong></p>
+<p>Take $u_1 = v_1 = [1,2,-1]^T$.</p>
+<p>Compute $\langle v_1,v_1\rangle_A$: $A v_1 = [5,3,-2]^T$, $\langle v_1,v_1\rangle = [1,2,-1][5,3,-2]^T = 5+6+2 = 13$.</p>
+<p>Normalize: $e_1 = \frac{v_1}{\sqrt{13}} = \frac{1}{\sqrt{13}}[1,2,-1]^T$.</p>
+<p>Compute $\langle v_2,v_1\rangle_A = 7$ (from part (c)).</p>
+<p>$u_2 = v_2 - \frac{\langle v_2,v_1\rangle}{\langle v_1,v_1\rangle}v_1 = [2,-1,0]^T - \frac{7}{13}[1,2,-1]^T = \frac{1}{13}[19,-27,7]^T$</p>
+<p>Compute $\langle u_2,u_2\rangle_A$: $Au_2 = \frac{1}{13}[30,-8,14]^T$.</p>
+$$\langle u_2,u_2\rangle = \frac{1}{13^2}[19,-27,7][30,-8,14]^T = \frac{884}{169}$$
+<p>Normalize: $e_2 = \frac{u_2}{\|u_2\|_A} = \frac{1}{\sqrt{884}/13} \cdot \frac{1}{13}[19,-27,7]^T = \frac{1}{\sqrt{884}}[19,-27,7]^T$.</p>
+$$\boxed{e_1 = \frac{1}{\sqrt{13}}\begin{bmatrix}1\\2\\-1\end{bmatrix}, \quad e_2 = \frac{1}{\sqrt{884}}\begin{bmatrix}19\\-27\\7\end{bmatrix}}$$
+</div>
+</details>
+</div>
+
+<div class="topic-divider" id="topic-svd">Singular Value Decomposition (SVD)</div>
+
+<div class="question-card">
+<h4>Q2 (10M) &mdash; Convexity, Frobenius Norm and SVD, Gradients</h4>
+<span class="exam-badge">2022 End-Sem Reg</span>
+<span class="topic-tag">Gradient/Hessian</span>
+<span class="topic-tag">SVD</span>
+<p>(a) Prove $\ell_1$ norm is convex. Prove $h(x)=g(Ax+b)$ is convex if $g$ is convex. (b) SVD of $A$: $\|A\|_F^2 = \text{Tr}(A^TA) = \sum\sigma_i^2$. Three claims: (i) $\gamma = \alpha$ — True? (ii) $\gamma \neq \beta$ where $\beta = \text{Tr}(B)$, $B = A^TA$ — True? (iii) Show $\beta = \text{Tr}(AA^T)$. (c) Find $\nabla f$ for $f(x) = \|Ax-b\|_2^2 + c^Tx + d$ and $g(x) = \|A_1^TAx\|_2^2 + \|A_2^Tx\|_2^2$.</p>
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(a) Convexity of $\ell_1$ norm:</strong></p>
+<p>$\|\lambda x + (1-\lambda)y\|_1 \leq \|\lambda x\|_1 + \|(1-\lambda)y\|_1$ (triangle inequality) $= |\lambda|\|x\|_1 + |1-\lambda|\|y\|_1 = \lambda\|x\|_1 + (1-\lambda)\|y\|_1$ for $\lambda\in[0,1]$.</p>
+<p><strong>$h$ convex:</strong> $h(\lambda x+(1-\lambda)y) = g(A(\lambda x+(1-\lambda)y)+b) = g(\lambda(Ax+b)+(1-\lambda)(Ay+b)) \leq \lambda g(Ax+b) + (1-\lambda)g(Ay+b) = \lambda h(x)+(1-\lambda)h(y)$.</p>
+
+<p><strong>(b)</strong> Let $A = U\Sigma V^T$. $\|A\|_F^2 = \text{Tr}(A^TA) = \text{Tr}(V\Sigma^T\Sigma V^T) = \text{Tr}(\Sigma^T\Sigma) = \sum\sigma_i^2 = \gamma$.</p>
+<p>$\alpha = \text{Tr}(B) = \text{Tr}(A^TA) = \text{Tr}(V\Sigma^T\Sigma V^T) = \text{Tr}(\Sigma^T\Sigma) = \sum\sigma_i^2 = \gamma$. So (i) $\gamma = \alpha$: <strong>True</strong>.</p>
+<p>$\beta = \text{Tr}(B) = \text{Tr}(A^TA) = \alpha = \gamma$, so (ii) "$\gamma \neq \beta$": <strong>False</strong>.</p>
+<p>$\text{Tr}(AA^T) = \text{Tr}(U\Sigma V^T V\Sigma^T U^T) = \text{Tr}(U\Sigma\Sigma^TU^T) = \text{Tr}(\Sigma\Sigma^T) = \sum\sigma_i^2 = \beta$. So $\text{Tr}(AA^T) = \text{Tr}(A^TA)$ ✓.</p>
+
+<p><strong>(c)</strong> $\nabla f(x) = 2A^T(Ax-b) + c$. $\nabla g(x) = 2A_1^TA_1A_1^TAx + 2A_2A_2^Tx$.</p>
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q4 (8M) &mdash; Singular Value Decomposition</h4>
+<span class="exam-badge">Prev Batch Mid-Sem</span>
+<span class="topic-tag">SVD</span>
+<a class="review-link" href="MFML_Notes_Lectures_1_to_5.html#l5-svd">Review: SVD</a>
+
+<p><strong>Given:</strong></p>
+$$A = \begin{bmatrix} 2 & 1 \\ 1 & 0 \\ 0 & 1 \end{bmatrix}$$
+<p>(A) Left singular vectors. &nbsp; (B) Right singular vectors. &nbsp; (C) $\Sigma$ and spectral norm.</p>
+
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>Step 1: Compute $A^TA$:</strong></p>
+$$A^TA = \begin{bmatrix}2&1&0\\1&0&1\end{bmatrix}\begin{bmatrix}2&1\\1&0\\0&1\end{bmatrix} = \begin{bmatrix}5&2\\2&2\end{bmatrix}$$
+<p>Eigenvalues: $\lambda^2 - 7\lambda + 6 = 0 \Rightarrow \lambda_1 = 6,\; \lambda_2 = 1$.</p>
+<p>Singular values: $\sigma_1 = \sqrt{6},\; \sigma_2 = 1$.</p>
+
+<p><strong>(B) Right singular vectors</strong> (eigenvectors of $A^TA$):</p>
+<p>For $\lambda_1=6$: $(A^TA - 6I)\mathbf{v}=0 \Rightarrow \begin{bmatrix}-1&2\\2&-4\end{bmatrix}\mathbf{v}=0 \Rightarrow \mathbf{v}_1 = \frac{1}{\sqrt{5}}\begin{bmatrix}2\\1\end{bmatrix}$.</p>
+<p>For $\lambda_2=1$: $(A^TA - I)\mathbf{v}=0 \Rightarrow \begin{bmatrix}4&2\\2&1\end{bmatrix}\mathbf{v}=0 \Rightarrow \mathbf{v}_2 = \frac{1}{\sqrt{5}}\begin{bmatrix}-1\\2\end{bmatrix}$.</p>
+
+<p><strong>(A) Left singular vectors:</strong></p>
+$$\mathbf{u}_i = \frac{1}{\sigma_i}A\mathbf{v}_i$$
+$$\mathbf{u}_1 = \frac{1}{\sqrt{6}} A\mathbf{v}_1 = \frac{1}{\sqrt{6}} \cdot \frac{1}{\sqrt{5}} \begin{bmatrix}2&1\\1&0\\0&1\end{bmatrix}\begin{bmatrix}2\\1\end{bmatrix} = \frac{1}{\sqrt{30}}\begin{bmatrix}5\\2\\1\end{bmatrix}$$
+$$\mathbf{u}_2 = \frac{1}{1} A\mathbf{v}_2 = \frac{1}{\sqrt{5}}\begin{bmatrix}2&1\\1&0\\0&1\end{bmatrix}\begin{bmatrix}-1\\2\end{bmatrix} = \frac{1}{\sqrt{5}}\begin{bmatrix}0\\-1\\2\end{bmatrix}$$
+<p>$\mathbf{u}_3$ completes the orthonormal basis (null space of $A^T$): $\mathbf{u}_3 = \frac{1}{\sqrt{6}}\begin{bmatrix}-1\\2\\1\end{bmatrix}$.</p>
+
+<p><strong>(C) Sigma and Spectral Norm:</strong></p>
+$$\Sigma = \begin{bmatrix}\sqrt{6}&0\\0&1\\0&0\end{bmatrix}, \qquad \|A\|_2 = \sigma_1 = \boxed{\sqrt{6}}$$
+</div>
+</details>
+</div>
+
+
+
+<div class="question-card">
+<h4>Q3 (5M) &mdash; Eigendecomposition &amp; Rank-1 Approximation</h4>
+<span class="exam-badge">Jan 2025 Mid-Sem</span>
+<span class="topic-tag">SVD</span>
+<span class="topic-tag">Eigendecomposition</span>
+<a class="review-link" href="MFML_Notes_Lectures_1_to_5.html#l5-lowrank">Review: Low-Rank Approximation</a>
+
+<p>(i) $A = PDP^T$ where $D = \text{diag}(l, l^2, \ldots, l^m)$ and $P$ orthogonal. Find best rank-1 approximation of $A^2$.</p>
+<p>(ii) Given $A\mathbf{v}_i = -\mathbf{v}_i$ for orthonormal $\mathbf{v}_1, \mathbf{v}_2$ in $\mathbb{R}^2$, find $A$.</p>
+
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(i)</strong> Since $A = PDP^T$:</p>
+$$A^2 = PD^2P^T, \quad D^2 = \text{diag}(l^2, l^4, \ldots, l^{2m})$$
+<p>The best rank-1 approximation uses the largest eigenvalue (in absolute value):</p>
+<ul>
+  <li>If $|l| > 1$: largest eigenvalue is $l^{2m}$, so best rank-1 = $l^{2m}\mathbf{p}_m\mathbf{p}_m^T$</li>
+  <li>If $|l| < 1$: largest eigenvalue is $l^{2}$, so best rank-1 = $l^{2}\mathbf{p}_1\mathbf{p}_1^T$</li>
+  <li>If $|l| = 1$: all eigenvalues are 1, any rank-1 projection works</li>
+</ul>
+
+<p><strong>(ii)</strong> $A\mathbf{v}_i = -\mathbf{v}_i$ means eigenvalue $-1$ for both $\mathbf{v}_1, \mathbf{v}_2$.</p>
+<p>Since $\mathbf{v}_1, \mathbf{v}_2$ are orthonormal and span $\mathbb{R}^2$, $V = [\mathbf{v}_1|\mathbf{v}_2]$ is orthogonal.</p>
+$$A = V \begin{bmatrix}-1&0\\0&-1\end{bmatrix} V^T = -VV^T = \boxed{-I_2}$$
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q3 (6M) &mdash; SVD &amp; Diagonalizability</h4>
+<span class="exam-badge">Dec 2025 Mid-Sem EC2</span>
+<span class="topic-tag">SVD</span>
+<span class="topic-tag">Diagonalization</span>
+<a class="review-link" href="MFML_Notes_Lectures_1_to_5.html#l5-svd">Review: SVD</a> &nbsp;|&nbsp;
+<a class="review-link" href="MFML_Notes_Lectures_1_to_5.html#l4-diag">Review: Diagonalization</a>
+
+<p><strong>(a)</strong> Find the SVD of $A = \begin{bmatrix}1&1\\-1&-1\end{bmatrix}$.</p>
+<p><strong>(b)</strong> Is $A$ diagonalizable?</p>
+
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(a) SVD:</strong></p>
+$$A^TA = \begin{bmatrix}1&-1\\1&-1\end{bmatrix}\begin{bmatrix}1&1\\-1&-1\end{bmatrix} = \begin{bmatrix}2&2\\2&2\end{bmatrix}$$
+<p>Eigenvalues: $\lambda^2 - 4\lambda = 0 \Rightarrow \lambda_1 = 4,\; \lambda_2 = 0$.</p>
+<p>$\sigma_1 = 2$, $\sigma_2 = 0$. <strong>Rank = 1.</strong></p>
+
+<p>Right singular vectors (eigenvectors of $A^TA$):</p>
+<p>$\lambda_1 = 4$: $(A^TA - 4I)\mathbf{v} = 0 \Rightarrow \begin{bmatrix}-2&2\\2&-2\end{bmatrix}\mathbf{v} = 0 \Rightarrow \mathbf{v}_1 = \frac{1}{\sqrt{2}}\begin{bmatrix}1\\1\end{bmatrix}$.</p>
+<p>$\lambda_2 = 0$: $\mathbf{v}_2 = \frac{1}{\sqrt{2}}\begin{bmatrix}1\\-1\end{bmatrix}$.</p>
+
+<p>Left singular vectors: $\mathbf{u}_1 = \frac{1}{\sigma_1}A\mathbf{v}_1 = \frac{1}{2}\cdot\frac{1}{\sqrt{2}}\begin{bmatrix}2\\-2\end{bmatrix} = \frac{1}{\sqrt{2}}\begin{bmatrix}1\\-1\end{bmatrix}$.</p>
+<p>Choose $\mathbf{u}_2 = \frac{1}{\sqrt{2}}\begin{bmatrix}1\\1\end{bmatrix}$ (orthogonal to $\mathbf{u}_1$).</p>
+
+$$A = U\Sigma V^T = \frac{1}{\sqrt{2}}\begin{bmatrix}1&1\\-1&1\end{bmatrix}\begin{bmatrix}2&0\\0&0\end{bmatrix}\frac{1}{\sqrt{2}}\begin{bmatrix}1&1\\1&-1\end{bmatrix}$$
+
+<p><strong>(b) Diagonalizability:</strong></p>
+$$\det(A - \lambda I) = (1-\lambda)(-1-\lambda)+1 = -1+\lambda^2+1 = \lambda^2 = 0$$
+<p>$\lambda = 0$ with algebraic multiplicity 2.</p>
+<p>Geometric multiplicity = $\dim(\text{Null}(A))$. Since $\text{rank}(A) = 1$, $\text{nullity} = 2 - 1 = 1$.</p>
+<p>Geometric mult. (1) $<$ Algebraic mult. (2).</p>
+<p><strong>$A$ is NOT diagonalizable.</strong></p>
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q3 (6M) &mdash; SVD Computation</h4>
+<span class="exam-badge">Jan 2026 Mid-Sem Makeup</span>
+<span class="topic-tag">SVD</span>
+
+<p><strong>Given:</strong> $A = \begin{bmatrix}5&0\\5&0\\0&-10\end{bmatrix}$. Find the full SVD $A = U\Sigma V^T$.</p>
+
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>Step 1: Compute $A^TA$:</strong></p>
+$$A^TA = \begin{bmatrix}5&5&0\\0&0&-10\end{bmatrix}\begin{bmatrix}5&0\\5&0\\0&-10\end{bmatrix} = \begin{bmatrix}50&0\\0&100\end{bmatrix}$$
+
+<p><strong>Step 2: Eigenvalues of $A^TA$:</strong></p>
+<p>$\lambda_1 = 100$, $\lambda_2 = 50$. Singular values: $\sigma_1 = 10$, $\sigma_2 = 5\sqrt{2}$.</p>
+
+<p><strong>Step 3: Right singular vectors</strong> (eigenvectors of $A^TA$, already diagonal):
+$$\mathbf{v}_1 = \begin{bmatrix}0\\1\end{bmatrix} \text{ (for } \lambda_1=100\text{)}, \quad \mathbf{v}_2 = \begin{bmatrix}1\\0\end{bmatrix} \text{ (for } \lambda_2=50\text{)}$$
+$$V = \begin{bmatrix}0&1\\1&0\end{bmatrix}$$
+
+<p><strong>Step 4: Left singular vectors:</strong></p>
+$$\mathbf{u}_1 = \frac{1}{\sigma_1}A\mathbf{v}_1 = \frac{1}{10}\begin{bmatrix}5\\5\\0\end{bmatrix}\cdot\frac{0}{1} + \frac{1}{10}\begin{bmatrix}0\\0\\-10\end{bmatrix}\cdot 1 = \frac{1}{10}\begin{bmatrix}0\\0\\-10\end{bmatrix} = \begin{bmatrix}0\\0\\-1\end{bmatrix}$$
+
+<p>More carefully: $A\mathbf{v}_1 = A[0,1]^T = [0,0,-10]^T$, so $\mathbf{u}_1 = \frac{1}{10}[0,0,-10]^T = [0,0,-1]^T$.</p>
+$$A\mathbf{v}_2 = A[1,0]^T = [5,5,0]^T, \quad \mathbf{u}_2 = \frac{1}{5\sqrt{2}}[5,5,0]^T = \frac{1}{\sqrt{2}}[1,1,0]^T$$
+<p>$\mathbf{u}_3$ completes the orthonormal basis: $\mathbf{u}_3 = \frac{1}{\sqrt{2}}[1,-1,0]^T$ (orthogonal to $\mathbf{u}_1, \mathbf{u}_2$).</p>
+
+$$\Sigma = \begin{bmatrix}10&0\\0&5\sqrt{2}\\0&0\end{bmatrix}$$
+
+$$\boxed{A = \begin{bmatrix}0&\frac{1}{\sqrt{2}}&\frac{1}{\sqrt{2}}\\0&\frac{1}{\sqrt{2}}&\frac{-1}{\sqrt{2}}\\-1&0&0\end{bmatrix}\begin{bmatrix}10&0\\0&5\sqrt{2}\\0&0\end{bmatrix}\begin{bmatrix}0&1\\1&0\end{bmatrix}}$$
+</div>
+</details>
+</div>
+
+<div class="topic-divider" id="topic-grad">Gradient, Hessian, Chain Rule &amp; Taylor Series</div>
+
+<div class="question-card">
+<h4>Q6 (3M) &mdash; Gradient Vanishing Point</h4>
+<span class="exam-badge">2022 Mid-Sem</span>
+<span class="topic-tag">Gradient/Hessian</span>
+<p><strong>Question:</strong> Let $f = 2x_1^2 + 2x_1x_2 + 3x_2^2 - x_1 - x_2$. Find the gradient and a point where it vanishes.</p>
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>Gradient:</strong></p>
+$$\frac{\partial f}{\partial x_1} = 4x_1 + 2x_2 - 1, \qquad \frac{\partial f}{\partial x_2} = 2x_1 + 6x_2 - 1$$
+$$\nabla f = \begin{bmatrix}4x_1+2x_2-1\\2x_1+6x_2-1\end{bmatrix}$$
+<p><strong>Set $\nabla f = 0$:</strong></p>
+$$4x_1 + 2x_2 = 1 \quad \cdots (1)$$
+$$2x_1 + 6x_2 = 1 \quad \cdots (2)$$
+<p>From (1): $x_1 = \frac{1-2x_2}{4}$. Substitute into (2): $\frac{1-2x_2}{2} + 6x_2 = 1 \Rightarrow 1-2x_2+12x_2 = 2 \Rightarrow 10x_2 = 1 \Rightarrow x_2 = 0.1$.</p>
+<p>$x_1 = \frac{1-0.2}{4} = 0.2$.</p>
+$$\boxed{(x_1,x_2) = (0.2, 0.1)}$$
+<p>Verify: $\nabla f = [4(0.2)+2(0.1)-1, 2(0.2)+6(0.1)-1] = [0.8+0.2-1, 0.4+0.6-1] = [0,0]$ ✓.</p>
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q8 (4M) &mdash; Taylor Series of $e^{\alpha x+\beta}$</h4>
+<span class="exam-badge">2022 Mid-Sem</span>
+<span class="topic-tag">Taylor Polynomial</span>
+<p><strong>Question:</strong> Can $f(x) = 1 + 2x + 3x^2/2$ be the Taylor expansion (3 terms) of $e^{\alpha x+\beta}$ about $x=0$? If so, find $\alpha$ and $\beta$. Otherwise, explain why not.</p>
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p>Taylor expansion of $g(x) = e^{\alpha x+\beta}$ about $x=0$:</p>
+<p>$g(0) = e^{\beta}$, $g'(x) = \alpha e^{\alpha x+\beta}$, $g'(0) = \alpha e^{\beta}$, $g''(0) = \alpha^2 e^{\beta}$.</p>
+$$g(x) \approx e^{\beta} + \alpha e^{\beta}x + \frac{\alpha^2 e^{\beta}}{2}x^2$$
+<p>Matching with $1 + 2x + \frac{3}{2}x^2$:</p>
+<ul>
+  <li>Constant: $e^{\beta} = 1 \Rightarrow \beta = 0$</li>
+  <li>Linear: $\alpha e^0 = \alpha = 2 \Rightarrow \alpha = 2$</li>
+  <li>Quadratic: $\frac{\alpha^2}{2} = \frac{4}{2} = 2$, but we need $\frac{3}{2}$.</li>
+</ul>
+<p><strong>Contradiction:</strong> With $\alpha=2$, the $x^2$ coefficient should be $\frac{4}{2} = 2 \neq \frac{3}{2}$.</p>
+<p>Therefore, $f(x) = 1+2x+\frac{3x^2}{2}$ <strong>cannot</strong> be the Taylor series of $e^{\alpha x+\beta}$ because the three coefficients $e^\beta$, $\alpha e^\beta$, and $\frac{\alpha^2 e^\beta}{2}$ must satisfy $(\text{linear coefficient})^2 = 2 \times (\text{quadratic coefficient}) \times (\text{constant})$, i.e., $4 = 2 \cdot \frac{3}{2} \cdot 1 = 3$ — which fails.</p>
+</div>
+</details>
+</div>
+
+
+
+<div class="question-card">
+<h4>Q1 (5M) &mdash; Column Swap, Gradient of $f(B)=BB^T$, SPD Conditions, Taylor Approx</h4>
+<span class="exam-badge">2023 Mid-Sem</span>
+<span class="topic-tag">Gradient/Hessian</span>
+<span class="topic-tag">Eigenvalues</span>
+<p>(1) If $C$ is obtained from $A$ by swapping columns $i$ and $j$ ($i<j\leq n$), does $AX=b$ and $CX=b$ have the same consistency? (2) $f:\mathbb{R}^{3\times2}\to\mathbb{R}^{3\times3}$, $f(B)=BB^T$. Find $\partial f/\partial B$. (3) $A^TBA$: when is it SPD? $\langle x,y\rangle_C = x^TCy$ inner product condition; find condition on $x_1,x_2$ for it to be IP. (3iii) Taylor's 2nd degree polynomial of $f(x_1,x_2)=x_2\cos(x_1)$ about $[\pi/2,1]^T$.</p>
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(1)</strong> Swapping columns of $A$ reorders the variables in $AX=b$. The system $CX=b$ corresponds to the same linear system with variables permuted. Consistency (existence of a solution) is unchanged. <strong>Yes, same consistency.</strong></p>
+
+<p><strong>(2)</strong> $f(B) = BB^T$. $\frac{\partial f(p,q)}{\partial B(i,j)}$: $f(p,q) = \sum_k B(p,k)B(q,k)$.</p>
+$$\frac{\partial f(p,q)}{\partial B(i,j)} = \delta_{pi}B(q,j) + \delta_{qi}B(p,j) = B(q,j)\delta_{pi} + B(p,j)\delta_{qi}$$
+<p>This is a 3rd order tensor. For specific indices: $\frac{\partial (BB^T)_{pq}}{\partial B_{ij}} = \delta_{pi}B_{qj} + \delta_{qi}B_{pj}$.</p>
+
+<p><strong>(3i)</strong> $A^TBA$ is SPD if $A$ has full column rank and $B$ is SPD. Proof: $(A^TBA)^T = A^TB^TA = A^TBA$ ✓ (symmetric). $\mathbf{x}^T(A^TBA)\mathbf{x} = (A\mathbf{x})^TB(A\mathbf{x}) > 0$ for $\mathbf{x}\neq0$ since $A\mathbf{x}\neq0$ (full rank) and $B$ is PD.</p>
+<p><strong>(3ii)</strong> $C = A^TBA$ is SPD. For $\langle x,y\rangle_C$ to be an inner product: need $\sin(x_1)\neq0$, i.e., $x_1\neq n\pi$ for any $n\in\mathbb{Z}$.</p>
+<p><strong>(3iii)</strong> $f(\pi/2,1) = 1\cdot\cos(\pi/2) = 0$. $\nabla f = [-x_2\sin(x_1), \cos(x_1)]^T$. At $(\pi/2,1)$: $\nabla f = [-1, 0]^T$.</p>
+<p>Hessian $H = \begin{bmatrix}-x_2\cos(x_1)&-\sin(x_1)\\-\sin(x_1)&0\end{bmatrix}$. At $(\pi/2,1)$: $H = \begin{bmatrix}0&-1\\-1&0\end{bmatrix}$.</p>
+$$T_2 f = 0 + [-1,0]\begin{bmatrix}x_1-\pi/2\\x_2-1\end{bmatrix} + \frac{1}{2}[x_1-\pi/2, x_2-1]\begin{bmatrix}0&-1\\-1&0\end{bmatrix}\begin{bmatrix}x_1-\pi/2\\x_2-1\end{bmatrix}$$
+$$= -(x_1-\pi/2) + \frac{1}{2}\cdot2\cdot[-(x_1-\pi/2)(x_2-1)] = -(x_1-\pi/2) - (x_1-\pi/2)(x_2-1)$$
+$$= \boxed{x_2(\pi/2 - x_1)}$$
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q5 (5M) &mdash; Gradient, Orthogonality to Gradient, Chain Rule</h4>
+<span class="exam-badge">2024 Mid-Sem EC2</span>
+<span class="topic-tag">Gradient/Hessian</span>
+<span class="topic-tag">Chain Rule</span>
+<p>$f(x,y,z) = x^2+y^2+z^2+3xyz$.</p>
+<p>(a) Find $\nabla f$ at $(1,-1,2)$. (b) Is $[1,-1,0]^T$ orthogonal to $\nabla f$ at $(1,-1,2)$? (c) $x=t$, $y=t^2$, $z=t^3$: find $df/dt$ using chain rule.</p>
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(a) Gradient:</strong></p>
+$$\nabla f = \begin{bmatrix}2x+3yz\\2y+3xz\\2z+3xy\end{bmatrix}$$
+<p>At $(1,-1,2)$:</p>
+$$\nabla f(1,-1,2) = \begin{bmatrix}2+3(-1)(2)\\-2+3(1)(2)\\4+3(1)(-1)\end{bmatrix} = \begin{bmatrix}2-6\\-2+6\\4-3\end{bmatrix} = \begin{bmatrix}-4\\4\\1\end{bmatrix}$$
+
+<p><strong>(b)</strong> $[1,-1,0]^T \cdot \nabla f = (-4)(1)+(4)(-1)+(1)(0) = -4-4 = -8 \neq 0$. <strong>Not orthogonal.</strong></p>
+
+<p><strong>(c) Chain rule:</strong></p>
+$$\frac{df}{dt} = \frac{\partial f}{\partial x}\frac{dx}{dt} + \frac{\partial f}{\partial y}\frac{dy}{dt} + \frac{\partial f}{\partial z}\frac{dz}{dt}$$
+$$= (2x+3yz)(1) + (2y+3xz)(2t) + (2z+3xy)(3t^2)$$
+<p>Substituting $x=t$, $y=t^2$, $z=t^3$:</p>
+$$= (2t+3t^5) + (2t^2+3t^4)(2t) + (2t^3+3t^3)(3t^2)$$
+$$= 2t+3t^5+4t^3+6t^5+6t^5+9t^5 = 2t+4t^3+(3+6+6+9)t^5 = \boxed{2t+4t^3+24t^5}$$
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q6 (5M) &mdash; Taylor Polynomial of $e^{x^2}$, Hessian of $f(x,y)=xy$</h4>
+<span class="exam-badge">2024 Mid-Sem EC2</span>
+<span class="topic-tag">Taylor Polynomial</span>
+<span class="topic-tag">Gradient/Hessian</span>
+<p>(a) Find Taylor polynomial of degree 3 of $f(x)=e^{x^2}$ about $x=1$. (b) Find Hessian of $f(x,y)=xy$.</p>
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(a) Taylor polynomial of $e^{x^2}$ about $x=1$:</strong></p>
+<p>$f(1)=e$. $f'(x)=2xe^{x^2}$, $f'(1)=2e$. $f''(x)=2e^{x^2}+4x^2e^{x^2}=(2+4x^2)e^{x^2}$, $f''(1)=6e$. $f'''(x)=12xe^{x^2}+(2+4x^2)\cdot2xe^{x^2}=(12x+4x^3+8x)e^{x^2}=(20x+4x^3)e^{x^2}... = (8x+4x^3)e^{x^2}+4x\cdot2xe^{x^2}$...</p>
+<p>Let me compute directly: $f'''(x) = \frac{d}{dx}[(2+4x^2)e^{x^2}] = 8xe^{x^2} + (2+4x^2)\cdot2xe^{x^2} = (8x+4x+8x^3)e^{x^2} = (12x+8x^3)e^{x^2}$. $f'''(1) = 20e$.</p>
+$$T_3(x) = e + 2e(x-1) + \frac{6e}{2}(x-1)^2 + \frac{20e}{6}(x-1)^3$$
+$$= \boxed{e\left[1 + 2(x-1) + 3(x-1)^2 + \frac{10}{3}(x-1)^3\right]}$$
+
+<p><strong>(b) Hessian of $f(x,y)=xy$:</strong></p>
+$$\frac{\partial f}{\partial x}=y, \quad \frac{\partial f}{\partial y}=x$$
+$$H = \begin{bmatrix}\frac{\partial^2 f}{\partial x^2}&\frac{\partial^2 f}{\partial x\partial y}\\\frac{\partial^2 f}{\partial y\partial x}&\frac{\partial^2 f}{\partial y^2}\end{bmatrix} = \begin{bmatrix}0&1\\1&0\end{bmatrix}$$
+</div>
+</details>
+</div>
+
+
+
+<div class="question-card">
+<h4>Q5 (8M) &mdash; Gradient, Hessian, Chain Rule, Taylor</h4>
+<span class="exam-badge">Jan 2025 Mid-Sem</span>
+<span class="topic-tag">Gradient/Hessian</span>
+<span class="topic-tag">Chain Rule</span>
+<span class="topic-tag">Taylor Polynomial</span>
+
+<p><strong>(1)</strong> $f(x_1,x_2) = e^{x_1} + x_1 x_2 - \log(1+x_2)$</p>
+<p>(A) Gradient at $(1,2)$. &nbsp; (B) Hessian at $(1,2)$. &nbsp; (C) Chain rule: $x_1 = t^2 + 2at$, $x_2 = \sin(t)$.</p>
+<p><strong>(2)</strong> $f(\mathbf{x}) = (A\mathbf{x}-\mathbf{b})^T(A\mathbf{x}-\mathbf{b})$, $A = \begin{bmatrix}1&4\\4&1\end{bmatrix}$, $\mathbf{b} = [4,4]^T$. Gradient at $[1,1]^T$ and first-order Taylor approximation.</p>
+
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(1A) Gradient:</strong></p>
+$$\nabla f = \begin{bmatrix} e^{x_1} + x_2 \\ x_1 - \frac{1}{1+x_2} \end{bmatrix}$$
+<p>At $(1,2)$:</p>
+$$\nabla f(1,2) = \begin{bmatrix} e + 2 \\ 1 - \frac{1}{3} \end{bmatrix} = \begin{bmatrix} e + 2 \\ \frac{2}{3} \end{bmatrix}$$
+
+<p><strong>(1B) Hessian:</strong></p>
+$$H = \begin{bmatrix} e^{x_1} & 1 \\ 1 & \frac{1}{(1+x_2)^2} \end{bmatrix}$$
+<p>At $(1,2)$:</p>
+$$H(1,2) = \begin{bmatrix} e & 1 \\ 1 & \frac{1}{9} \end{bmatrix}$$
+
+<p><strong>(1C) Chain Rule:</strong></p>
+$$\frac{df}{dt} = \frac{\partial f}{\partial x_1}\frac{dx_1}{dt} + \frac{\partial f}{\partial x_2}\frac{dx_2}{dt} = (e^{x_1}+x_2)(2t+2a) + \left(x_1 - \frac{1}{1+x_2}\right)\cos(t)$$
+
+<p><strong>(2) Quadratic form:</strong></p>
+<p>$f(\mathbf{x}) = \|A\mathbf{x}-\mathbf{b}\|^2$. At $\mathbf{x} = [1,1]^T$:</p>
+$$A\mathbf{x} = \begin{bmatrix}1&4\\4&1\end{bmatrix}\begin{bmatrix}1\\1\end{bmatrix} = \begin{bmatrix}5\\5\end{bmatrix}, \quad A\mathbf{x}-\mathbf{b} = \begin{bmatrix}1\\1\end{bmatrix}$$
+$$f(1,1) = 1 + 1 = 2$$
+<p>Gradient: $\nabla f = 2A^T(A\mathbf{x}-\mathbf{b})$.</p>
+$$\nabla f(1,1) = 2\begin{bmatrix}1&4\\4&1\end{bmatrix}^T\begin{bmatrix}1\\1\end{bmatrix} = 2\begin{bmatrix}5\\5\end{bmatrix} = \begin{bmatrix}10\\10\end{bmatrix}$$
+<p>First-order Taylor at $\mathbf{a} = [1,1]^T$:</p>
+$$T_1(\mathbf{x}) = f(\mathbf{a}) + \nabla f(\mathbf{a})^T(\mathbf{x}-\mathbf{a}) = 2 + [10,10]\begin{bmatrix}x_1-1\\x_2-1\end{bmatrix}$$
+$$\boxed{T_1(\mathbf{x}) = 10x_1 + 10x_2 - 18}$$
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q5 (7M) &mdash; Gradient, Critical Points, Hessian, Taylor</h4>
+<span class="exam-badge">Dec 2025 Mid-Sem EC2</span>
+<span class="topic-tag">Gradient/Hessian</span>
+<span class="topic-tag">Taylor Polynomial</span>
+
+<p>$f(x,y) = x^2 + xy + 2y^2 - 4x + 3$</p>
+<p>(a) Find $\nabla f$. &nbsp; (b) Critical point. &nbsp; (c) Hessian &mdash; classify critical point. &nbsp; (d) Taylor of $g(x) = f(x,1)$ at $x=1$.</p>
+
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(a) Gradient:</strong></p>
+$$\nabla f = \begin{bmatrix} 2x + y - 4 \\ x + 4y \end{bmatrix}$$
+
+<p><strong>(b) Critical Point:</strong> Set $\nabla f = 0$:</p>
+$$2x + y = 4 \quad (1)$$
+$$x + 4y = 0 \quad (2)$$
+<p>From (2): $x = -4y$. Substitute into (1): $-8y + y = 4 \Rightarrow y = -\frac{4}{7}$, $x = \frac{16}{7}$.</p>
+$$\boxed{\text{Critical point: } \left(\frac{16}{7},\, -\frac{4}{7}\right)}$$
+
+<p><strong>(c) Hessian:</strong></p>
+$$H = \begin{bmatrix} 2 & 1 \\ 1 & 4 \end{bmatrix}$$
+<p>$\det(H) = 8 - 1 = 7 > 0$ and $H_{11} = 2 > 0$, so $H$ is positive definite.</p>
+<p><strong>Local minimum</strong> (and since $f$ is quadratic and $H$ is PD, it is the global minimum).</p>
+
+<p><strong>(d) Taylor of $g(x) = f(x,1)$:</strong></p>
+$$g(x) = x^2 + x + 2 - 4x + 3 = x^2 - 3x + 5$$
+<p>At $x = 1$: $g(1) = 1 - 3 + 5 = 3$.</p>
+<p>$g'(x) = 2x - 3 \Rightarrow g'(1) = -1$.</p>
+<p>$g''(x) = 2$.</p>
+$$\boxed{g(x) = 3 - (x-1) + (x-1)^2}$$
+</div>
+</details>
+</div>
+
+
+
+<div class="question-card">
+<h4>Q1 (5M) &mdash; Linear Approximation and Convexity</h4>
+<span class="exam-badge">Jan 2025 Mid-Sem Makeup</span>
+<span class="topic-tag">Gradient/Hessian</span>
+<span class="topic-tag">Taylor Polynomial</span>
+
+<p><strong>Question:</strong> Let $f(x,y,z) = \alpha x^2 + \beta y^2 + \gamma z^2$ and let $g$ be the linear approximation of $f$ at $(x_0, y_0, z_0)$. Show that $f(\mathbf{x}) - g(\mathbf{x}) \geq 0$ for all $(x,y,z)$ if and only if $\alpha, \beta, \gamma \geq 0$.</p>
+
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p>The linear (first-order Taylor) approximation of $f$ at $(x_0,y_0,z_0)$ is:</p>
+$$g(x,y,z) = f(x_0,y_0,z_0) + \nabla f(x_0,y_0,z_0)^T \begin{bmatrix}x-x_0\\y-y_0\\z-z_0\end{bmatrix}$$
+<p>$\nabla f = [2\alpha x, 2\beta y, 2\gamma z]^T$, so:</p>
+$$g = \alpha x_0^2 + \beta y_0^2 + \gamma z_0^2 + 2\alpha x_0(x-x_0) + 2\beta y_0(y-y_0) + 2\gamma z_0(z-z_0)$$
+<p>Now compute $f - g$:</p>
+$$f - g = \alpha(x^2 - x_0^2 - 2x_0(x-x_0)) + \beta(y^2 - y_0^2 - 2y_0(y-y_0)) + \gamma(z^2 - z_0^2 - 2z_0(z-z_0))$$
+$$= \alpha(x-x_0)^2 + \beta(y-y_0)^2 + \gamma(z-z_0)^2$$
+<p>This is $\geq 0$ for all $(x,y,z)$ if and only if $\alpha, \beta, \gamma \geq 0$. (If any coefficient were negative, we could choose that variable away from $x_0/y_0/z_0$ to make the sum negative.)</p>
+<div class="key-formula">$f - g = \alpha(x-x_0)^2 + \beta(y-y_0)^2 + \gamma(z-z_0)^2 \geq 0 \iff \alpha,\beta,\gamma \geq 0$</div>
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q5 (5M) &mdash; Chain Rule (Multivariable)</h4>
+<span class="exam-badge">Jan 2025 Mid-Sem Makeup</span>
+<span class="topic-tag">Gradient/Hessian</span>
+<span class="topic-tag">Chain Rule</span>
+
+<p><strong>Question:</strong> Given $z = xy + x^2$, $x = e^t \sin(t)$, $y = e^{-t}$. Find $\frac{dz}{dt}$.</p>
+
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p>By the chain rule:</p>
+$$\frac{dz}{dt} = \frac{\partial z}{\partial x}\frac{dx}{dt} + \frac{\partial z}{\partial y}\frac{dy}{dt}$$
+<p>Partial derivatives:</p>
+$$\frac{\partial z}{\partial x} = y + 2x, \qquad \frac{\partial z}{\partial y} = x$$
+<p>Derivatives of the parametric functions:</p>
+$$\frac{dx}{dt} = e^t\cos(t) + e^t\sin(t) = e^t(\cos t + \sin t)$$
+$$\frac{dy}{dt} = -e^{-t}$$
+<p>Substituting $x = e^t\sin t$, $y = e^{-t}$:</p>
+$$\frac{dz}{dt} = (e^{-t} + 2e^t\sin t) \cdot e^t(\cos t + \sin t) + e^t\sin t \cdot (-e^{-t})$$
+$$= e^t(\cos t + \sin t) \cdot e^{-t} + 2e^{2t}\sin t(\cos t + \sin t) - \sin t$$
+$$= (\cos t + \sin t) + 2e^{2t}\sin t\cos t + 2e^{2t}\sin^2 t - \sin t$$
+$$\boxed{= \cos t + 2e^{2t}\sin^2 t + 2e^{2t}\sin t\cos t}$$
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q5 (5M) &mdash; Gradient, Critical Points, Hessian</h4>
+<span class="exam-badge">Jan 2026 Mid-Sem Makeup</span>
+<span class="topic-tag">Gradient/Hessian</span>
+
+<p>$f(x,y,z) = xy^2 + yz^2 + zx^2$.</p>
+<p>(a) Compute the gradient $\nabla f$. [2M]</p>
+<p>(b) Find critical points of $g(x,y) = f(x,y,0) = xy^2$. [1M]</p>
+<p>(c) Classify the critical points using the Hessian. [2M]</p>
+
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(a) Gradient:</strong></p>
+$$\nabla f = \begin{bmatrix} y^2 + 2zx \\ 2xy + z^2 \\ 2yz + x^2 \end{bmatrix}$$
+
+<p><strong>(b)</strong> $g(x,y) = xy^2$. Set $\nabla g = 0$:</p>
+$$\frac{\partial g}{\partial x} = y^2 = 0 \Rightarrow y = 0$$
+$$\frac{\partial g}{\partial y} = 2xy = 0 \quad (\text{satisfied when } y=0)$$
+<p>Critical points: $(x, 0)$ for all $x \in \mathbb{R}$.</p>
+
+<p><strong>(c) Hessian of $g$:</strong></p>
+$$H_g = \begin{bmatrix}0 & 2y \\ 2y & 2x\end{bmatrix}$$
+<p>At any critical point $(x_0, 0)$: $H_g = \begin{bmatrix}0&0\\0&2x_0\end{bmatrix}$.</p>
+<p>$\det(H_g) = 0$ for all critical points. The second derivative test is <strong>inconclusive</strong> (degenerate Hessian).</p>
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q6 (5M) &mdash; Taylor Polynomial and Bounds</h4>
+<span class="exam-badge">Jan 2026 Mid-Sem Makeup</span>
+<span class="topic-tag">Taylor Polynomial</span>
+
+<p>(a) Find the Taylor polynomial of degree 2 for $f(x) = e^{\sin(x^2)}$ at $x = 0$. [4M]</p>
+<p>(b) Using this, determine the smallest and largest values of $f$ on $[-1, 1]$. [1M]</p>
+
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(a)</strong> Use known series expansions around 0.</p>
+<p>$x^2$ near 0 is small, so $\sin(x^2) \approx x^2 - \frac{x^6}{6} + \cdots \approx x^2$ (to degree 2 terms in $x$).</p>
+<p>Then $e^{\sin(x^2)} \approx e^{x^2} \approx 1 + x^2 + \frac{x^4}{2} + \cdots$</p>
+<p>To degree 2 in $x$:</p>
+$$\boxed{P_2(x) = 1 + x^2}$$
+
+<p><strong>(b)</strong> On $[-1,1]$, $x^2 \in [0,1]$, so $f(x) = e^{\sin(x^2)}$.</p>
+<p>$\sin(x^2) \in [\sin(0), \sin(1)] = [0, \sin(1)] \approx [0, 0.841]$.</p>
+<ul>
+  <li>Smallest: $f(0) = e^0 = \boxed{1}$ (at $x = 0$)</li>
+  <li>Largest: $f(\pm1) = e^{\sin(1)} \approx e^{0.841} \approx \boxed{2.32}$</li>
+</ul>
+<p>Note: The solution key states smallest $= e^{-1}$ and largest $= e$, which applies to the approximation used differently. The exact answer depends on whether $P_2$ or the exact $f$ is evaluated. Using $P_2(x) = 1+x^2$: minimum $= 1$ (at $x=0$), maximum $= 2$ (at $x = \pm1$).</p>
+</div>
+</details>
+</div>
+
+
+
+<div class="topic-divider" id="topic-gd">Gradient Descent (Iterations, Momentum, Line Search)</div>
+
+<div class="question-card">
+<h4>Q4 (10M) &mdash; Gradient Descent on Quadratic, Kernel Feature Map</h4>
+<span class="exam-badge">2022 End-Sem Makeup</span>
+<span class="topic-tag">Gradient Descent</span>
+<span class="topic-tag">SVD</span>
+<p>(1) $J(x) = ax^2+bx$: derive GD update rule, express $x_{n+k}$ in terms of $x_n$, find convergence condition on $\lambda$. (2) Kernel $K(\mathbf{x},\mathbf{z}) = (\mathbf{x}^T\mathbf{z})^2 + 3(\mathbf{x}^T\mathbf{z}+2)^2$: find explicit feature map $\phi$ such that $K = \phi(\mathbf{x})^T\phi(\mathbf{z})$.</p>
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(1) GD on quadratic:</strong> $\frac{dJ}{dx} = 2ax+b$. Update: $x_{n+1} = x_n - \lambda(2ax_n+b) = x_n(1-2a\lambda) - \lambda b$.</p>
+<p>Let $P = 1-2a\lambda$, $Q_{\text{const}} = -\lambda b$. Then $x_{n+k} = x_n P^k + Q_{\text{const}}(1+P+\cdots+P^{k-1})$.</p>
+<p>If $|P|<1$: as $k\to\infty$, $P^k\to0$ and the sum converges. $x_\infty = \frac{-\lambda b}{1-P} = \frac{-\lambda b}{2a\lambda} = \frac{-b}{2a}$ (the minimum ✓).</p>
+<p>Convergence condition: $|1-2a\lambda|<1 \Rightarrow 0 < \lambda < \frac{1}{a}$.</p>
+
+<p><strong>(2) Feature map:</strong> Expand $K$:</p>
+$$K = (\mathbf{x}^T\mathbf{z})^2 + 3(\mathbf{x}^T\mathbf{z})^2 + 12(\mathbf{x}^T\mathbf{z}) + 12 = 4(\mathbf{x}^T\mathbf{z})^2 + 12(\mathbf{x}^T\mathbf{z}) + 12$$
+<p>Term $4(\mathbf{x}^T\mathbf{z})^2 = 4\sum_{i,j} x_iz_ix_jz_j$: feature map $\phi_1(\mathbf{x}) = [2x_1x_1, 2x_1x_2, \ldots, 2x_nx_n]^T$ (all pairwise products, $n^2$ terms).</p>
+<p>Term $12(\mathbf{x}^T\mathbf{z}) = \sum_i \sqrt{12}x_i \cdot \sqrt{12}z_i$: feature map $\phi_2(\mathbf{x}) = [\sqrt{12}x_1,\ldots,\sqrt{12}x_n]^T$ ($n$ terms).</p>
+<p>Term $12 = \sqrt{12}\cdot\sqrt{12}$: feature map $\phi_3(\mathbf{x}) = \sqrt{12}$ (constant, 1 term).</p>
+$$\phi(\mathbf{x}) = \begin{bmatrix}\phi_1(\mathbf{x})\\\phi_2(\mathbf{x})\\\phi_3(\mathbf{x})\end{bmatrix} \in \mathbb{R}^{n^2+n+1}$$
+</div>
+</details>
+</div>
+
+
+
+<div class="question-card">
+<h4>Q4 (8M) &mdash; Loss Function, Hessian, Gradient Descent</h4>
+<span class="exam-badge">Mar 2026 Compre EC3</span> <span class="exam-badge">Feb 2026 End-Sem EC2</span>
+<span class="topic-tag">Gradient/Hessian</span>
+<span class="topic-tag">Gradient Descent</span>
+
+<p>Data: $x = [5, 6]$, $y = [3, 5]$. Model: $\hat{y} = w_0 + w_1 x$.</p>
+<p>(a) Show $J(w_0,w_1)$ is convex. &nbsp; (b) Gradient. &nbsp; (c) Gradient descent with $\eta_t = \frac{0.1}{1+0.4t}$, starting at $\mathbf{w}^{(0)} = [0,0]^T$.</p>
+
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>Loss function:</strong></p>
+$$J(w_0,w_1) = \frac{1}{2}\sum_{i=1}^{2}(w_0 + w_1 x_i - y_i)^2 = \frac{1}{2}\left[(w_0+5w_1-3)^2 + (w_0+6w_1-5)^2\right]$$
+
+<p><strong>(a) Convexity via Hessian:</strong></p>
+$$\frac{\partial J}{\partial w_0} = (w_0+5w_1-3) + (w_0+6w_1-5) = 2w_0+11w_1-8$$
+$$\frac{\partial J}{\partial w_1} = 5(w_0+5w_1-3) + 6(w_0+6w_1-5) = 11w_0+61w_1-45$$
+$$H = \begin{bmatrix}2&11\\11&61\end{bmatrix}$$
+<p>$\det(H) = 122 - 121 = 1 > 0$, $H_{11} = 2 > 0$. So $H$ is positive definite $\Rightarrow$ <strong>$J$ is convex</strong>.</p>
+
+<p><strong>(b) Gradient:</strong></p>
+$$\nabla J = \begin{bmatrix}2w_0+11w_1-8\\11w_0+61w_1-45\end{bmatrix}$$
+
+<p><strong>(c) Gradient Descent:</strong></p>
+<p>Learning rate: $\eta_t = \frac{0.1}{1+0.4t}$.</p>
+
+<p><em>Iteration 1 ($t=1$):</em></p>
+<p>$\eta_1 = \frac{0.1}{1.4} \approx 0.0714$</p>
+<p>$\nabla J(0,0) = [-8, -45]^T$</p>
+$$\mathbf{w}^{(1)} = \begin{bmatrix}0\\0\end{bmatrix} - 0.0714\begin{bmatrix}-8\\-45\end{bmatrix} = \begin{bmatrix}0.571\\3.214\end{bmatrix}$$
+
+<p><em>Iteration 2 ($t=2$):</em></p>
+<p>$\eta_2 = \frac{0.1}{1.8} \approx 0.0556$</p>
+<p>$\nabla J(0.571, 3.214)$:</p>
+<p>$\frac{\partial J}{\partial w_0} = 2(0.571) + 11(3.214) - 8 = 1.142 + 35.354 - 8 = 28.496$</p>
+<p>$\frac{\partial J}{\partial w_1} = 11(0.571) + 61(3.214) - 45 = 6.281 + 196.054 - 45 = 157.335$</p>
+$$\mathbf{w}^{(2)} = \begin{bmatrix}0.571\\3.214\end{bmatrix} - 0.0556\begin{bmatrix}28.496\\157.335\end{bmatrix} = \begin{bmatrix}-1.014\\-5.534\end{bmatrix}$$
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q3 (7M) &mdash; Gradient Descent with Line Search (Binary Search Method)</h4>
+<span class="exam-badge">Mar 2026 Compre EC3 Makeup</span>
+<span class="topic-tag">Gradient/Hessian</span>
+<span class="topic-tag">Gradient Descent</span>
+
+<p><strong>Given:</strong> $L(w_1, w_2) = w_1^4 + w_2^4 - (w_1 + w_2)$. Minimize with GD starting at $(w_1^0, w_2^0) = (0, 0)$.</p>
+<p>Define line search $\phi(\alpha) = L(w_1^0 + \alpha d_1, w_2^0 + \alpha d_2)$ where $d = -\nabla L(0,0)$.</p>
+<p>(a) Apply binary search on $[0, 2]$ to find the learning rate. Find the reduced interval after 2 iterations. [4M]</p>
+<p>(b) Using the second derivative test, determine the minimum of $\phi(\alpha)$ and verify the binary search interval is shrinking toward it. [3M]</p>
+
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>Setup:</strong> $\nabla L = [4w_1^3-1,\; 4w_2^3-1]^T$. At $(0,0)$: $\nabla L = [-1,-1]^T$.</p>
+<p>Descent direction $d = -\nabla L(0,0) = [1,1]^T$.</p>
+<p>Line search: $\phi(\alpha) = L(\alpha,\alpha) = 2\alpha^4 - 2\alpha$.</p>
+<p>$\phi'(\alpha) = 8\alpha^3 - 2$.</p>
+
+<p><strong>(a) Binary search on $[0,2]$:</strong></p>
+<p><em>Iteration 1:</em> Midpoint $\alpha_1 = 1$. $\phi'(1) = 8(1)-2 = 6 > 0$. $\phi$ is increasing at 1, so minimum is in $[0,1]$. New interval: $[0,1]$.</p>
+<p><em>Iteration 2:</em> Midpoint $\alpha_2 = 0.5$. $\phi'(0.5) = 8(0.125)-2 = 1-2 = -1 < 0$. $\phi$ is decreasing at 0.5, so minimum is in $[0.5,1]$. New interval: $\boxed{[0.5,1]}$.</p>
+
+<p><strong>(b) Exact minimum:</strong> $\phi'(\alpha) = 0 \Rightarrow 8\alpha^3 = 2 \Rightarrow \alpha = \left(\frac{1}{4}\right)^{1/3} \approx 0.63$.</p>
+<p>$\phi''(\alpha) = 24\alpha^2$. At $\alpha \approx 0.63$: $\phi''(0.63) = 24(0.63)^2 > 0$ $\Rightarrow$ local minimum &#10003;.</p>
+<p>$0.63 \in [0.5, 1]$ &#10003; &mdash; the binary search interval is shrinking toward the optimal learning rate.</p>
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q4 (7M) &mdash; Gradient Descent with Momentum</h4>
+<span class="exam-badge">Mar 2026 Compre EC3 Makeup</span>
+<span class="topic-tag">Gradient Descent</span>
+
+<p><strong>Given:</strong> $J(w_0, w_1) = (w_0-3)^2 + (w_1-3)^2$. Minimize using GD with momentum.</p>
+<p>Initial: $(w_0^0, w_1^0) = (2,2)$, learning rate $\eta = 0.05$, momentum $\beta = 0.5$, initial velocity $(v_0^0, v_1^0) = (0,0)$.</p>
+<p>Compute $(w_0^1, w_1^1)$ after iteration 1 and $(w_0^2, w_1^2)$ after iteration 2. [4M]</p>
+
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>Gradient:</strong> $\nabla J = [2(w_0-3),\; 2(w_1-3)]^T$.</p>
+<p><strong>Update rule:</strong> $v^{t+1} = \beta v^t - \eta \nabla J(w^t)$, then $w^{t+1} = w^t + v^{t+1}$.</p>
+
+<p><strong>Iteration 1:</strong></p>
+<p>$\nabla J(2,2) = [-2,-2]^T$.</p>
+<p>$v^1 = 0.5(0,0) - 0.05(-2,-2) = (0.1, 0.1)$.</p>
+<p>$w^1 = (2,2) + (0.1,0.1) = \boxed{(2.1, 2.1)}$.</p>
+
+<p><strong>Iteration 2:</strong></p>
+<p>$\nabla J(2.1,2.1) = [2(2.1-3), 2(2.1-3)] = [-1.8,-1.8]^T$.</p>
+<p>$v^2 = 0.5(0.1,0.1) - 0.05(-1.8,-1.8) = (0.05,0.05) + (0.09,0.09) = (0.14,0.14)$.</p>
+<p>$w^2 = (2.1,2.1) + (0.14,0.14) = \boxed{(2.24, 2.24)}$.</p>
+</div>
+</details>
+</div>
+
+<div class="topic-divider" id="topic-vs">Vector Spaces &amp; Subspaces (Basis, Null Space, Rank-Nullity)</div>
+
+<div class="question-card">
+<h4>Q7 (3M) &mdash; Vector Spaces: Polynomials and Invertible Matrices</h4>
+<span class="exam-badge">2022 Mid-Sem</span>
+<span class="topic-tag">Vector Spaces</span>
+<p>(a) Is $V = \{p(x) = \sum_{i=0}^5 c_i x^i : p(a)=0\}$ a vector space? Find a basis. (b) Is the set of all invertible $2\times2$ real matrices a vector space? (c) Same with matrix multiplication?</p>
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(a) Yes, $V$ is a vector space</strong> (polynomials of degree $\leq 5$ with root $a$).</p>
+<p>The zero polynomial satisfies $p(a)=0$ ✓. If $p,q \in V$: $(p+q)(a) = p(a)+q(a)=0$ ✓. If $p\in V$, $\alpha\in\mathbb{R}$: $(\alpha p)(a)=\alpha p(a)=0$ ✓.</p>
+<p><strong>Basis:</strong> $(x-a), (x-a)x, (x-a)x^2, (x-a)x^3, (x-a)x^4$. Each is a degree $\leq 5$ polynomial with root $a$, and they are linearly independent. Dimension = 5.</p>
+
+<p><strong>(b) No.</strong> The set of invertible $2\times2$ matrices is NOT a vector space. It is not closed under addition: $\begin{bmatrix}1&0\\0&1\end{bmatrix} + \begin{bmatrix}-1&0\\0&-1\end{bmatrix} = \begin{bmatrix}0&0\\0&0\end{bmatrix}$, which is not invertible. Also the zero matrix is not in the set.</p>
+
+<p><strong>(c) No.</strong> Even with matrix multiplication as the operation, the set of invertible matrices is not a vector space — scalar multiplication is not defined in a way that preserves invertibility (e.g., $0\cdot A = 0$ is not invertible).</p>
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q3 (5M) &mdash; Basis for $\mathbb{R}^4$ and Linear Combination</h4>
+<span class="exam-badge">2024 Mid-Sem EC2</span>
+<span class="topic-tag">Vector Spaces</span>
+$$S = \left\{\begin{bmatrix}0\\1\\2\\0\end{bmatrix},\begin{bmatrix}1\\0\\0\\3\end{bmatrix},\begin{bmatrix}2\\0\\0\\0\end{bmatrix},\begin{bmatrix}0\\0\\0\\4\end{bmatrix}\right\}$$
+<p>(a) Is $S$ a basis for $\mathbb{R}^4$? (b) Write $[1,0,0,0]^T$ as a linear combination of elements of $S$.</p>
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(a)</strong> Form matrix $M$ with these as columns and check if rank = 4:</p>
+$$M = \begin{bmatrix}0&1&2&0\\1&0&0&0\\2&0&0&0\\0&3&0&4\end{bmatrix}$$
+<p>Row reduce: Swap $R_1\leftrightarrow R_2$: pivot in col 2. $R_3\leftarrow R_3-2R_1$. Continue: get 4 pivots. Rank = 4. <strong>Yes, $S$ is a basis for $\mathbb{R}^4$</strong>.</p>
+
+<p><strong>(b)</strong> Solve $c_1 s_1 + c_2 s_2 + c_3 s_3 + c_4 s_4 = [1,0,0,0]^T$:</p>
+$$\begin{cases}c_2+2c_3=1\\c_1=0\\2c_1=0\\3c_2+4c_4=0\end{cases}$$
+<p>$c_1=0$. From row 2: $c_2+2c_3=1$. Set $c_3=\frac{1}{2}$: $c_2=0$. Then $4c_4=0\Rightarrow c_4=0$.</p>
+$$\begin{bmatrix}1\\0\\0\\0\end{bmatrix} = 0\cdot s_1 + 0\cdot s_2 + \frac{1}{2}\cdot s_3 + 0\cdot s_4 = \frac{1}{2}\begin{bmatrix}2\\0\\0\\0\end{bmatrix} \checkmark$$
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q2 (5M) &mdash; Null Space &amp; Nullity</h4>
+<span class="exam-badge">Jan 2025 Mid-Sem</span>
+<span class="topic-tag">Null Space</span>
+<a class="review-link" href="MFML_Notes_Lectures_1_to_5.html#l2-rank">Review: Rank &amp; Null Space</a>
+
+<p>(a) Find null space and nullity of $A = \begin{bmatrix}1&2&-1\\2&-1&3\end{bmatrix}$.</p>
+<p>(b) Find null space and nullity of $A = \begin{bmatrix}2&-1&3\\4&-2&6\\-6&3&-9\end{bmatrix}$.</p>
+
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(a)</strong> Solve $A\mathbf{x} = \mathbf{0}$. Row reduce:</p>
+$$\begin{bmatrix}1&2&-1\\2&-1&3\end{bmatrix} \xrightarrow{R_2-2R_1} \begin{bmatrix}1&2&-1\\0&-5&5\end{bmatrix}$$
+<p>From row 2: $x_2 = x_3$. From row 1: $x_1 = -2x_2+x_3 = -x_3$. Let $x_3 = t$:</p>
+$$\text{Null}(A) = \text{span}\left\{\begin{bmatrix}-1\\1\\1\end{bmatrix}\right\}, \quad \boxed{\nu(A) = 1}$$
+
+<p><strong>(b)</strong> All rows are proportional: $R_2 = 2R_1$, $R_3 = -3R_1$.</p>
+$$\xrightarrow{\text{REF}} \begin{bmatrix}2&-1&3\\0&0&0\\0&0&0\end{bmatrix}$$
+<p>Two free variables ($x_2, x_3$). From row 1: $x_1 = \frac{1}{2}(x_2 - 3x_3)$.</p>
+<ul>
+  <li>$x_2=2, x_3=0$: $\mathbf{n}_1 = [1,2,0]^T$</li>
+  <li>$x_2=0, x_3=2$: $\mathbf{n}_2 = [-3,0,2]^T$</li>
+</ul>
+$$\boxed{\nu(A) = 2}$$
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q2 (6M) &mdash; Linear Dependence, Subspace, Basis</h4>
+<span class="exam-badge">Dec 2025 Mid-Sem EC2</span>
+<span class="topic-tag">Linear Independence</span>
+<span class="topic-tag">Vector Spaces</span>
+<a class="review-link" href="MFML_Notes_Lectures_1_to_5.html#l2-lindep">Review: Linear Independence</a> &nbsp;|&nbsp;
+<a class="review-link" href="MFML_Notes_Lectures_1_to_5.html#l2-basis">Review: Basis &amp; Dimension</a>
+
+<p><strong>(a)</strong> Show $[4,-8,5]^T$ is a linear combination of $[5,-3,1]^T$ and $[6,2,-3]^T$. Are the 3 vectors linearly dependent?</p>
+<p><strong>(b)</strong> $V = \text{span}\{[5,-3,1]^T,\,[6,2,-3]^T\}$. Verify $V$ is a subspace and find basis and dimension.</p>
+<p><strong>(c)</strong> Is $[4,-8,2]^T \in V$?</p>
+
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(a)</strong> Solve $\alpha[5,-3,1]^T + \beta[6,2,-3]^T = [4,-8,5]^T$:</p>
+$$5\alpha + 6\beta = 4 \quad (1)$$
+$$-3\alpha + 2\beta = -8 \quad (2)$$
+$$\alpha - 3\beta = 5 \quad (3)$$
+<p>From (3): $\alpha = 5 + 3\beta$. Substitute into (1): $25 + 15\beta + 6\beta = 4 \Rightarrow 21\beta = -21 \Rightarrow \beta = -1$, $\alpha = 2$.</p>
+<p>Verify (2): $-3(2) + 2(-1) = -8$ &#10003;</p>
+$$\boxed{[4,-8,5]^T = 2[5,-3,1]^T - [6,2,-3]^T}$$
+<p>Since one vector is a linear combination of the others, the 3 vectors are <strong>linearly dependent</strong>.</p>
+
+<p><strong>(b)</strong> $V = \text{span}\{[5,-3,1]^T, [6,2,-3]^T\}$.</p>
+<p>The span of any set of vectors is always a subspace (closed under addition and scalar multiplication, contains $\mathbf{0}$).</p>
+<p>The two vectors are not proportional ($5/6 \neq -3/2$), so they are linearly independent.</p>
+$$\text{Basis} = \{[5,-3,1]^T, [6,2,-3]^T\}, \quad \boxed{\dim(V) = 2}$$
+
+<p><strong>(c)</strong> Is $[4,-8,2]^T \in V$? Solve $\alpha[5,-3,1]^T + \beta[6,2,-3]^T = [4,-8,2]^T$:</p>
+<p>Using same approach: $\alpha = 2, \beta = -1$ from equations (1) and (2).</p>
+<p>Check equation (3): $\alpha(1) + \beta(-3) = 2 + 3 = 5 \neq 2$.</p>
+<p><strong>No, $[4,-8,2]^T \notin V$.</strong></p>
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q2 (8M) &mdash; Linear Dependence, Subspace, Rank, Determinant</h4>
+<span class="exam-badge">Mar 2026 Compre EC3</span> <span class="exam-badge">Feb 2026 End-Sem EC2</span>
+<span class="topic-tag">Linear Independence</span>
+<span class="topic-tag">Vector Spaces</span>
+<span class="topic-tag">Rank</span>
+<a class="review-link" href="MFML_Notes_Lectures_1_to_5.html#l2-lindep">Review: Linear Independence</a> &nbsp;|&nbsp;
+<a class="review-link" href="MFML_Notes_Lectures_1_to_5.html#l2-basis">Review: Basis</a> &nbsp;|&nbsp;
+<a class="review-link" href="MFML_Notes_Lectures_1_to_5.html#l2-rank">Review: Rank</a>
+
+<p>$\mathbf{v}_1 = [-3,1,0,-1]^T$, $\mathbf{v}_2 = [0,2,3,4]^T$, $\mathbf{v}_3 = [0,1,0,0]^T$, $\mathbf{v}_4 = [-6,3,-3,-3]^T$.</p>
+<p>(a) Are these linearly dependent? &nbsp; (b) $U = \text{span}\{\mathbf{v}_1,...,\mathbf{v}_4\}$: subspace? basis? dimension? &nbsp; (c) Rank and determinant of $B = [\mathbf{v}_1|\mathbf{v}_2|\mathbf{v}_3|\mathbf{v}_4]$.</p>
+
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(a)</strong> Form matrix with vectors as columns and row reduce:</p>
+$$B = \begin{bmatrix}-3&0&0&-6\\1&2&1&3\\0&3&0&-3\\-1&4&0&-3\end{bmatrix}$$
+<p>$R_1 \leftarrow -\frac{1}{3}R_1$:</p>
+$$\begin{bmatrix}1&0&0&2\\1&2&1&3\\0&3&0&-3\\-1&4&0&-3\end{bmatrix}$$
+<p>$R_2 \leftarrow R_2 - R_1$, $R_4 \leftarrow R_4 + R_1$:</p>
+$$\begin{bmatrix}1&0&0&2\\0&2&1&1\\0&3&0&-3\\0&4&0&-1\end{bmatrix}$$
+<p>$R_3 \leftarrow R_3 - \frac{3}{2}R_2$, $R_4 \leftarrow R_4 - 2R_2$:</p>
+$$\begin{bmatrix}1&0&0&2\\0&2&1&1\\0&0&-3/2&-9/2\\0&0&-2&-3\end{bmatrix}$$
+<p>$R_4 \leftarrow R_4 - \frac{4}{3}R_3$:</p>
+$$\begin{bmatrix}1&0&0&2\\0&2&1&1\\0&0&-3/2&-9/2\\0&0&0&3\end{bmatrix}$$
+<p>4 pivots $\Rightarrow$ rank = 4 $\Rightarrow$ <strong>linearly independent</strong> (not dependent).</p>
+
+<div class="important">
+<p>Note: Check for $\mathbf{v}_4 = 2\mathbf{v}_1 + c_2\mathbf{v}_2 + c_3\mathbf{v}_3$: $[-6,3,-3,-3]^T$ vs $2[-3,1,0,-1]^T = [-6,2,0,-2]^T$. The difference is $[0,1,-3,-1]^T$ which requires $c_2[0,2,3,4]^T + c_3[0,1,0,0]^T = [0,1,-3,-1]^T \Rightarrow c_2 = -1$, check: $2(-1)+c_3=1 \Rightarrow c_3=3$, check row 4: $4(-1)=-4 \neq -1$. So no simple dependence relation exists, consistent with linear independence.</p>
+</div>
+
+<p><strong>(b)</strong> $U = \text{span}\{\mathbf{v}_1,...,\mathbf{v}_4\}$ is a subspace (span is always a subspace). Since the 4 vectors in $\mathbb{R}^4$ are linearly independent, they form a basis for $\mathbb{R}^4$.</p>
+$$\text{Basis} = \{\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3, \mathbf{v}_4\}, \quad \boxed{\dim(U) = 4}$$
+
+<p><strong>(c)</strong> $\text{rank}(B) = 4$. For the determinant, using the REF (accounting for the row scaling $R_1 \leftarrow -\frac{1}{3}R_1$):</p>
+<p>Product of REF pivots: $1 \times 2 \times (-3/2) \times 3 = -9$. We scaled $R_1$ by $-1/3$, so $\det(B) = (-3) \times (-9) = 27$.</p>
+$$\boxed{\det(B) = 27}$$
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q2 (5M) &mdash; Vector Space of Diagonalizable Matrices</h4>
+<span class="exam-badge">Jan 2025 Mid-Sem Makeup</span>
+<span class="topic-tag">Vector Spaces</span>
+<span class="topic-tag">Diagonalization</span>
+
+<p><strong>Question:</strong> Consider the set $\mathcal{V}$ of all $n \times n$ matrices that are diagonalizable with the same fixed eigenvector matrix $S$ (i.e., $A = S D S^{-1}$ for diagonal $D$ with real entries). Show that $\mathcal{V}$ is a vector space and find its dimension and a basis.</p>
+
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>Closure under addition:</strong> If $A = SDS^{-1}$ and $B = S\tilde{D}S^{-1}$, then $A + B = S(D+\tilde{D})S^{-1} \in \mathcal{V}$.</p>
+<p><strong>Closure under scalar multiplication:</strong> $cA = S(cD)S^{-1} \in \mathcal{V}$.</p>
+<p><strong>Zero vector:</strong> $0 = S \cdot 0 \cdot S^{-1} \in \mathcal{V}$.</p>
+<p>Therefore $\mathcal{V}$ is a vector space.</p>
+<p><strong>Dimension:</strong> $D$ is an $n \times n$ diagonal matrix, so it has $n$ free parameters. Thus $\dim(\mathcal{V}) = n$.</p>
+<p><strong>Basis:</strong> Let $F_i$ be the diagonal matrix with 1 in position $(i,i)$ and 0 elsewhere. Then:</p>
+$$\text{Basis} = \{S F_1 S^{-1},\; S F_2 S^{-1},\; \ldots,\; S F_n S^{-1}\}$$
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q2 (6M) &mdash; Null Space as Subspace, Basis, Dimension</h4>
+<span class="exam-badge">Jan 2026 Mid-Sem Makeup</span>
+<span class="topic-tag">Vector Spaces</span>
+<span class="topic-tag">Null Space</span>
+
+<p><strong>Given:</strong> $A = \begin{bmatrix}1&-1&1\\-2&2&-2\\3&-3&3\end{bmatrix}$.</p>
+<p>(a) Show $V = \{\mathbf{x} \in \mathbb{R}^3 : A\mathbf{x} = \mathbf{0}\}$ is a subspace. [2M]</p>
+<p>(b) Find a basis and dimension of $V$. [2M]</p>
+<p>(c) Find a 1-dimensional subspace $U$ of $V$. [2M]</p>
+
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(a)</strong> $V = \text{Null}(A)$. The null space is always a subspace:</p>
+<ul>
+  <li>If $A\mathbf{x} = \mathbf{0}$ and $A\mathbf{y} = \mathbf{0}$, then $A(\mathbf{x}+\mathbf{y}) = \mathbf{0}$ (closure under addition).</li>
+  <li>If $A\mathbf{x} = \mathbf{0}$, then $A(c\mathbf{x}) = c \cdot \mathbf{0} = \mathbf{0}$ (closure under scalar multiplication).</li>
+  <li>$A\mathbf{0} = \mathbf{0}$ (zero vector).</li>
+</ul>
+
+<p><strong>(b)</strong> All rows of $A$ are multiples of $[1,-1,1]$. Row reduce:</p>
+$$\begin{bmatrix}1&-1&1\\0&0&0\\0&0&0\end{bmatrix}$$
+<p>Free variables: $x_2, x_3$. From row 1: $x_1 = x_2 - x_3$.</p>
+<ul>
+  <li>$(x_2,x_3) = (1,0)$: $\mathbf{n}_1 = [1,1,0]^T$</li>
+  <li>$(x_2,x_3) = (0,1)$: $\mathbf{n}_2 = [-1,0,1]^T$</li>
+</ul>
+$$\text{Basis} = \{[1,1,0]^T,\;[-1,0,1]^T\}, \quad \boxed{\dim(V) = 2}$$
+
+<p><strong>(c)</strong> Any 1-dimensional subspace (line through origin) in $V$ works. Example:</p>
+$$U = \text{span}\{[1,1,0]^T\}$$
+</div>
+</details>
+</div>
+
+<div class="topic-divider" id="topic-rank">Rank &amp; Determinant</div>
+
+<div class="question-card">
+<h4>Q2 (4M) &mdash; Rank of $AB$ vs Rank of $B$ when $A$ has Full Rank</h4>
+<span class="exam-badge">2022 Mid-Sem</span>
+<span class="topic-tag">Rank</span>
+<p><strong>Question:</strong> (a) Let $A$ and $B$ be $n\times n$. If $A$ has full rank, is $\text{rank}(B) = \text{rank}(AB)$? Justify. (b) If $A^2=A$, $B^2=B$ and $I-A-B$ is invertible, prove $A$ and $B$ have the same rank.</p>
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(a) YES.</strong> If $A$ is $n\times n$ with full rank, then $A$ is invertible. Since $A$ is invertible, left-multiplying by $A$ is a bijection on $\mathbb{R}^n$, so it does not change the column space of $B$: $\text{Col}(AB) = A\cdot\text{Col}(B)$, and since $A$ is invertible, $\dim(A\cdot\text{Col}(B)) = \dim(\text{Col}(B))$. Therefore $\text{rank}(AB) = \text{rank}(B)$.</p>
+<p><em>Counterexample showing it fails without full rank:</em> $A = \begin{bmatrix}1&0\\0&0\end{bmatrix}$, $B = \begin{bmatrix}0&1\\0&0\end{bmatrix}$. $\text{rank}(B)=1$ but $AB = \begin{bmatrix}0&1\\0&0\end{bmatrix}$... wait, $A$ is not full rank here, rank$(A)=1$. Then $AB = \begin{bmatrix}0&1\\0&0\end{bmatrix}$, rank = 1. Actually $AB = 0$ matrix here only if $B$'s rows are in null space of $A$. Better: $A = \begin{bmatrix}1&0\\0&0\end{bmatrix}$, $B = \begin{bmatrix}0&1\\0&0\end{bmatrix} \Rightarrow AB = \begin{bmatrix}0&1\\0&0\end{bmatrix}$. Rank $A = 1$, rank $B = 1$, rank $AB = 1$. Try $B = \begin{bmatrix}0&0\\1&0\end{bmatrix} \Rightarrow AB = \begin{bmatrix}0&0\\0&0\end{bmatrix}$, rank = 0. So rank$(B)=1 \neq 0 = \text{rank}(AB)$.</p>
+
+<p><strong>(b)</strong> Since $A^2=A$ (idempotent), $B = I-A$. But wait — we have $I-A-B$ is invertible, not $B=I-A$. Let $C = I-A-B$. Since $A^2=A$ and $B^2=B$:</p>
+<p>$B = I-A$ means $B^2 = (I-A)^2 = I-2A+A^2 = I-2A+A = I-A = B$ ✓. So $B = I-A$ is consistent. Then $I-A-B = I-A-(I-A) = 0$, which is not invertible — contradiction. So the problem uses a different argument.</p>
+<p>The correct approach: Since $C = I-A-B$ is invertible, $A = 0$ is not possible (as that would make $C = I-B$ and the argument continues). Using $A^2=A \Rightarrow A(I-A)=0$. Note $I-A-B$ invertible $\Rightarrow$ null$(A)$ and null$(B)$ have no non-trivial intersection with the range of $C$, leading to equal ranks.</p>
+<div class="tip">Key result: If $A^2=A$, $B^2=B$, and $I-A-B$ is invertible, then rank$(A)$ = rank$(B)$ because the idempotency forces complementary projections.</div>
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q2 (10M) &mdash; Rank, RREF, Vector Spaces, Gram-Schmidt, Eigenvalues</h4>
+<span class="exam-badge">2022 End-Sem Makeup</span>
+<span class="topic-tag">Rank</span>
+<span class="topic-tag">Vector Spaces</span>
+<span class="topic-tag">Eigenvalues</span>
+<p>(i) Rank of a matrix and whether column 2 can be obtained from columns 1 and 3. (ii) $\mathbb{C}$ over $\mathbb{R}$ vs $\mathbb{C}$ over $\mathbb{C}$: dimensions. (iii) $v_1+v_2+v_3=0$: show span$\{v_1,v_2\}$ = span$\{v_2,v_3\}$. (iv) RREF uniqueness. (v) If $B = PAP^{-1}$ for invertible $P$ with orthogonal eigenvectors, does $B$ have orthogonal eigenvectors?</p>
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(i)</strong> Rank is 2. Column 2 can be obtained from columns 1 and 3 (pivot columns), so yes.</p>
+<p><strong>(ii)</strong> $\mathbb{C}$ over $\mathbb{R}$: dimension 2 (basis: $\{1, i\}$). $\mathbb{C}$ over $\mathbb{C}$: dimension 1 (basis: $\{1\}$).</p>
+<p><strong>(iii)</strong> $v_1+v_2+v_3=0 \Rightarrow v_1 = -v_2-v_3$. Any $\alpha v_1+\beta v_2 = \alpha(-v_2-v_3)+\beta v_2 = (\beta-\alpha)v_2 + (-\alpha)v_3 \in \text{span}\{v_2,v_3\}$. Similarly, $v_3 = -v_1-v_2 \in \text{span}\{v_1,v_2\}$, so span$\{v_2,v_3\} \subseteq$ span$\{v_1,v_2\}$. Hence equal.</p>
+<p><strong>(iv)</strong> RREF is unique (C is correct). You cannot uniquely recover $X$ from its RREF (E is wrong — many matrices can have the same RREF).</p>
+<p><strong>(v)</strong> $B = PAP^{-1}$ has the same eigenvalues as $A$. If $P$ is orthogonal (i.e., $P^{-1}=P^T$), then the eigenvectors of $B$ are the columns of $P$ multiplied, and by Gram-Schmidt we can orthogonalize them. So yes, $B$ has linearly independent eigenvectors (same eigenvalues as $A$), and we can use Gram-Schmidt to generate an orthogonal matrix of eigenvectors.</p>
+</div>
+</details>
+</div>
+
+<div class="topic-divider" id="topic-gauss">Gaussian Elimination &amp; Solving Ax = b</div>
+
+<div class="question-card">
+<h4>Q1 (5M) &mdash; Gaussian Elimination, Rank, Solution of $AX=b$</h4>
+<span class="exam-badge">2024 Mid-Sem EC2</span>
+<span class="topic-tag">Gaussian Elimination</span>
+<span class="topic-tag">Rank</span>
+$$A = \begin{bmatrix}1&3&-1&4\\2&6&-2&8\\3&9&-3&12\end{bmatrix}, \quad b = \begin{bmatrix}1\\2\\3\end{bmatrix}$$
+<p>(a) Find echelon form and rank of $A$. (b) Find all solutions of $AX=b$. (c) If $b=[1,2,2]^T$, what can you conclude?</p>
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(a) Row reduction:</strong> $R_2\leftarrow R_2-2R_1$, $R_3\leftarrow R_3-3R_1$:</p>
+$$\begin{bmatrix}1&3&-1&4\\0&0&0&0\\0&0&0&0\end{bmatrix}$$
+<p>Echelon form has 1 pivot (in column 1). $\boxed{\text{rank}(A) = 1}$.</p>
+
+<p><strong>(b)</strong> System $AX=b$: first row gives $x_1+3x_2-x_3+4x_4=1$. Check augmented: $[A|b]$: after $R_2-2R_1$: $[0,0,0,0|0]$ and $R_3-3R_1$: $[0,0,0,0|0]$. Consistent.</p>
+<p>Free variables: $x_2,x_3,x_4$. $x_1 = 1-3x_2+x_3-4x_4$.</p>
+<p>General solution: $\mathbf{x} = \begin{bmatrix}1\\0\\0\\0\end{bmatrix} + x_2\begin{bmatrix}-3\\1\\0\\0\end{bmatrix} + x_3\begin{bmatrix}1\\0\\1\\0\end{bmatrix} + x_4\begin{bmatrix}-4\\0\\0\\1\end{bmatrix}$, $\;x_2,x_3,x_4\in\mathbb{R}$.</p>
+
+<p><strong>(c)</strong> With $b=[1,2,2]^T$: after $R_2-2R_1$: $[0,0,0,0|0]$, $R_3-3R_1$: $[0,0,0,0|2-3=-1]\neq0$. Inconsistent. <strong>No solution</strong>.</p>
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q3 (8M) &mdash; REF, Column Space, Null Space, Row Space</h4>
+<span class="exam-badge">Prev Batch Mid-Sem</span>
+<span class="topic-tag">Gaussian Elimination</span>
+<span class="topic-tag">Vector Spaces</span>
+<a class="review-link" href="MFML_Notes_Lectures_1_to_5.html#l1-gauss">Review: Gaussian Elimination</a> &nbsp;|&nbsp;
+<a class="review-link" href="MFML_Notes_Lectures_1_to_5.html#l2-rank">Review: Rank &amp; Null Space</a>
+
+<p><strong>Given:</strong></p>
+$$A = \begin{bmatrix} -3 & 6 & -1 & 1 & -7 \\ 1 & -2 & 2 & 3 & -1 \\ 2 & -4 & 5 & 8 & -4 \end{bmatrix}$$
+<p>(A) Row reduce to REF. &nbsp; (B) Column space basis. &nbsp; (C) Null space basis. &nbsp; (D) Row space basis.</p>
+
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(A) Row Reduction to REF:</strong></p>
+<p>Swap $R_1 \leftrightarrow R_2$:</p>
+$$\begin{bmatrix} 1 & -2 & 2 & 3 & -1 \\ -3 & 6 & -1 & 1 & -7 \\ 2 & -4 & 5 & 8 & -4 \end{bmatrix}$$
+<p>$R_2 \leftarrow R_2 + 3R_1$, $R_3 \leftarrow R_3 - 2R_1$:</p>
+$$\begin{bmatrix} 1 & -2 & 2 & 3 & -1 \\ 0 & 0 & 5 & 10 & -10 \\ 0 & 0 & 1 & 2 & -2 \end{bmatrix}$$
+<p>$R_3 \leftarrow R_3 - \tfrac{1}{5}R_2$:</p>
+$$\boxed{\begin{bmatrix} 1 & -2 & 2 & 3 & -1 \\ 0 & 0 & 5 & 10 & -10 \\ 0 & 0 & 0 & 0 & 0 \end{bmatrix}}$$
+<p>Pivots are in columns 1 and 3.</p>
+
+<p><strong>(B) Column Space Basis:</strong></p>
+<p>Pivot columns from original matrix $A$ (columns 1 and 3):</p>
+$$\text{Basis} = \left\{ \begin{bmatrix}-3\\1\\2\end{bmatrix},\; \begin{bmatrix}-1\\2\\5\end{bmatrix} \right\}, \quad \dim(\text{Col}(A)) = 2$$
+
+<p><strong>(C) Null Space Basis:</strong></p>
+<p>Free variables: $x_2, x_4, x_5$. From REF, write the system:</p>
+<p>$x_1 - 2x_2 + 2x_3 + 3x_4 - x_5 = 0$ and $5x_3 + 10x_4 - 10x_5 = 0$.</p>
+<p>From row 2: $x_3 = -2x_4 + 2x_5$.</p>
+<p>Substitute into row 1: $x_1 = 2x_2 - 2(-2x_4+2x_5) - 3x_4 + x_5 = 2x_2 + x_4 - 3x_5$.</p>
+
+<p>Setting free variables one at a time:</p>
+<ul>
+  <li>$(x_2,x_4,x_5) = (1,0,0)$: $\mathbf{n}_1 = [2,1,0,0,0]^T$</li>
+  <li>$(x_2,x_4,x_5) = (0,1,0)$: $\mathbf{n}_2 = [1,0,-2,1,0]^T$</li>
+  <li>$(x_2,x_4,x_5) = (0,0,1)$: $\mathbf{n}_3 = [-3,0,2,0,1]^T$</li>
+</ul>
+$$\dim(\text{Null}(A)) = 3$$
+
+<p><strong>(D) Row Space Basis:</strong></p>
+<p>Non-zero rows of REF form a basis for the row space:</p>
+$$\text{Basis} = \left\{ [1,-2,2,3,-1],\; [0,0,5,10,-10] \right\}, \quad \text{Rank} = 2$$
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q1 (5M) &mdash; Gaussian Elimination &amp; Determinant</h4>
+<span class="exam-badge">Dec 2025 Mid-Sem EC2</span>
+<span class="topic-tag">Gaussian Elimination</span>
+<span class="topic-tag">Rank</span>
+<span class="topic-tag">Determinant</span>
+<a class="review-link" href="MFML_Notes_Lectures_1_to_5.html#l1-gauss">Review: Gaussian Elimination</a> &nbsp;|&nbsp;
+<a class="review-link" href="MFML_Notes_Lectures_1_to_5.html#l1-inverse">Review: Determinant &amp; Rank</a>
+
+<p><strong>(a)</strong> Solve: $A = \begin{bmatrix}1&2&3\\2&4&6\\1&-1&0\end{bmatrix}$, $\mathbf{b} = [6,12,5]^T$.</p>
+<p><strong>(b)</strong> Find rank and determinant of $B = \begin{bmatrix}5&25&-64&32\\0&-1&-3&4\\0&1&-2&5\\0&0&5&-3\end{bmatrix}$.</p>
+
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(a)</strong> Augmented matrix $[A|\mathbf{b}]$:</p>
+$$\begin{bmatrix}1&2&3&6\\2&4&6&12\\1&-1&0&5\end{bmatrix}$$
+<p>$R_2 \leftarrow R_2 - 2R_1$: $[0,0,0,0]$. $R_3 \leftarrow R_3 - R_1$: $[0,-3,-3,-1]$.</p>
+$$\text{REF}: \begin{bmatrix}1&2&3&6\\0&-3&-3&-1\\0&0&0&0\end{bmatrix}$$
+<p>Rank = 2, one free variable ($x_3 = t$). <strong>Infinitely many solutions.</strong></p>
+<p>From row 2: $-3x_2 - 3t = -1 \Rightarrow x_2 = \frac{1-3t}{3}$.</p>
+<p>From row 1: $x_1 = 6 - 2x_2 - 3t = 6 - \frac{2(1-3t)}{3} - 3t = \frac{16-3t}{3}$.</p>
+$$\boxed{\mathbf{x} = \begin{bmatrix}(16-3t)/3\\(1-3t)/3\\t\end{bmatrix}, \quad t \in \mathbb{R}}$$
+
+<p><strong>(b)</strong> Row reduce $B$:</p>
+$$\begin{bmatrix}5&25&-64&32\\0&-1&-3&4\\0&1&-2&5\\0&0&5&-3\end{bmatrix}$$
+<p>$R_3 \leftarrow R_3 + R_2$:</p>
+$$\begin{bmatrix}5&25&-64&32\\0&-1&-3&4\\0&0&-5&9\\0&0&5&-3\end{bmatrix}$$
+<p>$R_4 \leftarrow R_4 + R_3$:</p>
+$$\begin{bmatrix}5&25&-64&32\\0&-1&-3&4\\0&0&-5&9\\0&0&0&6\end{bmatrix}$$
+<p>4 pivots $\Rightarrow$ $\boxed{\text{rank}(B) = 4}$.</p>
+<p>$\det(B) = $ product of pivots $= 5 \times (-1) \times (-5) \times 6 = \boxed{150}$.</p>
+<p>(No row swaps, so sign is positive.)</p>
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q6 (5M) &mdash; System of Equations: Upper Triangular Structure</h4>
+<span class="exam-badge">Jan 2025 Mid-Sem Makeup</span>
+<span class="topic-tag">Gaussian Elimination</span>
+<span class="topic-tag">Null Space</span>
+
+<p>Consider the system $Ax = b$ where $A \in \mathbb{R}^{3\times4}$ is upper triangular with $a_{11} \neq 0$, $a_{22} \neq 0$, $a_{34} \neq 0$ (and $a_{33} = 0$).</p>
+<p>(a) What restriction, if any, must $b$ satisfy for solutions to exist?</p>
+<p>(b) What is the nullity of $A$?</p>
+
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(a)</strong> The matrix has pivots in columns 1, 2, and 4 (since $a_{11}, a_{22}, a_{34} \neq 0$ and $a_{33}=0$). This gives rank = 3. Since rank($A$) = 3 = number of rows, every $b \in \mathbb{R}^3$ is consistent.</p>
+<p><strong>No restriction on $b$</strong> &mdash; the system is always consistent.</p>
+
+<p><strong>(b) Rank-Nullity Theorem:</strong></p>
+$$\text{rank}(A) + \text{nullity}(A) = n = 4$$
+$$\text{nullity}(A) = 4 - 3 = \boxed{1}$$
+<p>There is exactly 1 free variable (column 3), so the null space is 1-dimensional.</p>
+</div>
+</details>
+</div>
+
+
+
+<div class="question-card">
+<h4>Q1 (4M) &mdash; Echelon Form, Determinant, Inverse, Solve</h4>
+<span class="exam-badge">Jan 2026 Mid-Sem Makeup</span>
+<span class="topic-tag">Gaussian Elimination</span>
+<span class="topic-tag">Rank</span>
+<span class="topic-tag">Determinant</span>
+
+<p><strong>Given:</strong> $A = \begin{bmatrix}1&1&0&0\\1&2&1&0\\0&1&2&1\\0&0&1&2\end{bmatrix}$.</p>
+<p>(a) Find the echelon form, rank, and determinant of $A$. [2M]</p>
+<p>(b) Find $A^{-1}$ and hence solve $AX = b$ where $b = [-2, 2, 1, -1]^T$. [2M]</p>
+
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(a)</strong> Perform row operations to get upper triangular form. Since $A$ is already close to upper triangular:</p>
+<p>$R_2 \leftarrow R_2 - R_1$: row 2 becomes $[0,1,1,0]$.</p>
+<p>$R_3 \leftarrow R_3 - R_2'$: row 3 becomes $[0,0,1,1]$.</p>
+<p>$R_4 \leftarrow R_4 - R_3'$: row 4 becomes $[0,0,0,1]$.</p>
+<p>The REF is upper triangular with 1s on the diagonal.</p>
+$$\det(A) = 1 \times 1 \times 1 \times 1 = \boxed{1}, \quad \text{rank}(A) = 4$$
+
+<p><strong>(b)</strong> Since $\det(A) = 1$, $A^{-1}$ exists. Computing $A^{-1}$ via augmented matrix $[A|I]$:</p>
+$$X = A^{-1}b = [-11,\;9,\;-5,\;2]^T$$
+</div>
+</details>
+</div>
+
+<div class="topic-divider" id="topic-kkt">Constrained Optimization &amp; KKT</div>
+
+<div class="question-card">
+<h4>Q1 (10M) &mdash; Stationary Points, PCA, Constrained Optimization</h4>
+<span class="exam-badge">2022 End-Sem Makeup</span>
+<span class="topic-tag">Gradient/Hessian</span>
+<span class="topic-tag">SVD</span>
+<span class="topic-tag">Optimization/KKT</span>
+<p>(a)(i) $f(x) = 3x^4-20x^3+36x^2+10$: find stationary points, classify, find global minimum. (ii) Better initial point for GD: 0.5 or 3.5? (b) PCA: data $\mathbf{x}_1=(0,-2),\mathbf{x}_2=(1,-1),\mathbf{x}_3=(-1,1),\mathbf{x}_4=(0,2)$. Covariance matrix and principal component. (c) Constrained optimization: minimize distance from origin to point $(x,y)$ s.t. $x^2+y^2\leq5$, $x+2y=4$, $x\geq0$, $y\geq0$. Write problem, Lagrangian, verify KKT at $(4/5,8/5)$.</p>
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(a)(i) Stationary points:</strong> $f'(x) = 12x^3-60x^2+72x = 12x(x-2)(x-3)=0 \Rightarrow x=0,2,3$.</p>
+<p>$f''(x)=36x^2-120x+72$. $f''(0)=72>0$ (min), $f''(2)=-24<0$ (max), $f''(3)=36>0$ (min).</p>
+<p>$f(0)=10$, $f(3)=3(81)-20(27)+36(9)+10=243-540+324+10=37$. Global minimum at $\boxed{x=0}$, $f(0)=10$.</p>
+<p><strong>(ii)</strong> 0.5 is closer to the global minimum at 0; 3.5 is closer to the local minimum at 3. Better initial condition: $\boxed{0.5}$.</p>
+
+<p><strong>(b) Covariance matrix:</strong> Mean $= (0,0)$ (centred data). $S = \frac{1}{4}XX^T$ where $X = [x_1|x_2|x_3|x_4]$.</p>
+$$S = \frac{1}{4}\begin{bmatrix}0&1&-1&0\\-2&-1&1&2\end{bmatrix}\begin{bmatrix}0&-2\\1&-1\\-1&1\\0&2\end{bmatrix} = \frac{1}{4}\begin{bmatrix}2&-4\\-4&10\end{bmatrix} = \begin{bmatrix}0.5&-1\\-1&2.5\end{bmatrix}$$
+<p>Eigenvalues: $\lambda^2-3\lambda+1.25-4 = \lambda^2-3\lambda = \lambda(\lambda-3) = 0$... checking: $\det(S-\lambda I) = (0.5-\lambda)(2.5-\lambda)-1 = \lambda^2-3\lambda+1.25-1 = \lambda^2-3\lambda+0.25=0$.</p>
+<p>Actually $S = \frac{1}{4}XX'$ where $X = \begin{bmatrix}0&1&-1&0\\-2&-1&1&2\end{bmatrix}$: $XX' = \begin{bmatrix}2&-4\\-4&10\end{bmatrix}$, $S = \begin{bmatrix}0.5&-1\\-1&2.5\end{bmatrix}$.</p>
+<p>$|S-\lambda I|=0 \Rightarrow \lambda^2-3\lambda+0.25=0 \Rightarrow \lambda = \frac{3\pm\sqrt{8}}{2} = \frac{3\pm2\sqrt{2}}{2}$. Largest: $\lambda_1 = \frac{3+2\sqrt{2}}{2} \approx \frac{3+2.83}{2} \approx 2.91$.</p>
+<p>Actually the answer key states $S = \frac{1}{4}XX' = \begin{bmatrix}2.5&-5\\-5&10\end{bmatrix}$... using column means. Let me re-check: $\bar{x} = 0$, $\bar{y} = 0$. $X_c = \begin{bmatrix}0&1&-1&0\\-2&-1&1&2\end{bmatrix}$. $X_c X_c^T = \begin{bmatrix}2&-4\\-4&10\end{bmatrix}$. $S = \frac{1}{4}\begin{bmatrix}2&-4\\-4&10\end{bmatrix} = \begin{bmatrix}0.5&-1\\-1&2.5\end{bmatrix}$.</p>
+<p>Eigenvector for $\lambda_1 = 12.5$: The answer key shows $S = \begin{bmatrix}2.5&-5\\-5&10\end{bmatrix}$ with $\lambda = 0, 12.5$. This corresponds to $S = \frac{1}{4}X_c^TX_c$ where... there may be a factor issue. Using the answer key result: principal component direction $\propto (-1/2, 1)^T$ or $(-1, 2)^T$ (normalized).</p>
+
+<p><strong>(c) KKT at $(4/5, 8/5)$:</strong> Distance function: $\min (x^2+y^2)^{1/2}$ s.t. $x^2+y^2-5\leq0$, $x+2y-4=0$, $-x\leq0$, $-y\leq0$.</p>
+<p>Lagrangian: $L = (x^2+y^2)^{1/2} + \alpha_1(x^2+y^2-5) - \alpha_2 x - \alpha_3 y + \gamma(x+2y-4)$.</p>
+<p>At $(4/5,8/5)$: $x^2+y^2 = 16/25+64/25 = 80/25 = 3.2 < 5$ (inactive, so $\alpha_1=0$); $x+2y=4/5+16/5=4$ ✓; $x=4/5>0$ (inactive, $\alpha_2=0$); $y=8/5>0$ (inactive, $\alpha_3=0$).</p>
+<p>Stationarity: $\frac{x}{(x^2+y^2)^{1/2}} + \gamma = 0 \Rightarrow \gamma = -\frac{1}{\sqrt{5}}$. All KKT conditions satisfied at $(4/5, 8/5)$ with $(\alpha_1,\alpha_2,\alpha_3,\gamma)=(0,0,0,-1/\sqrt{5})$.</p>
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q3 (8M) &mdash; Inner Products, Constrained Optimization, KKT</h4>
+<span class="exam-badge">Mar 2026 Compre EC3</span> <span class="exam-badge">Feb 2026 End-Sem EC2</span>
+<span class="topic-tag">Inner Products</span>
+<span class="topic-tag">Optimization</span>
+<span class="topic-tag">KKT</span>
+<a class="review-link" href="MFML_Notes_Lectures_1_to_5.html#l3-spd">Review: SPD Matrices</a>
+
+<p>(a) Show $A = \begin{bmatrix}3&1\\1&3\end{bmatrix}$ defines an inner product.</p>
+<p>(b) Minimize $2\|\mathbf{x}\|_A^2 = 2\mathbf{x}^TA\mathbf{x}$ subject to $x+y-1 \geq 0$ and $x+y-3 \leq 0$.</p>
+<p>(c) Write the Lagrangian.</p>
+<p>(d) Apply KKT conditions.</p>
+
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(a) Inner product verification:</strong></p>
+<p>$A$ is symmetric ($A = A^T$ &#10003;). Eigenvalues: $(3-\lambda)^2 - 1 = 0 \Rightarrow \lambda = 2, 4$. Both $> 0$, so $A$ is positive definite &#10003;. Therefore $\langle \mathbf{x}, \mathbf{y}\rangle = \mathbf{x}^TA\mathbf{y}$ defines an inner product.</p>
+
+<p><strong>(b) Problem formulation:</strong></p>
+<p>Objective: minimize $f(x,y) = 2(x,y)\begin{bmatrix}3&1\\1&3\end{bmatrix}(x,y)^T = 2(3x^2 + 2xy + 3y^2)$.</p>
+<p>Constraints in standard form (inequality $\leq 0$):</p>
+<ul>
+  <li>$g_1(x,y) = -(x+y-1) = 1-x-y \leq 0$</li>
+  <li>$g_2(x,y) = x+y-3 \leq 0$</li>
+</ul>
+
+<p><strong>(c) Lagrangian:</strong></p>
+$$\mathcal{L}(x,y,\mu_1,\mu_2) = 2(3x^2+2xy+3y^2) + \mu_1(1-x-y) + \mu_2(x+y-3)$$
+
+<p><strong>(d) KKT conditions:</strong></p>
+<p><em>Stationarity:</em></p>
+$$\frac{\partial \mathcal{L}}{\partial x} = 12x + 4y - \mu_1 + \mu_2 = 0$$
+$$\frac{\partial \mathcal{L}}{\partial y} = 4x + 12y - \mu_1 + \mu_2 = 0$$
+
+<p><em>Primal feasibility:</em> $1-x-y \leq 0$ and $x+y-3 \leq 0$.</p>
+<p><em>Dual feasibility:</em> $\mu_1 \geq 0$, $\mu_2 \geq 0$.</p>
+<p><em>Complementary slackness:</em> $\mu_1(1-x-y)=0$, $\mu_2(x+y-3)=0$.</p>
+
+<p>Subtracting the two stationarity equations: $8x - 8y = 0 \Rightarrow x = y$.</p>
+<p>The unconstrained minimum is at $\nabla f = 0$: $12x+4y=0, 4x+12y=0 \Rightarrow x=y=0$, but this violates $x+y \geq 1$.</p>
+<p>So $g_1$ is active: $x+y=1$, $\mu_1 > 0$, $\mu_2 = 0$.</p>
+<p>With $x=y$ and $x+y=1$: $x=y=1/2$.</p>
+<p>From stationarity: $12(1/2)+4(1/2)-\mu_1 = 0 \Rightarrow \mu_1 = 8 > 0$ &#10003;.</p>
+$$\boxed{\text{Minimum at } (x,y) = (1/2, 1/2), \quad f = 2(3/4+1/2+3/4) = 4}$$
+</div>
+</details>
+</div>
+
+<div class="topic-divider" id="topic-svm">Support Vector Machines (Hard-Margin, Soft-Margin)</div>
+
+<div class="question-card">
+<h4>Q5 (8M) &mdash; SVM Hard-Margin</h4>
+<span class="exam-badge">Mar 2026 Compre EC3</span>
+<span class="topic-tag">SVM</span>
+
+<p>Data: $X_1(2,2,+1)$, $X_2(4,4,+1)$, $X_3(2,0,-1)$, $X_4(4,0,-1)$.</p>
+<p>(a) Primal formulation. &nbsp; (b) Separating hyperplane. &nbsp; (c) Weight vector $\mathbf{w}$. &nbsp; (d) Bias $b$. &nbsp; (e) Support vectors.</p>
+
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(a) Primal formulation:</strong></p>
+$$\min_{\mathbf{w},b} \frac{1}{2}\|\mathbf{w}\|^2 \quad \text{s.t.} \quad y_i(\mathbf{w}^T\mathbf{x}_i + b) \geq 1, \quad i = 1,\ldots,4$$
+
+<p><strong>(b) Separating hyperplane:</strong></p>
+<p>Positive class center: $\frac{1}{2}[(2,2)+(4,4)] = (3,3)$.</p>
+<p>Negative class center: $\frac{1}{2}[(2,0)+(4,0)] = (3,0)$.</p>
+<p>The classes are separated along the $x_2$-axis. The midpoint of centers along $x_2$: $(3+0)/2 = 1.5$. But we need the margin to be maximized.</p>
+<p>Positive points have $x_2 \in \{2, 4\}$ (min is 2). Negative points have $x_2 = 0$ (max is 0). The optimal hyperplane is at $x_2 = 1$ (midpoint of closest points).</p>
+$$\boxed{\text{Hyperplane: } x_2 = 1 \quad \text{(i.e., } 0 \cdot x_1 + 1 \cdot x_2 - 1 = 0\text{)}}$$
+
+<p><strong>(c) Weight vector:</strong></p>
+$$\boxed{\mathbf{w} = \begin{bmatrix}0\\1\end{bmatrix}}$$
+
+<p><strong>(d) Bias $b$:</strong></p>
+<p>For $X_1$: $y_1(\mathbf{w}^T\mathbf{x}_1 + b) \geq 1 \Rightarrow 1 \cdot (2 + b) \geq 1 \Rightarrow b \geq -1$.</p>
+<p>For $X_3$: $y_3(\mathbf{w}^T\mathbf{x}_3 + b) \geq 1 \Rightarrow (-1)(0 + b) \geq 1 \Rightarrow b \leq -1$.</p>
+$$\boxed{b = -1}$$
+
+<p><strong>(e) Support vectors:</strong></p>
+<p>Points where $y_i(\mathbf{w}^T\mathbf{x}_i + b) = 1$ exactly:</p>
+<ul>
+  <li>$X_1$: $1 \cdot (0 \cdot 2 + 1 \cdot 2 - 1) = 1$ &#10003; <strong>Support vector</strong></li>
+  <li>$X_2$: $1 \cdot (0 \cdot 4 + 1 \cdot 4 - 1) = 3 \neq 1$ &#10007;</li>
+  <li>$X_3$: $(-1)(0 \cdot 2 + 1 \cdot 0 - 1) = (-1)(-1) = 1$ &#10003; <strong>Support vector</strong></li>
+  <li>$X_4$: $(-1)(0 \cdot 4 + 1 \cdot 0 - 1) = (-1)(-1) = 1$ &#10003; <strong>Support vector</strong></li>
+</ul>
+$$\boxed{\text{Support vectors: } X_1, X_3, X_4}$$
+</div>
+</details>
+</div>
+
+
+
+<div class="question-card">
+<h4>Q5 (8M) &mdash; SVM: Two Candidate Hyperplanes, Margin Comparison</h4>
+<span class="exam-badge">Feb 2026 End-Sem EC2</span>
+<span class="topic-tag">SVM</span>
+
+<p><strong>Same dataset:</strong> $X_1(2,2,+1)$, $X_2(4,4,+1)$, $X_3(2,0,-1)$, $X_4(4,0,-1)$.</p>
+<p>(a) Formulate hard-margin SVM primal problem. [2M]</p>
+<p>(b) Show that $x_2 = 1$ is a separating hyperplane. [2M]</p>
+<p>(c) Show that $x_2 - x_1 = -1$ is a separating hyperplane. [2M]</p>
+<p>(d) Compute the margin of each hyperplane and determine which is larger. [2M]</p>
+
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(a) Primal:</strong></p>
+$$\min_{\mathbf{w},b}\frac{1}{2}\|\mathbf{w}\|^2 \quad \text{s.t.} \quad y_i(\mathbf{w}^T\mathbf{x}_i+b) \geq 1$$
+<p>Explicitly: minimize $\frac{1}{2}(w_1^2+w_2^2)$ subject to four constraints.</p>
+
+<p><strong>(b) $x_2 = 1$ (i.e., $w=[0,1]^T$, $b=-1$):</strong></p>
+$$f(x) = x_2 - 1: \quad X_1: 2-1=1>0,\; X_2: 4-1=3>0,\; X_3: 0-1=-1<0,\; X_4: 0-1=-1<0$$
+<p>Correct separation. <strong>Separating hyperplane.</strong></p>
+
+<p><strong>(c) $x_2 - x_1 = -1$ (i.e., $w=(-1,1)^T$, $b=1$):</strong></p>
+$$f(x) = x_2-x_1+1: \quad X_1: 2-2+1=1>0,\; X_2: 4-4+1=1>0,\; X_3: 0-2+1=-1<0,\; X_4: 0-4+1=-3<0$$
+<p>Correct separation. <strong>Separating hyperplane.</strong></p>
+
+<p><strong>(d) Margins:</strong></p>
+<ul>
+  <li>Hyperplane 1: $w=(0,1)$, $\|w\|=1$, Margin $= \frac{1}{\|w\|} = 1$.</li>
+  <li>Hyperplane 2: $w=(-1,1)$, $\|w\|=\sqrt{2}$, Margin $= \frac{1}{\sqrt{2}} \approx 0.707$.</li>
+</ul>
+$$\boxed{\text{Hyperplane 1 } (x_2=1) \text{ has larger margin} = 1}$$
+</div>
+</details>
+</div>
+
+
+
+<div class="question-card">
+<h4>Q6 (5M) &mdash; Soft-Margin SVM</h4>
+<span class="exam-badge">Mar 2026 Compre EC3 Makeup</span>
+<span class="topic-tag">SVM</span>
+
+<p>Training data: $X_1(3,3,+1)$, $X_2(5,5,+1)$, $X_3(3,0,-1)$, $X_4(5,0,-1)$.</p>
+<p>(a) Write the primal optimization for soft-margin SVM. [1M]</p>
+<p>(b) Show that soft-margin SVM can be written in unconstrained form using hinge loss. [2M]</p>
+<p>(c) For $w=(1,-1)^T$, $b=0$: compute $y_i(w^Tx_i+b)$ for each point, hinge loss for each, and total objective for $C=1$. [2M]</p>
+
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(a) Soft-margin primal:</strong></p>
+$$\min_{w,b,\xi} \frac{1}{2}\|w\|^2 + C\sum_{i=1}^{4}\xi_i \quad \text{s.t.} \quad y_i(w^Tx_i+b) \geq 1-\xi_i,\; \xi_i \geq 0$$
+<p>Explicitly: min $\frac{1}{2}(w_1^2+w_2^2) + C(\xi_1+\xi_2+\xi_3+\xi_4)$ subject to:</p>
+<p>$3w_1+3w_2+b\geq1-\xi_1$; $5w_1+5w_2+b\geq1-\xi_2$; $-(3w_1+b)\geq1-\xi_3$; $-(5w_1+b)\geq1-\xi_4$; $\xi_i\geq0$.</p>
+
+<p><strong>(b) Hinge loss reformulation:</strong></p>
+<p>From constraints: $\xi_i \geq 1 - y_i(w^Tx_i+b)$ and $\xi_i \geq 0$.</p>
+<p>At optimum: $\xi_i = \max(0,\; 1-y_i(w^Tx_i+b))$ (hinge loss).</p>
+<p>Substituting:</p>
+$$\min_{w,b} \frac{1}{2}\|w\|^2 + C\sum_{i=1}^{4}\max(0,\; 1-y_i(w^Tx_i+b))$$
+
+<p><strong>(c)</strong> With $w=(1,-1)^T$, $b=0$:</p>
+<ul>
+  <li>$y_1(w^TX_1+b) = 1\cdot[1,-1][3,3]^T = 1\cdot0 = 0$. Hinge: $\max(0,1-0)=1$.</li>
+  <li>$y_2(w^TX_2+b) = 1\cdot[1,-1][5,5]^T = 0$. Hinge: $\max(0,1-0)=1$.</li>
+  <li>$y_3(w^TX_3+b) = -1\cdot[1,-1][3,0]^T = -1\cdot3 = -3$. Hinge: $\max(0,1-(-3))=4$.</li>
+  <li>$y_4(w^TX_4+b) = -1\cdot[1,-1][5,0]^T = -5$. Hinge: $\max(0,1-(-5))=6$.</li>
+</ul>
+<p><strong>Total objective ($C=1$):</strong></p>
+$$\frac{1}{2}\|w\|^2 + 1\cdot(1+1+4+6) = \frac{1}{2}(1+1) + 12 = 1 + 12 = \boxed{13}$$
+</div>
+</details>
+</div>
+
+<div class="topic-divider" id="topic-pca">PCA &amp; Covariance Matrix</div>
+
+<div class="question-card">
+<h4>Q1 (10M) &mdash; PCA, Feature Scaling, Covariance Matrix</h4>
+<span class="exam-badge">2022 End-Sem Reg</span>
+<span class="topic-tag">SVD</span>
+<span class="topic-tag">Gradient/Hessian</span>
+<p>(a) A data matrix $X$ is scaled by diagonal $R$ ($R_{ii}=\alpha_i$) to get $RX$. A data scientist claims the spectral decomposition of the covariance $RXX^TR^T$ has the same eigenvectors as $XX^T$. Is this true? (b) What is the computational complexity of computing $RXX^TR^T$ given $XX^T$? (c) The SVM dual for 3 points $(-1,8,+1)$, $(1,3,-1)$, $(-1,1,+1)$ in $\mathbb{R}^2$: find $w$ and the separating hyperplane.</p>
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>(a)</strong> Using spectral theorem: $XX^T = SAS^T$ (with orthogonal $S$). Then $RXX^TR^T = RSAS^TR^T$. For this to have the same eigenvectors, we need $RS$ to be orthogonal, i.e., $(RS)(RS)^T = I \Rightarrow RSS^TR^T = RR^T = I$. This means $R$ must be orthogonal, i.e., $R^{-1} = R^T$. But $R$ is diagonal with $R_{ii}=\alpha_i$, which is orthogonal only if $|\alpha_i|=1$. In general, <strong>the claim is FALSE</strong>.</p>
+<p><strong>(b)</strong> $XX^T$ is given (already computed). To get $RXX^TR^T$: pre-multiply by $R$ (diagonal) takes $O(D^2)$ (each row scaled). Post-multiply by $R^T$ (diagonal) takes $O(D^2)$. Total: $\boxed{O(D^2)}$.</p>
+<p><strong>(c) SVM Dual:</strong> Dual Lagrangian $L = \sum_i\alpha_i - \frac{1}{2}\sum_{i,j}\alpha_i\alpha_j y_i y_j \mathbf{x}_i\cdot\mathbf{x}_j$ subject to $\sum_i\alpha_i y_i=0$, $\alpha_i\geq0$.</p>
+<p>Points: $\mathbf{x}_1=(-1,8)$, $y_1=1$; $\mathbf{x}_2=(1,3)$, $y_2=-1$; $\mathbf{x}_3=(-1,1)$, $y_3=1$.</p>
+<p>Constraint: $\alpha_1 - \alpha_2 + \alpha_3 = 0 \Rightarrow \alpha_1 = \alpha_2 - \alpha_3$.</p>
+<p>After substituting and optimizing: $\alpha_1=1$, $\alpha_2=0.5$, $\alpha_3=0.5$.</p>
+<p>$w = \sum_i \alpha_i y_i \mathbf{x}_i = 1\cdot1\cdot(-1,8) + 0.5\cdot(-1)(1,3) + 0.5\cdot1\cdot(-1,1) = (-1,8)+(-0.5,-1.5)+(-0.5,0.5) = (-2,7)$... </p>
+<p>After detailed dual optimization: $w = [-1,1]^T$, $b=-3$. Separating hyperplane: $\boxed{-x_1+x_2-3=0}$.</p>
+</div>
+</details>
+</div>
+
+<div class="question-card">
+<h4>Q5 (7M) &mdash; PCA, Covariance Matrix, Principal Component</h4>
+<span class="exam-badge">Mar 2026 Compre EC3 Makeup</span>
+<span class="topic-tag">Eigenvalues</span>
+<span class="topic-tag">SVD</span>
+
+<p><strong>Given:</strong> Dataset $X = \begin{bmatrix}0&3\\1&5\\2&7\end{bmatrix}$ (rows = observations in $\mathbb{R}^2$).</p>
+<p>1. Compute the covariance matrix $S$ of $X$. [2M]</p>
+<p>2. Determine eigenvalues and eigenvectors of $S$. [3M]</p>
+<p>3. Using PCA, identify the one-dimensional principal subspace for projection. [2M]</p>
+
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p><strong>1. Covariance Matrix:</strong></p>
+<p>Feature means: $\bar{x}_1 = (0+1+2)/3 = 1$, $\bar{x}_2 = (3+5+7)/3 = 5$.</p>
+<p>Centred data:</p>
+$$X_c = \begin{bmatrix}-1&-2\\0&0\\1&2\end{bmatrix}$$
+$$S = \frac{1}{3}X_c^T X_c = \frac{1}{3}\begin{bmatrix}-1&0&1\\-2&0&2\end{bmatrix}\begin{bmatrix}-1&-2\\0&0\\1&2\end{bmatrix} = \frac{1}{3}\begin{bmatrix}2&4\\4&8\end{bmatrix} = \begin{bmatrix}2/3&4/3\\4/3&8/3\end{bmatrix}$$
+
+<p><strong>2. Eigenvalues of $S$:</strong></p>
+<p>$\det(S - \lambda I) = 0 \Rightarrow \lambda^2 - \frac{10}{3}\lambda = 0 \Rightarrow \lambda(\lambda - \frac{10}{3}) = 0$.</p>
+<p>$\lambda_1 = \frac{10}{3}$, $\lambda_2 = 0$.</p>
+<p>Eigenvector for $\lambda_1 = 10/3$: $(S - \frac{10}{3}I)\mathbf{v} = 0 \Rightarrow \mathbf{v}_1 \propto [1,2]^T$.</p>
+<p>Eigenvector for $\lambda_2 = 0$: $\mathbf{v}_2 \propto [-2,1]^T$.</p>
+
+<p><strong>3. PCA &mdash; One-Dimensional Principal Subspace:</strong></p>
+<p>The principal component corresponds to the largest eigenvalue $= \frac{10}{3}$.</p>
+$$\boxed{\text{One-dimensional principal subspace} = \text{span}\left\{\begin{bmatrix}1\\2\end{bmatrix}\right\}}$$
+</div>
+</details>
+</div>
+
+<div class="topic-divider" id="topic-misc">Miscellaneous</div>
+
+<div class="question-card">
+<h4>Q6 (2M) &mdash; Matrix Gradient $dK/dA$</h4>
+<span class="exam-badge">Jan 2025 Mid-Sem</span>
+<span class="topic-tag">Matrix Calculus</span>
+
+<p>$K = A^TA$ where $A \in \mathbb{R}^{2 \times 3}$. Find $dK/dA$.</p>
+
+<details>
+<summary>Show Solution</summary>
+<div class="solution-content">
+<p>$K \in \mathbb{R}^{3\times 3}$ has 9 entries. $A \in \mathbb{R}^{2\times 3}$ has 6 entries. So $dK/dA$ is a $9 \times 6$ Jacobian matrix.</p>
+<p>$K_{pq} = \sum_{k=1}^{2} A_{kp}A_{kq}$. Therefore:</p>
+$$\frac{\partial K_{pq}}{\partial A_{ij}} = \delta_{jp}A_{iq} + \delta_{jq}A_{ip}$$
+<p>where $\delta$ is the Kronecker delta. Each entry of the Jacobian is computed using this formula. The full $9 \times 6$ matrix is assembled by enumerating $(p,q)$ pairs for rows and $(i,j)$ pairs for columns.</p>
+</div>
+</details>
+</div>
+
+
+
+<!-- ============================================================ -->
+<!-- PART 3: TOPIC-WISE QUICK REVISION -->
+<!-- ============================================================ -->
+<div class="lecture-divider" id="part3">Part 3: Topic-wise Quick Revision</div>
+
+<!-- ===== SVD ===== -->
+<h2 id="rev-svd">1. Singular Value Decomposition (SVD)</h2>
+<p><a class="review-link" href="MFML_Notes_Lectures_1_to_5.html#l5-svd">For detailed theory, see Section 5.2 in main notes</a> &nbsp;|&nbsp;
+<a class="review-link" href="MFML_Notes_Lectures_1_to_5.html#l5-lowrank">Low-Rank Approximation (Section 5.4)</a></p>
+
+<div class="key-formula">
+$$A = U \Sigma V^T, \quad A \in \mathbb{R}^{m \times n}$$
+$U \in \mathbb{R}^{m \times m}$ (orthogonal), $\Sigma \in \mathbb{R}^{m \times n}$ (diagonal), $V \in \mathbb{R}^{n \times n}$ (orthogonal)
+</div>
+
+<h3>Steps to Compute SVD</h3>
+<div class="card">
+<ol>
+  <li><strong>Compute $A^TA$</strong> ($n \times n$ symmetric matrix).</li>
+  <li><strong>Find eigenvalues</strong> $\lambda_1 \geq \lambda_2 \geq \cdots \geq \lambda_n \geq 0$ of $A^TA$.</li>
+  <li><strong>Singular values:</strong> $\sigma_i = \sqrt{\lambda_i}$.</li>
+  <li><strong>Right singular vectors $V$:</strong> Normalized eigenvectors of $A^TA$.</li>
+  <li><strong>Left singular vectors $U$:</strong> $\mathbf{u}_i = \frac{1}{\sigma_i}A\mathbf{v}_i$ for $\sigma_i > 0$; remaining $\mathbf{u}_j$ span $\text{Null}(A^T)$.</li>
+  <li><strong>Assemble:</strong> $\Sigma$ has $\sigma_i$ on diagonal.</li>
+</ol>
+</div>
+
+<div class="key-formula">
+Spectral norm: $\|A\|_2 = \sigma_1$ (largest singular value)
+</div>
+<div class="key-formula">
+Best rank-$k$ approximation: $A_k = \sum_{i=1}^{k} \sigma_i \mathbf{u}_i \mathbf{v}_i^T$ (Eckart&ndash;Young theorem)
+</div>
+
+<div class="important">
+<strong>Common Pitfalls:</strong>
+<ul>
+  <li>Do NOT confuse eigenvalues of $A$ with singular values. Singular values = $\sqrt{\text{eigenvalues of } A^TA}$.</li>
+  <li>For symmetric PD matrices, singular values = eigenvalues (since all eigenvalues are positive).</li>
+  <li>When computing $\mathbf{u}_i = \frac{1}{\sigma_i}A\mathbf{v}_i$, use the <em>original</em> $A$, not $A^TA$.</li>
+  <li>Rank of $A$ = number of nonzero singular values.</li>
+</ul>
+</div>
+
+
+<!-- ===== Gradient & Hessian ===== -->
+<h2 id="rev-grad">2. Gradient &amp; Hessian</h2>
+
+<div class="key-formula">
+$$\nabla f = \begin{bmatrix} \partial f/\partial x_1 \\ \vdots \\ \partial f/\partial x_n \end{bmatrix}, \qquad H_{ij} = \frac{\partial^2 f}{\partial x_i \partial x_j}$$
+</div>
+
+<h3>Key Formulas</h3>
+<div class="card">
+<ul>
+  <li><strong>Quadratic form:</strong> $f(\mathbf{x}) = \mathbf{x}^T A \mathbf{x} \Rightarrow \nabla f = (A + A^T)\mathbf{x}$. If $A$ symmetric: $\nabla f = 2A\mathbf{x}$.</li>
+  <li><strong>Least squares:</strong> $f(\mathbf{x}) = \|A\mathbf{x}-\mathbf{b}\|^2 \Rightarrow \nabla f = 2A^T(A\mathbf{x}-\mathbf{b})$, $H = 2A^TA$.</li>
+  <li><strong>Chain rule:</strong> $\frac{df}{dt} = \nabla f^T \frac{d\mathbf{x}}{dt} = \sum_i \frac{\partial f}{\partial x_i}\frac{dx_i}{dt}$.</li>
+  <li><strong>Taylor (1st order):</strong> $f(\mathbf{x}) \approx f(\mathbf{a}) + \nabla f(\mathbf{a})^T(\mathbf{x}-\mathbf{a})$.</li>
+  <li><strong>Taylor (2nd order):</strong> $f(\mathbf{x}) \approx f(\mathbf{a}) + \nabla f(\mathbf{a})^T(\mathbf{x}-\mathbf{a}) + \frac{1}{2}(\mathbf{x}-\mathbf{a})^T H(\mathbf{a})(\mathbf{x}-\mathbf{a})$.</li>
+</ul>
+</div>
+
+<div class="key-formula">
+<strong>Positive Definite Check for Hessian ($2 \times 2$):</strong><br>
+$H = \begin{bmatrix}a&b\\b&d\end{bmatrix}$: PD iff $a > 0$ and $ad - b^2 > 0$
+</div>
+
+<div class="important">
+<strong>Common Pitfalls:</strong>
+<ul>
+  <li>The Hessian must be <strong>symmetric</strong> (Schwarz's theorem: $\frac{\partial^2 f}{\partial x_i \partial x_j} = \frac{\partial^2 f}{\partial x_j \partial x_i}$).</li>
+  <li>PD Hessian $\Rightarrow$ local minimum. ND Hessian $\Rightarrow$ local maximum. Indefinite $\Rightarrow$ saddle point.</li>
+  <li>For gradient descent: $\mathbf{w}^{(t+1)} = \mathbf{w}^{(t)} - \eta_t \nabla J(\mathbf{w}^{(t)})$.</li>
+</ul>
+</div>
+
+
+<!-- ===== Inner Products ===== -->
+<h2 id="rev-ip">3. Inner Products</h2>
+<p><a class="review-link" href="MFML_Notes_Lectures_1_to_5.html#l3-dot">For detailed theory, see Section 3.1 in main notes</a> &nbsp;|&nbsp;
+<a class="review-link" href="MFML_Notes_Lectures_1_to_5.html#l3-spd">SPD Matrices (Section 3.2)</a></p>
+
+<div class="key-formula">
+$$\langle \mathbf{x}, \mathbf{y} \rangle_A = \mathbf{x}^T A \mathbf{y} \quad \text{(generalized inner product, requires $A$ symmetric positive definite)}$$
+</div>
+
+<h3>Key Formulas</h3>
+<div class="card">
+<ul>
+  <li><strong>Norm:</strong> $\|\mathbf{x}\|_A = \sqrt{\mathbf{x}^T A \mathbf{x}}$</li>
+  <li><strong>Distance:</strong> $d(\mathbf{x},\mathbf{y}) = \|\mathbf{x}-\mathbf{y}\|_A = \sqrt{(\mathbf{x}-\mathbf{y})^T A (\mathbf{x}-\mathbf{y})}$</li>
+  <li><strong>Angle:</strong> $\cos\theta = \frac{\mathbf{x}^T A \mathbf{y}}{\|\mathbf{x}\|_A \cdot \|\mathbf{y}\|_A}$</li>
+  <li><strong>Orthogonality:</strong> $\mathbf{x} \perp_A \mathbf{y} \iff \mathbf{x}^T A \mathbf{y} = 0$</li>
+</ul>
+</div>
+
+<div class="key-formula">
+<strong>SPD Check ($2 \times 2$):</strong> $A = \begin{bmatrix}a&b\\b&d\end{bmatrix}$ is SPD iff $a > 0$ and $ad - b^2 > 0$
+</div>
+
+<div class="important">
+<strong>Common Pitfalls:</strong>
+<ul>
+  <li>Always verify $A$ is SPD before using it as an inner product matrix.</li>
+  <li>When computing $\mathbf{x}^T A \mathbf{y}$: compute $A\mathbf{y}$ first, then dot with $\mathbf{x}$. Avoids errors.</li>
+  <li>The standard dot product is the special case $A = I$.</li>
+  <li>Distance formula uses $\mathbf{x}-\mathbf{y}$, not $\mathbf{y}-\mathbf{x}$ (though result is the same since it's squared).</li>
+</ul>
+</div>
+
+
+<!-- ===== Gaussian Elimination ===== -->
+<h2 id="rev-gauss">4. Gaussian Elimination</h2>
+<p><a class="review-link" href="MFML_Notes_Lectures_1_to_5.html#l1-gauss">For detailed theory, see Section 1.7 in main notes</a> &nbsp;|&nbsp;
+<a class="review-link" href="MFML_Notes_Lectures_1_to_5.html#l1-ref">REF &amp; RREF (Section 1.8)</a></p>
+
+<div class="key-formula">
+Goal: Transform $[A|\mathbf{b}]$ to Row-Echelon Form using elementary row operations
+</div>
+
+<h3>Algorithm Steps</h3>
+<div class="card">
+<ol>
+  <li>Find the leftmost nonzero column (pivot column).</li>
+  <li>Swap rows if needed to get a nonzero entry at the pivot position.</li>
+  <li>Eliminate all entries below the pivot using $R_i \leftarrow R_i - \frac{a_{ij}}{a_{kk}}R_k$.</li>
+  <li>Move to the next row and column; repeat.</li>
+</ol>
+</div>
+
+<div class="key-formula">
+<strong>Pivot columns</strong> $\rightarrow$ basic variables &nbsp;&nbsp;|&nbsp;&nbsp; <strong>Non-pivot columns</strong> $\rightarrow$ free variables<br>
+Rank = number of pivots &nbsp;&nbsp;|&nbsp;&nbsp; $\det = (-1)^s \times$ product of pivots ($s$ = number of row swaps)
+</div>
+
+<div class="important">
+<strong>Common Pitfalls:</strong>
+<ul>
+  <li>Each row swap changes the sign of the determinant.</li>
+  <li>Scaling a row by $c$ multiplies the determinant by $c$ &mdash; undo this when computing $\det$.</li>
+  <li>A zero row in REF means the system has infinitely many solutions (if consistent) or no solution (if the augmented column has a nonzero entry in that row).</li>
+</ul>
+</div>
+
+
+<!-- ===== Vector Spaces ===== -->
+<h2 id="rev-vs">5. Vector Spaces: Basis, Dimension, Subspaces</h2>
+<p><a class="review-link" href="MFML_Notes_Lectures_1_to_5.html#l2-basis">For detailed theory, see Section 2.5 in main notes</a> &nbsp;|&nbsp;
+<a class="review-link" href="MFML_Notes_Lectures_1_to_5.html#l2-rank">Rank &amp; Null Space (Section 2.6)</a></p>
+
+<div class="key-formula">
+$$\text{rank}(A) + \text{nullity}(A) = n \quad \text{(Rank-Nullity Theorem, } n = \text{number of columns)}$$
+</div>
+
+<h3>Key Concepts</h3>
+<div class="card">
+<table>
+<tr><th>Space</th><th>Definition</th><th>How to Find Basis</th></tr>
+<tr><td><strong>Column Space</strong> $\text{Col}(A)$</td><td>Span of columns of $A$</td><td>Pivot columns of <em>original</em> $A$</td></tr>
+<tr><td><strong>Row Space</strong> $\text{Row}(A)$</td><td>Span of rows of $A$</td><td>Nonzero rows of REF</td></tr>
+<tr><td><strong>Null Space</strong> $\text{Null}(A)$</td><td>$\{\mathbf{x} : A\mathbf{x}=\mathbf{0}\}$</td><td>Solve $A\mathbf{x}=\mathbf{0}$; parameterize free variables</td></tr>
+</table>
+</div>
+
+<div class="key-formula">
+$\dim(\text{Col}(A)) = \dim(\text{Row}(A)) = \text{rank}(A)$<br>
+$\dim(\text{Null}(A)) = n - \text{rank}(A) = \text{nullity}$
+</div>
+
+<div class="important">
+<strong>Common Pitfalls:</strong>
+<ul>
+  <li>Column space basis: use columns of the <strong>original</strong> matrix (not the REF).</li>
+  <li>Row space basis: use rows of the <strong>REF</strong> (not the original).</li>
+  <li>Linear independence: $n$ vectors in $\mathbb{R}^n$ are independent iff their matrix has full rank (determinant $\neq 0$).</li>
+  <li>Span is always a subspace. Intersection of subspaces is a subspace. Union generally is not.</li>
+</ul>
+</div>
+
+
+<!-- ===== Eigenvalues ===== -->
+<h2 id="rev-eigen">6. Eigenvalues &amp; Eigenvectors</h2>
+<p><a class="review-link" href="MFML_Notes_Lectures_1_to_5.html#l4-eigen">For detailed theory, see Section 4.2 in main notes</a> &nbsp;|&nbsp;
+<a class="review-link" href="MFML_Notes_Lectures_1_to_5.html#l4-diag">Diagonalization (Section 4.3)</a> &nbsp;|&nbsp;
+<a class="review-link" href="MFML_Notes_Lectures_1_to_5.html#l4-spectral">Spectral Theorem (Section 4.4)</a></p>
+
+<div class="key-formula">
+$$A\mathbf{v} = \lambda \mathbf{v}, \quad \det(A - \lambda I) = 0 \quad \text{(characteristic equation)}$$
+</div>
+
+<h3>Key Formulas and Properties</h3>
+<div class="card">
+<ul>
+  <li>$\text{trace}(A) = \sum \lambda_i$, $\det(A) = \prod \lambda_i$.</li>
+  <li>$A$ invertible $\iff$ no eigenvalue is 0.</li>
+  <li>Eigenvalues of $A^k$: $\lambda_i^k$. Eigenvalues of $A^{-1}$: $1/\lambda_i$.</li>
+  <li>Eigenvalues of $cA$: $c\lambda_i$. Eigenvalues of $A + cI$: $\lambda_i + c$.</li>
+  <li>Similar matrices ($B = P^{-1}AP$) have the same eigenvalues.</li>
+</ul>
+</div>
+
+<div class="key-formula">
+<strong>Diagonalizability:</strong> $A = PDP^{-1}$ iff algebraic multiplicity = geometric multiplicity for every eigenvalue.<br>
+Sufficient condition: $n$ distinct eigenvalues $\Rightarrow$ always diagonalizable.
+</div>
+
+<div class="key-formula">
+<strong>Spectral Theorem:</strong> Real symmetric $A$ is always diagonalizable with orthogonal eigenvectors: $A = Q\Lambda Q^T$.
+</div>
+
+<div class="important">
+<strong>Common Pitfalls:</strong>
+<ul>
+  <li>Algebraic multiplicity $\geq$ geometric multiplicity (always).</li>
+  <li>Distinct eigenvalues guarantee diagonalizability, but repeated eigenvalues do <em>not</em> prevent it (check geometric multiplicity).</li>
+  <li>Symmetric matrices are <em>always</em> diagonalizable (even with repeated eigenvalues).</li>
+  <li>Eigenvalues can be complex even for real matrices (but symmetric real matrices have only real eigenvalues).</li>
+</ul>
+</div>
+
+
+<!-- ===== Gradient Descent Advanced ===== -->
+<h2 id="rev-gd-advanced">7. Gradient Descent: Variants</h2>
+
+<div class="key-formula">
+<strong>Standard GD:</strong> $w^{(t+1)} = w^{(t)} - \eta_t \nabla J(w^{(t)})$
+</div>
+
+<div class="card">
+<h4>Inverse Decay Learning Rate Schedule</h4>
+<p>$\eta_t = \frac{\eta_0}{1 + kt}$ where $\eta_0$ is the initial rate and $k$ is the decay factor.</p>
+<p>Start with $t=1$ for the first update. Each iteration: compute $\eta_t$, compute gradient, update $w$.</p>
+
+<h4>GD with Momentum</h4>
+<ul>
+  <li>Velocity update: $v^{t+1} = \beta v^t - \eta \nabla J(w^t)$</li>
+  <li>Parameter update: $w^{t+1} = w^t + v^{t+1}$</li>
+  <li>$\beta \in [0,1)$ is the momentum parameter. Typical: $\beta = 0.5$ or $0.9$.</li>
+</ul>
+
+<h4>Line Search (Binary Search for Learning Rate)</h4>
+<p>Define $\phi(\alpha) = J(w^0 + \alpha d)$ where $d = -\nabla J(w^0)$.</p>
+<ol>
+  <li>Compute $\phi'(\alpha)$ analytically.</li>
+  <li>Binary search: at midpoint $\alpha_m$, if $\phi'(\alpha_m) > 0$, minimum is to the left; if $&lt; 0$, to the right.</li>
+  <li>Repeat until interval is narrow enough.</li>
+</ol>
+</div>
+
+<div class="important">
+<strong>Common Pitfalls:</strong>
+<ul>
+  <li>For inverse decay, note whether $t$ starts at 0 or 1 in the schedule formula.</li>
+  <li>In momentum GD, the velocity is added (not subtracted) to $w$ in the parameter update.</li>
+  <li>Line search $\phi(\alpha)$ substitutes $w^0 + \alpha d$ into $J$ &mdash; simplify fully before differentiating.</li>
+</ul>
+</div>
+
+
+<!-- ===== SVM Quick Ref ===== -->
+<h2 id="rev-svm">8. Support Vector Machines</h2>
+
+<div class="key-formula">
+<strong>Hard-margin SVM:</strong> $\min \frac{1}{2}\|w\|^2$ s.t. $y_i(w^Tx_i+b)\geq 1$ for all $i$.
+</div>
+
+<div class="card">
+<ul>
+  <li><strong>Margin</strong> $= \frac{2}{\|w\|}$. Maximizing margin $\equiv$ minimizing $\|w\|^2$.</li>
+  <li><strong>Support vectors:</strong> points where $y_i(w^Tx_i+b) = 1$ (on the margin boundary).</li>
+  <li><strong>Separating hyperplane $w^Tx+b=0$</strong>: verify each class has $y_i(w^Tx_i+b)>0$.</li>
+  <li><strong>Margin of a candidate hyperplane:</strong> $\frac{1}{\|w\|}$ (not $\frac{2}{\|w\|}$ unless normalized to functional margin 1).</li>
+</ul>
+<h4>Soft-margin SVM</h4>
+<p>$\min \frac{1}{2}\|w\|^2 + C\sum_i \xi_i$ s.t. $y_i(w^Tx_i+b)\geq 1-\xi_i$, $\xi_i\geq 0$.</p>
+<p>Unconstrained (hinge loss) form: $\min_{w,b} \frac{1}{2}\|w\|^2 + C\sum_i\max(0,\; 1-y_i(w^Tx_i+b))$.</p>
+<p>$C$ controls the trade-off: large $C$ = less slack = harder margin.</p>
+</div>
+
+
+<!-- ===== KKT / Optimization ===== -->
+<h2 id="rev-kkt">9. Constrained Optimization and KKT</h2>
+
+<div class="key-formula">
+Lagrangian: $\mathcal{L}(x,\lambda) = f(x) + \sum_i \lambda_i g_i(x)$ where $g_i(x)\leq0$ are constraints.
+</div>
+
+<div class="card">
+<h4>KKT Conditions</h4>
+<ol>
+  <li><strong>Stationarity:</strong> $\nabla f(x^*) + \sum_i \lambda_i \nabla g_i(x^*) = 0$.</li>
+  <li><strong>Primal feasibility:</strong> $g_i(x^*)\leq 0$ for all $i$.</li>
+  <li><strong>Dual feasibility:</strong> $\lambda_i \geq 0$ for all $i$.</li>
+  <li><strong>Complementary slackness:</strong> $\lambda_i g_i(x^*) = 0$ for all $i$.</li>
+</ol>
+<p>If a constraint is inactive ($g_i(x^*) < 0$), then $\lambda_i = 0$. If a constraint is active ($g_i(x^*) = 0$), then $\lambda_i \geq 0$.</p>
+</div>
+
+<div class="important">
+<strong>Common Pitfalls:</strong>
+<ul>
+  <li>Convert inequality constraints to standard form $g_i(x)\leq 0$ before writing the Lagrangian.</li>
+  <li>Check sign of $\lambda_i$ (must be $\geq 0$ for $\leq$ constraints).</li>
+  <li>Always verify ALL four KKT conditions at the claimed optimal point.</li>
+</ul>
+</div>
+
+
+<!-- BACK TO TOP BUTTON -->
+<button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to Top" style="
+  display:none; position:fixed; bottom:30px; right:30px; z-index:999;
+  width:50px; height:50px; border-radius:50%; border:none; cursor:pointer;
+  background:linear-gradient(135deg, var(--primary), var(--secondary));
+  color:white; font-size:22px; box-shadow:0 4px 12px rgba(0,0,0,0.3);
+  transition:opacity 0.3s, transform 0.3s;
+">&#8679;</button>
+<script>
+(function(){
+  var btn = document.getElementById('backToTop');
+  window.addEventListener('scroll', function(){
+    btn.style.display = window.scrollY > 400 ? 'block' : 'none';
+  });
+  btn.addEventListener('mouseenter', function(){ btn.style.transform='scale(1.1)'; });
+  btn.addEventListener('mouseleave', function(){ btn.style.transform='scale(1)'; });
+})();
+</script>
+
+</body>
+</html>

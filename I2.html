@@ -1,0 +1,2437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ISM Notes - AIMLCZC418 - Comprehensive Study Material</title>
+<script>
+MathJax = {
+  tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+<style>
+:root {
+  --primary: #1a5276;
+  --secondary: #2980b9;
+  --accent: #e67e22;
+  --bg: #fafbfc;
+  --card-bg: #ffffff;
+  --text: #2c3e50;
+  --light-text: #7f8c8d;
+  --border: #dfe6e9;
+  --highlight-bg: #fef9e7;
+  --important-bg: #fdedec;
+  --tip-bg: #eafaf1;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 20px 30px;
+}
+h1 { font-size: 2.2em; color: var(--primary); text-align: center; border-bottom: 4px solid var(--accent); padding-bottom: 15px; margin: 30px 0; }
+h2 { font-size: 1.7em; color: var(--primary); border-left: 5px solid var(--accent); padding-left: 15px; margin: 40px 0 20px; }
+h3 { font-size: 1.3em; color: var(--secondary); margin: 25px 0 12px; }
+h4 { font-size: 1.1em; color: var(--text); margin: 18px 0 8px; }
+p { margin: 10px 0; }
+ul, ol { margin: 10px 0 10px 25px; }
+li { margin: 5px 0; }
+table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.95em; }
+th { background: var(--primary); color: white; padding: 10px 12px; text-align: left; }
+td { border: 1px solid var(--border); padding: 8px 12px; }
+tr:nth-child(even) { background: #f8f9fa; }
+.card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 20px 25px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+.important { background: var(--important-bg); border-left: 5px solid #e74c3c; padding: 15px 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+.highlight { background: var(--highlight-bg); border-left: 5px solid var(--accent); padding: 15px 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+.tip { background: var(--tip-bg); border-left: 5px solid #27ae60; padding: 15px 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+.definition { background: #eef2f7; border: 2px solid var(--secondary); border-radius: 8px; padding: 15px 20px; margin: 15px 0; }
+.definition::before { content: "Definition"; font-weight: bold; color: var(--secondary); display: block; margin-bottom: 5px; }
+.theorem { background: #fdf2e9; border: 2px solid var(--accent); border-radius: 8px; padding: 15px 20px; margin: 15px 0; }
+.theorem::before { content: "Key Formula"; font-weight: bold; color: var(--accent); display: block; margin-bottom: 5px; }
+.example { background: #f4ecf7; border: 1px solid #8e44ad; border-radius: 8px; padding: 15px 20px; margin: 15px 0; }
+.example::before { content: "Example"; font-weight: bold; color: #8e44ad; display: block; margin-bottom: 5px; }
+.key-formula { background: #1a5276; color: white; padding: 15px 25px; border-radius: 8px; text-align: center; margin: 15px 0; font-size: 1.1em; }
+.comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 15px 0; }
+.comparison-grid .card { margin: 0; }
+.lecture-divider { text-align: center; margin: 50px 0 30px; padding: 20px; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; border-radius: 10px; font-size: 1.5em; font-weight: bold; }
+.toc { background: var(--card-bg); border: 2px solid var(--primary); border-radius: 10px; padding: 25px 30px; margin: 20px 0 40px; }
+.toc a { color: var(--secondary); text-decoration: none; }
+.toc a:hover { text-decoration: underline; }
+.toc ul { list-style: none; margin-left: 0; }
+.toc > ul > li { margin: 8px 0; font-weight: bold; font-size: 1.05em; }
+.toc > ul > li > ul > li { font-weight: normal; font-size: 0.95em; margin: 3px 0; padding-left: 20px; }
+/* Collapsible practice questions */
+details { margin: 12px 0; }
+details summary {
+  cursor: pointer;
+  background: #eef2f7;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 15px;
+  font-weight: bold;
+  color: var(--primary);
+  transition: background 0.2s;
+}
+details summary:hover { background: #dfe6e9; }
+details[open] summary { border-radius: 6px 6px 0 0; border-bottom: none; }
+details .answer {
+  background: #f8f9fa;
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  padding: 15px 20px;
+}
+.practice-section {
+  background: #fef9e7;
+  border: 2px solid var(--accent);
+  border-radius: 10px;
+  padding: 20px 25px;
+  margin: 25px 0;
+}
+.practice-section h3 { color: var(--accent); margin-top: 0; }
+.practice-section h3::before { content: "Practice "; }
+code { background: #f4f6f7; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
+@media (max-width: 700px) {
+  body { padding: 10px 15px; }
+  .comparison-grid { grid-template-columns: 1fr; }
+  h1 { font-size: 1.6em; }
+  h2 { font-size: 1.3em; }
+}
+</style>
+</head>
+<body>
+
+<h1>Introduction to Statistical Methods<br><small style="font-size:0.5em;color:var(--light-text);">AIMLCZC418 &mdash; BITS Pilani WILPD | Comprehensive Study Notes</small></h1>
+
+<div class="highlight" style="text-align:center; font-style:italic;">
+<strong>Course:</strong> Introduction to Statistical Methods (ISM) &bull; <strong>Code:</strong> AIMLCZC418<br>
+<strong>Evaluation:</strong> Quiz 10% &bull; Assignment 20% &bull; Mid-sem 30% &bull; Comprehensive 40%
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc">
+<h3 style="color:var(--primary);margin-bottom:10px;">Table of Contents</h3>
+<ul>
+<li><a href="#s1">Session 1: Basic Statistics</a>
+  <ul>
+    <li><a href="#s1-data">1.1 Data Types &amp; Levels of Measurement</a></li>
+    <li><a href="#s1-central">1.2 Measures of Central Tendency</a></li>
+    <li><a href="#s1-skew">1.3 Skewness</a></li>
+    <li><a href="#s1-var">1.4 Measures of Variability</a></li>
+    <li><a href="#s1-fivepoint">1.5 Five-Point Summary, Quartiles &amp; Box Plots</a></li>
+    <li><a href="#s1-outlier">1.6 Outlier Detection</a></li>
+    <li><a href="#s1-example">1.7 Worked Example: IQ Test Data</a></li>
+    <li><a href="#s1-companion">1.8 Additional Worked Examples &amp; Practice (Companion)</a></li>
+  </ul>
+</li>
+<li><a href="#s2">Session 2: Basic Probability</a>
+  <ul>
+    <li><a href="#s2-basics">2.1 Random Experiments &amp; Sample Space</a></li>
+    <li><a href="#s2-sets">2.2 Set Operations &amp; De Morgan's Laws</a></li>
+    <li><a href="#s2-defn">2.3 Definitions of Probability</a></li>
+    <li><a href="#s2-addition">2.4 Addition Rule</a></li>
+    <li><a href="#s2-indep">2.5 Independent vs Dependent Events</a></li>
+    <li><a href="#s2-examples">2.6 Key Examples</a></li>
+    <li><a href="#s2-companion">2.7 Additional Worked Examples &amp; Practice (Companion)</a></li>
+  </ul>
+</li>
+<li><a href="#s3">Session 3: Conditional Probability &amp; Total Probability</a>
+  <ul>
+    <li><a href="#s3-cond">3.1 Conditional Probability</a></li>
+    <li><a href="#s3-mult">3.2 Multiplication Rule</a></li>
+    <li><a href="#s3-indep">3.3 Testing Independence</a></li>
+    <li><a href="#s3-total">3.4 Law of Total Probability</a></li>
+    <li><a href="#s3-examples">3.5 Key Examples</a></li>
+    <li><a href="#s3-companion">3.6 Additional Worked Examples &amp; Practice (Companion)</a></li>
+  </ul>
+</li>
+<li><a href="#s4">Session 4: Bayes' Theorem &amp; Naive Bayes</a>
+  <ul>
+    <li><a href="#s4-bayes">4.1 Bayes' Theorem</a></li>
+    <li><a href="#s4-map">4.2 MAP and MLE</a></li>
+    <li><a href="#s4-nb">4.3 Naive Bayes Classifier</a></li>
+    <li><a href="#s4-laplace">4.4 Laplace Smoothing</a></li>
+    <li><a href="#s4-examples">4.5 Key Examples</a></li>
+    <li><a href="#s4-companion">4.6 Additional Worked Examples &amp; Practice (Companion)</a></li>
+  </ul>
+</li>
+<li><a href="#s5">Session 5: Random Variables &amp; Discrete Distributions</a>
+  <ul>
+    <li><a href="#s5-rv">5.1 Random Variables</a></li>
+    <li><a href="#s5-discrete">5.2 Discrete Probability Distribution</a></li>
+    <li><a href="#s5-ev">5.3 Expected Value &amp; Variance</a></li>
+    <li><a href="#s5-fair">5.4 Fair Games</a></li>
+    <li><a href="#s5-continuous">5.5 Continuous Random Variables &amp; PDF</a></li>
+    <li><a href="#s5-joint">5.6 Joint, Marginal &amp; Conditional Distributions</a></li>
+    <li><a href="#s5-companion">5.7 Additional Worked Examples &amp; Practice (Companion)</a></li>
+  </ul>
+</li>
+<li><a href="#s6">Session 6: Probability Distributions</a>
+  <ul>
+    <li><a href="#s6-bernoulli">6.1 Bernoulli Distribution</a></li>
+    <li><a href="#s6-binomial">6.2 Binomial Distribution</a></li>
+    <li><a href="#s6-poisson">6.3 Poisson Distribution</a></li>
+    <li><a href="#s6-normal">6.4 Normal Distribution</a></li>
+    <li><a href="#s6-standard">6.5 Standard Normal &amp; Z-Score</a></li>
+    <li><a href="#s6-approx">6.6 Normal Approximation to Binomial</a></li>
+    <li><a href="#s6-other">6.7 Chi-Square, t-Distribution &amp; F-Distribution</a></li>
+  </ul>
+</li>
+<li><a href="#keyconcepts">Key Concepts (From Exam Papers)</a>
+  <ul>
+    <li><a href="#kc-clt">Central Limit Theorem (CLT)</a></li>
+    <li><a href="#kc-ci">Confidence Intervals</a></li>
+    <li><a href="#kc-corr">Correlation &amp; Simple Linear Regression</a></li>
+    <li><a href="#kc-anova">ANOVA (Analysis of Variance)</a></li>
+    <li><a href="#kc-es">Exponential Smoothing</a></li>
+    <li><a href="#kc-gmm">Gaussian Mixture Models (GMM)</a></li>
+  </ul>
+</li>
+<li><a href="#practice">Practice Questions (Exam Papers)</a></li>
+<li><a href="#cheatsheet">Distribution &amp; Formula Cheatsheet</a></li>
+</ul>
+</div>
+
+<!-- ==================== SESSION 1: BASIC STATISTICS ==================== -->
+<div class="lecture-divider" id="s1">Session 1: Basic Statistics</div>
+
+<h2 id="s1-data">1.1 Data Types &amp; Levels of Measurement</h2>
+
+<div class="definition">
+<strong>Statistics</strong> is the science of collecting, organizing, analyzing, interpreting, and presenting data. It provides tools to make informed decisions under uncertainty. Statistics is broadly divided into <strong>Descriptive Statistics</strong> (summarizing data using measures like mean, median, charts) and <strong>Inferential Statistics</strong> (drawing conclusions about a population based on a sample).
+</div>
+
+<div class="definition">
+<strong>Population</strong> is the entire group of individuals or items that we are interested in studying (denoted $N$). A <strong>Sample</strong> is a subset of the population selected for study (denoted $n$). We use samples because studying the entire population is often impractical, costly, or impossible. Statistics computed from a sample (called <strong>statistics</strong>, e.g., $\bar{x}$, $s$) are used to estimate corresponding population values (called <strong>parameters</strong>, e.g., $\mu$, $\sigma$).
+</div>
+
+<h3>Data Types</h3>
+<div class="definition">
+<strong>Data</strong> refers to facts, observations, or measurements collected for analysis. Data can be broadly classified by its nature into quantitative (numerical) and qualitative (categorical) types.
+</div>
+
+<div class="comparison-grid">
+<div class="card">
+<h4>Discrete Data</h4>
+<p><strong>Definition:</strong> Data that can only take specific, countable values (usually whole numbers). There are gaps between possible values &mdash; you cannot have a fractional count.</p>
+<p><strong>How to identify:</strong> Ask "Can I count it?" If yes, it's discrete. The values result from counting.</p>
+<p><strong>Examples:</strong> Number of students in a class (28, not 28.5), number of defective items in a batch, number of coin tosses to get first head.</p>
+</div>
+<div class="card">
+<h4>Continuous Data</h4>
+<p><strong>Definition:</strong> Data that can take any value within a range, including decimals and fractions. Between any two values, there are infinitely many possible values.</p>
+<p><strong>How to identify:</strong> Ask "Can I measure it?" If yes, it's continuous. The values result from measuring.</p>
+<p><strong>Examples:</strong> Height (172.3 cm), weight (65.45 kg), temperature (36.7°C), time to complete a task (4.23 minutes).</p>
+</div>
+</div>
+<div class="card">
+<h4>Categorical (Qualitative) Data</h4>
+<p><strong>Definition:</strong> Data that describes qualities or characteristics and places observations into categories or groups. These values have no inherent numerical meaning &mdash; mathematical operations like averaging are meaningless.</p>
+<p><strong>How to identify:</strong> The data describes "what type" or "which category" rather than "how much."</p>
+<p><strong>Examples:</strong> Gender (Male/Female), blood group (A/B/O/AB), colour (Red/Blue), city of residence.</p>
+</div>
+
+<h3>Levels of Measurement</h3>
+<div class="definition">
+<strong>Levels of measurement</strong> (also called scales of measurement) describe the nature of information within a variable's values. Introduced by psychologist Stanley Stevens in 1946, each successive level adds more mathematical structure and allows more statistical operations.
+</div>
+
+<table>
+<tr><th>Level</th><th>Properties</th><th>Operations</th><th>Examples</th><th>Key Distinction</th></tr>
+<tr><td><strong>Nominal</strong></td><td>Categories only; no order</td><td>= , &ne;</td><td>Gender, Blood type, City</td><td>Labels only; numbers (if used) are just codes (e.g., Male=1, Female=2)</td></tr>
+<tr><td><strong>Ordinal</strong></td><td>Categories with meaningful order</td><td>= , &ne; , &lt; , &gt;</td><td>Ratings (poor/good/excellent), Education level, Military rank</td><td>We know the order, but the difference between ranks is not uniform (the gap between "good" and "excellent" may differ from "poor" to "good")</td></tr>
+<tr><td><strong>Interval</strong></td><td>Ordered; equal intervals; no true zero</td><td>= , &ne; , &lt; , &gt; , + , &minus;</td><td>Temperature (&deg;C), Calendar year, IQ scores</td><td>Differences are meaningful (20°C &minus; 10°C = 10°C), but ratios are not (20°C is NOT "twice as hot" as 10°C because 0°C doesn't mean "no temperature")</td></tr>
+<tr><td><strong>Ratio</strong></td><td>Ordered; equal intervals; true zero</td><td>All arithmetic ops</td><td>Height, Weight, Age, Income, Distance</td><td>Has a meaningful zero point (0 kg = no weight), so ratios make sense (100 kg is twice 50 kg)</td></tr>
+</table>
+
+<div class="tip">
+<strong>Memory Tip:</strong> <em>NOIR</em> &mdash; Nominal, Ordinal, Interval, Ratio. Each level adds capabilities over the previous one. Only ratio data has a meaningful zero point (e.g., 0 kg means "no weight").
+</div>
+
+<!-- 1.2 Central Tendency -->
+<h2 id="s1-central">1.2 Measures of Central Tendency</h2>
+
+<div class="definition">
+<strong>Measures of Central Tendency</strong> are single values that attempt to describe a dataset by identifying the central position within the data. They answer the question: "What is a typical value in this dataset?" The three main measures are Mean, Median, and Mode.
+</div>
+
+<h3>Mean (Arithmetic Average)</h3>
+<div class="definition">
+The <strong>mean</strong> (or arithmetic average) is the sum of all values divided by the number of values. It is the most commonly used measure of central tendency and uses every data point in its calculation, making it sensitive to all values &mdash; including outliers.
+</div>
+
+<div class="theorem">
+<strong>Ungrouped Data:</strong>
+$$\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}$$
+
+<strong>Grouped Data (Frequency Distribution):</strong>
+$$\bar{x} = \frac{\sum f_i \cdot x_i}{\sum f_i}$$
+where $f_i$ is the frequency and $x_i$ is the class midpoint.
+</div>
+
+<div class="important">
+<strong>Limitation:</strong> The mean is heavily affected by outliers. A single extreme value can shift the mean significantly.
+</div>
+
+<h3>Median</h3>
+<div class="definition">
+The <strong>median</strong> is the middle value when data is arranged in ascending order. It divides the dataset into two equal halves.
+</div>
+
+<div class="theorem">
+If $n$ is <strong>odd</strong>: Median = value at position $\frac{n+1}{2}$<br><br>
+If $n$ is <strong>even</strong>: Median = $\frac{x_{n/2} + x_{(n/2)+1}}{2}$
+</div>
+
+<h3>Mode</h3>
+<div class="definition">
+The <strong>mode</strong> is the value that occurs most frequently. A dataset can be unimodal (one mode), bimodal (two modes), or multimodal.
+</div>
+
+<div class="theorem">
+<strong>Mode for Grouped Data:</strong>
+$$\text{Mode} = L + \left(\frac{f_1 - f_0}{2f_1 - f_0 - f_2}\right) \times h$$
+where $L$ = lower boundary of modal class, $f_1$ = frequency of modal class, $f_0$ = frequency of class before modal class, $f_2$ = frequency of class after modal class, $h$ = class width.
+</div>
+
+<!-- 1.3 Skewness -->
+<h2 id="s1-skew">1.3 Skewness</h2>
+
+<div class="definition">
+<strong>Skewness</strong> is a measure of the asymmetry of a probability distribution. It tells us whether the data is concentrated more on one side of the mean than the other. Understanding skewness helps in choosing the right measure of central tendency &mdash; the median is preferred over the mean for highly skewed data because it is not affected by extreme values.
+</div>
+
+<div class="comparison-grid">
+<div class="card">
+<h4>Symmetric Distribution</h4>
+<p>Mean = Median = Mode</p>
+<p>Bell-shaped; mirror image on both sides. The two tails are equal in length. Example: heights of adults in a population.</p>
+</div>
+<div class="card">
+<h4>Right-Skewed (Positive Skew)</h4>
+<p>Mode &lt; Median &lt; Mean</p>
+<p>The right tail is longer; bulk of data is on the left. A few large outliers pull the mean to the right. Example: income distribution (most people earn moderate amounts, few earn very high).</p>
+</div>
+</div>
+<div class="card">
+<h4>Left-Skewed (Negative Skew)</h4>
+<p>Mean &lt; Median &lt; Mode</p>
+<p>The left tail is longer; bulk of data is on the right. A few small outliers pull the mean to the left. Example: age at retirement (most retire around 60-65, few retire very young).</p>
+</div>
+
+<div class="theorem">
+<strong>Empirical Relationship (Pearson's Approximation):</strong>
+$$\text{Mode} \approx 3 \times \text{Median} - 2 \times \text{Mean}$$
+This holds for moderately skewed distributions.
+</div>
+
+<!-- 1.4 Variability -->
+<h2 id="s1-var">1.4 Measures of Variability</h2>
+
+<div class="definition">
+<strong>Measures of Variability</strong> (also called measures of dispersion or spread) describe how spread out or scattered the data values are. While central tendency tells us the "center," variability tells us how far the data points typically deviate from that center. Two datasets can have the same mean but very different spreads (e.g., {49, 50, 51} vs {10, 50, 90} both have mean 50 but vastly different variability).
+</div>
+
+<h3>Range</h3>
+<div class="definition">
+The <strong>range</strong> is the simplest measure of variability &mdash; the difference between the largest and smallest values. It gives a quick sense of the total spread but is unreliable because it depends on only two data points and is highly sensitive to outliers.
+</div>
+<div class="theorem">
+$$\text{Range} = x_{\max} - x_{\min}$$
+Simple but sensitive to outliers. Uses only two data points.
+</div>
+
+<h3>Variance</h3>
+<div class="definition">
+<strong>Variance</strong> measures the average squared deviation of each data point from the mean. It quantifies how far the data points are spread out from the mean. Squaring the deviations ensures that positive and negative deviations don't cancel out, and it gives more weight to larger deviations. The units of variance are the square of the original data's units (e.g., if data is in meters, variance is in meters²), which is why we often use standard deviation instead.
+</div>
+
+<div class="theorem">
+<strong>Population Variance:</strong>
+$$\sigma^2 = \frac{\sum_{i=1}^{N}(x_i - \mu)^2}{N}$$
+
+<strong>Sample Variance (with Bessel's Correction):</strong>
+$$s^2 = \frac{\sum_{i=1}^{n}(x_i - \bar{x})^2}{n - 1}$$
+</div>
+
+<div class="highlight">
+<strong>Why Bessel's Correction ($n-1$)?</strong> When we estimate the population variance from a sample, using $n$ in the denominator underestimates the true variance because the sample mean $\bar{x}$ is closer to the sample data than the true population mean $\mu$. Dividing by $n-1$ corrects this bias, making $s^2$ an <em>unbiased estimator</em> of $\sigma^2$.
+</div>
+
+<h3>Standard Deviation</h3>
+<div class="definition">
+The <strong>standard deviation</strong> is the square root of the variance. It brings the measure of spread back to the same units as the original data, making it much more interpretable. A small standard deviation means data points cluster tightly around the mean; a large standard deviation means they are widely scattered.
+</div>
+
+<div class="theorem">
+$$\sigma = \sqrt{\sigma^2} \quad \text{(population)}, \quad s = \sqrt{s^2} \quad \text{(sample)}$$
+Standard deviation has the same units as the data, making it more interpretable than variance.
+</div>
+
+<div class="highlight">
+<strong>Coefficient of Variation (CV):</strong> When comparing variability between datasets with different units or vastly different means, use the CV:
+$$CV = \frac{s}{\bar{x}} \times 100\%$$
+A higher CV indicates greater relative variability. For example, comparing variability in heights (cm) vs weights (kg) requires CV since the units differ.
+</div>
+
+<!-- 1.5 Five-Point Summary -->
+<h2 id="s1-fivepoint">1.5 Five-Point Summary, Quartiles &amp; Box Plots</h2>
+
+<div class="definition">
+The <strong>Five-Number Summary</strong> consists of: Minimum, $Q_1$ (25th percentile), $Q_2$ (Median, 50th percentile), $Q_3$ (75th percentile), Maximum.
+</div>
+
+<div class="theorem">
+<strong>Interquartile Range (IQR):</strong>
+$$\text{IQR} = Q_3 - Q_1$$
+The IQR measures the spread of the middle 50% of the data and is resistant to outliers.
+</div>
+
+<div class="card">
+<h4>Quartile Computation</h4>
+<ol>
+<li>Sort data in ascending order</li>
+<li>$Q_2$ (Median): Middle value of the entire dataset</li>
+<li>$Q_1$: Median of the lower half (below $Q_2$)</li>
+<li>$Q_3$: Median of the upper half (above $Q_2$)</li>
+</ol>
+</div>
+
+<div class="tip">
+<strong>Box Plot Anatomy:</strong> The box spans from $Q_1$ to $Q_3$ (the IQR). The line inside the box is the median. Whiskers extend to the smallest/largest values within the fences. Points beyond the whiskers are outliers.
+</div>
+
+<!-- 1.6 Outlier Detection -->
+<h2 id="s1-outlier">1.6 Outlier Detection</h2>
+
+<div class="definition">
+An <strong>outlier</strong> is a data point that lies significantly far from the rest of the data. Outliers can arise from measurement errors, data entry mistakes, or genuine extreme observations. They can heavily distort statistical measures like the mean and standard deviation. Detecting and handling outliers is crucial before performing analyses &mdash; they may need to be investigated, corrected, or excluded depending on the context.
+</div>
+
+<div class="theorem">
+<strong>IQR Method (Tukey's Fences):</strong>
+$$\text{Lower Fence} = Q_1 - 1.5 \times \text{IQR}$$
+$$\text{Upper Fence} = Q_3 + 1.5 \times \text{IQR}$$
+Any data point below the lower fence or above the upper fence is classified as an <strong>outlier</strong>.
+</div>
+
+<div class="important">
+<strong>Extreme Outliers:</strong> Values beyond $Q_1 - 3 \times \text{IQR}$ or $Q_3 + 3 \times \text{IQR}$ are considered extreme outliers.
+</div>
+
+<!-- 1.7 Worked Example -->
+<h2 id="s1-example">1.7 Worked Example: IQ Test Data</h2>
+
+<div class="example">
+<strong>Data (n=15):</strong> IQ scores of 15 students (sorted): 85, 90, 92, 95, 98, 100, 102, 105, 108, 110, 112, 115, 118, 120, 125<br><br>
+
+<strong>Mean:</strong> $\bar{x} = \frac{85+90+92+\cdots+125}{15} = \frac{1575}{15} = 105$<br><br>
+
+<strong>Median:</strong> $n=15$ (odd), position = $\frac{15+1}{2} = 8$th value = <strong>105</strong><br><br>
+
+<strong>$Q_1$:</strong> Median of lower half (85, 90, 92, 95, 98, 100, 102) = 4th value = <strong>95</strong><br>
+<strong>$Q_3$:</strong> Median of upper half (108, 110, 112, 115, 118, 120, 125) = 4th value = <strong>115</strong><br><br>
+
+<strong>IQR:</strong> $Q_3 - Q_1 = 115 - 95 = 20$<br>
+<strong>Lower Fence:</strong> $95 - 1.5(20) = 65$<br>
+<strong>Upper Fence:</strong> $115 + 1.5(20) = 145$<br><br>
+
+<strong>Outliers:</strong> No values below 65 or above 145. <em>No outliers detected.</em><br><br>
+
+<strong>Five-Number Summary:</strong> (85, 95, 105, 115, 125)
+</div>
+
+<!-- 1.8 Companion Worked Examples & Practice -->
+<h2 id="s1-companion">1.8 Additional Worked Examples &amp; Practice <small>(from Companion Notes)</small></h2>
+
+<div class="example">
+<strong>Morning Routine &mdash; Mean vs Median:</strong><br>
+You time your morning routine (minutes) over ten days: 39, 29, 43, 52, 39, 44, 40, 31, 44, 35.<br>
+<strong>Mean:</strong> $\bar{y} = \frac{396}{10} = 39.6$<br>
+<strong>Median:</strong> Sort: 29, 31, 35, 39, <strong>39, 40</strong>, 43, 44, 44, 52. Average of 5th &amp; 6th values: $\frac{39+40}{2} = 39.5$<br><br>
+Mean (39.6) and median (39.5) nearly coincide &mdash; the data is approximately symmetric with no extreme outlier. This quick comparison tells you the shape of the data without plotting it.
+</div>
+
+<div class="example">
+<strong>Server Failures &mdash; Mode in Action:</strong><br>
+A network manager logs daily server failures over two weeks: 1, 3, 0, 3, 26, 2, 7, 4, 2, 3, 3, 6, 3.<br>
+The value 3 appears five times &mdash; more than any other &mdash; so the <strong>mode is 3</strong>. The most typical day has three failures. Notice the mode ignores the outlier (26) completely; like the median, it is unbothered by extremes.
+</div>
+
+<div class="example">
+<strong>Standard Deviation &mdash; Step by Step:</strong><br>
+Data: 2, 8, 5, 3, 7, 8, 5, 2, 5.<br>
+<strong>Step 1 &mdash; Mean:</strong> $\bar{y} = \frac{45}{9} = 5$<br>
+<strong>Step 2 &mdash; Sum of Squares:</strong><br>
+$SS = (2-5)^2 + (8-5)^2 + (5-5)^2 + (3-5)^2 + (7-5)^2 + (8-5)^2 + (5-5)^2 + (2-5)^2 + (5-5)^2$<br>
+$= 9 + 9 + 0 + 4 + 4 + 9 + 0 + 9 + 0 = 44$<br>
+<strong>Step 3 &mdash; Sample SD:</strong> $s = \sqrt{\frac{44}{9-1}} = \sqrt{5.5} \approx 2.35$<br><br>
+A typical value sits about 2.35 away from the mean of 5. Reported as $(\bar{y}, s) = (5, 2.35)$.
+</div>
+
+<div class="example">
+<strong>Five-Number Summary &mdash; No Outliers:</strong><br>
+Sorted data: 11, 12, 13, 16, 16, 17, 17, 18, 21 (nine values).<br>
+Median = 5th value = 16. $Q_1 = 12.5$, $Q_3 = 17.5$, IQR = 5.<br>
+Fences: $12.5 - 1.5(5) = 5$ and $17.5 + 1.5(5) = 25$.<br>
+Every point lies between 5 and 25, so <strong>no outliers</strong>. Five-number summary: (11, 12.5, 16, 17.5, 21).
+</div>
+
+<div class="example">
+<strong>Five-Number Summary &mdash; With an Outlier:</strong><br>
+Sorted data: 3, 5, 6, 7, 8, 9, 28 (seven values).<br>
+Median = 4th value = 7. Lower half {3, 5, 6} gives $Q_1 = 5$. Upper half {8, 9, 28} gives $Q_3 = 9$. IQR = 4.<br>
+Fences: $5 - 1.5(4) = -1$ and $9 + 1.5(4) = 15$.<br>
+$28 > 15$, so the rule correctly <strong>flags 28 as an outlier</strong>.
+</div>
+
+<div class="practice-section">
+<h3>Questions (Session 1 &mdash; Companion)</h3>
+
+<details>
+<summary>Q1: Office Noise Levels &mdash; Centre, Spread &amp; Outliers</summary>
+<div class="answer">
+<strong>Problem:</strong> A sample of office noise levels (dBA) ranges from mid-50s to the low-80s, with most readings clustered in the 60s. Predict first: will the mean sit above or below the median? Then compute the mean, standard deviation, IQR, and use the $1.5 \times$IQR rule to check for outliers.<br><br>
+<strong>Hint:</strong> Most values cluster low (60s) with a few high values stretching the right tail &rArr; right-skewed &rArr; mean > median. The high values pull the mean rightward while the median stays in the cluster.
+</div>
+</details>
+
+<details>
+<summary>Q2: Fat Content of Sandwiches &mdash; Skew Detective</summary>
+<div class="answer">
+<strong>Problem:</strong> Fat content (grams) of 20 sandwiches: 7, 8, 4, 5, 16, 20, 20, 24, 19, 30, 23, 30, 25, 19, 29, 29, 30, 30, 40, 56.<br>
+Find the mean, median, $Q_1$, $Q_3$, the IQR, and any outliers. Is the data skewed, and which way?<br><br>
+<strong>Hint:</strong> Compare mean vs median. If mean > median, right skew (a few very high fat values pulling the mean up). The gap between them is a quick skewness detector. Use $1.5 \times$IQR fences to flag outliers.
+</div>
+</details>
+
+<details>
+<summary>Q3: Battery Life &mdash; Five-Number Summary</summary>
+<div class="answer">
+<strong>Problem:</strong> Battery life (shots) for digital cameras: 300, 180, 85, 170, 380, 460, 260, 35, 380, 120, 110, 240.<br>
+List the five-number summary and sketch the box plot.<br><br>
+<strong>Hint:</strong> Sort first: 35, 85, 110, 120, 170, 180, 240, 260, 300, 380, 380, 460. Find median (average of 6th &amp; 7th), $Q_1$ (median of lower 6), $Q_3$ (median of upper 6). Check fences for outliers.
+</div>
+</details>
+</div>
+
+
+<!-- ==================== SESSION 2: BASIC PROBABILITY ==================== -->
+<div class="lecture-divider" id="s2">Session 2: Basic Probability</div>
+
+<h2 id="s2-basics">2.1 Random Experiments &amp; Sample Space</h2>
+
+<div class="definition">
+A <strong>random experiment</strong> is a process whose outcome is uncertain. The <strong>sample space</strong> $S$ (or $\Omega$) is the set of all possible outcomes. An <strong>event</strong> is a subset of the sample space.
+</div>
+
+<div class="example">
+<strong>Tossing a coin:</strong> $S = \{H, T\}$, $|S| = 2$<br>
+<strong>Rolling a die:</strong> $S = \{1, 2, 3, 4, 5, 6\}$, $|S| = 6$<br>
+<strong>Two dice:</strong> $S = \{(i,j) : i,j \in \{1,...,6\}\}$, $|S| = 36$
+</div>
+
+<h2 id="s2-sets">2.2 Set Operations &amp; De Morgan's Laws</h2>
+
+<div class="definition">
+<strong>Set operations</strong> on events allow us to combine, compare, and manipulate events in probability. Since events are subsets of the sample space, all standard set operations apply. These operations are fundamental to computing probabilities of combined events.
+</div>
+
+<div class="card">
+<h4>Set Operations on Events</h4>
+<table>
+<tr><th>Operation</th><th>Notation</th><th>Meaning</th></tr>
+<tr><td>Complement</td><td>$A^c$ or $\bar{A}$ or $A'$</td><td>All outcomes NOT in A</td></tr>
+<tr><td>Union</td><td>$A \cup B$</td><td>A or B or both (at least one)</td></tr>
+<tr><td>Intersection</td><td>$A \cap B$</td><td>Both A and B</td></tr>
+<tr><td>Difference</td><td>$A - B$ or $A \setminus B$</td><td>In A but not in B</td></tr>
+</table>
+</div>
+
+<div class="theorem">
+<strong>De Morgan's Laws:</strong>
+$$(A \cup B)^c = A^c \cap B^c$$
+$$(A \cap B)^c = A^c \cup B^c$$
+"The complement of the union is the intersection of the complements" and vice versa.
+</div>
+
+<div class="definition">
+<strong>Mutually Exclusive (Disjoint) Events:</strong> Events A and B are mutually exclusive if $A \cap B = \emptyset$, i.e., they cannot both occur simultaneously. If $A \cap B = \emptyset$, then $P(A \cap B) = 0$.
+</div>
+
+<h2 id="s2-defn">2.3 Definitions of Probability</h2>
+
+<div class="definition">
+<strong>Probability</strong> is a numerical measure of the likelihood that an event will occur. It ranges from 0 (impossible event) to 1 (certain event). There are three major approaches to defining probability, each useful in different contexts.
+</div>
+
+<div class="comparison-grid">
+<div class="card">
+<h4>Classical (Equally Likely)</h4>
+$$P(A) = \frac{|A|}{|S|} = \frac{\text{favourable outcomes}}{\text{total outcomes}}$$
+<p>Requires equally likely outcomes and a finite sample space. This is the oldest definition, used when we can enumerate all outcomes (e.g., dice, cards, coins). It is <em>a priori</em> &mdash; no experiment needs to be performed.</p>
+<p><strong>Limitation:</strong> Cannot be applied when outcomes are not equally likely (e.g., biased coins) or when the sample space is infinite.</p>
+</div>
+<div class="card">
+<h4>Empirical (Frequentist)</h4>
+$$P(A) = \lim_{n \to \infty} \frac{n_A}{n}$$
+<p>Based on actual observation: the probability of an event is the long-run relative frequency of its occurrence. This approach requires repeating the experiment many times. As the number of trials grows, the relative frequency stabilizes (Law of Large Numbers).</p>
+<p><strong>Limitation:</strong> Requires experiments to be repeatable under identical conditions, which isn't always possible.</p>
+</div>
+</div>
+
+<div class="card">
+<h4>Axiomatic Definition (Kolmogorov's Axioms, 1933)</h4>
+<p>The most rigorous and general definition, forming the foundation of modern probability theory. Any function $P$ satisfying these three axioms is a valid probability measure:</p>
+<ol>
+<li><strong>Non-negativity:</strong> $P(A) \geq 0$ for every event $A$</li>
+<li><strong>Normalization:</strong> $P(S) = 1$ (the probability of the entire sample space is 1)</li>
+<li><strong>Additivity:</strong> If $A_1, A_2, \ldots$ are mutually exclusive, then $P\left(\bigcup_{i} A_i\right) = \sum_{i} P(A_i)$</li>
+</ol>
+<p>From these three axioms, all other probability rules can be derived (complement rule, addition rule, etc.).</p>
+</div>
+
+<h2 id="s2-addition">2.4 Addition Rule</h2>
+
+<div class="definition">
+The <strong>Addition Rule</strong> is used to find the probability that <em>at least one</em> of two events occurs (i.e., $A$ or $B$ or both). The key insight is that when we add $P(A) + P(B)$, we double-count the overlap $P(A \cap B)$, so we must subtract it once.
+</div>
+
+<div class="theorem">
+<strong>General Addition Rule:</strong>
+$$P(A \cup B) = P(A) + P(B) - P(A \cap B)$$
+
+<strong>For Mutually Exclusive Events</strong> ($A \cap B = \emptyset$):
+$$P(A \cup B) = P(A) + P(B)$$
+</div>
+
+<div class="tip">
+<strong>Complement Rule:</strong> $P(A^c) = 1 - P(A)$. This is extremely useful when computing "at least one" probabilities: $P(\text{at least one}) = 1 - P(\text{none})$.
+</div>
+
+<h2 id="s2-indep">2.5 Independent vs Dependent Events</h2>
+
+<div class="definition">
+Two events are <strong>independent</strong> if knowing that one has occurred provides no information about whether the other will occur. Formally, the occurrence of one event does not change the probability of the other. Independence is a crucial concept in probability &mdash; it simplifies calculations dramatically because the joint probability becomes a simple product.
+</div>
+
+<div class="comparison-grid">
+<div class="card">
+<h4>Independent Events</h4>
+<p>$P(A \cap B) = P(A) \cdot P(B)$</p>
+<p>Occurrence of A does not affect B. Sampling <strong>with replacement</strong> creates independence.</p>
+<p><strong>Example:</strong> Rolling a die and flipping a coin &mdash; the die result has no bearing on the coin outcome.</p>
+</div>
+<div class="card">
+<h4>Dependent Events</h4>
+<p>$P(A \cap B) = P(A) \cdot P(B|A)$</p>
+<p>Occurrence of A changes the probability of B. Sampling <strong>without replacement</strong> creates dependence.</p>
+<p><strong>Example:</strong> Drawing cards without replacement &mdash; drawing an ace first changes the probability of drawing another ace.</p>
+</div>
+</div>
+
+<h2 id="s2-examples">2.6 Key Examples</h2>
+
+<div class="example">
+<strong>Two Dice &mdash; Sum Probabilities:</strong><br>
+$P(\text{sum}=7) = \frac{6}{36} = \frac{1}{6}$ &nbsp; (outcomes: (1,6),(2,5),(3,4),(4,3),(5,2),(6,1))<br>
+$P(\text{sum}=2) = \frac{1}{36}$, &ensp; $P(\text{sum}=12) = \frac{1}{36}$
+</div>
+
+<div class="example">
+<strong>Committee Selection (Without Replacement):</strong><br>
+From 10 men and 8 women, select a committee of 5. <br>
+$P(\text{at least 1 woman}) = 1 - P(\text{all men}) = 1 - \frac{\binom{10}{5}}{\binom{18}{5}} = 1 - \frac{252}{8568} = 1 - 0.0294 = 0.9706$
+</div>
+
+<div class="example">
+<strong>Investor Problem:</strong><br>
+An investor considers 3 stocks. P(stock A rises) = 0.5, P(B rises) = 0.6, P(C rises) = 0.4. If independent:<br>
+$P(\text{all rise}) = 0.5 \times 0.6 \times 0.4 = 0.12$<br>
+$P(\text{none rise}) = 0.5 \times 0.4 \times 0.6 = 0.12$<br>
+$P(\text{at least one rises}) = 1 - 0.12 = 0.88$
+</div>
+
+<!-- 2.7 Companion Worked Examples & Practice -->
+<h2 id="s2-companion">2.7 Additional Worked Examples &amp; Practice <small>(from Companion Notes)</small></h2>
+
+<div class="important">
+<strong>Mutually Exclusive vs Independent &mdash; The Classic Confusion:</strong><br>
+<strong>Mutually exclusive:</strong> $A \cap B = \emptyset$, so $P(A \cap B) = 0$. One happening <em>rules out</em> the other.<br>
+<strong>Independent:</strong> $P(A \cap B) = P(A) \cdot P(B)$. One happening tells you <em>nothing</em> about the other.<br><br>
+If two events with positive probability are mutually exclusive, they can <strong>never</strong> be independent &mdash; knowing one happened means the other definitely didn't, which is the strongest possible information (the opposite of "no information").
+</div>
+
+<div class="example">
+<strong>Is This a Legal Set of Probabilities?</strong><br>
+Four mutually exclusive outcomes A, B, C, D each assigned a probability. A list is permissible only if every value is $\geq 0$ <strong>and</strong> they sum to 1.<br><br>
+(a) 0.38, 0.16, 0.11, 0.35: sum = 1.00, all $\geq 0$ &check;<br>
+(b) 0.31, 0.27, 0.28, 0.16: sum = 1.02 &cross;<br>
+(c) One value is $-0.06 < 0$ &cross;<br>
+(d) $\frac{1}{2}, \frac{1}{4}, \frac{1}{8}, \frac{1}{16}$: sum = $\frac{15}{16} \neq 1$ &cross;<br><br>
+Only (a) is permissible. Two quick checks &mdash; "no negatives" and "adds to one" &mdash; catch every illegal assignment.
+</div>
+
+<div class="example">
+<strong>Passing the Exams (Addition Rule Rearranged):</strong><br>
+A student passes statistics with $P(S) = \frac{2}{3}$ and maths with $P(M) = \frac{4}{9}$, and passes at least one with $P(S \cup M) = \frac{4}{5}$. Find $P(\text{both})$:<br>
+$$P(S \cap M) = P(S) + P(M) - P(S \cup M) = \frac{2}{3} + \frac{4}{9} - \frac{4}{5} = \frac{14}{45}$$
+</div>
+
+<div class="example">
+<strong>Investors in Both Markets:</strong><br>
+75% invest in annuities (A), 45% in the stock market (B), and 85% in at least one. What fraction invest in both?<br>
+$$P(A \cap B) = P(A) + P(B) - P(A \cup B) = 0.75 + 0.45 - 0.85 = 0.35$$
+35% are in both &mdash; and A and B are clearly <em>not</em> mutually exclusive (overlap is non-zero).
+</div>
+
+<div class="example">
+<strong>Testing Independence with Two Dice:</strong><br>
+Throw a pair of dice. $A = \{(1,2),(2,1),(2,2)\}$, $B = \{(2,2),(2,3),(2,4),(2,5),(2,6),(3,2),(4,2),(5,2),(6,2)\}$.<br>
+$P(A) = \frac{3}{36}$, $P(B) = \frac{9}{36}$, $P(A \cap B) = P\{(2,2)\} = \frac{1}{36}$.<br><br>
+Independence test: $P(A) \cdot P(B) = \frac{3}{36} \cdot \frac{9}{36} = \frac{27}{1296} = \frac{1}{48} \neq \frac{1}{36}$.<br>
+Since the two sides differ, A and B are <strong>dependent</strong>.
+</div>
+
+<div class="example">
+<strong>Two Dice: Sum Questions (Counting &amp; Complement):</strong><br>
+$P(\text{sum} > 8) = \frac{4+3+2+1}{36} = \frac{10}{36} = \frac{5}{18}$<br>
+$P(\text{sum} < 6) = \frac{1+2+3+4}{36} = \frac{10}{36} = \frac{5}{18}$<br>
+$P(\text{neither 7 nor 11}) = 1 - \frac{6+2}{36} = 1 - \frac{8}{36} = \frac{28}{36} = \frac{7}{9}$ (complement trick)
+</div>
+
+<div class="example">
+<strong>Committee with Majority of Women (Counting with Combinations):</strong><br>
+Choose 5 from 8 men and 4 women. A women-majority means 4 women + 1 man, or 3 women + 2 men:<br>
+$$P = \frac{\binom{8}{1}\binom{4}{4} + \binom{8}{2}\binom{4}{3}}{\binom{12}{5}} = \frac{8 + 112}{792} = \frac{120}{792} = \frac{5}{33}$$
+</div>
+
+<div class="practice-section">
+<h3>Questions (Session 2 &mdash; Companion)</h3>
+
+<details>
+<summary>Q1: Bank Accounts &mdash; Complement Trick</summary>
+<div class="answer">
+<strong>Problem:</strong> A bank's accounts are 40% savings, 35% current, the rest loans. Find $P(\text{loan})$, $P(\text{not savings})$, and $P(\text{current or loan})$.<br><br>
+<strong>Solution:</strong> $P(\text{loan}) = 1 - 0.40 - 0.35 = 0.25$. $P(\text{not savings}) = 1 - 0.40 = 0.60$. Current and loan are mutually exclusive, so $P(\text{current or loan}) = 0.35 + 0.25 = 0.60$.
+</div>
+</details>
+
+<details>
+<summary>Q2: Internet &amp; TV in a Suburb &mdash; Addition Rule + Venn</summary>
+<div class="answer">
+<strong>Problem:</strong> 60% of homes have internet, 80% have TV, 50% have both. What fraction have at least one service? Exactly one?<br><br>
+<strong>Solution:</strong> $P(I \cup T) = 0.60 + 0.80 - 0.50 = 0.90$ (at least one).<br>
+Exactly one = at least one $-$ both = $0.90 - 0.50 = 0.40$ (or: Internet only = $0.60 - 0.50 = 0.10$, TV only = $0.80 - 0.50 = 0.30$, total = $0.40$).
+</div>
+</details>
+
+<details>
+<summary>Q3: Contradiction Between Two People</summary>
+<div class="answer">
+<strong>Problem:</strong> A tells the truth 80% of the time, B 60%. In what fraction of cases do they contradict each other on the same fact?<br><br>
+<strong>Solution:</strong> They contradict when exactly one lies. If independent:<br>
+$P(\text{contradict}) = P(A\text{ true})P(B\text{ lies}) + P(A\text{ lies})P(B\text{ true})$<br>
+$= (0.8)(0.4) + (0.2)(0.6) = 0.32 + 0.12 = 0.44$
+</div>
+</details>
+
+<details>
+<summary>Q4: Maximum of a Product</summary>
+<div class="answer">
+<strong>Problem:</strong> If A and B are mutually exclusive with $A \cup B = S$, what is the largest possible value of $P(A) \cdot P(B)$?<br><br>
+<strong>Solution:</strong> $P(A) + P(B) = 1$. Let $p = P(A)$, then we maximise $p(1-p)$. By AM-GM (or calculus), the maximum is at $p = 0.5$, giving $P(A) \cdot P(B) = 0.25$.
+</div>
+</details>
+</div>
+
+
+<!-- ==================== SESSION 3: CONDITIONAL PROBABILITY ==================== -->
+<div class="lecture-divider" id="s3">Session 3: Conditional Probability &amp; Total Probability</div>
+
+<h2 id="s3-cond">3.1 Conditional Probability</h2>
+
+<div class="definition">
+The <strong>conditional probability</strong> of B given A is the probability of B occurring, given that A has already occurred.
+</div>
+
+<div class="theorem">
+$$P(B|A) = \frac{P(A \cap B)}{P(A)}, \quad P(A) > 0$$
+</div>
+
+<h2 id="s3-mult">3.2 Multiplication Rule</h2>
+
+<div class="definition">
+The <strong>Multiplication Rule</strong> is used to find the probability that <em>both</em> events $A$ and $B$ occur together ($A \cap B$). It is derived directly from the definition of conditional probability by rearranging $P(B|A) = \frac{P(A \cap B)}{P(A)}$.
+</div>
+
+<div class="theorem">
+$$P(A \cap B) = P(A) \cdot P(B|A) = P(B) \cdot P(A|B)$$
+
+<strong>For independent events:</strong>
+$$P(A \cap B) = P(A) \cdot P(B)$$
+</div>
+
+<h2 id="s3-indep">3.3 Testing Independence</h2>
+
+<div class="definition">
+To <strong>test whether two events are independent</strong>, we check whether knowing one event has occurred changes the probability of the other. If it doesn't, the events are independent. We can verify this using any one of three equivalent conditions &mdash; if any one holds, all three hold.
+</div>
+
+<div class="card">
+Two events A and B are <strong>independent</strong> if and only if any ONE of the following holds (they are all equivalent):
+<ul>
+<li>$P(A \cap B) = P(A) \cdot P(B)$</li>
+<li>$P(A|B) = P(A)$</li>
+<li>$P(B|A) = P(B)$</li>
+</ul>
+</div>
+
+<div class="important">
+<strong>Mutually exclusive $\neq$ Independent!</strong> If $A$ and $B$ are mutually exclusive (and both have non-zero probability), then they are <em>dependent</em>, because knowing A occurred means B definitely did not occur: $P(B|A) = 0 \neq P(B)$.
+</div>
+
+<h2 id="s3-total">3.4 Law of Total Probability</h2>
+
+<div class="definition">
+The <strong>Law of Total Probability</strong> allows us to compute the probability of an event $A$ by breaking it down across a set of mutually exclusive and exhaustive scenarios $B_1, B_2, \ldots, B_n$ (called a <strong>partition</strong>). A partition divides the entire sample space into non-overlapping parts that together cover everything. This law is the foundation upon which Bayes' theorem is built &mdash; the denominator in Bayes' formula is exactly the total probability.
+</div>
+
+<div class="definition">
+<strong>Partition:</strong> Events $B_1, B_2, \ldots, B_n$ form a partition of $S$ if: (i) they are <strong>mutually exclusive</strong> ($B_i \cap B_j = \emptyset$ for $i \neq j$), and (ii) they are <strong>exhaustive</strong> ($B_1 \cup B_2 \cup \cdots \cup B_n = S$). For any event A:
+</div>
+
+<div class="theorem">
+$$P(A) = \sum_{i=1}^{n} P(A|B_i) \cdot P(B_i)$$
+This is often visualized using a <strong>tree diagram</strong> where the first branches are the partition events $B_i$, and the second branches are $A$ and $A^c$ conditional on each $B_i$.
+</div>
+
+<h2 id="s3-examples">3.5 Key Examples</h2>
+
+<div class="example">
+<strong>Flight Timing:</strong><br>
+P(flight on time) = 0.83, P(flight late) = 0.17<br>
+P(luggage on time | flight on time) = 0.95, P(luggage on time | flight late) = 0.65<br><br>
+By Total Probability:<br>
+$P(\text{luggage on time}) = 0.95(0.83) + 0.65(0.17) = 0.7885 + 0.1105 = 0.899$
+</div>
+
+<div class="example">
+<strong>Online Shopping:</strong><br>
+70% use website, 30% use app. P(purchase | website) = 0.15, P(purchase | app) = 0.20.<br>
+$P(\text{purchase}) = 0.15(0.70) + 0.20(0.30) = 0.105 + 0.06 = 0.165$
+</div>
+
+<div class="example">
+<strong>Hotel Plumbing:</strong><br>
+3 plumbers: Aman does 35% of jobs, Beryl 25%, Charlie 40%. Defect rates: 4%, 3%, 2%.<br>
+$P(\text{defect}) = 0.04(0.35) + 0.03(0.25) + 0.02(0.40) = 0.014 + 0.0075 + 0.008 = 0.0295$
+</div>
+
+<div class="example">
+<strong>Biscuit Factory:</strong><br>
+Machine A produces 60% of output, Machine B produces 40%. Defective rates: A = 2%, B = 3%.<br>
+$P(\text{defective}) = 0.02(0.60) + 0.03(0.40) = 0.012 + 0.012 = 0.024$<br>
+$P(\text{from A} | \text{defective}) = \frac{0.012}{0.024} = 0.50$
+</div>
+
+<!-- 3.6 Companion Worked Examples & Practice -->
+<h2 id="s3-companion">3.6 Additional Worked Examples &amp; Practice <small>(from Companion Notes)</small></h2>
+
+<div class="highlight">
+<strong>Conditioning = Choosing the Right Denominator:</strong> $P(B|A)$ and $P(A|B)$ have the same numerator $P(A \cap B)$ but different denominators. Beware: they are generally <em>not</em> equal. Always ask: "Which world am I zooming into?"
+</div>
+
+<div class="example">
+<strong>Loan Defaults &mdash; Contingency Table Read Both Ways:</strong><br>
+A bank records age group vs. loan default for 46,687 customers. Among 32,219 middle-aged customers, 27,368 did not default; overall 38,130 did not default.<br><br>
+$P(\text{no default} | \text{middle-aged}) = \frac{27{,}368}{32{,}219} \approx 0.85$<br>
+$P(\text{middle-aged} | \text{no default}) = \frac{27{,}368}{38{,}130} \approx 0.72$<br><br>
+Same overlap on top, but <strong>different denominators</strong> &mdash; because the two questions zoom into different worlds.
+</div>
+
+<div class="example">
+<strong>With vs. Without Replacement &mdash; Marble Jar:</strong><br>
+A jar holds 5 red, 6 blue, 2 white marbles (13 total). Draw two; find $P(\text{both red})$.<br><br>
+<strong>With replacement:</strong> $\frac{5}{13} \cdot \frac{5}{13} = \frac{25}{169} \approx 0.148$ (independent)<br>
+<strong>Without replacement:</strong> $\frac{5}{13} \cdot \frac{4}{12} = \frac{5}{39} \approx 0.128$ (dependent)<br><br>
+The clue "a red is already gone" lowers the second probability &mdash; <strong>dependence in action</strong>.
+</div>
+
+<div class="example">
+<strong>Testing Independence &mdash; Airport Flights:</strong><br>
+Of 100 surveyed flights, 20 departed late. Airport A handled 45 flights, 9 of them late. Are "departed from A" and "departed late" independent?<br><br>
+$P(\text{late}) = \frac{20}{100} = 0.20$, &emsp; $P(\text{late} | A) = \frac{9}{45} = 0.20$<br><br>
+They are equal, so the events are <strong>independent</strong> &mdash; the airport told you nothing about lateness.
+</div>
+
+<div class="example">
+<strong>Independent Spam Features (Addition + Complement):</strong><br>
+Two independent features: word "offer" ($P(A) = 0.6$) and suspicious link ($P(B) = 0.4$).<br><br>
+$P(\text{both}) = 0.6 \times 0.4 = 0.24$<br>
+$P(\text{either}) = 0.6 + 0.4 - 0.24 = 0.76$<br>
+$P(\text{neither}) = 1 - 0.76 = 0.24$
+</div>
+
+<div class="example">
+<strong>Poisonous-Plant Park (Total Probability with Tree):</strong><br>
+A park is 50% Forest A (20% poisonous), 30% Forest B (40% poisonous), 20% Forest C (70% poisonous). Pick a random plant:<br>
+$$P(\text{poison}) = (0.20)(0.50) + (0.40)(0.30) + (0.70)(0.20) = 0.10 + 0.12 + 0.14 = 0.36$$
+No single forest is "36%", yet the weighted blend across all three is.
+</div>
+
+<div class="example">
+<strong>Noisy Binary Channel (Total Probability):</strong><br>
+A channel sends 1 with probability 0.4 (and 0 with 0.6). A sent 0 is received correctly 90% of the time; a sent 1, 95%. What is $P(\text{a 1 is received})$?<br>
+$$P(\text{rec 1}) = \underbrace{(0.4)(0.95)}_{\text{sent 1, correct}} + \underbrace{(0.6)(0.10)}_{\text{sent 0, flipped}} = 0.38 + 0.06 = 0.44$$
+</div>
+
+<div class="example">
+<strong>Mining Job &mdash; Will It Finish on Time?</strong><br>
+Rain finishes the job on time with probability 0.42; no rain, 0.90. Rain probability = 0.45.<br>
+$$P(\text{on time}) = (0.45)(0.42) + (0.55)(0.90) = 0.189 + 0.495 = 0.684$$
+</div>
+
+<div class="practice-section">
+<h3>Questions (Session 3 &mdash; Companion)</h3>
+
+<details>
+<summary>Q1: Right-Handed Adults &mdash; Complement + Independence</summary>
+<div class="answer">
+<strong>Problem:</strong> Of 300 adults, 272 are right-handed. Picking 3 <em>with replacement</em>, find $P(\text{all three right-handed})$ and $P(\text{at least one right-handed})$.<br><br>
+<strong>Solution:</strong> $p = \frac{272}{300} \approx 0.907$.<br>
+$P(\text{all 3 RH}) = (0.907)^3 \approx 0.746$<br>
+$P(\text{at least 1 RH}) = 1 - P(\text{none RH}) = 1 - (1 - 0.907)^3 = 1 - (0.093)^3 \approx 1 - 0.000804 \approx 0.999$
+</div>
+</details>
+
+<details>
+<summary>Q2: Two Queens from a Deck &mdash; With vs Without Replacement</summary>
+<div class="answer">
+<strong>Problem:</strong> From a 52-card deck, find $P(\text{both of the first two cards are queens})$ without replacement, then with replacement.<br><br>
+<strong>Without:</strong> $\frac{4}{52} \cdot \frac{3}{51} = \frac{12}{2652} = \frac{1}{221} \approx 0.00452$<br>
+<strong>With:</strong> $\frac{4}{52} \cdot \frac{4}{52} = \frac{16}{2704} = \frac{1}{169} \approx 0.00592$<br>
+With replacement is larger &mdash; the deck "resets" so the second draw still has 4 queens available.
+</div>
+</details>
+
+<details>
+<summary>Q3: Independence Test &mdash; Clubs and Queen</summary>
+<div class="answer">
+<strong>Problem:</strong> A card is drawn from a deck missing the ace of diamonds (51 cards). Are "clubs" and "queen" independent?<br><br>
+<strong>Solution:</strong> $P(\text{club}) = \frac{13}{51}$, $P(\text{queen}) = \frac{4}{51}$ (all 4 queens remain), $P(\text{club} \cap \text{queen}) = \frac{1}{51}$.<br>
+$P(\text{club}) \cdot P(\text{queen}) = \frac{13}{51} \cdot \frac{4}{51} = \frac{52}{2601} \approx 0.0200$<br>
+$P(\text{club} \cap \text{queen}) = \frac{1}{51} \approx 0.0196$<br>
+$\frac{52}{2601} \neq \frac{1}{51}$, so they are <strong>not independent</strong> (removing a diamond card slightly broke the symmetry).
+</div>
+</details>
+
+<details>
+<summary>Q4: Ad Click Probability &mdash; Total Probability</summary>
+<div class="answer">
+<strong>Problem:</strong> A user clicks an ad with probability 0.04 on desktop, 0.06 on tablet, 0.10 on mobile; device shares are 0.5, 0.2, 0.3. Find the overall click probability.<br><br>
+<strong>Solution:</strong> $P(\text{click}) = (0.04)(0.5) + (0.06)(0.2) + (0.10)(0.3) = 0.02 + 0.012 + 0.03 = 0.062$
+</div>
+</details>
+</div>
+
+
+<!-- ==================== SESSION 4: BAYES' THEOREM ==================== -->
+<div class="lecture-divider" id="s4">Session 4: Bayes' Theorem &amp; Naive Bayes</div>
+
+<h2 id="s4-bayes">4.1 Bayes' Theorem</h2>
+
+<div class="definition">
+<strong>Bayes' Theorem</strong> (published posthumously in 1763 by Thomas Bayes) provides a way to update our beliefs about a hypothesis after observing new evidence. It answers the "inverse probability" question: given that we observed some data, what is the probability of each possible cause? It reverses the direction of conditioning &mdash; from $P(\text{data}|\text{cause})$ (which is often known) to $P(\text{cause}|\text{data})$ (which is what we want to know).
+</div>
+
+<div class="key-formula">
+$$P(B_i|A) = \frac{P(A|B_i) \cdot P(B_i)}{\sum_{j=1}^{n} P(A|B_j) \cdot P(B_j)}$$
+</div>
+
+<div class="card">
+<h4>Terminology</h4>
+<table>
+<tr><th>Term</th><th>Symbol</th><th>Meaning</th></tr>
+<tr><td>Prior</td><td>$P(B_i)$</td><td>Initial belief about $B_i$ before observing data</td></tr>
+<tr><td>Likelihood</td><td>$P(A|B_i)$</td><td>Probability of data given hypothesis $B_i$</td></tr>
+<tr><td>Evidence (Marginal)</td><td>$P(A)$</td><td>Total probability of data across all hypotheses</td></tr>
+<tr><td>Posterior</td><td>$P(B_i|A)$</td><td>Updated belief about $B_i$ after observing data</td></tr>
+</table>
+</div>
+
+<div class="highlight">
+<strong>Intuition:</strong> Bayes' theorem "flips" the conditioning &mdash; it lets us go from $P(\text{data}|\text{hypothesis})$ to $P(\text{hypothesis}|\text{data})$. The posterior is proportional to the prior times the likelihood.
+$$\text{Posterior} \propto \text{Likelihood} \times \text{Prior}$$
+</div>
+
+<h2 id="s4-map">4.2 MAP and MLE</h2>
+
+<div class="definition">
+<strong>MAP</strong> and <strong>MLE</strong> are two approaches for choosing the "best" hypothesis (model/parameter) given observed data. They differ in whether they incorporate prior beliefs about the hypotheses.
+</div>
+
+<div class="comparison-grid">
+<div class="card">
+<h4>Maximum A Posteriori (MAP)</h4>
+$$\hat{h}_{MAP} = \arg\max_{h} P(h|D) = \arg\max_{h} P(D|h) \cdot P(h)$$
+<p>Picks the hypothesis with the <strong>highest posterior probability</strong>. It considers both how well the hypothesis explains the data (likelihood) and our prior belief about the hypothesis. MAP is useful when we have reliable prior information &mdash; e.g., we know some diseases are more common than others.</p>
+</div>
+<div class="card">
+<h4>Maximum Likelihood Estimation (MLE)</h4>
+$$\hat{h}_{MLE} = \arg\max_{h} P(D|h)$$
+<p>Ignores the prior (or assumes a uniform/flat prior where all hypotheses are equally likely). Picks the hypothesis that <strong>makes the observed data most probable</strong>. MLE is the most widely used estimation method in classical statistics. It lets the data speak for itself without injecting prior beliefs.</p>
+</div>
+</div>
+
+<div class="tip">
+<strong>Relationship:</strong> When the prior is uniform (all hypotheses equally likely), MAP reduces to MLE. MLE is a special case of MAP.
+</div>
+
+<h2 id="s4-nb">4.3 Naive Bayes Classifier</h2>
+
+<div class="definition">
+The <strong>Naive Bayes classifier</strong> applies Bayes' theorem with the "naive" assumption that all features are <strong>conditionally independent</strong> given the class label.
+</div>
+
+<div class="theorem">
+$$P(C_k | x_1, x_2, \ldots, x_n) \propto P(C_k) \prod_{i=1}^{n} P(x_i | C_k)$$
+
+<strong>Classification Rule:</strong>
+$$\hat{C} = \arg\max_{C_k} P(C_k) \prod_{i=1}^{n} P(x_i | C_k)$$
+</div>
+
+<div class="card">
+<h4>Steps for Naive Bayes Classification</h4>
+<ol>
+<li>Compute <strong>prior</strong> $P(C_k)$ for each class from training data frequencies</li>
+<li>For each feature $x_i$ and class $C_k$, compute <strong>likelihood</strong> $P(x_i | C_k)$ from training data</li>
+<li>For a new instance, compute $P(C_k) \prod_i P(x_i | C_k)$ for each class</li>
+<li>Assign the class with the <strong>highest</strong> value</li>
+</ol>
+</div>
+
+<h2 id="s4-laplace">4.4 Laplace Smoothing</h2>
+
+<div class="definition">
+<strong>Laplace Smoothing</strong> (also called add-one smoothing) is a technique to handle the zero-frequency problem in Naive Bayes classification. It adds a small count (typically 1) to every feature-class combination so that no probability is ever zero. Named after Pierre-Simon Laplace, this technique ensures that unseen feature values in training data don't completely dominate the classification decision.
+</div>
+
+<div class="important">
+<strong>Zero-Frequency Problem:</strong> If a feature value never appears with a certain class in training data, $P(x_i|C_k) = 0$, which makes the entire product zero regardless of other features. A single missing feature-value can completely override all other evidence &mdash; even if every other feature strongly supports that class.
+</div>
+
+<div class="theorem">
+<strong>Laplace Smoothing (Add-1 Smoothing):</strong>
+$$P(x_i | C_k) = \frac{\text{count}(x_i, C_k) + 1}{\text{count}(C_k) + |V|}$$
+where $|V|$ is the number of distinct values feature $x_i$ can take.
+</div>
+
+<h2 id="s4-examples">4.5 Key Examples</h2>
+
+<div class="example">
+<strong>Medical Diagnosis &mdash; Flu vs Measles:</strong><br>
+Prior: $P(\text{Flu}) = 0.7$, $P(\text{Measles}) = 0.3$<br>
+Patient has: fever, rash. Given:<br>
+$P(\text{fever}|\text{Flu}) = 0.8$, $P(\text{rash}|\text{Flu}) = 0.2$<br>
+$P(\text{fever}|\text{Measles}) = 0.9$, $P(\text{rash}|\text{Measles}) = 0.95$<br><br>
+$P(\text{Flu}) \cdot P(\text{fever}|\text{Flu}) \cdot P(\text{rash}|\text{Flu}) = 0.7 \times 0.8 \times 0.2 = 0.112$<br>
+$P(\text{Measles}) \cdot P(\text{fever}|\text{Measles}) \cdot P(\text{rash}|\text{Measles}) = 0.3 \times 0.9 \times 0.95 = 0.2565$<br><br>
+<strong>Classification: Measles</strong> (0.2565 > 0.112)
+</div>
+
+<div class="example">
+<strong>Spam Detection (with Laplace Smoothing):</strong><br>
+Training: 3 spam, 2 ham messages. Vocabulary = {buy, free, money, hello, meeting} ($|V|=5$)<br>
+Spam contains: "buy" 2x, "free" 3x, "money" 1x. Total spam words = 6.<br>
+Ham contains: "hello" 2x, "meeting" 2x, "free" 1x. Total ham words = 5.<br><br>
+Classify "free money":<br>
+$P(\text{spam}) = 3/5$, $P(\text{ham}) = 2/5$<br>
+With Laplace: $P(\text{free}|\text{spam}) = \frac{3+1}{6+5} = 4/11$, $P(\text{money}|\text{spam}) = \frac{1+1}{6+5} = 2/11$<br>
+$P(\text{free}|\text{ham}) = \frac{1+1}{5+5} = 2/10$, $P(\text{money}|\text{ham}) = \frac{0+1}{5+5} = 1/10$<br><br>
+Spam score: $\frac{3}{5} \times \frac{4}{11} \times \frac{2}{11} = 0.0397$<br>
+Ham score: $\frac{2}{5} \times \frac{2}{10} \times \frac{1}{10} = 0.008$<br>
+<strong>Classification: Spam</strong>
+</div>
+
+<div class="example">
+<strong>Play Tennis:</strong> Classic Naive Bayes example with features: Outlook (Sunny/Overcast/Rain), Temperature, Humidity, Wind. Compute priors from 14 training instances and likelihoods for each feature-value given Yes/No, then classify new instances.
+</div>
+
+<!-- 4.6 Companion Worked Examples & Practice -->
+<h2 id="s4-companion">4.6 Additional Worked Examples &amp; Practice <small>(from Companion Notes)</small></h2>
+
+<div class="important">
+<strong>Don't Forget the Base Rate (The Most Common Bayes Mistake):</strong><br>
+A test being "99% accurate" does <em>not</em> mean a positive result is 99% likely to be real. If the thing you're testing for is rare (a low prior), the few false alarms from the huge healthy majority can easily outnumber the true detections. Bayes' theorem handles this automatically through the prior $P(H)$; our intuition usually doesn't.
+</div>
+
+<div class="example">
+<strong>Rash &mdash; Flu or Measles? (Bayes Flipping the Prior):</strong><br>
+90% of sick children have flu, 10% have measles. A rash appears in 95% of measles cases but only 8% of flu cases. A child develops a rash:<br><br>
+$P(\text{rash}) = (0.08)(0.90) + (0.95)(0.10) = 0.072 + 0.095 = 0.167$<br><br>
+$P(\text{flu} | \text{rash}) = \frac{(0.08)(0.90)}{0.167} = \frac{0.072}{0.167} \approx 0.43$<br>
+$P(\text{measles} | \text{rash}) \approx 0.57$<br><br>
+<strong>Striking:</strong> Although flu is 9&times; more common, the rash is such strong evidence for measles that measles becomes the more likely cause. The prior and the likelihood fought &mdash; and the likelihood won.
+</div>
+
+<div class="example">
+<strong>Spam Filter &mdash; One Word:</strong><br>
+30% of emails are spam. The word "offer" appears in 80% of spam but only 10% of normal email. An email contains "offer" &mdash; is it spam?<br><br>
+$P(\text{offer}) = (0.8)(0.3) + (0.1)(0.7) = 0.24 + 0.07 = 0.31$<br>
+$P(\text{spam} | \text{offer}) = \frac{(0.8)(0.3)}{0.31} = \frac{0.24}{0.31} \approx 0.77$<br><br>
+"Offer" raises the spam probability from 30% to 77% &mdash; a big, but not absolute, update.
+</div>
+
+<div class="example">
+<strong>The Base-Rate Surprise &mdash; 99% Accurate Test:</strong><br>
+A disease affects 1% of people. A test catches 99% of true cases ($P(+|D) = 0.99$) but wrongly flags 5% of healthy people ($P(+|D^c) = 0.05$). You test positive:<br><br>
+$P(+) = (0.99)(0.01) + (0.05)(0.99) = 0.0099 + 0.0495 = 0.0594$<br>
+$$P(D | +) = \frac{(0.99)(0.01)}{0.0594} \approx 0.17$$<br>
+Only about <strong>17%!</strong> Because the disease is rare, the flood of false positives from the healthy 99% swamps the few true positives. A "99% accurate" test on a rare condition is still probably wrong when it fires.<br><br>
+<strong>Natural frequency version:</strong> Imagine 1000 people. ~10 truly sick, almost all test positive. 5% of 990 healthy also test positive (&asymp; 50). So of ~60 positives, only 10 are real &mdash; about 17%.
+</div>
+
+<div class="example">
+<strong>Play Tennis &mdash; Full Naive Bayes Calculation:</strong><br>
+From 14 past days: $P(\text{Yes}) = \frac{9}{14}$, $P(\text{No}) = \frac{5}{14}$.<br>
+Today = (Sunny, Hot, Normal humidity, not Windy). Multiply each feature's conditional probability by the class prior:<br><br>
+$\text{Yes-score} = \frac{3}{9} \cdot \frac{2}{9} \cdot \frac{6}{9} \cdot \frac{6}{9} \cdot \frac{9}{14} \approx 0.021$<br>
+$\text{No-score} = \frac{3}{5} \cdot \frac{2}{5} \cdot \frac{1}{5} \cdot \frac{2}{5} \cdot \frac{5}{14} \approx 0.005$<br><br>
+Since Yes-score > No-score, predict <strong>Yes</strong> &mdash; the player will play. The denominator $P(X)$ is the same for both classes, so we never need it.
+</div>
+
+<div class="example">
+<strong>"Lunch Money Money Money" &mdash; Why Smoothing Is Needed:</strong><br>
+A spam tally has "Money" appearing 4 times in spam but 0 times in normal mail. Without smoothing, $P(\text{Money} | \text{normal}) = 0$, so <em>any</em> message containing "Money" gets a normal-score of 0 &mdash; clearly wrong. Adding 1 to each count (Laplace smoothing) gives every word a small, non-zero chance, and the classifier correctly flags the message as spam.
+</div>
+
+<div class="practice-section">
+<h3>Questions (Session 4 &mdash; Companion)</h3>
+
+<details>
+<summary>Q1: Vice-Chancellor &amp; Research Promotion (Bayes)</summary>
+<div class="answer">
+<strong>Problem:</strong> An academician, businessman, and politician become VC with probabilities 0.5, 0.3, 0.2, and promote research with probabilities 0.8, 0.6, 0.4. Research was promoted &mdash; what is $P(\text{VC is academician})$?<br><br>
+<strong>Solution:</strong><br>
+$P(\text{research}) = (0.8)(0.5) + (0.6)(0.3) + (0.4)(0.2) = 0.40 + 0.18 + 0.08 = 0.66$<br>
+$P(\text{acad} | \text{research}) = \frac{(0.8)(0.5)}{0.66} = \frac{0.40}{0.66} \approx 0.606$
+</div>
+</details>
+
+<details>
+<summary>Q2: Spam Detector &mdash; False Positive Surprise</summary>
+<div class="answer">
+<strong>Problem:</strong> A spam detector flags 99% of spam and has a 5% false-positive rate. If half of all email is spam, and a message is flagged, what is $P(\text{not spam})$?<br><br>
+<strong>Solution:</strong><br>
+$P(\text{flagged}) = (0.99)(0.50) + (0.05)(0.50) = 0.495 + 0.025 = 0.52$<br>
+$P(\text{not spam} | \text{flagged}) = \frac{(0.05)(0.50)}{0.52} = \frac{0.025}{0.52} \approx 0.048$<br>
+Only about 4.8% &mdash; with 50-50 prior the base rate is high enough that most flagged emails really are spam.
+</div>
+</details>
+
+<details>
+<summary>Q3: Classify "A very close game" &mdash; Naive Bayes with Laplace</summary>
+<div class="answer">
+<strong>Problem:</strong> Using a tiny labelled corpus, classify the sentence "A very close game" as Sports or Not-Sports with Naive Bayes, applying Laplace smoothing so the unseen word "close" doesn't zero out the Sports score.<br><br>
+<strong>Hint:</strong> Count word frequencies in each class. Apply Laplace: $P(w | C) = \frac{\text{count}(w, C) + 1}{\text{total words in } C + |V|}$. Multiply all word probabilities with the class prior. The class with the higher score wins.
+</div>
+</details>
+</div>
+
+
+<!-- ==================== SESSION 5: RANDOM VARIABLES ==================== -->
+<div class="lecture-divider" id="s5">Session 5: Random Variables &amp; Discrete Distributions</div>
+
+<h2 id="s5-rv">5.1 Random Variables</h2>
+
+<div class="definition">
+A <strong>random variable</strong> $X$ is a function that assigns a numerical value to each outcome in a sample space: $X: S \to \mathbb{R}$.
+</div>
+
+<div class="comparison-grid">
+<div class="card">
+<h4>Discrete Random Variable</h4>
+<p>Takes a finite or countably infinite set of values.</p>
+<p><strong>Examples:</strong> Number of heads in 10 coin tosses, number of defective items.</p>
+</div>
+<div class="card">
+<h4>Continuous Random Variable</h4>
+<p>Takes any value in an interval (uncountably infinite).</p>
+<p><strong>Examples:</strong> Height, weight, temperature, time.</p>
+</div>
+</div>
+
+<h2 id="s5-discrete">5.2 Discrete Probability Distribution</h2>
+
+<div class="definition">
+A <strong>Probability Distribution</strong> describes how probabilities are distributed over the possible values of a random variable. For discrete random variables, this is given by a <strong>Probability Mass Function (PMF)</strong> which assigns a probability to each possible value. The PMF tells us "what is the probability that the random variable takes exactly this value?"
+</div>
+
+<div class="definition">
+The <strong>Cumulative Distribution Function (CDF)</strong> gives the probability that a random variable is less than or equal to a given value: $F(x) = P(X \leq x) = \sum_{x_i \leq x} P(X = x_i)$. The CDF is non-decreasing, starts at 0 (as $x \to -\infty$), and ends at 1 (as $x \to \infty$).
+</div>
+
+<div class="card">
+<h4>Properties of a valid PMF (Probability Mass Function)</h4>
+<ol>
+<li>$P(X = x_i) \geq 0$ for all $x_i$</li>
+<li>$\sum_{\text{all } x_i} P(X = x_i) = 1$</li>
+</ol>
+</div>
+
+<h2 id="s5-ev">5.3 Expected Value &amp; Variance</h2>
+
+<div class="definition">
+The <strong>Expected Value</strong> (or expectation or mean) of a random variable is the long-run average value of its outcomes when the experiment is repeated many times. It is a weighted average of all possible values, where each value is weighted by its probability of occurrence. The expected value may not be a value that the random variable can actually take (e.g., the expected value of a die roll is 3.5).
+</div>
+
+<div class="definition">
+The <strong>Variance</strong> of a random variable measures how far the values are spread from the expected value on average (in squared units). It quantifies the "uncertainty" or "risk" associated with the random variable. The <strong>Standard Deviation</strong> ($\sigma$) is the square root of variance and is in the same units as the random variable.
+</div>
+
+<div class="theorem">
+<strong>Expected Value (Mean):</strong>
+$$E(X) = \mu = \sum_{i} x_i \cdot P(X = x_i)$$
+
+<strong>Variance:</strong>
+$$\text{Var}(X) = E[(X - \mu)^2] = \sum_{i} (x_i - \mu)^2 \cdot P(x_i) = E(X^2) - [E(X)]^2$$
+
+<strong>Standard Deviation:</strong>
+$$\sigma = \sqrt{\text{Var}(X)}$$
+</div>
+
+<div class="theorem">
+<strong>Properties of Expectation:</strong>
+<ul>
+<li>$E(aX + b) = aE(X) + b$</li>
+<li>$E(X + Y) = E(X) + E(Y)$ (always, even if dependent)</li>
+<li>$E(XY) = E(X) \cdot E(Y)$ (only if X, Y independent)</li>
+</ul>
+<strong>Properties of Variance:</strong>
+<ul>
+<li>$\text{Var}(aX + b) = a^2 \text{Var}(X)$</li>
+<li>$\text{Var}(X + Y) = \text{Var}(X) + \text{Var}(Y)$ (if X, Y independent)</li>
+</ul>
+</div>
+
+<h2 id="s5-fair">5.4 Fair Games</h2>
+
+<div class="definition">
+A game is <strong>fair</strong> if the expected net gain is zero: $E(\text{gain}) = 0$. If $E(\text{gain}) > 0$, the game favours the player; if $E(\text{gain}) < 0$, it favours the house.
+</div>
+
+<!-- 5.5 Continuous Random Variables & PDF -->
+<h2 id="s5-continuous">5.5 Continuous Random Variables &amp; PDF</h2>
+
+<div class="definition">
+For a continuous random variable $X$, asking $P(X = \text{exact value})$ is meaningless &mdash; there are infinitely many possible values, so any single one has probability zero. Instead we ask about <strong>intervals</strong>, and probability becomes <strong>area under a curve</strong>.
+</div>
+
+<div class="definition">
+A continuous $X$ is described by a <strong>Probability Density Function (PDF)</strong> $f(x) \geq 0$ with total area 1. The probability of landing in an interval is the area beneath the curve:
+$$P(x_1 < X < x_2) = \int_{x_1}^{x_2} f(x)\, dx$$
+</div>
+
+<div class="highlight">
+<strong>Key Distinction:</strong> For a continuous variable, the density curve itself is <em>not</em> a probability &mdash; the shaded <strong>area</strong> between two points is. The whole area under the curve is always 1. Think of probability as modelling clay smeared along a rod: for discrete variables the clay sits in lumps (PMF); for continuous variables it is spread smoothly (PDF), and the "amount" between two marks is the area.
+</div>
+
+<div class="example">
+<strong>Triangular Density &mdash; Fully Worked:</strong><br>
+$f(x) = x$ for $0 < x < 1$ and $f(x) = 2 - x$ for $1 < x < 2$ (a tent shape).<br><br>
+<strong>Is it valid?</strong> Total area = triangle of base 2 and height 1: $\frac{1}{2}(2)(1) = 1$ &check;<br><br>
+<strong>Find $P(0.6 < X < 1.2)$:</strong> Split at the peak $x = 1$:<br>
+$$\int_{0.6}^{1} x\, dx + \int_{1}^{1.2} (2-x)\, dx = \left[\frac{x^2}{2}\right]_{0.6}^{1} + \left[2x - \frac{x^2}{2}\right]_{1}^{1.2} = 0.32 + 0.18 = 0.50$$<br>
+By the tent's left-right symmetry, $E[X] = 1$.
+</div>
+
+<!-- 5.6 Joint, Marginal & Conditional Distributions -->
+<h2 id="s5-joint">5.6 Joint, Marginal &amp; Conditional Distributions</h2>
+
+<div class="definition">
+When two random variables travel together (e.g., education and age, defects from two machines), their <strong>joint distribution</strong> $f(x, y) = P(X = x, Y = y)$ gives the probability of each pair.
+</div>
+
+<div class="definition">
+From a joint distribution:<br>
+<ul>
+<li><strong>Marginal of $X$</strong> sums out $Y$: $f_X(x) = \sum_y f(x, y)$ (a row/column total &mdash; "$X$ on its own")</li>
+<li><strong>Conditional of $Y$ given $X = x$</strong>: $f_{Y|X}(y) = \frac{f(x, y)}{f_X(x)}$ (the Session 3 idea applied to variables)</li>
+<li>$X$ and $Y$ are <strong>independent</strong> if $f(x, y) = f_X(x) \cdot f_Y(y)$ for all $x, y$</li>
+</ul>
+</div>
+
+<div class="tip">
+<strong>Why "marginal"?</strong> The name is literal: these totals are written in the <em>margins</em> of the joint table. Reading a margin throws away all information about the other variable and tells you about one alone.
+</div>
+
+<div class="example">
+<strong>Education vs. Age &mdash; Joint Table:</strong><br>
+<table>
+<tr><th>Education $\backslash$ Age</th><th>30</th><th>45</th><th>70</th><th>Marginal of $X$</th></tr>
+<tr><td>None</td><td>0.01</td><td>0.02</td><td>0.05</td><td><strong>0.08</strong></td></tr>
+<tr><td>Primary</td><td>0.03</td><td>0.06</td><td>0.10</td><td><strong>0.19</strong></td></tr>
+<tr><td>Secondary</td><td>0.18</td><td>0.21</td><td>0.15</td><td><strong>0.54</strong></td></tr>
+<tr><td>College</td><td>0.07</td><td>0.08</td><td>0.04</td><td><strong>0.19</strong></td></tr>
+<tr><td><strong>Marginal of $Y$</strong></td><td><strong>0.29</strong></td><td><strong>0.37</strong></td><td><strong>0.34</strong></td><td><strong>1.00</strong></td></tr>
+</table>
+<br>
+Marginal of "College" = row total = $0.07 + 0.08 + 0.04 = 0.19$<br>
+$P(\text{age 30} | \text{College}) = \frac{0.07}{0.19} \approx 0.37$<br><br>
+<strong>Independent?</strong> $f_X(\text{College}) \cdot f_Y(30) = 0.19 \times 0.29 = 0.055$. But the true joint is $0.07 \neq 0.055$, so education and age are <strong>dependent</strong>.
+</div>
+
+<!-- 5.7 Companion Worked Examples & Practice -->
+<h2 id="s5-companion">5.7 Additional Worked Examples &amp; Practice <small>(from Companion Notes)</small></h2>
+
+<div class="example">
+<strong>Building a CDF from a PMF (Cars in Line):</strong><br>
+$P(0) = 0.10$, $P(1) = 0.30$, $P(2) = 0.40$, $P(3) = 0.15$, $P(4) = 0.05$.<br>
+Accumulate from the left:<br>
+$F(0) = 0.10$, $F(1) = 0.40$, $F(2) = 0.80$, $F(3) = 0.95$, $F(4) = 1.00$.<br><br>
+So $P(\text{2 or fewer cars}) = F(2) = 0.80$. The CDF answers "up to here" questions directly &mdash; percentiles, p-values, and quantiles are all just the CDF read backwards.
+</div>
+
+<div class="example">
+<strong>A Fair Dice Game:</strong><br>
+A rolls two dice. If the sum is 7, A wins \$3; if 8, loses \$2; if 3, loses \$4; otherwise nothing changes.<br>
+$$E[X] = (+3)\frac{6}{36} + (-2)\frac{5}{36} + (-4)\frac{2}{36} = \frac{18 - 10 - 8}{36} = \frac{0}{36} = 0$$
+The expected gain is zero, so the game is <strong>fair</strong> &mdash; neither player is favoured in the long run.
+</div>
+
+<div class="example">
+<strong>Mean and Spread of Cars in Line:</strong><br>
+Using the cars PMF above:<br>
+$E[X] = 0(0.10) + 1(0.30) + 2(0.40) + 3(0.15) + 4(0.05) = 1.75$ cars.<br>
+$E[X^2] = 0 + 1(0.30) + 4(0.40) + 9(0.15) + 16(0.05) = 4.05$<br>
+$\text{Var}(X) = 4.05 - 1.75^2 = 0.9875$, $\text{SD}(X) \approx 0.99$.<br>
+On a typical lunch you'll see about $1.75 \pm 1$ cars.
+</div>
+
+<div class="example">
+<strong>Flu Given Fever (Conditional from Joint Table):</strong><br>
+To find $P(\text{Flu} | \text{Fever})$, take the joint probability $P(\text{Flu, Fever})$ and divide by the marginal $P(\text{Fever})$:<br>
+$$P(\text{Flu} | \text{Fever}) = \frac{P(\text{Flu, Fever})}{P(\text{Flu, Fever}) + P(\text{No Flu, Fever})}$$
+The denominator is just the "Fever" column total &mdash; conditioning is, once again, picking the right denominator.
+</div>
+
+<div class="practice-section">
+<h3>Questions (Session 5 &mdash; Companion)</h3>
+
+<details>
+<summary>Q1: Driving Test Attempts &mdash; Expected Value</summary>
+<div class="answer">
+<strong>Problem:</strong> A student passes a driving test in 1, 2, or 3 attempts with probabilities proportional to a given rule. Check that the probabilities sum to 1, then find $E[X]$ (the expected number of attempts).<br><br>
+<strong>Hint:</strong> Write out the PMF, verify $\sum P(x) = 1$, then compute $E[X] = \sum x \cdot P(x)$.
+</div>
+</details>
+
+<details>
+<summary>Q2: Triangular Density &mdash; Area and Expectation</summary>
+<div class="answer">
+<strong>Problem:</strong> $f(x) = x$ for $0 < x < 1$ and $f(x) = 2 - x$ for $1 < x < 2$ (a triangle). Verify the total area is 1, then find $P(0.6 < X < 1.2)$. What is $E[X]$ by symmetry?<br><br>
+<strong>Solution:</strong> Total area = $\frac{1}{2}(2)(1) = 1$ &check;. $P(0.6 < X < 1.2) = 0.32 + 0.18 = 0.50$ (see worked example above). By symmetry, $E[X] = 1$.
+</div>
+</details>
+
+<details>
+<summary>Q3: Joint Table &mdash; Marginals, Independence, E[XY]</summary>
+<div class="answer">
+<strong>Problem:</strong> For a joint table of $X$ (defects from Machine A) and $Y$ (defects from Machine B), compute both marginals, check whether $X$ and $Y$ are independent, and find $E[XY]$.<br><br>
+<strong>Hint:</strong> Marginals = row and column totals. Independence check: does $f(x,y) = f_X(x) \cdot f_Y(y)$ for <em>every</em> cell? If even one cell fails, the variables are dependent. $E[XY] = \sum_x \sum_y xy \cdot f(x,y)$.
+</div>
+</details>
+</div>
+
+
+<!-- ==================== SESSION 6: PROBABILITY DISTRIBUTIONS ==================== -->
+<div class="lecture-divider" id="s6">Session 6: Probability Distributions</div>
+
+<h2 id="s6-bernoulli">6.1 Bernoulli Distribution</h2>
+
+<div class="definition">
+The <strong>Bernoulli Distribution</strong> is the simplest discrete probability distribution. It models a single experiment (called a <strong>Bernoulli trial</strong>) that has exactly two possible outcomes: Success (coded as 1) with probability $p$, and Failure (coded as 0) with probability $q = 1 - p$. Named after Jacob Bernoulli, it is the building block for the Binomial distribution (which is simply the sum of $n$ independent Bernoulli trials).
+</div>
+
+<div class="theorem">
+$$P(X = x) = p^x (1-p)^{1-x}, \quad x \in \{0, 1\}$$
+$$E(X) = p, \quad \text{Var}(X) = pq = p(1-p)$$
+</div>
+
+<h2 id="s6-binomial">6.2 Binomial Distribution</h2>
+
+<div class="definition">
+The <strong>Binomial Distribution</strong> models the number of successes in a fixed number ($n$) of independent Bernoulli trials. It answers questions like "In 10 coin flips, what is the probability of getting exactly 7 heads?" The binomial distribution is one of the most widely used discrete distributions in statistics and quality control.
+</div>
+
+<div class="card">
+<h4>Conditions for Binomial (BINS mnemonic)</h4>
+<ol>
+<li>Fixed number of trials $n$</li>
+<li>Each trial has exactly two outcomes (success/failure)</li>
+<li>Trials are <strong>independent</strong></li>
+<li>Probability of success $p$ is <strong>constant</strong> across trials</li>
+</ol>
+</div>
+
+<div class="theorem">
+$$P(X = x) = \binom{n}{x} p^x (1-p)^{n-x}, \quad x = 0, 1, 2, \ldots, n$$
+where $\binom{n}{x} = \frac{n!}{x!(n-x)!}$
+
+$$E(X) = np, \quad \text{Var}(X) = np(1-p) = npq$$
+</div>
+
+<div class="example">
+<strong>Quality Control:</strong> If 10% of items are defective and we select 5 items:<br>
+$X \sim \text{Bin}(n=5, p=0.1)$<br>
+$P(X=0) = \binom{5}{0}(0.1)^0(0.9)^5 = 0.5905$<br>
+$P(X=1) = \binom{5}{1}(0.1)^1(0.9)^4 = 5 \times 0.1 \times 0.6561 = 0.3281$
+</div>
+
+<h2 id="s6-poisson">6.3 Poisson Distribution</h2>
+
+<div class="definition">
+The <strong>Poisson Distribution</strong> (named after Sim&eacute;on Denis Poisson) models the number of events occurring in a <em>fixed interval</em> of time, space, or volume, when events occur <strong>independently</strong> of each other and at a <strong>constant average rate</strong> $\lambda$ (lambda). Unlike the Binomial, there is no fixed number of trials &mdash; the Poisson models rare events that can theoretically occur any number of times. It is widely used for modelling arrival processes (customer arrivals, phone calls, accidents, defects per unit area, etc.).
+</div>
+
+<div class="theorem">
+$$P(X = x) = \frac{e^{-\lambda} \lambda^x}{x!}, \quad x = 0, 1, 2, \ldots$$
+$$E(X) = \lambda, \quad \text{Var}(X) = \lambda$$
+<strong>Note:</strong> Mean equals Variance &mdash; a key identifying property of Poisson.
+</div>
+
+<div class="highlight">
+<strong>Poisson Approximation to Binomial:</strong> When $n$ is large and $p$ is small (typically $n \geq 20$ and $p \leq 0.05$), use $\lambda = np$:
+$$\text{Bin}(n, p) \approx \text{Poisson}(\lambda = np)$$
+</div>
+
+<div class="example">
+<strong>Call Centre:</strong> Average 4 calls per minute ($\lambda = 4$).<br>
+$P(X=0) = \frac{e^{-4} \cdot 4^0}{0!} = e^{-4} = 0.0183$<br>
+$P(X=2) = \frac{e^{-4} \cdot 4^2}{2!} = \frac{e^{-4} \cdot 16}{2} = 0.1465$
+</div>
+
+<h2 id="s6-normal">6.4 Normal Distribution</h2>
+
+<div class="definition">
+The <strong>Normal Distribution</strong> (also called Gaussian distribution, after Carl Friedrich Gauss) is the most important continuous probability distribution in statistics. Its PDF forms the iconic <strong>bell curve</strong> &mdash; perfectly symmetric about the mean. Its importance comes from the <strong>Central Limit Theorem (CLT)</strong>: the sum (or average) of a large number of independent random variables tends toward a normal distribution, regardless of their original distribution. This is why many natural phenomena (heights, measurement errors, IQ scores, blood pressure) approximately follow a normal distribution.
+</div>
+
+<div class="theorem">
+$$f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}, \quad -\infty < x < \infty$$
+Notation: $X \sim N(\mu, \sigma^2)$
+</div>
+
+<div class="card">
+<h4>Properties of the Normal Distribution</h4>
+<ul>
+<li>Symmetric about $\mu$ (mean = median = mode)</li>
+<li>Bell-shaped; total area under curve = 1</li>
+<li>Determined entirely by $\mu$ (location) and $\sigma$ (spread)</li>
+<li>Extends from $-\infty$ to $+\infty$ (asymptotic)</li>
+<li>Inflection points at $\mu \pm \sigma$</li>
+</ul>
+</div>
+
+<div class="key-formula">
+<strong>Empirical Rule (68-95-99.7):</strong><br>
+$P(\mu - \sigma < X < \mu + \sigma) \approx 68.27\%$<br>
+$P(\mu - 2\sigma < X < \mu + 2\sigma) \approx 95.45\%$<br>
+$P(\mu - 3\sigma < X < \mu + 3\sigma) \approx 99.73\%$
+</div>
+
+<h2 id="s6-standard">6.5 Standard Normal &amp; Z-Score</h2>
+
+<div class="definition">
+The <strong>Standard Normal Distribution</strong> is a special case of the normal distribution with mean $\mu = 0$ and standard deviation $\sigma = 1$, denoted $Z \sim N(0, 1)$. Any normal distribution can be converted to the standard normal using the <strong>Z-score transformation</strong>. The Z-score tells us how many standard deviations a data point is from the mean &mdash; a Z-score of 2 means the value is 2 standard deviations above the mean. This standardization allows us to use a single Z-table to find probabilities for any normal distribution.
+</div>
+
+<div class="theorem">
+<strong>Z-Score Transformation:</strong>
+$$Z = \frac{X - \mu}{\sigma}$$
+This converts $X \sim N(\mu, \sigma^2)$ to $Z \sim N(0, 1)$, the <strong>standard normal distribution</strong>.
+</div>
+
+<div class="tip">
+<strong>Using Z-Tables:</strong> The Z-table gives $P(Z \leq z) = \Phi(z)$, the cumulative probability. Key relationships:<br>
+$P(Z > z) = 1 - \Phi(z)$<br>
+$P(a < Z < b) = \Phi(b) - \Phi(a)$<br>
+$P(Z < -z) = P(Z > z)$ (symmetry)
+</div>
+
+<h2 id="s6-approx">6.6 Normal Approximation to Binomial</h2>
+
+<div class="definition">
+When $n$ is large, computing binomial probabilities directly (using $\binom{n}{x}$) becomes cumbersome. The <strong>Normal Approximation to the Binomial</strong> leverages the CLT: since a binomial random variable is the sum of $n$ independent Bernoulli trials, for large $n$ it is approximately normally distributed. A <strong>continuity correction</strong> of $\pm 0.5$ is applied because we are approximating a discrete distribution (integer values) with a continuous one (real values).
+</div>
+
+<div class="theorem">
+When $np \geq 5$ and $nq \geq 5$, the binomial can be approximated by the normal:
+$$X \sim \text{Bin}(n, p) \approx N(\mu = np, \sigma^2 = npq)$$
+
+<strong>Continuity Correction:</strong> Since we approximate a discrete distribution with a continuous one:
+$$P(X = k) \approx P(k - 0.5 < Y < k + 0.5)$$
+$$P(X \leq k) \approx P(Y < k + 0.5)$$
+$$P(X \geq k) \approx P(Y > k - 0.5)$$
+where $Y \sim N(np, npq)$.
+</div>
+
+<h2 id="s6-other">6.7 Chi-Square, t-Distribution &amp; F-Distribution</h2>
+
+<div class="definition">
+These three distributions are <strong>derived from the normal distribution</strong> and are essential for statistical inference (hypothesis testing, confidence intervals, ANOVA). They arise naturally when we work with sample statistics like variance, mean, and ratios of variances.
+</div>
+
+<div class="card">
+<h4>Chi-Square Distribution ($\chi^2$)</h4>
+<div class="definition">
+The <strong>Chi-Square distribution</strong> is the distribution of the sum of squares of independent standard normal random variables. It arises whenever we compute sample variance from normally distributed data.
+</div>
+<p>If $Z_1, Z_2, \ldots, Z_k$ are independent standard normal variables, then:</p>
+$$X = \sum_{i=1}^{k} Z_i^2 \sim \chi^2_k$$
+<p>Parameter: $k$ <strong>degrees of freedom</strong> (df). Mean = $k$, Variance = $2k$. Always non-negative, right-skewed. As $k$ increases, the distribution becomes more symmetric and approaches normal.</p>
+<p><strong>Uses:</strong></p>
+<ul>
+<li><strong>Goodness-of-fit test:</strong> Tests whether observed frequencies match expected frequencies (e.g., is a die fair?)</li>
+<li><strong>Test of independence:</strong> Tests whether two categorical variables are independent (e.g., is gender independent of voting preference?)</li>
+<li><strong>Confidence intervals for variance:</strong> Since sample variance follows a scaled chi-square distribution</li>
+</ul>
+</div>
+
+<div class="card">
+<h4>Student's t-Distribution</h4>
+<div class="definition">
+The <strong>t-distribution</strong> (developed by William Sealy Gosset under the pen name "Student" in 1908) is used for inference about population means when the population standard deviation $\sigma$ is <strong>unknown</strong> and must be estimated from the sample using $s$. It accounts for the additional uncertainty introduced by estimating $\sigma$, which is why it has <strong>heavier tails</strong> (more probability in the extremes) than the normal distribution.
+</div>
+$$t = \frac{\bar{X} - \mu}{s / \sqrt{n}}$$
+<p>Parameter: $\nu = n - 1$ degrees of freedom. Symmetric and bell-shaped like the normal, but with <strong>heavier tails</strong> (more spread). As $\nu \to \infty$ (sample size increases), the t-distribution converges to $N(0,1)$ because $s \to \sigma$. For $n > 30$, the t-distribution is nearly identical to the standard normal.</p>
+<p><strong>Uses:</strong> One-sample and two-sample t-tests for means, paired t-tests (before/after studies), confidence intervals when $\sigma$ is unknown.</p>
+</div>
+
+<div class="card">
+<h4>F-Distribution</h4>
+<div class="definition">
+The <strong>F-distribution</strong> (named after Sir Ronald Fisher) is the ratio of two independent chi-square random variables, each divided by their degrees of freedom. It is used whenever we need to compare two variances or test whether multiple group means are equal.
+</div>
+$$F = \frac{\chi^2_{d_1}/d_1}{\chi^2_{d_2}/d_2} \sim F(d_1, d_2)$$
+<p>Always non-negative (since it's a ratio of positive quantities). Parameters: $d_1$ (numerator df, typically "between group" df), $d_2$ (denominator df, typically "within group" df). The distribution is right-skewed.</p>
+<p><strong>Uses:</strong></p>
+<ul>
+<li><strong>ANOVA:</strong> Testing whether the means of three or more groups are equal ($F = \frac{\text{Between-group variance}}{\text{Within-group variance}}$)</li>
+<li><strong>Comparing two variances:</strong> Testing $H_0: \sigma_1^2 = \sigma_2^2$</li>
+<li><strong>Regression:</strong> Testing overall significance of a regression model</li>
+</ul>
+</div>
+
+<div class="highlight">
+<strong>How they connect:</strong> The t-distribution squared equals the F-distribution with $d_1 = 1$: $t_\nu^2 = F(1, \nu)$. This is why a t-test and an F-test give the same result when comparing two groups. The chi-square is a special case of the gamma distribution, and the F-distribution is a ratio of two chi-squares.
+</div>
+
+
+<!-- ==================== PRACTICE QUESTIONS ==================== -->
+<div class="lecture-divider" id="practice">Practice Questions (Exam Papers)</div>
+
+<div class="practice-section">
+<h3>Questions with Full Solutions</h3>
+
+<!-- Q1 -->
+<details>
+<summary>Q1: [IQR/Outlier] Fat grams data &mdash; Mean, Median, SD, IQR, Outliers</summary>
+<div class="answer">
+<strong>Data:</strong> 7, 4, 20, 23, 25, 19, 30, 30, 40, 56<br>
+<strong>Sorted:</strong> 4, 7, 19, 20, 23, 25, 30, 30, 40, 56 &nbsp; ($n = 10$)<br><br>
+
+<strong>Mean:</strong> $\bar{x} = \frac{4+7+19+20+23+25+30+30+40+56}{10} = \frac{254}{10} = 25.4$<br><br>
+
+<strong>Median:</strong> $n = 10$ (even). Median = $\frac{x_5 + x_6}{2} = \frac{23 + 25}{2} = 24$<br><br>
+
+<strong>Standard Deviation (sample):</strong><br>
+$s^2 = \frac{\sum(x_i - 25.4)^2}{9}$<br>
+$(4-25.4)^2 = 459.16$, $(7-25.4)^2 = 338.56$, $(19-25.4)^2 = 40.96$, $(20-25.4)^2 = 29.16$, $(23-25.4)^2 = 5.76$<br>
+$(25-25.4)^2 = 0.16$, $(30-25.4)^2 = 21.16$, $(30-25.4)^2 = 21.16$, $(40-25.4)^2 = 213.16$, $(56-25.4)^2 = 936.36$<br>
+$\sum = 2065.6$, $s^2 = \frac{2065.6}{9} = 229.51$, $s = \sqrt{229.51} \approx 15.15$<br><br>
+
+<strong>Quartiles:</strong><br>
+Lower half: 4, 7, 19, 20, 23 $\Rightarrow Q_1 = 19$<br>
+Upper half: 25, 30, 30, 40, 56 $\Rightarrow Q_3 = 30$<br><br>
+
+<strong>IQR:</strong> $Q_3 - Q_1 = 30 - 19 = 11$<br><br>
+
+<strong>Fences:</strong><br>
+Lower fence: $19 - 1.5(11) = 19 - 16.5 = 2.5$<br>
+Upper fence: $30 + 1.5(11) = 30 + 16.5 = 46.5$<br><br>
+
+<strong>Outliers:</strong> 56 > 46.5, so <strong>56 is an outlier</strong>. No values below 2.5.
+</div>
+</details>
+
+<!-- Q2 -->
+<details>
+<summary>Q2: [Probability] Independent events &mdash; P(AUB), P(A&cap;B), P(A<sup>c</sup>&cap;B<sup>c</sup>)</summary>
+<div class="answer">
+<strong>Given:</strong> A and B are independent, $P(A) = 0.35$, $P(B) = 0.30$.<br><br>
+
+<strong>$P(A \cap B)$:</strong> Since independent, $P(A \cap B) = P(A) \cdot P(B) = 0.35 \times 0.30 = 0.105$<br><br>
+
+<strong>$P(A \cup B)$:</strong> $P(A) + P(B) - P(A \cap B) = 0.35 + 0.30 - 0.105 = 0.545$<br><br>
+
+<strong>Validate statements:</strong><br>
+"$P(A \cup B) = 0.545$" &mdash; TRUE<br>
+"$P(A \cap B) = 0.105$" &mdash; TRUE<br><br>
+
+<strong>$P(A^c \cap B^c)$:</strong> By De Morgan's law: $P(A^c \cap B^c) = P((A \cup B)^c) = 1 - P(A \cup B) = 1 - 0.545 = 0.455$<br><br>
+
+<strong>Alternative:</strong> Since A, B independent $\Rightarrow$ $A^c$, $B^c$ also independent:<br>
+$P(A^c \cap B^c) = P(A^c) \cdot P(B^c) = 0.65 \times 0.70 = 0.455$ &check;
+</div>
+</details>
+
+<!-- Q3 -->
+<details>
+<summary>Q3: [Conditional] P(A|AUB), P(B|A&cap;B), etc.</summary>
+<div class="answer">
+<strong>Given:</strong> $P(A) = 0.50$, $P(B) = 0.55$, $P(C) = 0.45$<br>
+$P(A \cap B) = 0.25$, $P(A \cap C) = 0.20$, $P(B \cap C) = 0.15$<br><br>
+
+<strong>$P(A \cup B)$:</strong> $0.50 + 0.55 - 0.25 = 0.80$<br><br>
+
+<strong>$P(A | A \cup B)$:</strong> $\frac{P(A \cap (A \cup B))}{P(A \cup B)} = \frac{P(A)}{P(A \cup B)} = \frac{0.50}{0.80} = 0.625$<br>
+(Since $A \subseteq A \cup B$, $A \cap (A \cup B) = A$)<br><br>
+
+<strong>$P(B | A \cap B)$:</strong> $\frac{P(B \cap (A \cap B))}{P(A \cap B)} = \frac{P(A \cap B)}{P(A \cap B)} = 1$<br>
+(Since $A \cap B \subseteq B$, $B \cap (A \cap B) = A \cap B$)<br><br>
+
+<strong>$P(A | B)$:</strong> $\frac{P(A \cap B)}{P(B)} = \frac{0.25}{0.55} = 0.4545$<br><br>
+
+<strong>$P(B | A)$:</strong> $\frac{P(A \cap B)}{P(A)} = \frac{0.25}{0.50} = 0.50$<br><br>
+
+<strong>Independence check for A and B:</strong> $P(A) \cdot P(B) = 0.50 \times 0.55 = 0.275 \neq 0.25 = P(A \cap B)$. <em>A and B are NOT independent.</em>
+</div>
+</details>
+
+<!-- Q4 -->
+<details>
+<summary>Q4: [Bayes] Cricket captains &mdash; Posterior probabilities</summary>
+<div class="answer">
+<strong>Given:</strong><br>
+$P(\text{Hardik}) = 0.2$, $P(\text{Rishabh}) = 0.5$, $P(\text{Surya}) = 0.3$<br>
+$P(\text{fee increase} | \text{Hardik}) = 0.3$<br>
+$P(\text{fee increase} | \text{Rishabh}) = 0.6$<br>
+$P(\text{fee increase} | \text{Surya}) = 0.5$<br><br>
+
+<strong>Total Probability of fee increase:</strong><br>
+$P(F) = 0.3(0.2) + 0.6(0.5) + 0.5(0.3) = 0.06 + 0.30 + 0.15 = 0.51$<br><br>
+
+<strong>Posterior Probabilities (given fee increase happened):</strong><br>
+$P(\text{Hardik}|F) = \frac{0.3 \times 0.2}{0.51} = \frac{0.06}{0.51} = 0.1176$<br><br>
+$P(\text{Rishabh}|F) = \frac{0.6 \times 0.5}{0.51} = \frac{0.30}{0.51} = 0.5882$<br><br>
+$P(\text{Surya}|F) = \frac{0.5 \times 0.3}{0.51} = \frac{0.15}{0.51} = 0.2941$<br><br>
+
+<strong>Verification:</strong> $0.1176 + 0.5882 + 0.2941 \approx 1.0$ &check;<br><br>
+
+<strong>Most likely captain:</strong> Rishabh (posterior = 0.5882)
+</div>
+</details>
+
+<!-- Q5 -->
+<details>
+<summary>Q5: [Naive Bayes] Vehicle/CreditCard/Travel &mdash; Classify "scooter, credit card, bus"</summary>
+<div class="answer">
+<strong>Training Data:</strong><br>
+<table>
+<tr><th>Vehicle</th><th>Credit Card</th><th>Travel</th><th>Class</th></tr>
+<tr><td>Car</td><td>Debit</td><td>Flight</td><td>Business</td></tr>
+<tr><td>Scooter</td><td>Credit</td><td>Bus</td><td>Salaried</td></tr>
+<tr><td>Car</td><td>Credit</td><td>Train</td><td>Business</td></tr>
+<tr><td>Scooter</td><td>Debit</td><td>Bus</td><td>Salaried</td></tr>
+<tr><td>Car</td><td>Credit</td><td>Flight</td><td>Business</td></tr>
+<tr><td>Scooter</td><td>Debit</td><td>Train</td><td>Salaried</td></tr>
+</table><br>
+
+<strong>Priors:</strong> $P(\text{Business}) = 3/6 = 0.5$, $P(\text{Salaried}) = 3/6 = 0.5$<br><br>
+
+<strong>Likelihoods for "Scooter, Credit Card, Bus":</strong><br><br>
+
+<em>For Business:</em><br>
+$P(\text{Scooter}|\text{Bus}) = 0/3 = 0$, $P(\text{Credit}|\text{Bus}) = 2/3$, $P(\text{Bus}|\text{Bus}) = 0/3 = 0$<br>
+Score $= 0.5 \times 0 \times 2/3 \times 0 = 0$<br><br>
+
+<em>For Salaried:</em><br>
+$P(\text{Scooter}|\text{Sal}) = 3/3 = 1$, $P(\text{Credit}|\text{Sal}) = 1/3$, $P(\text{Bus}|\text{Sal}) = 2/3$<br>
+Score $= 0.5 \times 1 \times 1/3 \times 2/3 = 0.5 \times 0.222 = 0.111$<br><br>
+
+<strong>Classification: Salaried</strong> (Business score = 0 due to zero probabilities; even with Laplace smoothing, Salaried dominates)
+</div>
+</details>
+
+<!-- Q6 -->
+<details>
+<summary>Q6: [Naive Bayes with Laplace] 4 messages &mdash; Classify "assignment urgent"</summary>
+<div class="answer">
+<strong>Training Data (4 messages):</strong><br>
+<table>
+<tr><th>Message</th><th>Label</th></tr>
+<tr><td>"urgent meeting"</td><td>Urgent</td></tr>
+<tr><td>"urgent deadline"</td><td>Urgent</td></tr>
+<tr><td>"assignment due"</td><td>Not Urgent</td></tr>
+<tr><td>"meeting notes"</td><td>Not Urgent</td></tr>
+</table><br>
+
+<strong>Vocabulary:</strong> {urgent, meeting, deadline, assignment, due, notes} $\Rightarrow |V| = 6$<br><br>
+
+<strong>Priors:</strong> $P(\text{Urgent}) = 2/4 = 0.5$, $P(\text{Not}) = 2/4 = 0.5$<br><br>
+
+<strong>Word counts:</strong><br>
+Urgent: urgent(2), meeting(1), deadline(1). Total words = 4.<br>
+Not Urgent: assignment(1), due(1), meeting(1), notes(1). Total words = 4.<br><br>
+
+<strong>Likelihoods with Laplace Smoothing:</strong><br>
+$P(\text{assignment}|\text{Urgent}) = \frac{0 + 1}{4 + 6} = \frac{1}{10} = 0.10$<br>
+$P(\text{urgent}|\text{Urgent}) = \frac{2 + 1}{4 + 6} = \frac{3}{10} = 0.30$<br><br>
+
+$P(\text{assignment}|\text{Not}) = \frac{1 + 1}{4 + 6} = \frac{2}{10} = 0.20$<br>
+$P(\text{urgent}|\text{Not}) = \frac{0 + 1}{4 + 6} = \frac{1}{10} = 0.10$<br><br>
+
+<strong>Scores:</strong><br>
+Urgent: $0.5 \times 0.10 \times 0.30 = 0.015$<br>
+Not Urgent: $0.5 \times 0.20 \times 0.10 = 0.010$<br><br>
+
+<strong>Classification: Urgent</strong> (0.015 > 0.010)
+</div>
+</details>
+
+<!-- Q7 -->
+<details>
+<summary>Q7: [Discrete RV] p(x) = k(x+1)/4 for x = -1, 0, 1, 2. Find k, E(X), Var(X)</summary>
+<div class="answer">
+<strong>Find k:</strong> $\sum P(x) = 1$<br>
+$P(-1) = k(0)/4 = 0$<br>
+$P(0) = k(1)/4 = k/4$<br>
+$P(1) = k(2)/4 = 2k/4 = k/2$<br>
+$P(2) = k(3)/4 = 3k/4$<br><br>
+
+$0 + k/4 + k/2 + 3k/4 = 1$<br>
+$k/4 + 2k/4 + 3k/4 = 6k/4 = 1$<br>
+$k = 4/6 = 2/3$<br><br>
+
+<strong>PMF:</strong><br>
+$P(-1) = 0$, $P(0) = 1/6$, $P(1) = 1/3$, $P(2) = 1/2$<br><br>
+
+<strong>$E(X)$:</strong><br>
+$E(X) = (-1)(0) + (0)(1/6) + (1)(1/3) + (2)(1/2) = 0 + 0 + 1/3 + 1 = 4/3 \approx 1.333$<br><br>
+
+<strong>$E(X^2)$:</strong><br>
+$E(X^2) = (1)(0) + (0)(1/6) + (1)(1/3) + (4)(1/2) = 0 + 0 + 1/3 + 2 = 7/3$<br><br>
+
+<strong>$\text{Var}(X)$:</strong><br>
+$\text{Var}(X) = E(X^2) - [E(X)]^2 = 7/3 - (4/3)^2 = 7/3 - 16/9 = 21/9 - 16/9 = 5/9 \approx 0.556$
+</div>
+</details>
+
+<!-- Q8 -->
+<details>
+<summary>Q8: [PDF] f(x) = k(x+1)/4 on [0,2]. Find k, mean, variance, P(0.5 &lt; x &lt; 1.5)</summary>
+<div class="answer">
+<strong>Find k:</strong> $\int_0^2 \frac{k(x+1)}{4} dx = 1$<br>
+$\frac{k}{4} \int_0^2 (x+1) dx = \frac{k}{4} \left[\frac{x^2}{2} + x\right]_0^2 = \frac{k}{4}(2 + 2) = \frac{k}{4}(4) = k$<br>
+$k = 1$<br><br>
+
+So $f(x) = \frac{x+1}{4}$ for $0 \leq x \leq 2$.<br><br>
+
+<strong>$E(X)$:</strong><br>
+$E(X) = \int_0^2 x \cdot \frac{x+1}{4} dx = \frac{1}{4}\int_0^2 (x^2 + x) dx = \frac{1}{4}\left[\frac{x^3}{3} + \frac{x^2}{2}\right]_0^2$<br>
+$= \frac{1}{4}\left(\frac{8}{3} + 2\right) = \frac{1}{4} \cdot \frac{14}{3} = \frac{14}{12} = \frac{7}{6} \approx 1.167$<br><br>
+
+<strong>$E(X^2)$:</strong><br>
+$E(X^2) = \int_0^2 x^2 \cdot \frac{x+1}{4} dx = \frac{1}{4}\int_0^2 (x^3 + x^2) dx = \frac{1}{4}\left[\frac{x^4}{4} + \frac{x^3}{3}\right]_0^2$<br>
+$= \frac{1}{4}\left(4 + \frac{8}{3}\right) = \frac{1}{4} \cdot \frac{20}{3} = \frac{20}{12} = \frac{5}{3} \approx 1.667$<br><br>
+
+<strong>$\text{Var}(X)$:</strong><br>
+$\text{Var}(X) = E(X^2) - [E(X)]^2 = \frac{5}{3} - \frac{49}{36} = \frac{60}{36} - \frac{49}{36} = \frac{11}{36} \approx 0.306$<br><br>
+
+<strong>$P(0.5 < X < 1.5)$:</strong><br>
+$\int_{0.5}^{1.5} \frac{x+1}{4} dx = \frac{1}{4}\left[\frac{x^2}{2} + x\right]_{0.5}^{1.5}$<br>
+$= \frac{1}{4}\left[\left(\frac{2.25}{2} + 1.5\right) - \left(\frac{0.25}{2} + 0.5\right)\right] = \frac{1}{4}\left[2.625 - 0.625\right] = \frac{2}{4} = 0.5$
+</div>
+</details>
+
+<!-- Q9 -->
+<details>
+<summary>Q9: [Joint] f(x,y) = 6x&sup2;y on [0,1]&times;[0,1]. Verify PDF, marginals, independence, expectations</summary>
+<div class="answer">
+<strong>Verify valid PDF:</strong><br>
+$\int_0^1 \int_0^1 6x^2 y \, dx \, dy = 6 \int_0^1 y \, dy \int_0^1 x^2 \, dx = 6 \cdot \frac{1}{2} \cdot \frac{1}{3} = 6 \cdot \frac{1}{6} = 1$ &check;<br><br>
+
+<strong>Marginal of X:</strong><br>
+$f_X(x) = \int_0^1 6x^2 y \, dy = 6x^2 \cdot \frac{1}{2} = 3x^2, \quad 0 \leq x \leq 1$<br><br>
+
+<strong>Marginal of Y:</strong><br>
+$f_Y(y) = \int_0^1 6x^2 y \, dx = 6y \cdot \frac{1}{3} = 2y, \quad 0 \leq y \leq 1$<br><br>
+
+<strong>Independence check:</strong><br>
+$f_X(x) \cdot f_Y(y) = 3x^2 \cdot 2y = 6x^2 y = f(x,y)$ &check;<br>
+<strong>X and Y are independent.</strong><br><br>
+
+<strong>$E[X]$:</strong><br>
+$E[X] = \int_0^1 x \cdot 3x^2 \, dx = 3\int_0^1 x^3 \, dx = 3 \cdot \frac{1}{4} = \frac{3}{4}$<br><br>
+
+<strong>$E[Y]$:</strong><br>
+$E[Y] = \int_0^1 y \cdot 2y \, dy = 2\int_0^1 y^2 \, dy = 2 \cdot \frac{1}{3} = \frac{2}{3}$<br><br>
+
+<strong>$E[XY]$:</strong><br>
+$E[XY] = \int_0^1 \int_0^1 xy \cdot 6x^2 y \, dx \, dy = 6 \int_0^1 x^3 \, dx \int_0^1 y^2 \, dy = 6 \cdot \frac{1}{4} \cdot \frac{1}{3} = \frac{6}{12} = \frac{1}{2}$<br><br>
+
+<strong>Verify:</strong> $E[XY] = \frac{1}{2} = \frac{3}{4} \times \frac{2}{3} = E[X] \cdot E[Y]$ &check; (consistent with independence)
+</div>
+</details>
+
+<!-- Q10 -->
+<details>
+<summary>Q10: [Binomial] Mean = 4, SD = 2/&radic;3. Find distribution, E(X&sup2;), P(6 &lt; X &lt; 9)</summary>
+<div class="answer">
+<strong>Given:</strong> $E(X) = np = 4$, $\text{SD} = \frac{2}{\sqrt{3}}$, so $\text{Var}(X) = npq = \frac{4}{3}$<br><br>
+
+<strong>Find n and p:</strong><br>
+$\frac{npq}{np} = \frac{4/3}{4} = \frac{1}{3} = q$, so $p = 1 - 1/3 = 2/3$<br>
+$np = 4 \Rightarrow n \cdot 2/3 = 4 \Rightarrow n = 6$<br><br>
+
+<strong>Distribution:</strong> $X \sim \text{Bin}\left(6, \frac{2}{3}\right)$<br><br>
+
+<strong>$E(X^2)$:</strong><br>
+$E(X^2) = \text{Var}(X) + [E(X)]^2 = \frac{4}{3} + 16 = \frac{4 + 48}{3} = \frac{52}{3} \approx 17.33$<br><br>
+
+<strong>$P(6 < X < 9)$:</strong> Since $n = 6$, $X$ can only take values 0, 1, ..., 6. There are no values strictly between 6 and 9 that $X$ can take (7, 8 are impossible).<br>
+$P(6 < X < 9) = P(X = 7) + P(X = 8) = 0$<br><br>
+<strong>Note:</strong> If the question means $P(X = 6)$: $P(X=6) = \binom{6}{6}(2/3)^6(1/3)^0 = (2/3)^6 = 64/729 \approx 0.0878$
+</div>
+</details>
+
+<!-- Q11 -->
+<details>
+<summary>Q11: [Normal] 500 employees, salary ~ N(20, 4). Counts above 22, below 16, between 16-22</summary>
+<div class="answer">
+<strong>Given:</strong> $X \sim N(\mu=20, \sigma^2=4)$, so $\sigma = 2$. Total employees = 500.<br><br>
+
+<strong>(a) Above 22 (in thousands):</strong><br>
+$Z = \frac{22 - 20}{2} = 1.0$<br>
+$P(X > 22) = P(Z > 1) = 1 - \Phi(1) = 1 - 0.8413 = 0.1587$<br>
+Count = $500 \times 0.1587 \approx \mathbf{79}$ employees<br><br>
+
+<strong>(b) Below 16:</strong><br>
+$Z = \frac{16 - 20}{2} = -2.0$<br>
+$P(X < 16) = P(Z < -2) = \Phi(-2) = 1 - \Phi(2) = 1 - 0.9772 = 0.0228$<br>
+Count = $500 \times 0.0228 \approx \mathbf{11}$ employees<br><br>
+
+<strong>(c) Between 16 and 22:</strong><br>
+$P(16 < X < 22) = P(-2 < Z < 1) = \Phi(1) - \Phi(-2) = 0.8413 - 0.0228 = 0.8185$<br>
+Count = $500 \times 0.8185 \approx \mathbf{409}$ employees<br><br>
+
+<strong>Check:</strong> $79 + 11 + 409 = 499 \approx 500$ &check; (rounding)
+</div>
+</details>
+
+<!-- Q12 -->
+<details>
+<summary>Q12: [Poisson] Surgical blades 0.2% defective, packets of 10, 10000 packets</summary>
+<div class="answer">
+<strong>Given:</strong> $p = 0.002$ (0.2% defective), packet size $n = 10$, total packets = 10000.<br>
+$\lambda = np = 10 \times 0.002 = 0.02$<br><br>
+
+Using Poisson approximation ($n$ large, $p$ small):<br><br>
+
+<strong>P(0 defective in a packet):</strong><br>
+$P(X=0) = \frac{e^{-0.02}(0.02)^0}{0!} = e^{-0.02} = 0.9802$<br>
+Packets with 0 defective = $10000 \times 0.9802 = \mathbf{9802}$<br><br>
+
+<strong>P(1 defective in a packet):</strong><br>
+$P(X=1) = \frac{e^{-0.02}(0.02)^1}{1!} = 0.9802 \times 0.02 = 0.01960$<br>
+Packets with 1 defective = $10000 \times 0.01960 = \mathbf{196}$<br><br>
+
+<strong>Packets with 2+ defective:</strong> $10000 - 9802 - 196 = \mathbf{2}$ packets
+</div>
+</details>
+
+<!-- Q13 -->
+<details>
+<summary>Q13: [Paired t-test] Before/after scores for 6 students. Test improvement at 5%</summary>
+<div class="answer">
+<strong>Data:</strong><br>
+<table>
+<tr><th>Student</th><th>Before</th><th>After</th><th>d = After - Before</th></tr>
+<tr><td>1</td><td>78</td><td>83</td><td>5</td></tr>
+<tr><td>2</td><td>65</td><td>70</td><td>5</td></tr>
+<tr><td>3</td><td>72</td><td>76</td><td>4</td></tr>
+<tr><td>4</td><td>80</td><td>82</td><td>2</td></tr>
+<tr><td>5</td><td>55</td><td>65</td><td>10</td></tr>
+<tr><td>6</td><td>68</td><td>72</td><td>4</td></tr>
+</table><br>
+
+<strong>Differences:</strong> $d = \{5, 5, 4, 2, 10, 4\}$, $n = 6$<br>
+$\bar{d} = \frac{5+5+4+2+10+4}{6} = \frac{30}{6} = 5$<br><br>
+
+$s_d^2 = \frac{\sum(d_i - \bar{d})^2}{n-1} = \frac{(0+0+1+9+25+1)}{5} = \frac{36}{5} = 7.2$<br>
+$s_d = \sqrt{7.2} = 2.683$<br><br>
+
+<strong>Hypotheses:</strong> $H_0: \mu_d = 0$ (no improvement), $H_1: \mu_d > 0$ (improvement, one-tailed)<br><br>
+
+<strong>Test statistic:</strong><br>
+$t = \frac{\bar{d} - 0}{s_d / \sqrt{n}} = \frac{5}{2.683 / \sqrt{6}} = \frac{5}{1.095} = 4.564$<br><br>
+
+<strong>Critical value:</strong> $t_{0.05, 5} = 2.015$ (one-tailed, df = 5)<br><br>
+
+<strong>Decision:</strong> $t = 4.564 > 2.015$. <strong>Reject $H_0$.</strong><br>
+There is significant evidence at the 5% level that scores improved after the intervention.
+</div>
+</details>
+
+<!-- Q14 -->
+<details>
+<summary>Q14: [Z-test] AI tool claim 20 min reduction. n=36, sample mean=18.2, &sigma;=7.5. Test at 5%</summary>
+<div class="answer">
+<strong>Given:</strong> Claimed mean $\mu_0 = 20$, $n = 36$, $\bar{x} = 18.2$, $\sigma = 7.5$, $\alpha = 0.05$<br><br>
+
+<strong>Hypotheses:</strong><br>
+$H_0: \mu = 20$ (tool reduces time by 20 minutes)<br>
+$H_1: \mu \neq 20$ (tool does not reduce by 20 minutes &mdash; two-tailed)<br><br>
+
+<strong>Test statistic:</strong><br>
+$Z = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} = \frac{18.2 - 20}{7.5 / \sqrt{36}} = \frac{-1.8}{1.25} = -1.44$<br><br>
+
+<strong>Critical values:</strong> $Z_{\alpha/2} = \pm 1.96$ (two-tailed at 5%)<br><br>
+
+<strong>Decision:</strong> $|Z| = 1.44 < 1.96$. <strong>Fail to reject $H_0$.</strong><br>
+There is insufficient evidence at the 5% level to conclude the mean reduction differs from 20 minutes. The AI tool's claim is not contradicted by this sample.
+</div>
+</details>
+
+<!-- Q15 -->
+<details>
+<summary>Q15: [Correlation] Temperature vs electricity usage (5 data points). Calculate r</summary>
+<div class="answer">
+<strong>Data:</strong><br>
+<table>
+<tr><th>Temperature (x)</th><th>Electricity (y)</th></tr>
+<tr><td>20</td><td>50</td></tr>
+<tr><td>25</td><td>45</td></tr>
+<tr><td>30</td><td>60</td></tr>
+<tr><td>35</td><td>70</td></tr>
+<tr><td>40</td><td>75</td></tr>
+</table><br>
+
+$n = 5$, $\sum x = 150$, $\sum y = 300$<br>
+$\bar{x} = 30$, $\bar{y} = 60$<br><br>
+
+<table>
+<tr><th>$x_i$</th><th>$y_i$</th><th>$x_i - \bar{x}$</th><th>$y_i - \bar{y}$</th><th>$(x_i-\bar{x})(y_i-\bar{y})$</th><th>$(x_i-\bar{x})^2$</th><th>$(y_i-\bar{y})^2$</th></tr>
+<tr><td>20</td><td>50</td><td>-10</td><td>-10</td><td>100</td><td>100</td><td>100</td></tr>
+<tr><td>25</td><td>45</td><td>-5</td><td>-15</td><td>75</td><td>25</td><td>225</td></tr>
+<tr><td>30</td><td>60</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>35</td><td>70</td><td>5</td><td>10</td><td>50</td><td>25</td><td>100</td></tr>
+<tr><td>40</td><td>75</td><td>10</td><td>15</td><td>150</td><td>100</td><td>225</td></tr>
+<tr><td colspan="4"><strong>Sum</strong></td><td><strong>375</strong></td><td><strong>250</strong></td><td><strong>650</strong></td></tr>
+</table><br>
+
+<strong>Pearson correlation coefficient:</strong><br>
+$$r = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum(x_i-\bar{x})^2 \cdot \sum(y_i-\bar{y})^2}} = \frac{375}{\sqrt{250 \times 650}} = \frac{375}{\sqrt{162500}} = \frac{375}{403.11} = 0.930$$<br>
+
+<strong>Interpretation:</strong> $r = 0.930$ indicates a <strong>strong positive linear correlation</strong> between temperature and electricity usage. As temperature increases, electricity usage tends to increase.
+</div>
+</details>
+
+<!-- Q16 -->
+<details>
+<summary>Q16: [Exponential Smoothing] Monthly demand data. Forecast July with &alpha;=0.4 and 0.7</summary>
+<div class="answer">
+<strong>Data:</strong><br>
+<table>
+<tr><th>Month</th><th>Demand</th></tr>
+<tr><td>Jan</td><td>200</td></tr>
+<tr><td>Feb</td><td>220</td></tr>
+<tr><td>Mar</td><td>210</td></tr>
+<tr><td>Apr</td><td>240</td></tr>
+<tr><td>May</td><td>230</td></tr>
+<tr><td>Jun</td><td>250</td></tr>
+</table><br>
+
+<strong>Formula:</strong> $F_{t+1} = \alpha D_t + (1 - \alpha) F_t$, with $F_1 = D_1 = 200$<br><br>
+
+<strong>With $\alpha = 0.4$:</strong><br>
+$F_1 = 200$<br>
+$F_2 = 0.4(200) + 0.6(200) = 200$<br>
+$F_3 = 0.4(220) + 0.6(200) = 88 + 120 = 208$<br>
+$F_4 = 0.4(210) + 0.6(208) = 84 + 124.8 = 208.8$<br>
+$F_5 = 0.4(240) + 0.6(208.8) = 96 + 125.28 = 221.28$<br>
+$F_6 = 0.4(230) + 0.6(221.28) = 92 + 132.77 = 224.77$<br>
+$F_7 = 0.4(250) + 0.6(224.77) = 100 + 134.86 = \mathbf{234.86}$<br><br>
+
+<strong>With $\alpha = 0.7$:</strong><br>
+$F_1 = 200$<br>
+$F_2 = 0.7(200) + 0.3(200) = 200$<br>
+$F_3 = 0.7(220) + 0.3(200) = 154 + 60 = 214$<br>
+$F_4 = 0.7(210) + 0.3(214) = 147 + 64.2 = 211.2$<br>
+$F_5 = 0.7(240) + 0.3(211.2) = 168 + 63.36 = 231.36$<br>
+$F_6 = 0.7(230) + 0.3(231.36) = 161 + 69.41 = 230.41$<br>
+$F_7 = 0.7(250) + 0.3(230.41) = 175 + 69.12 = \mathbf{244.12}$<br><br>
+
+<strong>Note:</strong> Higher $\alpha$ gives more weight to recent data, making the forecast more responsive to changes. $\alpha = 0.7$ forecasts 244.12, closer to the recent upward trend.
+</div>
+</details>
+
+<!-- Q17 -->
+<details>
+<summary>Q17: [GMM] Lunch durations 2-component. Compute means, variances, mixing coefficients</summary>
+<div class="answer">
+<strong>Gaussian Mixture Model (GMM) &mdash; Concept:</strong><br>
+A GMM models data as a mixture of $K$ Gaussian distributions:<br>
+$$p(x) = \sum_{k=1}^{K} \pi_k \cdot \mathcal{N}(x | \mu_k, \sigma_k^2)$$
+where $\pi_k$ are mixing coefficients ($\sum \pi_k = 1$).<br><br>
+
+<strong>Example (2-component for lunch durations):</strong><br>
+Suppose lunch durations have two clusters (quick vs long lunch).<br><br>
+
+<strong>EM Algorithm Steps:</strong><br>
+<ol>
+<li><strong>Initialize:</strong> Set initial $\mu_1, \mu_2, \sigma_1^2, \sigma_2^2, \pi_1, \pi_2$</li>
+<li><strong>E-step:</strong> Compute responsibility (posterior) for each point:
+$$\gamma_{ik} = \frac{\pi_k \mathcal{N}(x_i|\mu_k, \sigma_k^2)}{\sum_j \pi_j \mathcal{N}(x_i|\mu_j, \sigma_j^2)}$$</li>
+<li><strong>M-step:</strong> Update parameters:
+$$\mu_k = \frac{\sum_i \gamma_{ik} x_i}{\sum_i \gamma_{ik}}, \quad \sigma_k^2 = \frac{\sum_i \gamma_{ik}(x_i - \mu_k)^2}{\sum_i \gamma_{ik}}, \quad \pi_k = \frac{\sum_i \gamma_{ik}}{N}$$</li>
+<li>Repeat E and M steps until convergence</li>
+</ol><br>
+
+<strong>Interpretation:</strong> After convergence, $\mu_1, \mu_2$ give average lunch durations for each group, $\sigma_1^2, \sigma_2^2$ give variability within each group, and $\pi_1, \pi_2$ give the proportion of people in each group.
+</div>
+</details>
+
+<!-- Q18 -->
+<details>
+<summary>Q18: [Washer] Diameters ~ N(0.500, 0.005). Acceptable 0.492-0.506. Proportion defective</summary>
+<div class="answer">
+<strong>Given:</strong> $X \sim N(\mu = 0.500, \sigma = 0.005)$. Acceptable range: $[0.492, 0.506]$.<br><br>
+
+<strong>Standardize boundaries:</strong><br>
+$Z_1 = \frac{0.492 - 0.500}{0.005} = \frac{-0.008}{0.005} = -1.6$<br>
+$Z_2 = \frac{0.506 - 0.500}{0.005} = \frac{0.006}{0.005} = 1.2$<br><br>
+
+<strong>P(acceptable):</strong><br>
+$P(0.492 < X < 0.506) = P(-1.6 < Z < 1.2) = \Phi(1.2) - \Phi(-1.6)$<br>
+$= 0.8849 - 0.0548 = 0.8301$<br><br>
+
+<strong>P(defective):</strong><br>
+$P(\text{defective}) = 1 - 0.8301 = \mathbf{0.1699}$ (about 17%)<br><br>
+
+<strong>Breakdown:</strong><br>
+$P(X < 0.492) = P(Z < -1.6) = 0.0548$ (too small)<br>
+$P(X > 0.506) = P(Z > 1.2) = 1 - 0.8849 = 0.1151$ (too large)
+</div>
+</details>
+
+<!-- Q19 -->
+<details>
+<summary>Q19: [Sampling] Population binomial n=45, mean=10, SD=2. Does sampling dist follow binomial?</summary>
+<div class="answer">
+<strong>Given:</strong> Population distribution is Binomial with parameters $n=45$, $\mu = 10$, $\sigma = 2$.<br><br>
+
+<strong>Finding binomial parameters:</strong><br>
+$np = 10$ and $\sqrt{npq} = 2 \Rightarrow npq = 4$<br>
+$q = \frac{npq}{np} = \frac{4}{10} = 0.4$, so $p = 0.6$<br>
+$n_{\text{binom}} \cdot 0.6 = 10 \Rightarrow n_{\text{binom}} = 16.67$ (not integer!)<br><br>
+
+Wait &mdash; re-interpreting: The population has mean 10, SD 2. We take samples of size $n=45$.<br><br>
+
+<strong>Central Limit Theorem (CLT):</strong><br>
+For the sampling distribution of $\bar{X}$ with sample size $n = 45$:<br>
+$\mu_{\bar{X}} = \mu = 10$<br>
+$\sigma_{\bar{X}} = \frac{\sigma}{\sqrt{n}} = \frac{2}{\sqrt{45}} = \frac{2}{6.708} = 0.298$<br><br>
+
+<strong>Does the sampling distribution follow binomial?</strong> <strong>No.</strong><br>
+By the CLT, the sampling distribution of $\bar{X}$ is approximately <strong>normal</strong>: $\bar{X} \sim N(10, 0.298^2)$, regardless of the population distribution (since $n = 45 \geq 30$).<br><br>
+
+The sampling distribution of the sample mean follows a normal distribution, not a binomial, even though the population is binomial.
+</div>
+</details>
+
+<!-- Q20 -->
+<details>
+<summary>Q20: [Two-proportion] City A: 180/300, City B: 135/250 vaccinated. Test at 5%</summary>
+<div class="answer">
+<strong>Given:</strong><br>
+City A: $x_1 = 180$, $n_1 = 300$, $\hat{p}_1 = 180/300 = 0.60$<br>
+City B: $x_2 = 135$, $n_2 = 250$, $\hat{p}_2 = 135/250 = 0.54$<br><br>
+
+<strong>Hypotheses:</strong><br>
+$H_0: p_1 = p_2$ (no difference in vaccination rates)<br>
+$H_1: p_1 \neq p_2$ (two-tailed)<br><br>
+
+<strong>Pooled proportion:</strong><br>
+$\hat{p} = \frac{x_1 + x_2}{n_1 + n_2} = \frac{180 + 135}{300 + 250} = \frac{315}{550} = 0.5727$<br>
+$\hat{q} = 1 - 0.5727 = 0.4273$<br><br>
+
+<strong>Standard error:</strong><br>
+$SE = \sqrt{\hat{p}\hat{q}\left(\frac{1}{n_1} + \frac{1}{n_2}\right)} = \sqrt{0.5727 \times 0.4273 \times \left(\frac{1}{300} + \frac{1}{250}\right)}$<br>
+$= \sqrt{0.2447 \times (0.00333 + 0.004)} = \sqrt{0.2447 \times 0.00733} = \sqrt{0.001794} = 0.04235$<br><br>
+
+<strong>Test statistic:</strong><br>
+$Z = \frac{\hat{p}_1 - \hat{p}_2}{SE} = \frac{0.60 - 0.54}{0.04235} = \frac{0.06}{0.04235} = 1.417$<br><br>
+
+<strong>Critical value:</strong> $Z_{0.025} = \pm 1.96$ (two-tailed at 5%)<br><br>
+
+<strong>Decision:</strong> $|Z| = 1.417 < 1.96$. <strong>Fail to reject $H_0$.</strong><br>
+There is insufficient evidence at the 5% significance level to conclude that the vaccination rates differ between the two cities.
+</div>
+</details>
+
+</div><!-- end practice-section -->
+
+
+<!-- ==================== KEY CONCEPTS FROM EXAM PAPERS ==================== -->
+<div class="lecture-divider" id="keyconcepts">Key Concepts (From Exam Papers)</div>
+
+<h2 id="kc-clt">Central Limit Theorem (CLT)</h2>
+
+<div class="definition">
+The <strong>Central Limit Theorem</strong> is one of the most important theorems in statistics. It states that the sampling distribution of the sample mean $\bar{X}$ approaches a normal distribution as the sample size $n$ increases, <strong>regardless of the shape of the population distribution</strong>, provided the population has a finite mean $\mu$ and finite variance $\sigma^2$.
+</div>
+
+<div class="theorem">
+If $X_1, X_2, \ldots, X_n$ are i.i.d. random variables with mean $\mu$ and variance $\sigma^2$, then for large $n$:
+$$\bar{X} \sim N\left(\mu, \frac{\sigma^2}{n}\right) \quad \text{approximately}$$
+$$Z = \frac{\bar{X} - \mu}{\sigma / \sqrt{n}} \sim N(0, 1)$$
+<strong>Rule of thumb:</strong> $n \geq 30$ is generally sufficient for the approximation to hold, even for non-normal populations.
+</div>
+
+<div class="highlight">
+<strong>Why CLT matters:</strong> It justifies using normal-distribution-based methods (Z-tests, confidence intervals) for sample means even when the underlying population is not normal. The quantity $\sigma / \sqrt{n}$ is called the <strong>Standard Error</strong> of the mean &mdash; it decreases as sample size increases, meaning larger samples give more precise estimates.
+</div>
+
+<h2 id="kc-ci">Confidence Intervals</h2>
+
+<div class="definition">
+A <strong>Confidence Interval (CI)</strong> is a range of values, computed from sample data, that is likely to contain the true population parameter. A 95% CI means: if we repeated the sampling process many times, about 95% of the constructed intervals would contain the true parameter. It does NOT mean there is a 95% probability that the true value lies in this specific interval.
+</div>
+
+<div class="theorem">
+<strong>CI for Population Mean ($\sigma$ known):</strong>
+$$\bar{x} \pm Z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}$$
+
+<strong>CI for Population Mean ($\sigma$ unknown):</strong>
+$$\bar{x} \pm t_{\alpha/2, n-1} \cdot \frac{s}{\sqrt{n}}$$
+
+<strong>CI for Population Proportion:</strong>
+$$\hat{p} \pm Z_{\alpha/2} \cdot \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$$
+</div>
+
+<div class="card">
+<h4>Common $Z_{\alpha/2}$ Values</h4>
+<table>
+<tr><th>Confidence Level</th><th>$\alpha$</th><th>$Z_{\alpha/2}$</th></tr>
+<tr><td>90%</td><td>0.10</td><td>1.645</td></tr>
+<tr><td>95%</td><td>0.05</td><td>1.960</td></tr>
+<tr><td>99%</td><td>0.01</td><td>2.576</td></tr>
+</table>
+</div>
+
+<h2 id="kc-corr">Correlation &amp; Simple Linear Regression</h2>
+
+<div class="definition">
+<strong>Correlation</strong> measures the strength and direction of the <strong>linear relationship</strong> between two quantitative variables. The <strong>Pearson correlation coefficient</strong> $r$ ranges from $-1$ (perfect negative linear relationship) through $0$ (no linear relationship) to $+1$ (perfect positive linear relationship). Correlation does NOT imply causation &mdash; two variables can be correlated due to a lurking third variable.
+</div>
+
+<div class="theorem">
+<strong>Pearson Correlation Coefficient:</strong>
+$$r = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum(x_i-\bar{x})^2 \cdot \sum(y_i-\bar{y})^2}} = \frac{n\sum x_i y_i - \sum x_i \sum y_i}{\sqrt{[n\sum x_i^2 - (\sum x_i)^2][n\sum y_i^2 - (\sum y_i)^2]}}$$
+</div>
+
+<div class="card">
+<h4>Interpreting $r$</h4>
+<table>
+<tr><th>$|r|$</th><th>Strength</th></tr>
+<tr><td>0.00 &ndash; 0.19</td><td>Very weak</td></tr>
+<tr><td>0.20 &ndash; 0.39</td><td>Weak</td></tr>
+<tr><td>0.40 &ndash; 0.59</td><td>Moderate</td></tr>
+<tr><td>0.60 &ndash; 0.79</td><td>Strong</td></tr>
+<tr><td>0.80 &ndash; 1.00</td><td>Very strong</td></tr>
+</table>
+<p><strong>Coefficient of Determination ($r^2$):</strong> The proportion of variance in $Y$ that is explained by $X$. E.g., $r = 0.9 \Rightarrow r^2 = 0.81$, meaning 81% of the variability in $Y$ is explained by the linear relationship with $X$.</p>
+</div>
+
+<div class="definition">
+<strong>Simple Linear Regression</strong> finds the best-fitting straight line $\hat{Y} = a + bX$ through the data using the <strong>Least Squares Method</strong> (minimizes the sum of squared residuals).
+</div>
+
+<div class="theorem">
+<strong>Regression Coefficients:</strong>
+$$b = \frac{n\sum x_i y_i - \sum x_i \sum y_i}{n\sum x_i^2 - (\sum x_i)^2} = r \cdot \frac{s_Y}{s_X}$$
+$$a = \bar{y} - b\bar{x}$$
+where $b$ is the slope (change in $Y$ per unit change in $X$) and $a$ is the y-intercept.
+</div>
+
+<h2 id="kc-anova">ANOVA (Analysis of Variance)</h2>
+
+<div class="definition">
+<strong>ANOVA</strong> (Analysis of Variance) tests whether the means of <strong>three or more groups</strong> are equal. Instead of running multiple t-tests (which inflates Type I error), ANOVA uses a single F-test to compare <strong>between-group variability</strong> to <strong>within-group variability</strong>. If the between-group variance is much larger than the within-group variance, it suggests at least one group mean differs.
+</div>
+
+<div class="theorem">
+<strong>One-Way ANOVA:</strong>
+$$F = \frac{\text{MSB}}{\text{MSW}} = \frac{\text{SS}_{\text{between}} / (k - 1)}{\text{SS}_{\text{within}} / (N - k)}$$
+where $k$ = number of groups, $N$ = total number of observations.<br>
+$\text{SS}_{\text{between}} = \sum n_i (\bar{x}_i - \bar{x})^2$, &ensp; $\text{SS}_{\text{within}} = \sum \sum (x_{ij} - \bar{x}_i)^2$
+</div>
+
+<div class="card">
+<h4>ANOVA Assumptions</h4>
+<ol>
+<li><strong>Independence:</strong> Observations are independent of each other</li>
+<li><strong>Normality:</strong> Each group's data is approximately normally distributed</li>
+<li><strong>Homogeneity of Variances:</strong> All groups have approximately equal variances (tested using Levene's or Bartlett's test)</li>
+</ol>
+</div>
+
+<div class="highlight">
+<strong>Two-Way ANOVA</strong> extends one-way ANOVA by testing the effect of <strong>two factors</strong> simultaneously and their <strong>interaction</strong>. For example, testing whether both "teaching method" and "class size" affect exam scores, and whether the effect of teaching method depends on class size (interaction effect).
+</div>
+
+<h2 id="kc-es">Exponential Smoothing</h2>
+
+<div class="definition">
+<strong>Exponential Smoothing</strong> is a time-series forecasting method that assigns exponentially decreasing weights to older observations. Unlike a simple moving average (which gives equal weight to the last $k$ points), exponential smoothing gives the most weight to the most recent observation and progressively less weight to older ones. It is simple, requires minimal data storage, and adapts well to changing trends.
+</div>
+
+<div class="theorem">
+<strong>Simple Exponential Smoothing (SES):</strong>
+$$F_{t+1} = \alpha D_t + (1 - \alpha) F_t$$
+where $F_{t+1}$ = forecast for next period, $D_t$ = actual demand in current period, $F_t$ = forecast for current period, $\alpha$ = smoothing constant ($0 < \alpha < 1$).
+</div>
+
+<div class="card">
+<h4>Choosing $\alpha$</h4>
+<ul>
+<li><strong>Small $\alpha$ (e.g., 0.1&ndash;0.3):</strong> Gives more weight to past data &rarr; smoother forecasts, slower to react to changes. Best for stable data with little variation.</li>
+<li><strong>Large $\alpha$ (e.g., 0.7&ndash;0.9):</strong> Gives more weight to recent data &rarr; responsive forecasts, faster to react. Best for data with trends or rapid changes.</li>
+<li>The initialization is typically $F_1 = D_1$ (first forecast equals first actual value).</li>
+</ul>
+</div>
+
+<h2 id="kc-gmm">Gaussian Mixture Models (GMM)</h2>
+
+<div class="definition">
+A <strong>Gaussian Mixture Model (GMM)</strong> assumes that data is generated from a mixture of several Gaussian (normal) distributions, each with its own mean, variance, and mixing weight. GMMs are used for <strong>clustering</strong> (finding groups in data) and <strong>density estimation</strong> (modelling complex non-normal distributions as a combination of simpler normal ones). Unlike K-Means clustering (which assigns each point to exactly one cluster), GMM provides <strong>soft/probabilistic assignments</strong> &mdash; each point has a probability of belonging to each cluster.
+</div>
+
+<div class="theorem">
+$$p(x) = \sum_{k=1}^{K} \pi_k \cdot \mathcal{N}(x | \mu_k, \sigma_k^2)$$
+where $\pi_k$ = mixing coefficient (proportion of data from component $k$, $\sum \pi_k = 1$), $\mu_k$ = mean of component $k$, $\sigma_k^2$ = variance of component $k$.
+</div>
+
+<div class="card">
+<h4>EM (Expectation-Maximization) Algorithm for GMM</h4>
+<p>Since we don't know which component generated each data point, we use the iterative EM algorithm:</p>
+<ol>
+<li><strong>Initialize:</strong> Set initial guesses for $\mu_k$, $\sigma_k^2$, $\pi_k$ for each component</li>
+<li><strong>E-step (Expectation):</strong> Compute the <strong>responsibility</strong> $\gamma_{ik}$ &mdash; the posterior probability that data point $x_i$ was generated by component $k$:
+$$\gamma_{ik} = \frac{\pi_k \mathcal{N}(x_i|\mu_k, \sigma_k^2)}{\sum_j \pi_j \mathcal{N}(x_i|\mu_j, \sigma_j^2)}$$</li>
+<li><strong>M-step (Maximization):</strong> Update parameters using the responsibilities as weights:
+$$\mu_k = \frac{\sum_i \gamma_{ik} x_i}{\sum_i \gamma_{ik}}, \quad \sigma_k^2 = \frac{\sum_i \gamma_{ik}(x_i - \mu_k)^2}{\sum_i \gamma_{ik}}, \quad \pi_k = \frac{\sum_i \gamma_{ik}}{N}$$</li>
+<li><strong>Repeat</strong> E and M steps until parameter changes fall below a threshold (convergence)</li>
+</ol>
+</div>
+
+
+<!-- ==================== CHEATSHEET ==================== -->
+<div class="lecture-divider" id="cheatsheet">Distribution &amp; Formula Cheatsheet</div>
+
+<h2>Probability Distributions at a Glance</h2>
+
+<div class="tip">
+<strong>How to choose the right distribution:</strong><br>
+&bull; Single yes/no trial? &rarr; <strong>Bernoulli</strong><br>
+&bull; Count successes in fixed $n$ independent trials? &rarr; <strong>Binomial</strong><br>
+&bull; Count events in a fixed time/space interval at constant rate? &rarr; <strong>Poisson</strong><br>
+&bull; Time between consecutive Poisson events? &rarr; <strong>Exponential</strong><br>
+&bull; Symmetric bell-shaped continuous data? &rarr; <strong>Normal</strong><br>
+&bull; Working with sample variance from normal data? &rarr; <strong>Chi-Square</strong><br>
+&bull; Inference on means with unknown $\sigma$? &rarr; <strong>t-Distribution</strong><br>
+&bull; Comparing two variances or ANOVA? &rarr; <strong>F-Distribution</strong>
+</div>
+
+<table>
+<tr><th>Distribution</th><th>Type</th><th>PMF / PDF</th><th>Mean</th><th>Variance</th><th>Use Case</th></tr>
+<tr>
+<td><strong>Bernoulli</strong></td>
+<td>Discrete</td>
+<td>$p^x(1-p)^{1-x}$</td>
+<td>$p$</td>
+<td>$p(1-p)$</td>
+<td>Single yes/no trial</td>
+</tr>
+<tr>
+<td><strong>Binomial</strong></td>
+<td>Discrete</td>
+<td>$\binom{n}{x}p^x q^{n-x}$</td>
+<td>$np$</td>
+<td>$npq$</td>
+<td>Fixed $n$ independent trials</td>
+</tr>
+<tr>
+<td><strong>Poisson</strong></td>
+<td>Discrete</td>
+<td>$\frac{e^{-\lambda}\lambda^x}{x!}$</td>
+<td>$\lambda$</td>
+<td>$\lambda$</td>
+<td>Rare events in fixed interval</td>
+</tr>
+<tr>
+<td><strong>Normal</strong></td>
+<td>Continuous</td>
+<td>$\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$</td>
+<td>$\mu$</td>
+<td>$\sigma^2$</td>
+<td>Natural phenomena, CLT</td>
+</tr>
+<tr>
+<td><strong>Exponential</strong></td>
+<td>Continuous</td>
+<td>$\lambda e^{-\lambda x}$</td>
+<td>$1/\lambda$</td>
+<td>$1/\lambda^2$</td>
+<td>Time between Poisson events</td>
+</tr>
+<tr>
+<td><strong>Chi-Square</strong></td>
+<td>Continuous</td>
+<td>(complex)</td>
+<td>$k$</td>
+<td>$2k$</td>
+<td>Goodness-of-fit, independence</td>
+</tr>
+<tr>
+<td><strong>t-Distribution</strong></td>
+<td>Continuous</td>
+<td>(complex)</td>
+<td>$0$</td>
+<td>$\frac{\nu}{\nu-2}$</td>
+<td>Small sample means ($\sigma$ unknown)</td>
+</tr>
+<tr>
+<td><strong>F-Distribution</strong></td>
+<td>Continuous</td>
+<td>(complex)</td>
+<td>$\frac{d_2}{d_2-2}$</td>
+<td>(complex)</td>
+<td>ANOVA, comparing variances</td>
+</tr>
+</table>
+
+<h2>Hypothesis Testing Quick Reference</h2>
+
+<div class="definition">
+<strong>Hypothesis Testing</strong> is a systematic procedure for deciding whether sample data provide sufficient evidence to reject a claim (null hypothesis) about a population parameter. The steps are: (1) State $H_0$ (null &mdash; status quo, no effect) and $H_1$ (alternative &mdash; what we want to prove), (2) Choose significance level $\alpha$ (typically 0.05), (3) Compute the test statistic, (4) Compare with critical value or compute p-value, (5) Make a decision (reject or fail to reject $H_0$).
+</div>
+
+<div class="card">
+<h4>Key Terms</h4>
+<ul>
+<li><strong>Null Hypothesis ($H_0$):</strong> The default assumption; states "no effect" or "no difference." We assume $H_0$ is true until evidence suggests otherwise.</li>
+<li><strong>Alternative Hypothesis ($H_1$):</strong> What we are trying to prove; the claim that contradicts $H_0$.</li>
+<li><strong>Significance Level ($\alpha$):</strong> The maximum probability of rejecting $H_0$ when it is actually true (Type I error). Common values: 0.01, 0.05, 0.10.</li>
+<li><strong>p-value:</strong> The probability of observing data as extreme as (or more extreme than) the sample result, assuming $H_0$ is true. If p-value $\leq \alpha$, reject $H_0$.</li>
+<li><strong>Type I Error:</strong> Rejecting $H_0$ when it is true (false positive). Probability = $\alpha$.</li>
+<li><strong>Type II Error:</strong> Failing to reject $H_0$ when it is false (false negative). Probability = $\beta$.</li>
+<li><strong>Power:</strong> $1 - \beta$ = probability of correctly rejecting a false $H_0$.</li>
+<li><strong>Degrees of Freedom (df):</strong> The number of independent values that are free to vary when computing a statistic. For a sample of $n$ values with a fixed mean, only $n-1$ values are free &mdash; the last one is determined.</li>
+</ul>
+</div>
+
+<table>
+<tr><th>Test</th><th>When to Use</th><th>Test Statistic</th><th>Distribution</th></tr>
+<tr>
+<td><strong>Z-test (1 mean)</strong></td>
+<td>$\sigma$ known, $n \geq 30$</td>
+<td>$Z = \frac{\bar{x} - \mu_0}{\sigma/\sqrt{n}}$</td>
+<td>$N(0,1)$</td>
+</tr>
+<tr>
+<td><strong>t-test (1 mean)</strong></td>
+<td>$\sigma$ unknown, small $n$</td>
+<td>$t = \frac{\bar{x} - \mu_0}{s/\sqrt{n}}$</td>
+<td>$t(n-1)$</td>
+</tr>
+<tr>
+<td><strong>Paired t-test</strong></td>
+<td>Before/after on same subjects</td>
+<td>$t = \frac{\bar{d}}{s_d/\sqrt{n}}$</td>
+<td>$t(n-1)$</td>
+</tr>
+<tr>
+<td><strong>Two-proportion Z</strong></td>
+<td>Comparing two proportions</td>
+<td>$Z = \frac{\hat{p}_1 - \hat{p}_2}{SE}$</td>
+<td>$N(0,1)$</td>
+</tr>
+<tr>
+<td><strong>Chi-square GoF</strong></td>
+<td>Observed vs expected frequencies</td>
+<td>$\chi^2 = \sum\frac{(O-E)^2}{E}$</td>
+<td>$\chi^2(k-1)$</td>
+</tr>
+</table>
+
+<h2>Key Relationships &amp; Rules</h2>
+
+<div class="definition">
+These fundamental rules and identities connect the concepts across all sessions. They should be memorized as they form the backbone of probability and statistics problems.
+</div>
+
+<div class="card">
+<table>
+<tr><th>Rule / Identity</th><th>Formula</th></tr>
+<tr><td>Complement</td><td>$P(A^c) = 1 - P(A)$</td></tr>
+<tr><td>Addition (General)</td><td>$P(A \cup B) = P(A) + P(B) - P(A \cap B)$</td></tr>
+<tr><td>Conditional</td><td>$P(B|A) = \frac{P(A \cap B)}{P(A)}$</td></tr>
+<tr><td>Multiplication</td><td>$P(A \cap B) = P(A) \cdot P(B|A)$</td></tr>
+<tr><td>Independence</td><td>$P(A \cap B) = P(A) \cdot P(B)$</td></tr>
+<tr><td>Total Probability</td><td>$P(A) = \sum P(A|B_i)P(B_i)$</td></tr>
+<tr><td>Bayes' Theorem</td><td>$P(B|A) = \frac{P(A|B)P(B)}{P(A)}$</td></tr>
+<tr><td>De Morgan's</td><td>$(A \cup B)^c = A^c \cap B^c$</td></tr>
+<tr><td>Variance Shortcut</td><td>$\text{Var}(X) = E(X^2) - [E(X)]^2$</td></tr>
+<tr><td>Poisson Approx</td><td>$\text{Bin}(n,p) \approx \text{Poi}(np)$ when $n$ large, $p$ small</td></tr>
+<tr><td>Normal Approx</td><td>$\text{Bin}(n,p) \approx N(np, npq)$ when $np,nq \geq 5$</td></tr>
+<tr><td>Pearson's Skewness</td><td>$\text{Mode} \approx 3\text{Median} - 2\text{Mean}$</td></tr>
+<tr><td>Laplace Smoothing</td><td>$P(x|C) = \frac{\text{count}(x,C)+1}{\text{count}(C)+|V|}$</td></tr>
+</table>
+</div>
+
+<div class="tip" style="text-align:center; margin-top:40px;">
+<strong>End of ISM Comprehensive Notes</strong><br>
+Covers Sessions 1&ndash;6 + 20 Practice Problems with Full Solutions
+</div>
+
+<!-- Floating Back to Top Button -->
+<button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to Top" style="
+  display:none; position:fixed; bottom:30px; right:30px; z-index:999;
+  width:50px; height:50px; border-radius:50%; border:none; cursor:pointer;
+  background:linear-gradient(135deg, var(--primary), var(--secondary));
+  color:white; font-size:22px; box-shadow:0 4px 12px rgba(0,0,0,0.3);
+  transition:opacity 0.3s, transform 0.3s;
+">&#8679;</button>
+<script>
+(function(){
+  var btn = document.getElementById('backToTop');
+  window.addEventListener('scroll', function(){
+    btn.style.display = window.scrollY > 400 ? 'block' : 'none';
+  });
+  btn.addEventListener('mouseenter', function(){ btn.style.transform='scale(1.1)'; });
+  btn.addEventListener('mouseleave', function(){ btn.style.transform='scale(1)'; });
+})();
+</script>
+
+</body>
+</html>

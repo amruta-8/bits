@@ -1,0 +1,1569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ISM Mid-Sem Exam Prep — AIMLC ZC418</title>
+<script>
+MathJax = { tex: { inlineMath: [['\\(','\\)']], displayMath: [['$$','$$']] }, svg:{fontCache:'global'} };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+<style>
+:root{
+  --bg:#0f1221; --panel:#171a2e; --panel2:#1d2138; --ink:#e8eaf6; --muted:#a7adc9;
+  --acc:#6c8cff; --acc2:#36d6c3; --warn:#ffb454; --bad:#ff6b81; --good:#5fd38d;
+  --line:#2a2f4a; --code:#11152a; --chip:#23284a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:linear-gradient(180deg,#0c0e1a,#0f1221);color:var(--ink);
+  font:16px/1.65 "Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;}
+a{color:var(--acc);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{display:flex;max-width:1280px;margin:0 auto;gap:0}
+.side{position:sticky;top:0;align-self:flex-start;height:100vh;overflow-y:auto;
+  width:265px;flex:0 0 265px;padding:18px 14px;background:#0b0d18;border-right:1px solid var(--line)}
+.side h2{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:18px 0 8px}
+.side a{display:block;color:var(--ink);padding:6px 10px;border-radius:8px;font-size:14px}
+.side a:hover{background:var(--chip);text-decoration:none}
+.side .brand{font-weight:800;font-size:18px;color:#fff;line-height:1.2}
+.side .brand small{display:block;color:var(--acc2);font-size:12px;font-weight:600;letter-spacing:.04em}
+.main{flex:1;min-width:0;padding:30px 38px 120px}
+.hero{background:radial-gradient(1200px 300px at 10% -20%,rgba(108,140,255,.25),transparent),
+  linear-gradient(135deg,#1a1f3a,#141830);border:1px solid var(--line);border-radius:18px;padding:28px 30px;margin-bottom:26px}
+.hero h1{margin:0 0 6px;font-size:30px;color:#fff}
+.hero p{margin:4px 0;color:var(--muted)}
+.countdown{display:inline-block;margin-top:12px;background:var(--bad);color:#1a0008;font-weight:800;
+  padding:6px 14px;border-radius:30px;font-size:14px}
+.pillrow{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px}
+.pill{background:var(--chip);border:1px solid var(--line);color:var(--ink);padding:5px 12px;border-radius:20px;font-size:12.5px}
+section{margin:34px 0;scroll-margin-top:16px}
+h2.sec{font-size:24px;color:#fff;border-left:5px solid var(--acc);padding-left:12px;margin:0 0 6px}
+h3{font-size:19px;color:#cdd6ff;margin:26px 0 8px}
+h4{font-size:16px;color:var(--acc2);margin:18px 0 6px;letter-spacing:.02em}
+.modtag{display:inline-block;background:var(--acc);color:#0a0d20;font-weight:800;font-size:12px;
+  padding:3px 10px;border-radius:6px;margin-bottom:10px;letter-spacing:.05em}
+p{margin:10px 0}
+ul,ol{margin:10px 0 10px 4px;padding-left:22px}
+li{margin:5px 0}
+.box{border-radius:12px;padding:14px 18px;margin:16px 0;border:1px solid var(--line);background:var(--panel)}
+.box .bt{font-weight:800;font-size:12.5px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;display:block}
+.formula{background:linear-gradient(135deg,#12203a,#0e1830);border-color:#274064}
+.formula .bt{color:#7fb2ff}
+.key{background:linear-gradient(135deg,#10241f,#0e1c1a);border-color:#1f5a4f}
+.key .bt{color:var(--acc2)}
+.warn{background:linear-gradient(135deg,#2a2110,#241c0e);border-color:#5a4620}
+.warn .bt{color:var(--warn)}
+.exam{background:linear-gradient(135deg,#241024,#1d0e1d);border-color:#5a2a57}
+.exam .bt{color:#ff9ce8}
+.tip{background:linear-gradient(135deg,#101a2e,#0e1626);border-color:#28406a}
+.tip .bt{color:#8fd0ff}
+.def{background:#15182b;border-left:4px solid var(--acc2)}
+table{border-collapse:collapse;width:100%;margin:14px 0;font-size:14.5px;background:var(--panel);border-radius:10px;overflow:hidden}
+th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
+th{background:#222748;color:#dfe5ff;font-weight:700}
+tr:nth-child(even) td{background:#141728}
+.center td,.center th{text-align:center}
+pre{background:var(--code);border:1px solid var(--line);border-radius:10px;padding:14px 16px;overflow-x:auto;
+  font:13.5px/1.55 "JetBrains Mono",Consolas,Monaco,monospace;color:#d7e0ff}
+code{background:#1a1f38;padding:1.5px 6px;border-radius:5px;font-family:Consolas,Monaco,monospace;font-size:13.5px;color:#aee0ff}
+pre code{background:none;padding:0;color:inherit}
+details{background:var(--panel2);border:1px solid var(--line);border-radius:10px;margin:12px 0;overflow:hidden}
+details[open]{border-color:var(--acc)}
+summary{cursor:pointer;padding:13px 16px;font-weight:600;color:#dfe5ff;list-style:none;position:relative}
+summary::-webkit-details-marker{display:none}
+summary:hover{background:#222748}
+summary::after{content:"▶ show solution";position:absolute;right:16px;color:var(--acc2);font-size:12px;font-weight:700}
+details[open] summary::after{content:"▼ hide"}
+.qmeta{font-size:11.5px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.sol{padding:4px 18px 16px;border-top:1px dashed var(--line)}
+.sol p:first-child{margin-top:12px}
+.qbox{background:#10182e;border:1px solid var(--line);border-left:4px solid var(--acc);border-radius:8px;
+  padding:12px 16px;margin:12px 0 16px;font-size:14.5px}
+.qbox .ql{display:block;font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--acc);margin-bottom:6px}
+.soln{background:#0e1c18;border:1px solid #1f5a4f;border-left:4px solid var(--acc2);border-radius:8px;padding:4px 16px 8px;margin-top:12px}
+.soln .sl{display:block;font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--acc2);margin:12px 0 2px}
+[data-theme="light"] .qbox{background:#eef3fc}
+[data-theme="light"] .soln{background:#eef8f4;border-color:#a4dac9}
+.tag{display:inline-block;background:var(--chip);color:#bcd;font-size:11px;padding:2px 8px;border-radius:5px;margin-left:6px;border:1px solid var(--line)}
+hr{border:none;border-top:1px solid var(--line);margin:30px 0}
+.small{font-size:13.5px;color:var(--muted)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:900px){.side{display:none}.main{padding:20px 16px}.grid2{grid-template-columns:1fr}}
+mjx-container{overflow-x:auto;overflow-y:hidden}
+.backtop{position:fixed;right:18px;bottom:18px;background:var(--acc);color:#0a0d20;font-weight:800;
+  padding:10px 14px;border-radius:30px;font-size:13px;box-shadow:0 6px 20px rgba(0,0,0,.4)}
+.theme-toggle{position:fixed;top:14px;right:18px;z-index:60;background:var(--panel2);color:var(--ink);
+  border:1px solid var(--line);padding:8px 14px;border-radius:30px;font-size:13px;font-weight:700;
+  cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.3);transition:all .15s}
+.theme-toggle:hover{border-color:var(--acc);transform:translateY(-1px)}
+:root[data-theme="light"]{
+  --bg:#f6f8fc; --panel:#ffffff; --panel2:#f1f4fa; --ink:#1a2236; --muted:#5c6479;
+  --acc:#3a5bef; --acc2:#0d9488; --warn:#b4690e; --bad:#d92d4f; --good:#1f9d57;
+  --line:#d8deea; --code:#f3f5fb; --chip:#eef1f8;
+}
+[data-theme="light"] body{background:linear-gradient(180deg,#eef2f9,#f6f8fc);color:var(--ink)}
+[data-theme="light"] .side{background:#eef2f9}
+[data-theme="light"] .side .brand{color:#16203a}
+[data-theme="light"] .hero{background:radial-gradient(1200px 300px at 10% -20%,rgba(58,91,239,.18),transparent),linear-gradient(135deg,#e9eefb,#f3f6fc);border-color:var(--line)}
+[data-theme="light"] .hero h1{color:#16203a}
+[data-theme="light"] h2.sec{color:#16203a}
+[data-theme="light"] h3{color:#23408a}
+[data-theme="light"] .modtag{color:#fff}
+[data-theme="light"] .countdown{color:#fff}
+[data-theme="light"] .backtop{color:#fff}
+[data-theme="light"] th{background:#e8edf7;color:#1a2236}
+[data-theme="light"] tr:nth-child(even) td{background:#f4f6fc}
+[data-theme="light"] .center td{background:inherit}
+[data-theme="light"] pre{background:#1b2138;border-color:#2a3252;color:#dbe4ff}
+[data-theme="light"] code{background:#e7ecf7;color:#234b86}
+[data-theme="light"] pre code{background:none;color:inherit}
+[data-theme="light"] summary{color:#1d2840}
+[data-theme="light"] summary:hover{background:#e8edf7}
+[data-theme="light"] .tag{color:#44506a}
+[data-theme="light"] .small{color:#5c6479}
+[data-theme="light"] .formula{background:#eef4ff;border-color:#b9cdf0}
+[data-theme="light"] .formula .bt{color:#2b54c4}
+[data-theme="light"] .key{background:#e8f8f2;border-color:#a4dac9}
+[data-theme="light"] .key .bt{color:#0c8276}
+[data-theme="light"] .warn{background:#fdf3e2;border-color:#e6c78f}
+[data-theme="light"] .warn .bt{color:#a85f0c}
+[data-theme="light"] .exam{background:#fbecf8;border-color:#e7b6de}
+[data-theme="light"] .exam .bt{color:#b3389e}
+[data-theme="light"] .tip{background:#eaf3fd;border-color:#aacdf0}
+[data-theme="light"] .tip .bt{color:#1f73bd}
+[data-theme="light"] .def{background:#eef1f8}
+[data-theme="light"] .theme-toggle{box-shadow:0 4px 14px rgba(40,60,120,.15)}
+</style>
+</head>
+<body>
+<button id="themeToggle" class="theme-toggle" aria-label="Toggle light/dark theme">🌙 Dark</button>
+<div class="wrap">
+<nav class="side">
+  <div class="brand">ISM Mid-Sem<small>AIMLC ZC418 · Exam Prep</small></div>
+  <h2>Start Here</h2>
+  <a href="#pattern">📊 Exam Pattern</a>
+  <a href="#cheat">⚡ Cheat Sheet</a>
+  <a href="#ztable">📑 Z-Table</a>
+  <a href="#distsel">🧭 Which Distribution?</a>
+  <a href="#hacks">🧠 Question-Reading Hacks</a>
+  <a href="#plan">🗓️ Study Plan</a>
+  <h2>Theory (Sessions 1–8)</h2>
+  <a href="#m1">S1 · Descriptive Statistics</a>
+  <a href="#m2">S2 · Basic Probability</a>
+  <a href="#m3">S3 · Conditional &amp; Total</a>
+  <a href="#m4">S4 · Bayes &amp; Naive Bayes</a>
+  <a href="#m5">S5 · Random Variables</a>
+  <a href="#m6">S6 · Distributions</a>
+  <a href="#m7">S7 · Sampling, CLT &amp; CI</a>
+  <h2>Practice (by topic)</h2>
+  <a href="#q1">Q·Descriptive Stats</a>
+  <a href="#q2">Q·Probability</a>
+  <a href="#q3">Q·Conditional/Total</a>
+  <a href="#q4">Q·Bayes/Naive Bayes</a>
+  <a href="#q5">Q·Random Variables</a>
+  <a href="#q6">Q·Distributions</a>
+  <a href="#q7">Q·Sampling/CLT/CI</a>
+  <h2>More questions</h2>
+  <a href="#qend">Q·End-Sem (in-scope)</a>
+  <a href="#qassign">Q·Assignments</a>
+  <a href="#qcomp">Q·Companion/Practice</a>
+  <h2>Reference</h2>
+  <a href="#formulas">🧮 All Formulas</a>
+  <a href="#last">🎯 Last-Minute</a>
+</nav>
+
+<main class="main">
+<div class="hero">
+  <h1>Introduction to Statistical Methods — Mid-Semester Exam Prep</h1>
+  <p><strong>AIMLC ZC418</strong> · M.Tech AI&amp;ML · BITS Pilani WILP · Dr. YVK Ravi Kumar / Dr. G Krishna Kumari · companions by Prof. Saurabh</p>
+  <p class="small">Coverage: <strong>Sessions 1–8</strong> — Descriptive Statistics · Basic Probability · Conditional &amp; Total Probability · Bayes &amp; Naive Bayes · Random Variables · Probability Distributions · Hypothesis Testing (sampling, CLT, CI) · Closed book</p>
+  <span class="countdown" id="cd">⏳ Exam: 20 Jun 2026 (Forenoon)</span>
+  <div class="pillrow">
+    <span class="pill">Built from Session 1–7 slides + companions</span>
+    <span class="pill">+ all mid-sem papers (with keys)</span>
+    <span class="pill">+ end-sem (in-scope) questions</span>
+    <span class="pill">+ all assignment questions</span>
+  </div>
+</div>
+
+<div class="box tip">
+  <span class="bt">How to use this</span>
+  Read each <strong>Session (S1–S7)</strong> top-to-bottom (exam-targeted theory). Then drill the
+  <strong>topic-wise solved questions</strong> from real EC2 papers — the numbers change but the patterns repeat. The
+  <a href="#qend">End-Sem in-scope</a>, <a href="#qassign">Assignment</a>, and <a href="#qcomp">Companion/Practice</a> banks add lots more practice on the same skills.
+  Keep the <a href="#cheat">Cheat Sheet</a>, <a href="#ztable">Z-table</a> and <a href="#formulas">Formula Sheet</a> open while solving. This is a <strong>closed-book, calculation-heavy</strong> paper — practise by hand and memorise the formulas.
+</div>
+
+<!-- ================= EXAM PATTERN ================= -->
+<section id="pattern">
+<h2 class="sec">📊 Exam Pattern — decoded from real papers</h2>
+<p>Across the Dec-2025, Jan-2026, 2024 and 2023 EC2 papers the mid-sem is <strong>~6 questions</strong>, almost all
+<strong>numerical</strong>, with multi-part \((a)/(b)/(c)\). Marks are spread to touch every session, and a few recurring "question archetypes" appear in nearly every sitting.</p>
+
+<div class="box key">
+<span class="bt">The recurring question map</span>
+<table class="center">
+<tr><th>Q</th><th>Session / Topic</th><th>What it almost always asks</th></tr>
+<tr><td><strong>Q1</strong></td><td>S1 — Descriptive Statistics</td><td>From a small dataset: mean, median, SD, five-number summary, IQR, <strong>outliers via 1.5×IQR</strong>, comment on skewness (mean vs median)</td></tr>
+<tr><td><strong>Q2</strong></td><td>S4 — Bayes / Naive Bayes</td><td>Classify a message (spam/urgent) with <strong>Naive Bayes + Laplace smoothing</strong>, or a Bayes posterior (disease test, machine source)</td></tr>
+<tr><td><strong>Q3</strong></td><td>S5 + S6</td><td>(a) discrete RV: find \(k\), \(P(\cdot)\), \(E[X]\), Var; (b) <strong>Poisson</strong> approximation / counts</td></tr>
+<tr><td><strong>Q4</strong></td><td>S5 — Random Variables</td><td>Continuous / joint PDF: verify valid, marginals, independence, \(E[X]\), \(E[XY]\); or a CDF → find \(k\), PDF</td></tr>
+<tr><td><strong>Q5</strong></td><td>S6 — Normal</td><td><strong>Normal distribution</strong>: \(z\)-scores, proportion in/out of spec, inverse-normal cut-off</td></tr>
+<tr><td><strong>Q6</strong></td><td>S3 / S6 / S7</td><td>Total probability, inclusion–exclusion, Poisson, or <strong>sampling distribution / CLT / confidence interval</strong></td></tr>
+</table>
+<span class="small">Exact ordering shifts between sittings, but these archetypes recur. Probability (S2/S3) sometimes replaces one of the above.</span>
+</div>
+
+<h3>Topic frequency — where the marks live</h3>
+<table>
+<tr><th>Topic</th><th>Typical ask</th><th>Priority</th></tr>
+<tr><td>5-number summary + IQR outliers + skewness</td><td>Every paper (Q1)</td><td>🔴 Must-know</td></tr>
+<tr><td>Naive Bayes classification (+ Laplace)</td><td>Most papers (Q2)</td><td>🔴 Must-know</td></tr>
+<tr><td>Bayes posterior (disease/machine/source)</td><td>Most papers</td><td>🔴 Must-know</td></tr>
+<tr><td>Discrete RV: find \(k\), \(E[X]\), Var, \(E[aX+b]\)</td><td>Every paper (Q3)</td><td>🔴 Must-know</td></tr>
+<tr><td>Continuous / joint PDF: \(k\), marginals, independence, \(E\)</td><td>Most papers (Q4)</td><td>🔴 Must-know</td></tr>
+<tr><td>Normal distribution: \(z\)-score, proportion, inverse</td><td>Every paper (Q5)</td><td>🔴 Must-know</td></tr>
+<tr><td>Poisson (counts, approximation to Binomial)</td><td>Most papers</td><td>🟠 High</td></tr>
+<tr><td>Total probability &amp; conditional</td><td>Most papers</td><td>🟠 High</td></tr>
+<tr><td>Addition rule / independence / inclusion–exclusion</td><td>Several</td><td>🟠 High</td></tr>
+<tr><td>Sampling distribution / CLT / confidence interval</td><td>Several (Q6)</td><td>🟠 High</td></tr>
+<tr><td>Binomial (exact &amp; normal approx)</td><td>Several</td><td>🟡 Medium</td></tr>
+</table>
+<div class="box warn"><span class="bt">⚠️ Closed book — but you'll usually get a Z-table</span> BITS typically supplies a standard-normal table (and gives specific \(t\)/\(Z\) critical values in the question). Still <strong>memorise the formulas</strong> and the common \(z\) values in the <a href="#ztable">Z-table card</a> below — and always state the formula before substituting.</div>
+</section>
+
+<!-- ================= CHEAT SHEET ================= -->
+<section id="cheat">
+<h2 class="sec">⚡ One-Page Cheat Sheet</h2>
+<div class="grid2">
+<div class="box formula">
+<span class="bt">S1 · Descriptive statistics</span>
+Mean \(\bar x=\frac{\sum x}{n}\); <strong>sample</strong> variance \(s^2=\frac{\sum(x-\bar x)^2}{n-1}\) (Bessel's \(n-1\)); SD \(=\sqrt{s^2}\).<br>
+Quartiles: \(Q_2\)=median; \(Q_1,Q_3\)=medians of lower/upper halves. IQR \(=Q_3-Q_1\).<br>
+<strong>Outlier fences:</strong> below \(Q_1-1.5\,\text{IQR}\) or above \(Q_3+1.5\,\text{IQR}\).<br>
+Skew: mean \(&gt;\) median → right (positive); mean \(&lt;\) median → left. CV \(=\frac{\sigma}{\mu}\times100\%\) (compare spread).
+</div>
+<div class="box formula">
+<span class="bt">S2–S3 · Probability</span>
+Addition: \(P(A\cup B)=P(A)+P(B)-P(A\cap B)\). Mutually exclusive: \(P(A\cap B)=0\). Independent: \(P(A\cap B)=P(A)P(B)\).<br>
+Conditional: \(P(B|A)=\frac{P(A\cap B)}{P(A)}\); multiplication \(P(A\cap B)=P(A)P(B|A)\).<br>
+<strong>Total probability:</strong> \(P(B)=\sum_i P(A_i)P(B|A_i)\). At-least-one \(=1-P(\text{none})\).
+</div>
+<div class="box formula">
+<span class="bt">S4 · Bayes &amp; Naive Bayes</span>
+\(\displaystyle P(H|E)=\frac{P(E|H)P(H)}{\sum_i P(E|H_i)P(H_i)}\).<br>
+<strong>Naive Bayes:</strong> pick class maximizing \(P(c)\prod_i P(x_i|c)\).<br>
+<strong>Laplace smoothing:</strong> \(P(w|c)=\dfrac{\text{count}(w,c)+1}{N_c+|V|}\) (\(|V|\)=vocab size). Avoids zero probabilities.
+</div>
+<div class="box formula">
+<span class="bt">S5 · Random variables</span>
+Valid: \(f(x)\ge0\), \(\sum f=1\) (or \(\int f=1\)). \(E[X]=\sum x f(x)\) or \(\int x f\,dx\); \(\text{Var}=E[X^2]-(E[X])^2\).<br>
+\(E[aX+b]=aE[X]+b\); \(\text{Var}(aX+b)=a^2\text{Var}(X)\).<br>
+Joint: marginal \(f_X(x)=\sum_y f(x,y)\); independent ⇔ \(f(x,y)=f_X(x)f_Y(y)\); \(F(x)=P(X\le x)\), \(f=F'\).
+</div>
+<div class="box formula">
+<span class="bt">S6 · Distributions</span>
+Binomial \(P(X=k)=\binom{n}{k}p^k(1-p)^{n-k}\), mean \(np\), var \(np(1-p)\).<br>
+Poisson \(P(X=k)=\dfrac{e^{-\lambda}\lambda^k}{k!}\), mean=var=\(\lambda\); \(\lambda=np\) approximates Binomial (\(n\) large, \(p\) small).<br>
+Normal: \(z=\dfrac{x-\mu}{\sigma}\); inverse \(x=\mu+z\sigma\); \(\Phi(-z)=1-\Phi(z)\).
+</div>
+<div class="box formula">
+<span class="bt">S7 · Sampling, CLT, CI</span>
+<strong>CLT:</strong> \(\bar X\) is \(\sim\) Normal with mean \(\mu\), <strong>SE</strong> \(=\dfrac{\sigma}{\sqrt n}\); \(z=\dfrac{\bar x-\mu}{\sigma/\sqrt n}\).<br>
+CI: \(\bar x\pm z_{\alpha/2}\dfrac{\sigma}{\sqrt n}\) (\(\sigma\) known / \(n\ge30\)); use \(t\) if \(\sigma\) unknown &amp; \(n&lt;30\).<br>
+Sample size: \(n=\big(\dfrac{z\,\sigma}{E}\big)^2\) (round up).
+</div>
+</div>
+
+<div class="box key">
+<span class="bt">15-second decision rules</span>
+<table>
+<tr><td>"Find outliers"</td><td>→ \(Q_1-1.5\,\text{IQR}\), \(Q_3+1.5\,\text{IQR}\)</td></tr>
+<tr><td>mean ≫ median (one huge value)</td><td>→ right-skewed; report the <strong>median</strong> as robust centre</td></tr>
+<tr><td>"classify a text message"</td><td>→ Naive Bayes + Laplace smoothing</td></tr>
+<tr><td>"test positive, rare disease, P(disease)?"</td><td>→ Bayes; expect a <em>low</em> posterior (base-rate)</td></tr>
+<tr><td>counts of rare events / "per hour, per foot"</td><td>→ Poisson, \(\lambda=\) rate × exposure</td></tr>
+<tr><td>"\(n\) trials, success prob \(p\)"</td><td>→ Binomial; if \(n\) large &amp; \(p\) small → Poisson(\(np\))</td></tr>
+<tr><td>"between two values, bell curve"</td><td>→ Normal; \(z\)-scores then table</td></tr>
+<tr><td>"sample mean of \(n\)…"</td><td>→ CLT: divide \(\sigma\) by \(\sqrt n\) (SE)</td></tr>
+<tr><td>find \(k\) / \(c\) in a PMF or PDF</td><td>→ set total \(\sum f=1\) or \(\int f=1\), solve</td></tr>
+<tr><td>mean = variance?</td><td>→ Poisson diagnostic (if not equal, not Poisson)</td></tr>
+</table>
+</div>
+</section>
+
+<!-- ================= Z TABLE ================= -->
+<section id="ztable">
+<h2 class="sec">📑 Standard-Normal &amp; Critical-Value Quick Card</h2>
+<p class="small">The exam usually supplies a full Z-table, but these are the values that appear again and again. \(\Phi(z)=P(Z\le z)\).</p>
+<div class="grid2">
+<div class="box formula"><span class="bt">Common \(\Phi(z)\)</span>
+<table class="center">
+<tr><th>z</th><th>Φ(z)</th><th>z</th><th>Φ(z)</th></tr>
+<tr><td>0.0</td><td>0.5000</td><td>1.28</td><td>0.8997</td></tr>
+<tr><td>0.5</td><td>0.6915</td><td>1.50</td><td>0.9332</td></tr>
+<tr><td>1.0</td><td>0.8413</td><td>1.645</td><td>0.9500</td></tr>
+<tr><td>1.2</td><td>0.8849</td><td>1.96</td><td>0.9750</td></tr>
+<tr><td>1.6</td><td>0.9452</td><td>2.00</td><td>0.9772</td></tr>
+<tr><td>2.33</td><td>0.9901</td><td>2.576</td><td>0.9950</td></tr>
+</table>
+<span class="small">Left tail: \(\Phi(-z)=1-\Phi(z)\). Between: \(\Phi(z_2)-\Phi(z_1)\).</span>
+</div>
+<div class="box formula"><span class="bt">Critical values you'll need</span>
+<strong>Confidence intervals (two-sided \(z\)):</strong> 90% → 1.645 · 95% → 1.96 · 99% → 2.576.<br>
+<strong>One-sided \(z\):</strong> 0.05 → 1.645 · 0.01 → 2.326.<br>
+<strong>Inverse-normal cut-offs:</strong> top 10% → \(z=1.28\) · top 5% → \(z=1.645\) · top 2.5% → \(z=1.96\).<br>
+<strong>\(t\) (small \(n\)):</strong> given in the question (depends on df) — e.g. \(t_{0.025,19}=2.093\).
+</div>
+</div>
+</section>
+
+<!-- ================= DISTRIBUTION SELECTOR ================= -->
+<section id="distsel">
+<h2 class="sec">🧭 Which Probability Distribution? — Decision Guide</h2>
+<p>Picking the right distribution is half the battle. First ask the single most important question: <strong>are you counting whole-number occurrences, or measuring a continuous quantity?</strong> Then follow the branch.</p>
+
+<div class="box key">
+<span class="bt">The decision tree (read top to bottom)</span>
+<p><strong>① COUNTING</strong> (results are \(0,1,2,\dots\)):</p>
+<ul>
+<li><strong>One single trial</strong> with two outcomes (success/failure)? → <strong>Bernoulli</strong> \((p)\).</li>
+<li><strong>A fixed number \(n\) of independent trials</strong>, each success-prob \(p\) constant, and you count successes? → <strong>Binomial</strong> \((n,p)\). <span class="small">Tell: "out of \(n\)", "in \(n\) trials", "% of \(n\) items".</span></li>
+<li><strong>No fixed \(n\)</strong> — events occur at an <strong>average rate over time / length / area</strong>, count is unbounded? → <strong>Poisson</strong> \((\lambda)\). <span class="small">Tell: "on average \(\lambda\) per hour/day/foot", "number of … per …".</span></li>
+</ul>
+<p><strong>② MEASURING</strong> (continuous quantity, bell-shaped): → <strong>Normal</strong> \((\mu,\sigma)\). <span class="small">Tell: "normally distributed", heights/weights/scores/lifetimes; "proportion above/below/between".</span></p>
+<p><strong>③ INFERENCE about a parameter</strong> (Session 7):</p>
+<ul>
+<li>About a <strong>mean</strong>, with \(\sigma\) <em>known</em> or \(n\ge30\) → <strong>Z (standard Normal)</strong>.</li>
+<li>About a <strong>mean</strong>, with \(\sigma\) <em>unknown</em> and \(n&lt;30\) → <strong>t</strong> (df \(=n-1\)).</li>
+<li>About a <strong>variance</strong>, or <strong>goodness-of-fit / independence</strong> of categories → <strong>Chi-square \((\chi^2)\)</strong>.</li>
+<li>Comparing <strong>two variances</strong> / ANOVA → <strong>F</strong>.</li>
+</ul>
+</div>
+
+<h3>Selection table — conditions, tell-tale phrases, parameters</h3>
+<table>
+<tr><th>Distribution</th><th>Use when (conditions)</th><th>Tell-tale phrases</th><th>Mean / Var</th><th>Key formula</th></tr>
+<tr><td><strong>Bernoulli</strong></td><td>A single trial, exactly two outcomes (1/0)</td><td>"one trial", "single attempt, success or failure"</td><td>\(p\) / \(pq\)</td><td>\(P(1)=p,\ P(0)=q\)</td></tr>
+<tr><td><strong>Binomial</strong></td><td>Fixed \(n\) independent trials, constant \(p\), count of successes</td><td>"out of \(n\)", "exactly \(k\) of \(n\)", "n flips/patients/items"</td><td>\(np\) / \(npq\)</td><td>\(\binom{n}{k}p^kq^{n-k}\)</td></tr>
+<tr><td><strong>Poisson</strong></td><td>Count of (rare) events over a fixed interval/area, average rate \(\lambda\), no fixed \(n\)</td><td>"average rate per …", "number of arrivals/defects/calls", "on average λ"</td><td>\(\lambda\) / \(\lambda\)</td><td>\(\dfrac{e^{-\lambda}\lambda^k}{k!}\)</td></tr>
+<tr><td><strong>Normal</strong></td><td>Continuous measurement, symmetric bell, given \(\mu,\sigma\)</td><td>"normally distributed", "mean μ, SD σ", "proportion between/above/below"</td><td>\(\mu\) / \(\sigma^2\)</td><td>\(z=\frac{x-\mu}{\sigma}\)</td></tr>
+<tr><td><strong>t</strong></td><td>Inference on a mean, \(\sigma\) unknown, small sample \(n&lt;30\)</td><td>"sample SD \(s\)", "small sample", CI/test for a mean</td><td>—</td><td>\(t=\frac{\bar x-\mu}{s/\sqrt n}\), df \(=n-1\)</td></tr>
+<tr><td><strong>Chi-square</strong></td><td>Variance test; goodness-of-fit; independence of categories</td><td>"observed vs expected", "is the die fair", "association between two categorical variables"</td><td>—</td><td>\(\chi^2=\sum\frac{(O-E)^2}{E}\)</td></tr>
+<tr><td><strong>F</strong></td><td>Ratio / comparison of two variances; ANOVA</td><td>"compare variability of two groups", "ANOVA", "ratio of variances"</td><td>—</td><td>\(F=\frac{s_1^2}{s_2^2}\)</td></tr>
+</table>
+
+<div class="box formula">
+<span class="bt">⭐ Approximation shortcuts (very commonly examined)</span>
+<strong>Binomial → Poisson</strong> when \(n\) is large and \(p\) is small (rule of thumb \(n\ge20\), \(p\le0.05\)); use \(\lambda=np\). <em>Tell: "large batch", "tiny defect rate", "rare".</em><br>
+<strong>Binomial → Normal</strong> when \(np\ge5\) and \(n(1-p)\ge5\); use \(N(np,\,npq)\) with a <strong>continuity correction</strong> (\(\pm0.5\)). <em>Tell: large \(n\), \(p\) not extreme, asked for a range like "between 84 and 95".</em><br>
+<strong>Poisson → Normal</strong> when \(\lambda\) is large (\(\ge10\)); use \(N(\lambda,\lambda)\).
+</div>
+
+<div class="box warn">
+<span class="bt">⚠️ Fast disambiguators</span>
+<strong>Binomial vs Poisson:</strong> is there a fixed number of trials \(n\) and a per-trial probability \(p\)? → Binomial. Only an average <em>rate</em> with no \(n\)? → Poisson.<br>
+<strong>Poisson check:</strong> if a question says "mean = variance" (or you compute them equal), it's Poisson; if mean ≠ variance, it can't be Poisson.<br>
+<strong>Binomial vs Normal:</strong> discrete success-counts = Binomial; a continuous "normally distributed" measurement = Normal.<br>
+<strong>Z vs t (for a mean):</strong> known \(\sigma\) or \(n\ge30\) → Z; unknown \(\sigma\) and \(n&lt;30\) → t.
+</div>
+</section>
+
+<!-- ================= QUESTION-READING HACKS ================= -->
+<section id="hacks">
+<h2 class="sec">🧠 Question-Reading Hacks — turn words into math</h2>
+<p>Most ISM mistakes are <em>translation</em> mistakes, not calculation mistakes. These tables convert exam wording into the right symbols and the right method.</p>
+
+<h3>⭐ How to deduce \(P(A\mid B)\) ("probability of A given B") from a sentence</h3>
+<div class="box key">
+<span class="bt">The 2-step trick</span>
+<strong>Step 1 — find the CONDITION (that goes <em>after</em> the bar, = \(B\)):</strong> it's whatever is already known / assumed to have happened. Signal words: <em>"given that", "if", "knowing that", "when", "among", "of the [group]", "for those who", "out of the … who"</em>. Everything after these words is \(B\) — it shrinks your universe to just that group (the denominator).<br>
+<strong>Step 2 — find the TARGET (that goes <em>before</em> the bar, = \(A\)):</strong> it's the thing whose chance you're asked for, measured <em>within</em> that group.<br>
+Then \(\;P(A\mid B)=\dfrac{P(A\cap B)}{P(B)}\) — and with a table, simply \(\dfrac{\text{cell}(A\cap B)}{\text{total of group }B}\).
+</div>
+<table>
+<tr><th>Sentence</th><th>Condition \(B\) (after bar)</th><th>Target \(A\) (before bar)</th><th>Symbol</th></tr>
+<tr><td>"Of the 30,000 non-defaulters, what fraction are middle-income?"</td><td>non-defaulter</td><td>middle-income</td><td>\(P(\text{middle}\mid\text{not default})\)</td></tr>
+<tr><td>"Probability a message is spam <em>given</em> it contains 'free'"</td><td>contains 'free'</td><td>spam</td><td>\(P(\text{spam}\mid\text{free})\)</td></tr>
+<tr><td>"Among workers with a retirement plan, the chance they also have insurance"</td><td>has retirement plan</td><td>has insurance</td><td>\(P(\text{ins}\mid\text{plan})\)</td></tr>
+<tr><td>"If the test is positive, the probability the patient is diseased"</td><td>test positive</td><td>diseased</td><td>\(P(D\mid +)\)</td></tr>
+<tr><td>"For those who keep quiet, 75% call in sick"</td><td>keep quiet</td><td>call in sick</td><td>\(P(\text{sick}\mid\text{quiet})=0.75\)</td></tr>
+</table>
+<div class="box warn">
+<span class="bt">⚠️ The direction trap — \(P(A\mid B)\neq P(B\mid A)\)</span>
+"The test is <strong>99% accurate</strong>" almost always states a <em>likelihood</em> \(P(+\mid\text{disease})\) (sensitivity). The question "<strong>if you test positive, chance you have the disease</strong>" asks the <em>reverse</em>, \(P(\text{disease}\mid +)\). They are different numbers — when you're <strong>given the effect-given-cause but asked the cause-given-effect, that's your cue to use Bayes' theorem.</strong>
+</div>
+
+<h3>Phrase → operation dictionary</h3>
+<table>
+<tr><th>Wording in the question</th><th>Means</th><th>Do this</th></tr>
+<tr><td>"… and …", "both", "as well as"</td><td>intersection \(A\cap B\)</td><td>multiply (if independent) or read joint cell</td></tr>
+<tr><td>"… or …", "either … or", "at least one of A, B"</td><td>union \(A\cup B\)</td><td>\(P(A)+P(B)-P(A\cap B)\)</td></tr>
+<tr><td>"given", "if", "among", "of those who", "when"</td><td>conditional \(A\mid B\)</td><td>divide by the condition's probability</td></tr>
+<tr><td>"not", "fails", "absent", "non-"</td><td>complement \(A^c\)</td><td>\(1-P(A)\)</td></tr>
+<tr><td>"at least one"</td><td>\(\ge1\) occurrence</td><td>\(1-P(\text{none})\) (almost always easier)</td></tr>
+<tr><td>"neither … nor"</td><td>\(A^c\cap B^c\)</td><td>\(1-P(A\cup B)\)</td></tr>
+<tr><td>"exactly \(k\)"</td><td>\(P(X=k)\)</td><td>plug \(k\) into the PMF</td></tr>
+<tr><td>"at most \(k\)", "no more than", "\(k\) or fewer"</td><td>\(P(X\le k)\)</td><td>sum \(0\) to \(k\)</td></tr>
+<tr><td>"at least \(k\)", "\(k\) or more"</td><td>\(P(X\ge k)\)</td><td>\(1-P(X\le k-1)\)</td></tr>
+<tr><td>"more than \(k\)", "over \(k\)"</td><td>\(P(X&gt;k)\)</td><td>\(1-P(X\le k)\)</td></tr>
+<tr><td>"fewer/less than \(k\)"</td><td>\(P(X&lt;k)\)</td><td>sum \(0\) to \(k-1\)</td></tr>
+<tr><td>"between \(a\) and \(b\)"</td><td>\(P(a\le X\le b)\)</td><td>discrete: sum; Normal: \(\Phi(z_b)-\Phi(z_a)\)</td></tr>
+<tr><td>"what fraction / proportion / percentage / chance"</td><td>a probability</td><td>favourable ÷ total (or area under PDF)</td></tr>
+<tr><td>"independent", "does not affect"</td><td>independence</td><td>\(P(A\cap B)=P(A)P(B)\); \(P(A\mid B)=P(A)\)</td></tr>
+<tr><td>"without replacement"</td><td>dependent draws</td><td>update counts each draw (multiplication rule)</td></tr>
+</table>
+
+<h3>Which method? — Bayes vs Total Probability vs plain conditional</h3>
+<div class="box formula">
+<span class="bt">Decide in one read</span>
+<strong>Plain conditional</strong> — you have a joint table or \(P(A\cap B)\) and \(P(B)\) directly → \(P(A\mid B)=\frac{P(A\cap B)}{P(B)}\) (= cell ÷ group total).<br>
+<strong>Total probability</strong> — the world splits into mutually-exclusive causes \(A_1,\dots,A_k\) with known \(P(A_i)\) and \(P(B\mid A_i)\), and you want the overall \(P(B)\) → \(P(B)=\sum_i P(A_i)P(B\mid A_i)\). <em>Tell: "X% come from source 1, Y% from source 2, …; defect/error/spam rate of each is …; overall probability?"</em><br>
+<strong>Bayes</strong> — same setup, but you're given the <em>effect</em> happened and asked which <em>cause</em> → \(P(A_i\mid B)=\frac{P(B\mid A_i)P(A_i)}{P(B)}\). <em>Tell: "given it is defective/positive/promoted, probability it came from machine/source/group …".</em>
+</div>
+
+<h3>Per-topic hacks &amp; gotchas</h3>
+<div class="grid2">
+<div class="box tip"><span class="bt">Descriptive (S1)</span>
+• Compute the two fences once: \(Q_1-1.5\,\text{IQR}\), \(Q_3+1.5\,\text{IQR}\).<br>
+• Mean \(&gt;\) median ⇒ right-skew; the lone extreme value sits on the tail side.<br>
+• "Which average to report?" → if an outlier exists, say <strong>median</strong> (robust).<br>
+• Sample SD uses \(n-1\); population uses \(n\) — read which.</div>
+<div class="box tip"><span class="bt">Probability (S2–S3)</span>
+• "At least one" → \(1-P(\text{none})\), every time.<br>
+• Independent → multiply; mutually exclusive → \(P(A\cap B)=0\) (can't be both).<br>
+• "Without replacement" → probabilities change each draw.</div>
+<div class="box tip"><span class="bt">Bayes / Naive Bayes (S4)</span>
+• Rare condition + accurate test → posterior is surprisingly <strong>low</strong> (base rate).<br>
+• Numerator = one branch; denominator = sum of all branches.<br>
+• <strong>Any zero word-count ⇒ use Laplace smoothing</strong> or the whole product becomes 0.<br>
+• Compare class scores directly (no need to normalise); biggest wins.</div>
+<div class="box tip"><span class="bt">Random variables (S5)</span>
+• Find \(k\): set total \(=1\) (\(\sum p\) or \(\int f\)).<br>
+• \(\text{Var}(aX+b)=a^2\text{Var}(X)\) — the \(+b\) shift is irrelevant.<br>
+• Symmetric PDF ⇒ mean at the centre (no integral needed).<br>
+• Independent ⇒ \(E[XY]=E[X]E[Y]\) and \(f(x,y)=f_X f_Y\).</div>
+<div class="box tip"><span class="bt">Distributions (S6)</span>
+• mean = variance? → Poisson signature.<br>
+• Poisson \(\lambda\) scales with the interval (×3 hours ⇒ ×3 λ).<br>
+• Normal: \(P(X&gt;\mu)=0.5\); "between" = subtract two \(\Phi\)'s; "top \(p\%\)" → inverse-\(z\) then \(x=\mu+z\sigma\).<br>
+• Large \(n\) + range question ⇒ Normal approx with continuity correction.</div>
+<div class="box tip"><span class="bt">Sampling / CLT / CI (S7)</span>
+• Sample <em>mean</em> ⇒ shrink \(\sigma\) to \(SE=\sigma/\sqrt n\) before the \(z\).<br>
+• \(\sigma\) unknown &amp; \(n&lt;30\) ⇒ use \(t\) (df \(n-1\)).<br>
+• Higher confidence ⇒ wider interval; bigger \(n\) ⇒ narrower.<br>
+• Sample size: \(n=(z\sigma/E)^2\), always round <strong>up</strong>.</div>
+</div>
+</section>
+
+<!-- ================= STUDY PLAN ================= -->
+<section id="plan">
+<h2 class="sec">🗓️ Study Plan (≈6 days to 20 Jun)</h2>
+<table>
+<tr><th>Day</th><th>Focus</th><th>Goal</th></tr>
+<tr><td><strong>Day 1</strong></td><td>S1 + S2 theory → <a href="#q1">descriptive</a> &amp; <a href="#q2">probability</a> questions</td><td>Five-number summary, IQR outliers, skew; addition rule, independence</td></tr>
+<tr><td><strong>Day 2</strong></td><td>S3 + S4 theory → <a href="#q3">conditional/total</a> &amp; <a href="#q4">Bayes/Naive Bayes</a> questions</td><td>Total probability, Bayes posterior, full Naive Bayes classification with Laplace</td></tr>
+<tr><td><strong>Day 3</strong></td><td>S5 theory → <a href="#q5">random-variable</a> questions</td><td>Find \(k\), \(E[X]\), Var, \(E[aX+b]\); joint/continuous PDFs, marginals, independence</td></tr>
+<tr><td><strong>Day 4</strong></td><td>S6 theory → <a href="#q6">distribution</a> questions</td><td>Binomial, Poisson (and approximation), Normal \(z\)-scores + inverse normal</td></tr>
+<tr><td><strong>Day 5</strong></td><td>S7 theory → <a href="#q7">sampling/CLT/CI</a> + <a href="#qcomp">companion/practice</a> problems</td><td>Standard error, CLT probabilities, confidence intervals, sample size</td></tr>
+<tr><td><strong>Day 6</strong></td><td>Full mock: do the Dec-2025 paper closed-book, then sweep <a href="#qassign">assignments</a>, <a href="#qend">end-sem in-scope</a>, <a href="#formulas">formulas</a> + <a href="#last">last-minute card</a></td><td>Speed + confidence across all sessions</td></tr>
+</table>
+<div class="box tip"><span class="bt">Golden rule</span> Write the formula, substitute, then sanity-check (probabilities in \([0,1]\), variance \(\ge0\), Bayes posteriors sum to 1). Method earns most of the marks.</div>
+</section>
+
+<hr>
+<!-- ===== S1 ===== -->
+<section id="m1">
+<span class="modtag">SESSION 1</span>
+<h2 class="sec">Descriptive Statistics</h2>
+
+<h3>Central tendency</h3>
+<div class="box formula">
+<strong>Mean</strong> \(\bar x=\frac{1}{n}\sum x_i\) (sensitive to outliers). <strong>Median</strong> = middle value when sorted (robust). <strong>Mode</strong> = most frequent value. Empirical relation for moderately skewed data: Mode \(\approx 3\,\text{Median}-2\,\text{Mean}\).
+</div>
+
+<h3>Variability (dispersion)</h3>
+<div class="box formula">
+<strong>Range</strong> = max − min. <strong>Sample variance</strong> \(s^2=\dfrac{\sum(x_i-\bar x)^2}{n-1}\), <strong>SD</strong> \(s=\sqrt{s^2}\).<br>
+The divisor \(n-1\) (<strong>Bessel's correction</strong>) makes \(s^2\) an unbiased estimate of the population variance — using \(n\) would systematically under-estimate. (A "population" variance uses \(n\); read which the question wants.)<br>
+<strong>Coefficient of variation</strong> \(CV=\dfrac{s}{\bar x}\times100\%\) — lets you compare spread across datasets with different means (smaller CV = more consistent).
+</div>
+
+<h3>Five-number summary, quartiles &amp; the box plot</h3>
+<div class="box formula">
+<span class="bt">Quartiles &amp; IQR</span>
+Sort the data. \(Q_2\) = median. \(Q_1\) = median of the lower half, \(Q_3\) = median of the upper half. <strong>IQR</strong> \(=Q_3-Q_1\) (spread of the middle 50%). Five-number summary = (Min, \(Q_1\), Median, \(Q_3\), Max).
+</div>
+<div class="box key">
+<span class="bt">⭐ 1.5×IQR outlier rule (asked every paper)</span>
+A value is a potential <strong>outlier</strong> if it is below \(Q_1-1.5\,\text{IQR}\) or above \(Q_3+1.5\,\text{IQR}\). Compute both fences, then check each extreme value against them.
+</div>
+<p class="small"><strong>Note on quartile method:</strong> some papers use the "median-of-halves" method, others linear interpolation \(\big(\text{position}=p(n+1)\big)\). Both are accepted — state which you use. With an odd \(n\), exclude the median when forming the two halves.</p>
+
+<h3>Skewness — read it from mean vs median</h3>
+<div class="box def">
+<strong>Right (positive) skew:</strong> mean \(&gt;\) median (a long right tail / a few large values pull the mean up). <strong>Left (negative) skew:</strong> mean \(&lt;\) median. <strong>Symmetric:</strong> mean \(\approx\) median. A single huge value (e.g. 120 among values near 20) signals right skew + an outlier — then the <strong>median</strong> is the better summary of "typical".
+</div>
+
+<div class="box exam"><span class="bt">Likely exam asks (Q1)</span> "Compute mean, median, SD, IQR; identify outliers (1.5×IQR); comment on skewness" · "Give the five-number summary; is the process stable or is the extreme value a special cause?" · "Which measure (mean/median) should be reported and why?" · "Use CV to decide which machine is more consistent" · "Interpret a summary table (count/mean/SD/quartiles)".</div>
+</section>
+
+<hr>
+<!-- ===== S2 ===== -->
+<section id="m2">
+<span class="modtag">SESSION 2</span>
+<h2 class="sec">Basic Probability</h2>
+
+<h3>Foundations</h3>
+<div class="box def">
+<strong>Sample space</strong> \(S\) = all outcomes; an <strong>event</strong> is a subset. <strong>Axioms:</strong> \(0\le P(A)\le1\), \(P(S)=1\), and for mutually exclusive events \(P(A\cup B)=P(A)+P(B)\).
+</div>
+
+<h3>Combining events</h3>
+<div class="box formula">
+<span class="bt">Key rules</span>
+General addition: \(P(A\cup B)=P(A)+P(B)-P(A\cap B)\).<br>
+<strong>Mutually exclusive</strong> (disjoint): \(P(A\cap B)=0\) → can't both happen.<br>
+<strong>Independent</strong>: \(P(A\cap B)=P(A)\,P(B)\) → one doesn't affect the other.<br>
+Complement: \(P(A^c)=1-P(A)\); <strong>at least one</strong> \(=1-P(\text{none})\).<br>
+Inclusion–exclusion (3 sets): \(P(A\cup B\cup C)=\sum P-\sum P(\text{pairs})+P(A\cap B\cap C)\).
+</div>
+<div class="box warn"><span class="bt">⚠️ Classic trap</span> "Independent" and "mutually exclusive" are <em>not</em> the same — in fact two events with non-zero probability that are mutually exclusive can <strong>never</strong> be independent (if disjoint, knowing one happened forces the other to be impossible). Papers love asking you to validate/refute such statements.</div>
+
+<h3>Counting (when outcomes are equally likely)</h3>
+<p>\(P(\text{event})=\dfrac{\#\text{favourable}}{\#\text{total}}\). Use permutations \(^nP_r=\frac{n!}{(n-r)!}\) when order matters, combinations \(\binom{n}{r}=\frac{n!}{r!(n-r)!}\) when it doesn't (e.g. committee selection, card hands).</p>
+
+<div class="box exam"><span class="bt">Likely exam asks (Q2/Q6)</span> "Given \(P(A),P(B),P(A\cap B)\) find \(P(A\cup B)\) / exactly one / neither" (Venn) · "Validate: 'because independent, \(P(A\cup B)=0\)'" · "Fill the missing probabilities and check consistency" · "Inclusion–exclusion for defects" · "Combinatorial probability (committee, dice)".</div>
+</section>
+
+<hr>
+<!-- ===== S3 ===== -->
+<section id="m3">
+<span class="modtag">SESSION 3</span>
+<h2 class="sec">Conditional &amp; Total Probability</h2>
+
+<h3>Conditional probability &amp; the multiplication rule</h3>
+<div class="box formula">
+\(\displaystyle P(B\mid A)=\frac{P(A\cap B)}{P(A)}\quad\Rightarrow\quad P(A\cap B)=P(A)\,P(B\mid A).\)<br>
+<strong>Independence test:</strong> \(A,B\) independent ⇔ \(P(B\mid A)=P(B)\) ⇔ \(P(A\cap B)=P(A)P(B)\).
+</div>
+<p><strong>With vs without replacement:</strong> drawing <em>with</em> replacement keeps trials independent (probabilities unchanged); <em>without</em> replacement makes them dependent (the pool shrinks) — use the multiplication rule with updated counts.</p>
+
+<h3>Law of total probability</h3>
+<div class="box formula">
+<span class="bt">Partition the sample space</span>
+If \(A_1,\dots,A_k\) partition \(S\) (mutually exclusive, exhaustive), then for any event \(B\):
+$$P(B)=\sum_{i=1}^{k}P(A_i)\,P(B\mid A_i).$$
+This is the "weighted average" of the conditional probabilities — the workhorse for spam/error/defect/channel problems and the denominator of Bayes' theorem.
+</div>
+<p class="small">Tree-diagram tip: each branch multiplies along its path; sum the paths that produce the target event. Contingency tables: \(P(B|A)=\dfrac{\text{cell}}{\text{row/col total}}\).</p>
+
+<div class="box exam"><span class="bt">Likely exam asks (Q3/Q6)</span> "Total probability that a message is spam / an item is defective" · "From a contingency table, find \(P(\text{no default}\mid\text{Middle income})\)" · "Two draws without replacement: \(P(\text{2nd red}\mid\text{1st blue})\)" · "Are 'from airport A' and 'late' independent?" · "Multi-event conditional with at-least conditions".</div>
+</section>
+
+<hr>
+<!-- ===== S4 ===== -->
+<section id="m4">
+<span class="modtag">SESSION 4</span>
+<h2 class="sec">Bayes' Theorem &amp; Naive Bayes</h2>
+
+<h3>Bayes' theorem</h3>
+<div class="box formula">
+<span class="bt">Posterior from prior × likelihood</span>
+$$P(H\mid E)=\frac{P(E\mid H)\,P(H)}{P(E)}=\frac{P(E\mid H)\,P(H)}{\sum_i P(E\mid H_i)\,P(H_i)}.$$
+The denominator is just total probability. <strong>Recipe:</strong> (1) write priors \(P(H_i)\); (2) write likelihoods \(P(E\mid H_i)\); (3) total probability \(P(E)\); (4) divide. Posteriors over all hypotheses sum to 1 — a built-in check.
+</div>
+<div class="box key"><span class="bt">Base-rate effect (the headline result)</span> For a <strong>rare</strong> condition, even a "99% accurate" test gives a <em>low</em> posterior when positive, because the many healthy people generate lots of false positives. E.g. disease 0.1%, sensitivity 99%, specificity 98% → \(P(\text{disease}\mid+)\approx4.7\%\). Always expect a small number and explain why.</div>
+
+<h3>Naive Bayes classification</h3>
+<p>To classify an item with features \(x_1,\dots,x_m\), pick the class \(c\) that maximises the (proportional) posterior — assuming features are <strong>conditionally independent</strong> given the class:</p>
+<div class="box formula">
+$$\hat c=\arg\max_c\ P(c)\prod_{i=1}^{m}P(x_i\mid c).$$
+Compare the class <em>scores</em> \(P(c)\prod P(x_i|c)\) (no need to normalise). The bigger score wins.
+</div>
+<div class="box key">
+<span class="bt">⭐ Laplace (add-one) smoothing — needed almost every paper</span>
+A word never seen in a class would give probability 0 and wipe out the whole product. Fix it:
+$$P(w\mid c)=\frac{\text{count}(w,c)+1}{N_c+|V|}$$
+where \(N_c\) = total word count in class \(c\) and \(|V|\) = vocabulary size (distinct words across all classes). Add 1 to every count, add \(|V|\) to every denominator.
+</div>
+<p class="small"><strong>Text NB recipe:</strong> (1) priors \(P(c)=\frac{\#\text{docs in }c}{\#\text{docs}}\); (2) build vocabulary, count words per class; (3) Laplace-smoothed \(P(w|c)\); (4) score each class \(=P(c)\prod_w P(w|c)\) over the new message's words; (5) argmax. Show the two scores and conclude.</p>
+
+<div class="box exam"><span class="bt">Likely exam asks (Q2)</span> "Classify this new message (spam/ham, urgent/not) with Naive Bayes + Laplace smoothing — show the scores" · "Given priors &amp; likelihoods, find \(P(\text{cause}\mid\text{effect})\)" (VC/research, machine/defect, plant/quality) · "Disease test: \(P(\text{disease}\mid +)\); why so low?" · "Naive Bayes on a categorical table (weather→play, promotion→purchase)".</div>
+</section>
+
+<hr>
+<!-- ===== S5 ===== -->
+<section id="m5">
+<span class="modtag">SESSION 5</span>
+<h2 class="sec">Random Variables &amp; Distributions</h2>
+
+<h3>Discrete random variables (PMF)</h3>
+<div class="box formula">
+<span class="bt">Validity, expectation, variance</span>
+A <strong>PMF</strong> \(p(x)\) needs \(p(x)\ge0\) and \(\sum_x p(x)=1\) (this is how you <strong>find an unknown \(k\)</strong>).<br>
+\(E[X]=\sum_x x\,p(x)\); \(E[X^2]=\sum_x x^2 p(x)\); \(\text{Var}(X)=E[X^2]-(E[X])^2\); SD \(=\sqrt{\text{Var}}\).<br>
+<strong>Linear rules:</strong> \(E[aX+b]=aE[X]+b\); \(\text{Var}(aX+b)=a^2\text{Var}(X)\) (the shift \(b\) does not change variance — e.g. \(\text{Var}(2X+3)=4\,\text{Var}(X)\)).
+</div>
+
+<h3>Continuous random variables (PDF &amp; CDF)</h3>
+<div class="box formula">
+A <strong>PDF</strong> \(f(x)\) needs \(f(x)\ge0\) and \(\int_{-\infty}^{\infty} f(x)\,dx=1\) (find \(k\) here too). Probabilities are areas: \(P(a&lt;X&lt;b)=\int_a^b f(x)\,dx\).<br>
+\(E[X]=\int x f(x)\,dx\), \(E[X^2]=\int x^2 f(x)\,dx\). <strong>CDF</strong> \(F(x)=P(X\le x)=\int_{-\infty}^{x} f\); conversely \(f(x)=F'(x)\). For a symmetric PDF about \(m\), \(E[X]=m\) by symmetry.
+</div>
+
+<h3>Joint distributions</h3>
+<div class="box formula">
+<span class="bt">Marginal, conditional, independence</span>
+Find the constant from \(\sum_{x,y} f=1\) (discrete) or \(\iint f=1\) (continuous).<br>
+<strong>Marginals:</strong> \(f_X(x)=\sum_y f(x,y)\) (or \(\int f\,dy\)); similarly \(f_Y(y)\).<br>
+<strong>Conditional:</strong> \(f(y\mid x)=\dfrac{f(x,y)}{f_X(x)}\).<br>
+<strong>Independent</strong> ⇔ \(f(x,y)=f_X(x)\,f_Y(y)\) for all \(x,y\). If independent, \(E[XY]=E[X]E[Y]\).
+</div>
+<p class="small">Worked sketch: \(f(x,y)=6x^2y\) on \([0,1]^2\) ⇒ \(f_X=3x^2,\ f_Y=2y\); since \(3x^2\cdot2y=6x^2y\), <strong>independent</strong>; \(E[X]=\int_0^1 3x^3dx=\tfrac34\), \(E[Y]=\tfrac23\), \(E[XY]=\tfrac12\).</p>
+
+<div class="box exam"><span class="bt">Likely exam asks (Q3a/Q4)</span> "Find \(k\); compute \(P(X&lt;6)\), \(E[X]\), Var, \(E[2X-3]\)" · "Continuous PDF: find \(k\), \(P(1&lt;X&lt;3)\), \(E[X]\)" · "Joint PDF: verify valid, marginals, independence, \(E[XY]\)" · "CDF given → find \(k\) and the PDF" · "Hypergeometric: draw without replacement, distribution of #defectives".</div>
+</section>
+
+<hr>
+<!-- ===== S6 ===== -->
+<section id="m6">
+<span class="modtag">SESSION 6</span>
+<h2 class="sec">Probability Distributions</h2>
+
+<h3>Bernoulli &amp; Binomial</h3>
+<div class="box formula">
+<strong>Bernoulli</strong> = single trial, success prob \(p\). <strong>Binomial</strong> \(X\sim B(n,p)\) = number of successes in \(n\) independent trials:
+$$P(X=k)=\binom{n}{k}p^k(1-p)^{n-k},\quad E[X]=np,\quad \text{Var}=np(1-p).$$
+(From mean \(np\) and variance \(npq\) you can back out \(n,p,q\).)
+</div>
+
+<h3>Poisson</h3>
+<div class="box formula">
+For counts of rare events over a fixed interval/exposure: \(X\sim\text{Poisson}(\lambda)\),
+$$P(X=k)=\frac{e^{-\lambda}\lambda^{k}}{k!},\qquad E[X]=\text{Var}(X)=\lambda.$$
+\(\lambda=\) rate × exposure (e.g. 1.2 visits/hr over 3 hrs ⇒ \(\lambda=3.6\)). <strong>Mean = variance</strong> is the Poisson diagnostic (if they differ, it isn't Poisson). <strong>Poisson approximates Binomial</strong> when \(n\) is large and \(p\) small, with \(\lambda=np\).
+</div>
+<p class="small">Common moves: \(P(X\ge1)=1-P(0)=1-e^{-\lambda}\); \(P(X\ge2)=1-e^{-\lambda}(1+\lambda)\); add exposures by adding \(\lambda\).</p>
+
+<h3>Normal distribution</h3>
+<div class="box formula">
+<span class="bt">Standardise, then use the Z-table</span>
+\(X\sim N(\mu,\sigma^2)\). <strong>Z-score</strong> \(z=\dfrac{x-\mu}{\sigma}\); then \(P(X&lt;x)=\Phi(z)\) from the table.<br>
+\(P(a&lt;X&lt;b)=\Phi(z_b)-\Phi(z_a)\); left tail \(\Phi(-z)=1-\Phi(z)\).<br>
+<strong>Inverse normal</strong> (cut-offs): \(x=\mu+z\sigma\) where \(z\) is the value with the required tail area (top 10% → \(z=1.28\), top 5% → \(1.645\)).
+</div>
+<p class="small"><strong>Normal approximation to Binomial:</strong> for large \(n\), \(B(n,p)\approx N(np,\,np(1-p))\); apply a continuity correction (\(P(X\le k)\approx\Phi(\frac{k+0.5-\mu}{\sigma})\)). The <strong>\(t\), \(\chi^2\), \(F\)</strong> distributions are introduced here too (used in S7 / hypothesis testing): \(t\) for small samples with unknown \(\sigma\); \(\chi^2\) for variances / goodness-of-fit; \(F\) for ratios of variances.</p>
+
+<div class="box exam"><span class="bt">Likely exam asks (Q3b/Q5)</span> "Poisson: \(P(\text{no defect})\), \(P(\text{exactly one})\), packets out of 10,000" · "Normal: proportion of washers/resistors out of spec; comment on process capability" · "Inverse normal: Dean's-list cut-off / top 10%" · "Binomial exact vs Poisson approximation — compare" · "Binomial mean &amp; SD → find \(n,p\), then a probability" · "Normal approx to Binomial with continuity correction".</div>
+</section>
+
+<hr>
+<!-- ===== S7 ===== -->
+<section id="m7">
+<span class="modtag">SESSION 7</span>
+<h2 class="sec">Sampling, Central Limit Theorem &amp; Confidence Intervals</h2>
+
+<h3>Sampling distribution of the mean &amp; the CLT</h3>
+<div class="box formula">
+<span class="bt">The key idea</span>
+If you draw samples of size \(n\), the sample mean \(\bar X\) has mean \(\mu\) and <strong>standard error</strong>
+$$SE=\frac{\sigma}{\sqrt n}.$$
+The <strong>Central Limit Theorem</strong>: for large \(n\) (rule of thumb \(n\ge30\)), \(\bar X\) is approximately Normal <em>regardless of the population shape</em>; if the population is already Normal, \(\bar X\) is exactly Normal for any \(n\). To find probabilities about \(\bar X\): \(z=\dfrac{\bar x-\mu}{\sigma/\sqrt n}\), then the Z-table.
+</div>
+<p class="small">Note: \(SE\) shrinks like \(1/\sqrt n\) — quadrupling \(n\) halves the spread of \(\bar X\). That's why larger samples give more precise estimates.</p>
+
+<h3>Estimation &amp; confidence intervals</h3>
+<div class="box formula">
+<span class="bt">CI for a mean</span>
+$$\bar x\ \pm\ z_{\alpha/2}\,\frac{\sigma}{\sqrt n}\quad(\sigma\text{ known or }n\ge30),\qquad \bar x\ \pm\ t_{\alpha/2,\,n-1}\,\frac{s}{\sqrt n}\quad(\sigma\text{ unknown},\ n&lt;30).$$
+\(z_{\alpha/2}\): 90% → 1.645, 95% → 1.96, 99% → 2.576. The <strong>margin of error</strong> is \(E=z_{\alpha/2}\,\sigma/\sqrt n\).
+</div>
+<div class="box formula">
+<span class="bt">Required sample size</span>
+To achieve margin of error \(E\): \(\;n=\Big(\dfrac{z_{\alpha/2}\,\sigma}{E}\Big)^2\) — always <strong>round up</strong> to the next integer.
+</div>
+<div class="box key"><span class="bt">Which interval/test? quick guide</span> \(\sigma\) known (or \(n\ge30\)) → use \(z\). \(\sigma\) unknown &amp; \(n&lt;30\) → use \(t\) (df \(=n-1\)). Higher confidence (99% vs 95%) → wider interval. Larger \(n\) → narrower interval. <span class="small">(Full hypothesis-test procedures, ANOVA and regression are post-mid-sem; the mid-sem stays at sampling distributions, CLT and confidence intervals.)</span></div>
+
+<div class="box exam"><span class="bt">Likely exam asks (Q6)</span> "\(P(\bar X&gt;78)\) for a sample of \(n\)" (CLT) · "How large a sample for margin of error \(E\) at 99%?" · "95%/99% confidence interval for the mean" · "Does the sampling distribution follow a Binomial? (check \(np\), \(\sqrt{npq}\))" · "Standard error of the sample mean".</div>
+</section>
+
+<hr>
+<h2 class="sec" style="border-color:var(--acc2)">📝 Topic-Wise Solved Question Bank — Mid-Sem Papers</h2>
+<p class="small">Verbatim questions from real EC2 mid-sem papers (2023–2026), grouped by session, with full worked solutions. Where a paper printed only the answer heading (blank body), the solution is reconstructed by the standard method and marked <em>(reconstructed)</em>.</p>
+
+<!-- ===== Q1 DESCRIPTIVE ===== -->
+<section id="q1">
+<h3>① Descriptive Statistics</h3>
+
+<details>
+<summary>D1. Five-number summary, outliers, stability <span class="qmeta">— Jan 2026 Makeup, Q1 · 5M</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+You are a Data Intern at Vertex Auto Parts, reviewing 10-day production output (units/day) post-automation: <strong>190, 250, 240, 270, 230, 280, 245, 265, 285, 380</strong>. Provide the five-number summary and identify outliers [3]. Based on the distribution (spread and extreme values), what does this suggest about stability/consistency? Is the variation routine, or a process shift / data-quality concern? Justify. [2]</div>
+<div class="soln"><span class="sl">Solution</span>
+<p><strong>Sort:</strong> 190, 230, 240, 245, 250, 265, 270, 280, 285, 380.</p>
+<p>Using linear interpolation \((p(n{+}1))\): \(Q_1\) at position \(0.25\times11=2.75\) → \(230+0.75(240-230)=\mathbf{237.5}\); Median \(=(250+265)/2=\mathbf{257.5}\); \(Q_3\) at \(0.75\times11=8.25\) → \(280+0.25(285-280)=\mathbf{281.25}\). Min \(=190\), Max \(=380\). <strong>Five-number summary:</strong> (190, 237.5, 257.5, 281.25, 380).</p>
+<p>IQR \(=281.25-237.5=43.75\). Upper fence \(=281.25+1.5(43.75)=346.875\); since \(380&gt;346.875\), <strong>380 is an outlier</strong> (lower fence non-binding).</p>
+<p><strong>Interpretation:</strong> most days lie in 190–285 (stable, consistent). The day at 380 is a statistical outlier, not routine fluctuation — a likely <em>special cause</em> (extra shift / efficiency spike, or a recording error like double-counting). The process is mostly in control but the high day warrants investigation before being trusted.</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>D2. Five-number summary, outliers, mean/SD, skewness <span class="qmeta">— Saurabh practice set, Q1 · API latency</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+A sample of processing times (ms) for an API call: <strong>12, 15, 18, 14, 15, 12, 85, 16, 15, 19, 17</strong>. (a) Five-number summary. (b) Outliers via 1.5×IQR. (c) Mean &amp; SD. (d) Interpret skewness from mean vs median.</div>
+<div class="soln"><span class="sl">Solution</span>
+<p>Sorted (n=11): 12,12,14,15,15,<strong>15</strong>,16,17,18,19,85. Median (6th) \(=15\); lower half {12,12,14,15,15} → \(Q_1=14\); upper half {16,17,18,19,85} → \(Q_3=18\). <strong>Summary:</strong> (12, 14, 15, 18, 85).</p>
+<p>IQR \(=4\); fences \(14-6=8\) and \(18+6=24\). \(85&gt;24\) ⇒ <strong>85 is an outlier</strong>.</p>
+<p>Mean \(=238/11\approx\mathbf{21.64}\); \(s=\sqrt{\frac{\sum(x-\bar x)^2}{10}}\approx\mathbf{21.6}\) ms (inflated by 85).</p>
+<p>Mean (21.6) ≫ median (15) ⇒ <strong>positively (right) skewed</strong>, driven by the outlier. The median is the better "typical" latency.</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>D3. Quartiles, IQR, outliers (no outliers case) <span class="qmeta">— 2025 MidSem Regular, Q1a · 3M</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+A sample of eleven weights (kg): <strong>60, 72, 65, 68, 70, 100, 62, 75, 78, 80, 83</strong>. (i) Calculate \(Q_1, Q_2, Q_3\), IQR. (ii) Identify outliers via 1.5×IQR.</div>
+<div class="soln"><span class="sl">Solution</span>
+<p>Sorted: 60,62,65,68,70,<strong>72</strong>,75,78,80,83,100. \(Q_2=72\); lower half {60,62,65,68,70} → \(Q_1=65\); upper half {75,78,80,83,100} → \(Q_3=80\). IQR \(=15\).</p>
+<p>Fences: \(65-22.5=42.5\) and \(80+22.5=102.5\). All values lie in \([42.5,102.5]\) ⇒ <strong>no outliers</strong> (even 100 is within range).</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>D4. Interpret a summary table (inferences) <span class="qmeta">— 2023 Regular, Q1 · 4M</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+Given the statistical summary of a dataset (Count, Mean, S.D, 25%, 50%, 75%, Min, Max for variables HHV, WBN, BNC, HBCN), write at least three inferences.</div>
+<div class="soln"><span class="sl">Solution</span>
+<p>Three standard inferences any such table supports:</p>
+<p><strong>(1) Consistency via CV \(=\frac{\text{SD}}{\text{Mean}}\times100\%\):</strong> compute for each variable and rank — the smallest CV is the most consistent (in the source table, BNC ≈ 5.3% was most consistent).</p>
+<p><strong>(2) Symmetry via Mean vs Median (50%):</strong> Mean \(&gt;\) Median ⇒ right-skewed; Mean \(\approx\) Median ⇒ symmetric. Compare per variable.</p>
+<p><strong>(3) Outlier check via \([Q_1-1.5\,\text{IQR},\,Q_3+1.5\,\text{IQR}]\):</strong> using the 25% and 75% rows, see whether Min/Max fall outside the fences (a Min sitting on the lower fence is a potential outlier).</p>
+<p class="small">General method: CV → consistency, Mean-vs-Median → skew, fences → outliers. State numbers for full marks.</p>
+</div>
+</div>
+</details>
+</section>
+
+<!-- ===== Q2 PROBABILITY ===== -->
+<section id="q2">
+<h3>② Basic Probability</h3>
+
+<details>
+<summary>P1. Independent events — validate statements <span class="qmeta">— 2023 Regular, Q2 · 4M</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+\(A\) and \(B\) are independent events, \(P(A)=0.35\), \(P(B)=0.30\). Validate and justify: (a) \(P(A\cup B)=0\) because independent; (b) \(P(A\cap B)=0\) because mutually exclusive; (c) Find \(P(A^c\cap B^c)\). [4]</div>
+<div class="soln"><span class="sl">Solution</span>
+<p>Independence ⇒ \(P(A\cap B)=P(A)P(B)=0.35\times0.30=0.105\).</p>
+<p><strong>(a) Incorrect.</strong> \(P(A\cup B)=0.35+0.30-0.105=\mathbf{0.545}\), not 0. (Independence has nothing to do with the union being 0.)</p>
+<p><strong>(b) Incorrect.</strong> Mutually exclusive would need \(P(A\cap B)=0\), but here \(P(A\cap B)=0.105\neq0\). Independent ≠ mutually exclusive.</p>
+<p><strong>(c)</strong> \(A^c,B^c\) are also independent: \(P(A^c\cap B^c)=P(A^c)P(B^c)=0.65\times0.70=\mathbf{0.455}\). (Check: \(=1-P(A\cup B)=1-0.545=0.455\) ✓.)</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>P2. Independent events — six quantities <span class="qmeta">— 2023 Makeup, Q1 · 3M</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+\(A\) and \(B\) independent, \(P(A)=0.25\), \(P(B)=0.20\). Find (a) \(P(A\cup B)\), (b) \(P(A\cap B)\), (c) \(P(A\mid B)\), (d) \(P(B\mid A)\), (e) \(P(A^c\mid B)\), (f) \(P(A^c\cap B^c)\). [3]</div>
+<div class="soln"><span class="sl">Solution</span>
+<p>(b) \(P(A\cap B)=0.25\times0.20=\mathbf{0.05}\). (a) \(P(A\cup B)=0.25+0.20-0.05=\mathbf{0.40}\). (c) \(P(A\mid B)=P(A)=\mathbf{0.25}\) (independence). (d) \(P(B\mid A)=P(B)=\mathbf{0.20}\). (e) \(P(A^c\mid B)=1-P(A\mid B)=\mathbf{0.75}\). (f) \(P(A^c\cap B^c)=0.75\times0.80=\mathbf{0.60}\).</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>P3. Fill missing probabilities &amp; check consistency <span class="qmeta">— 2024 Makeup, Q1b</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+Manufacturing company; \(M\)=machine operators, \(Q\)=quality inspectors. Given \(P(M\cup Q)=0.40\), \(P(M-Q)=0.15\), \(P(Q-M)=0.10\). Fill the missing terms \(P(M)\), \(P(Q)\), \(P(M\cap Q)\); validate consistency.</div>
+<div class="soln"><span class="sl">Solution</span>
+<p>The union splits into three disjoint pieces: \(P(M\cup Q)=P(M-Q)+P(Q-M)+P(M\cap Q)\). So \(0.40=0.15+0.10+P(M\cap Q)\Rightarrow P(M\cap Q)=\mathbf{0.15}\).</p>
+<p>\(P(M)=P(M-Q)+P(M\cap Q)=0.15+0.15=\mathbf{0.30}\); \(P(Q)=P(Q-M)+P(M\cap Q)=0.10+0.15=\mathbf{0.25}\).</p>
+<p><strong>Consistency:</strong> \(P(M\cup Q)\le P(M)+P(Q)\Rightarrow0.40\le0.55\) ✓ — consistent.</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>P4. Three-event conditional probabilities <span class="qmeta">— 2023 Regular, Q3 · 4M</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+Events with \(P(A)=0.50, P(B)=0.55, P(C)=0.45, P(A\cap B)=0.20, P(B\cap C)=0.20, P(A\cap C)=0.15, P(A\cap B\cap C)=0.05\). Find (a) \(P(A\mid A\cup B)\), (b) \(P(B\mid A\cap B)\), (c) \(P(A\cap B\mid A\cup B)\), (d) \(P(A\cup B\mid A\cap B\cap C)\). [4]</div>
+<div class="soln"><span class="sl">Solution</span>
+<p>\(P(A\cup B)=0.50+0.55-0.20=0.85\).</p>
+<p>(a) \(P(A\mid A\cup B)=\dfrac{P(A)}{P(A\cup B)}=\dfrac{0.50}{0.85}\approx\mathbf{0.588}\) (since \(A\subseteq A\cup B\), \(P(A\cap(A\cup B))=P(A)\)).</p>
+<p>(b) \(P(B\mid A\cap B)=\dfrac{P(A\cap B)}{P(A\cap B)}=\mathbf{1}\) (if \(A\cap B\) occurred, \(B\) certainly did).</p>
+<p>(c) \(P(A\cap B\mid A\cup B)=\dfrac{0.20}{0.85}\approx\mathbf{0.235}\).</p>
+<p>(d) \(A\cap B\cap C\subseteq A\cup B\), so \(P(A\cup B\mid A\cap B\cap C)=\mathbf{1}\).</p>
+</div>
+</div>
+</details>
+</section>
+
+<!-- ===== Q3 CONDITIONAL/TOTAL ===== -->
+<section id="q3">
+<h3>③ Conditional &amp; Total Probability</h3>
+
+<details>
+<summary>C1. Total probability — spam across accounts <span class="qmeta">— 2025 MidSem Regular, Q3b · 2M</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+An individual has 3 email accounts: 70% of messages go to #1, 20% to #2, 10% to #3. The fraction of spam is #1=1%, #2=2%, #3=5%. What is the probability that a randomly selected message is spam? [2]</div>
+<div class="soln"><span class="sl">Solution</span>
+<p>Law of total probability: \(P(S)=\sum P(\text{acct})P(S\mid\text{acct})=0.70(0.01)+0.20(0.02)+0.10(0.05)=0.007+0.004+0.005=\mathbf{0.016}\) (1.6%).</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>C2. Total probability + Bayes (editors &amp; errors) <span class="qmeta">— Saurabh practice set, Q2</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+30% use Editor A, 50% B, 20% C. \(P(\text{error}\mid A)=0.05\), \(P(\text{error}\mid B)=0.03\), \(P(\text{error}\mid C)=0.08\). (a) Total \(P(\text{error})\). (b) Given an error, \(P(\text{Editor C})\)?</div>
+<div class="soln"><span class="sl">Solution</span>
+<p><strong>(a)</strong> \(P(E)=0.05(0.30)+0.03(0.50)+0.08(0.20)=0.015+0.015+0.016=\mathbf{0.046}\).</p>
+<p><strong>(b)</strong> \(P(C\mid E)=\dfrac{P(E\mid C)P(C)}{P(E)}=\dfrac{0.016}{0.046}\approx\mathbf{0.348}\).</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>C3. Contingency table — conditional probabilities <span class="qmeta">— 2024 Makeup, Q3 · 3M</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+Customers by income vs loan default: No-default — Low 8000, Middle 15000, High 7000 (total 30000); Yes-default — Low 2000, Middle 5000, High 1000 (total 8000); column totals 10000/20000/8000, grand total 38000. (i) \(P(\text{not default}\mid\text{Middle income})\). (ii) \(P(\text{Middle income}\mid\text{not default})\). [3]</div>
+<div class="soln"><span class="sl">Solution</span>
+<p><strong>(i)</strong> Restrict to the Middle column (20000): \(P(\text{not default}\mid\text{Middle})=\dfrac{15000}{20000}=\mathbf{0.75}\).</p>
+<p><strong>(ii)</strong> Restrict to the No-default row (30000): \(P(\text{Middle}\mid\text{not default})=\dfrac{15000}{30000}=\mathbf{0.50}\).</p>
+<p class="small">Conditioning fixes the denominator to the relevant row/column total.</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>C4. Conditional with at-least conditions (keep-quiet) <span class="qmeta">— 2025 MidSem Regular, Q2 · 5M</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+35% of employees admit keeping quiet about co-worker misconduct (event \(K\)). 75% of those who keep quiet call in sick when well (\(P(S\mid K)=0.75\)). 40% of those who call in sick when well admit keeping quiet (\(P(K\mid S)=0.40\)). Find (a) \(P(S\cap K)\); (b) \(P(K\cup S)\); (c) \(P(K^c\mid S)\); (d) \(P(K^c\cap S^c)\); (e) \(P(K\cap S^c)\). [5]</div>
+<div class="soln"><span class="sl">Solution <span class="small">(reconstructed)</span></span>
+<p>\(P(K)=0.35\), \(P(S\mid K)=0.75\Rightarrow\) (a) \(P(K\cap S)=0.35\times0.75=\mathbf{0.2625}\).</p>
+<p>\(P(K\mid S)=0.40=\dfrac{P(K\cap S)}{P(S)}\Rightarrow P(S)=\dfrac{0.2625}{0.40}=0.65625\).</p>
+<p>(b) \(P(K\cup S)=0.35+0.65625-0.2625=\mathbf{0.74375}\). (c) \(P(K^c\mid S)=1-0.40=\mathbf{0.60}\). (d) \(P(K^c\cap S^c)=1-P(K\cup S)=\mathbf{0.25625}\). (e) \(P(K\cap S^c)=P(K)-P(K\cap S)=0.35-0.2625=\mathbf{0.0875}\).</p>
+</div>
+</div>
+</details>
+</section>
+
+<!-- ===== Q4 BAYES/NB ===== -->
+<section id="q4">
+<h3>④ Bayes' Theorem &amp; Naive Bayes</h3>
+
+<details>
+<summary>B1. Naive Bayes classification with Laplace smoothing <span class="qmeta">— Dec 2025 Regular, Q2 · 5M</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+Classify student messages as "Urgent"/"Not Urgent" with Naïve Bayes. Training: (1) "assignment due tomorrow please help" → Urgent; (2) "lunch plans today?" → Not Urgent; (3) "exam rescheduled urgent attention" → Urgent; (4) "thanks for the notes" → Not Urgent. New message: <strong>"assignment urgent"</strong>. Use Naïve Bayes with Laplace smoothing (α=1). Classify. [5]</div>
+<div class="soln"><span class="sl">Solution</span>
+<p>Priors: \(P(U)=P(N)=2/4=0.5\). Build the vocabulary across all 4 messages: \(|V|=16\) distinct words. Word totals: Urgent class \(N_U=9\), Not-Urgent \(N_N=7\). Laplace: \(P(w|c)=\frac{\text{count}+1}{N_c+|V|}\) ⇒ denominators \(25\) and \(23\).</p>
+<p><strong>Urgent:</strong> "assignment" appears once, "urgent" once ⇒ \(P(\text{assignment}|U)=\frac{2}{25}\), \(P(\text{urgent}|U)=\frac{2}{25}\). Score \(=0.5\cdot\frac{2}{25}\cdot\frac{2}{25}=\mathbf{0.0032}\).</p>
+<p><strong>Not Urgent:</strong> neither word appears ⇒ each \(=\frac{1}{23}\). Score \(=0.5\cdot\frac{1}{23}\cdot\frac{1}{23}\approx\mathbf{0.000945}\).</p>
+<p>\(0.0032&gt;0.000945\) ⇒ <strong>classify as Urgent</strong>.</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>B2. Bayes posterior (VC appointment) <span class="qmeta">— Jan 2026 Makeup, Q2 · 5M</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+VC appointment probabilities: academician 0.5, businessman 0.3, politician 0.2. Probability research is promoted given each: 0.8, 0.6, 0.4. Research has been promoted. Find \(P(\text{VC is academician})\). [5]</div>
+<div class="soln"><span class="sl">Solution</span>
+<p>Total probability: \(P(R)=0.8(0.5)+0.6(0.3)+0.4(0.2)=0.40+0.18+0.08=\mathbf{0.66}\).</p>
+<p>Bayes: \(P(A\mid R)=\dfrac{0.8\times0.5}{0.66}=\dfrac{0.40}{0.66}=\dfrac{20}{33}\approx\mathbf{0.606}\).</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>B3. Naive Bayes spam classification <span class="qmeta">— 2025 MidSem Regular, Q3 · 5M</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+Spam filter with Naïve Bayes. Training: (1) "Congratulations, you have won a free prize" → Spam; (2) "Monthly meeting scheduled for Monday" → Not Spam; (3) "Earn money quickly with this simple trick" → Spam; (4) "Project report attached. Review by Friday" → Not Spam. Classify new email <strong>"Congratulations! You have won money quickly"</strong>. [5]</div>
+<div class="soln"><span class="sl">Solution</span>
+<p>Priors \(P(\text{Spam})=P(\text{Not})=0.5\). Vocabulary \(|V|=25\) distinct words; Spam word total \(=14\) (so Laplace denom \(=14+25=39\); Not-Spam similarly). For each word \(w\) in the new email use \(P(w|c)=\frac{\text{count}+1}{N_c+|V|}\), multiply across the email's words times the prior.</p>
+<p>Carrying out the products (the spam words "won, money, quickly, congratulations" all appear in Spam training) gives \(P(\text{email}\mid\text{Spam})\approx1.69\times10^{-8}\) vs \(P(\text{email}\mid\text{Not})\approx5.6\times10^{-10}\). Spam score is far larger ⇒ <strong>classify as SPAM</strong>.</p>
+<p class="small">Method marks: priors, vocabulary size, Laplace denominators, per-word likelihoods, product, argmax — show each.</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>B4. Bayes — rare disease test (base rate) <span class="qmeta">— 2025 MidSem Regular, Q5a · 3M</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+1 in 1000 adults is afflicted with a rare disease. A test gives positive 99% of the time if the person has the disease, and positive 2% of the time if they do not. An individual tests positive — what is the probability they have the disease? [3]</div>
+<div class="soln"><span class="sl">Solution</span>
+<p>\(P(D)=0.001,\ P(D^c)=0.999,\ P(+|D)=0.99,\ P(+|D^c)=0.02\).</p>
+<p>\(P(+)=0.99(0.001)+0.02(0.999)=0.00099+0.01998=0.02097\).</p>
+<p>\(P(D\mid+)=\dfrac{0.00099}{0.02097}\approx\mathbf{0.0472}\) (4.72%). Despite a "99% accurate" test, a positive result means only ~5% chance of disease — the <strong>base-rate effect</strong>: the 2% false positives among 999 healthy people swamp the 0.99 true positives.</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>B5. Bayes via a categorical table (weather → play) <span class="qmeta">— 2025 MidSem Regular, Q5 · 5M</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+Given a 14-row table of Weather vs whether the player plays, if the weather is <strong>Snowy</strong>, will the player play? Use Bayes' theorem. (Of the 14 rows, 7 are "Play=Yes"; 4 rows are Snowy, of which 1 has Play=Yes.)</div>
+<div class="soln"><span class="sl">Solution</span>
+<p>\(P(\text{Yes})=7/14\). Among "Yes" rows, Snowy appears once ⇒ \(P(\text{Snowy}\mid\text{Yes})=1/7\). \(P(\text{Snowy})=4/14\).</p>
+<p>\(P(\text{Yes}\mid\text{Snowy})=\dfrac{P(\text{Snowy}\mid\text{Yes})P(\text{Yes})}{P(\text{Snowy})}=\dfrac{(1/7)(7/14)}{4/14}=\dfrac{1/14}{4/14}=\mathbf{0.25}\) ⇒ only 25% chance — the player most likely will <strong>not</strong> play in snow.</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>B6. Naive Bayes — employment classification (categorical) <span class="qmeta">— 2023 Makeup, Q3 · 8M</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+Data with features Vehicle, Card, Travel and class Employment (Business/Salaried): rows — (BMW, Credit, Flight, Business), (Scooter, Debit, Bus, Salaried), (Bicycle, None, Local train, Business), (Verna, Credit, Vande Bharat, Salaried), (Scooter, Credit, Flight, Salaried), (Auto, None, Bus, Business), (BMW, Debit, Vande Bharat, Salaried), (No, No, Bus, Salaried). Classify "Vehicle=Scooter, Card=Credit, Travel=Bus" as Salaried/Business using a suitable algorithm; show working and state assumptions. [8]</div>
+<div class="soln"><span class="sl">Solution</span>
+<p>Use <strong>Naive Bayes</strong> (assume features conditionally independent given class). Priors from 8 rows: \(P(\text{Salaried})=5/8\), \(P(\text{Business})=3/8\).</p>
+<p>For each class compute likelihoods of (Vehicle=Scooter), (Card=Credit), (Travel=Bus) from the per-class counts (apply Laplace smoothing for any zero count), then form the score \(P(c)\,P(\text{Scooter}|c)\,P(\text{Credit}|c)\,P(\text{Bus}|c)\) for \(c\in\{\text{Salaried},\text{Business}\}\) and pick the larger. <em>Method:</em> tabulate counts per feature-value within each class, smooth, multiply, compare. (Exact posterior depends on the smoothing convention; state your assumption and show the two scores.)</p>
+</div>
+</div>
+</details>
+</section>
+
+<!-- ===== Q5 RANDOM VARIABLES ===== -->
+<section id="q5">
+<h3>⑤ Random Variables (PMF / PDF / Joint)</h3>
+
+<details>
+<summary>R1. Discrete PMF — find \(k\), probabilities <span class="qmeta">— Dec 2025 Regular, Q3a · 3M</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+Random variable \(X\) with probability function: \(p(0)=0,\ p(1)=k,\ p(3)=2k,\ p(4)=2k,\ p(5)=3k,\ p(6)=k^2,\ p(7)=7k^2+k\). (i) Find \(k\). (ii) Evaluate \(P(X&lt;6)\), \(P(X\ge6)\). (iii) \(P(0&lt;X&lt;5)\). [3]</div>
+<div class="soln"><span class="sl">Solution</span>
+<p><strong>(i)</strong> \(\sum p=1\): \(k+2k+2k+3k+k^2+7k^2+k=8k^2+9k=1\Rightarrow8k^2+9k-1=0\). The positive root is \(k=\tfrac{1}{10}\).</p>
+<p><strong>(ii)</strong> \(P(X&lt;6)=k+2k+2k+3k=8k=\mathbf{0.8}\); \(P(X\ge6)=k^2+(7k^2+k)=8k^2+k=0.08+0.1=\mathbf{0.18}\).</p>
+<p><strong>(iii)</strong> \(P(0&lt;X&lt;5)=p(1)+p(3)+p(4)=k+2k+2k=5k=\mathbf{0.5}\).</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>R2. Discrete RV — find \(c\), \(E[X]\), Var, \(E[aX+b]\) <span class="qmeta">— Saurabh practice set, Q4</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+\(X\) with PMF \(P(0)=0.1,\ P(1)=2c,\ P(2)=0.3,\ P(3)=c\). (a) Find \(c\). (b) \(E[X]\), \(\text{Var}(X)\). (c) \(E[2X-3]\).</div>
+<div class="soln"><span class="sl">Solution</span>
+<p><strong>(a)</strong> \(0.1+2c+0.3+c=1\Rightarrow3c=0.6\Rightarrow c=\mathbf{0.2}\); PMF \(=(0.1,0.4,0.3,0.2)\).</p>
+<p><strong>(b)</strong> \(E[X]=0(0.1)+1(0.4)+2(0.3)+3(0.2)=\mathbf{1.6}\); \(E[X^2]=0+0.4+1.2+1.8=3.4\); \(\text{Var}=3.4-1.6^2=\mathbf{0.84}\).</p>
+<p><strong>(c)</strong> \(E[2X-3]=2(1.6)-3=\mathbf{0.2}\). (And \(\text{Var}(2X-3)=4(0.84)=3.36\).)</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>R3. Continuous joint PDF — verify, marginals, independence, \(E\) <span class="qmeta">— Dec 2025 Regular, Q4 · 5M</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+\(X,Y\) continuous with joint PDF \(f(x,y)=6x^2y\) for \(0\le x\le1,\ 0\le y\le1\); 0 otherwise. (i) Verify it is a valid joint PDF. (ii) Find marginals \(f_X(x),f_Y(y)\). (iii) \(P(X&lt;0.5,Y&gt;0.5)\). (iv) Are \(X,Y\) independent? (v) \(E[X],E[Y],E[XY]\). [5]</div>
+<div class="soln"><span class="sl">Solution</span>
+<p><strong>(i)</strong> \(\iint 6x^2y\,dx\,dy=6\cdot\tfrac13\cdot\tfrac12=1\) and \(f\ge0\) ⇒ valid.</p>
+<p><strong>(ii)</strong> \(f_X(x)=\int_0^1 6x^2y\,dy=3x^2\) (\(0\le x\le1\)); \(f_Y(y)=\int_0^1 6x^2y\,dx=2y\).</p>
+<p><strong>(iii)</strong> Factorises: \(P=\int_0^{0.5}3x^2dx\cdot\int_{0.5}^1 2y\,dy=(0.125)(0.75)=\mathbf{0.09375}\).</p>
+<p><strong>(iv)</strong> \(f_X\cdot f_Y=3x^2\cdot2y=6x^2y=f(x,y)\) ⇒ <strong>independent</strong>.</p>
+<p><strong>(v)</strong> \(E[X]=\int_0^1 x\cdot3x^2dx=\tfrac34\); \(E[Y]=\int_0^1 y\cdot2y\,dy=\tfrac23\); \(E[XY]=E[X]E[Y]=\tfrac12\) (independence).</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>R4. Piecewise (triangular) PDF — find \(k\), probability, \(E[X]\) <span class="qmeta">— Saurabh practice set, Q3</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+\(X\) = system delay (s) with PDF \(f(x)=kx\) for \(0\le x\le2\); \(k(4-x)\) for \(2&lt;x\le4\); 0 otherwise. (a) Find \(k\). (b) \(P(1&lt;X&lt;3)\). (c) \(E[X]\).</div>
+<div class="soln"><span class="sl">Solution</span>
+<p><strong>(a)</strong> \(\int_0^2 kx\,dx+\int_2^4 k(4-x)\,dx=2k+2k=4k=1\Rightarrow k=\mathbf{0.25}\).</p>
+<p><strong>(b)</strong> \(\int_1^2 0.25x\,dx+\int_2^3 0.25(4-x)\,dx=0.25(1.5)+0.25(1.5)=\mathbf{0.75}\).</p>
+<p><strong>(c)</strong> The density is symmetric about \(x=2\) (a triangle peaking at 2), so \(E[X]=\mathbf{2}\).</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>R5. Joint PMF (4×4 table) — marginals, conditional, mean/var <span class="qmeta">— 2024 Makeup, Q5 · 6M</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+Joint PMF of \(X,Y\) (rows \(X=0..3\), cols \(Y=0..3\)): row0 [0.11,0.09,0.01,0.07]; row1 [0.09,0.11,0.06,0.01]; row2 [0.01,0.06,0.11,0.04]; row3 [0.07,0.01,0.04,0.11]. (i) Marginal PMFs of \(X\) and \(Y\). (ii) \(P(X=1\mid Y=2)\). (iii) \(P(Y=1\mid X=1)\). (iv) Mean and variance of each marginal. [6]</div>
+<div class="soln"><span class="sl">Solution</span>
+<p><strong>(i)</strong> Row sums give marginal \(X\): \(P(X{=}0){=}0.28,\ 0.27,\ 0.22,\ 0.23\). Column sums give marginal \(Y\): \(0.28,\ 0.27,\ 0.22,\ 0.23\).</p>
+<p><strong>(ii)</strong> \(P(X{=}1\mid Y{=}2)=\dfrac{f(1,2)}{P(Y{=}2)}=\dfrac{0.06}{0.22}\approx\mathbf{0.273}\).</p>
+<p><strong>(iii)</strong> \(P(Y{=}1\mid X{=}1)=\dfrac{f(1,1)}{P(X{=}1)}=\dfrac{0.11}{0.27}\approx\mathbf{0.407}\).</p>
+<p><strong>(iv)</strong> Using marginal \(X\): \(E[X]=0(0.28)+1(0.27)+2(0.22)+3(0.23)=1.40\); \(E[X^2]=0.27+0.88+2.07=3.22\); \(\text{Var}=3.22-1.40^2=1.26\) (similarly for \(Y\), which has the same marginal here).</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>R6. Discrete RV \(p(x)=k(x+1)/4\) — \(k\), \(E[X]\), Var <span class="qmeta">— 2023 Makeup, Q4 · 4M</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+Discrete RV with \(p(x)=k(x+1)/4\) for \(x=-1,0,1,2\). Find (a) \(k\), (b) \(E[X]\), (c) \(E[X^2]\), (d) Var, (e) \(P(-1&lt;X&lt;2)\). [4]</div>
+<div class="soln"><span class="sl">Solution</span>
+<p>Values: \(p(-1)=0,\ p(0)=k/4,\ p(1)=k/2,\ p(2)=3k/4\). <strong>(a)</strong> Sum \(=6k/4=1\Rightarrow k=\mathbf{2/3}\). So \(p=(0,\tfrac16,\tfrac13,\tfrac12)\).</p>
+<p><strong>(b)</strong> \(E[X]=0+1(\tfrac13)+2(\tfrac12)=\mathbf{4/3}\). <strong>(c)</strong> \(E[X^2]=1(\tfrac13)+4(\tfrac12)=\mathbf{7/3}\). <strong>(d)</strong> \(\text{Var}=7/3-(4/3)^2=\mathbf{5/9}\). <strong>(e)</strong> \(P(-1&lt;X&lt;2)=p(0)+p(1)=\tfrac16+\tfrac13=\mathbf{1/2}\).</p>
+</div>
+</div>
+</details>
+</section>
+
+<!-- ===== Q6 DISTRIBUTIONS ===== -->
+<section id="q6">
+<h3>⑥ Probability Distributions (Binomial / Poisson / Normal)</h3>
+
+<details>
+<summary>N1. Poisson approximation — defective blades <span class="qmeta">— Dec 2025 Regular, Q3b · 2M</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+0.2% of surgical blades are defective; packed in packets of 10. In a consignment of 10,000 packets, use the Poisson approximation to estimate the number of packets containing (i) no defective blade, (ii) exactly one defective blade. [2]</div>
+<div class="soln"><span class="sl">Solution</span>
+<p>\(\lambda=np=10\times0.002=0.02\), \(X\sim\text{Poisson}(0.02)\).</p>
+<p><strong>(i)</strong> \(P(X=0)=e^{-0.02}\approx0.9802\) → \(10000\times0.9802\approx\mathbf{9802}\) packets.</p>
+<p><strong>(ii)</strong> \(P(X=1)=0.02\,e^{-0.02}\approx0.0196\) → \(\approx\mathbf{196}\) packets.</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>N2. Normal — proportion defective &amp; process capability <span class="qmeta">— Dec 2025 Regular, Q5 · 5M</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+Inside diameters of washers are Normally distributed. A sample of 200 has mean 0.500 cm, SD 0.005 cm. Acceptable range 0.492–0.506 cm; outside ⇒ defective. (a) Proportion expected defective. (b) Interpret regarding process capability. [5]</div>
+<div class="soln"><span class="sl">Solution</span>
+<p><strong>(a)</strong> \(z_{\text{low}}=\dfrac{0.492-0.500}{0.005}=-1.6\), \(z_{\text{high}}=\dfrac{0.506-0.500}{0.005}=1.2\). \(P(\text{within})=\Phi(1.2)-\Phi(-1.6)=0.8849-0.0548=0.8301\). \(P(\text{defective})=1-0.8301=\mathbf{0.1699}\approx17\%\).</p>
+<p><strong>(b)</strong> ~17% defect rate is unacceptably high — the spec window is narrow relative to the process spread (\(\sigma\) too large / mean slightly off-centre). The process is <strong>not capable</strong>; reduce variation, re-centre the mean, tighten control.</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>N3. Normal — exam scores, three parts <span class="qmeta">— Jan 2026 Makeup, Q (Normal) · 5M</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+ISM scores are Normal with \(\mu=73,\sigma=8\). (i) Find \(P(X&lt;91)\) — is it "most"? (ii) Find \(P(65&lt;X&lt;89)\). (iii) Determine the exact "top 5%" Dean's-List cut-off.</div>
+<div class="soln"><span class="sl">Solution</span>
+<p><strong>(i)</strong> \(z=\dfrac{91-73}{8}=2.25\); \(P(X&lt;91)=\Phi(2.25)\approx0.9878\) ⇒ yes, ~99% are below 91 ("most").</p>
+<p><strong>(ii)</strong> \(z_1=\dfrac{65-73}{8}=-1\), \(z_2=\dfrac{89-73}{8}=2\); \(P=\Phi(2)-\Phi(-1)=0.9772-0.1587=\mathbf{0.8185}\).</p>
+<p><strong>(iii)</strong> Top 5% ⇒ \(z=1.645\); cut-off \(=\mu+z\sigma=73+1.645(8)\approx\mathbf{86.2}\).</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>N4. Normal — instrument life; Binomial vs Poisson <span class="qmeta">— 2025 MidSem Regular, Q2 · 5M</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+(a) Instrument life is Normal \((\mu=12\) months\(,\sigma=2)\). Find \(P(X&lt;7)\) and \(P(7&lt;X&lt;12)\). (b) A biased coin has \(P(\text{head})=0.15\), flipped \(n=40\). (i) Binomial \(P(\text{exactly }5)\); (ii) Poisson approximation; (iii) compare. [5]</div>
+<div class="soln"><span class="sl">Solution</span>
+<p><strong>(a)</strong> \(z=\dfrac{7-12}{2}=-2.5\): \(P(X&lt;7)=\Phi(-2.5)=\mathbf{0.0062}\). \(P(7&lt;X&lt;12)=\Phi(0)-\Phi(-2.5)=0.5-0.0062=\mathbf{0.4938}\).</p>
+<p><strong>(b)</strong> Binomial: \(P(X=5)=\binom{40}{5}(0.15)^5(0.85)^{35}\approx\mathbf{0.169}\). Poisson \((\lambda=np=6)\): \(P(X=5)=e^{-6}6^5/5!\approx\mathbf{0.161}\). Close, but the approximation is only fair here because \(p=0.15\) isn't very small — difference \(\approx0.008\).</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>N5. Poisson — paper flaws (interval scaling) <span class="qmeta">— 2025 MidSem Regular, Q3a · 3M</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+Flaws per foot in grade-2 paper follow Poisson with mean 0.2/foot. (i) In a 1-foot roll, \(P(\ge2\) flaws\()\)? (ii) In a 50-foot roll, \(P(5\le\) flaws \(\le8)\)? [3]</div>
+<div class="soln"><span class="sl">Solution</span>
+<p><strong>(i)</strong> \(\lambda=0.2\): \(P(X\ge2)=1-[P(0)+P(1)]=1-[e^{-0.2}+0.2e^{-0.2}]=1-0.9824=\mathbf{0.0176}\).</p>
+<p><strong>(ii)</strong> 50 feet ⇒ \(\lambda=50\times0.2=10\). \(P(5\le X\le8)=\sum_{k=5}^{8}e^{-10}10^k/k!\) ≈ \(0.0378+0.0631+0.0901+0.1126\approx\mathbf{0.304}\). (Add exposures by adding \(\lambda\).)</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>N6. Binomial from mean &amp; SD <span class="qmeta">— 2023 Makeup, Q2 · 4M</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+A Binomial distribution has mean \(=4\) and SD \(=2/\sqrt3\). Find (a) the PDF (PMF), (b) \(E[X^2]\), (c) \(P(6&lt;X&lt;9)\). [4]</div>
+<div class="soln"><span class="sl">Solution</span>
+<p>\(np=4\) and \(npq=(2/\sqrt3)^2=4/3\Rightarrow q=\dfrac{npq}{np}=\dfrac{4/3}{4}=\tfrac13\), so \(p=\tfrac23,\ n=4/p=6\).</p>
+<p><strong>(a)</strong> \(P(X=k)=\binom{6}{k}(\tfrac23)^k(\tfrac13)^{6-k},\ k=0,\dots,6\). <strong>(b)</strong> \(E[X^2]=\text{Var}+(E[X])^2=\tfrac43+16=\mathbf{52/3}\). <strong>(c)</strong> \(X\le6\), so \(P(6&lt;X&lt;9)=\mathbf{0}\).</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>N7. Normal — number of employees by salary band <span class="qmeta">— 2023 Makeup, Q6 · 4M</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+Salaries of 500 employees are Normal with mean 20 lakhs and variance 4. Find the number of employees (a) above 22 lakhs, (b) below 16 lakhs, (c) between 16 and 22 lakhs. [4]</div>
+<div class="soln"><span class="sl">Solution</span>
+<p>\(\sigma=\sqrt4=2\). <strong>(a)</strong> \(z=\dfrac{22-20}{2}=1\); \(P(X&gt;22)=1-\Phi(1)=0.1587\) → \(500\times0.1587\approx\mathbf{79}\). <strong>(b)</strong> \(z=\dfrac{16-20}{2}=-2\); \(P(X&lt;16)=0.0228\) → \(\approx\mathbf{11}\). <strong>(c)</strong> \(P(16&lt;X&lt;22)=\Phi(1)-\Phi(-2)=0.8413-0.0228=0.8185\) → \(\approx\mathbf{409}\). (Check: \(79+11+409\approx499\) ✓.)</p>
+</div>
+</div>
+</details>
+</section>
+
+<!-- ===== Q7 SAMPLING/CLT/CI ===== -->
+<section id="q7">
+<h3>⑦ Sampling, CLT &amp; Confidence Intervals</h3>
+
+<details>
+<summary>S1. Sample size for a margin of error <span class="qmeta">— Saurabh practice set, Q5</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+Estimate the mean battery life; a preliminary \(\sigma=15\) hours. What sample size is needed for a margin of error of 2.5 hours at 99% confidence? \((z_{0.005}=2.576)\)</div>
+<div class="soln"><span class="sl">Solution</span>
+<p>\(n=\Big(\dfrac{z\,\sigma}{E}\Big)^2=\Big(\dfrac{2.576\times15}{2.5}\Big)^2=(15.456)^2\approx238.9\). Round up ⇒ \(n=\mathbf{239}\).</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>S2. CLT — probability about a sample mean <span class="qmeta">— Saurabh practice set, Q6</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+Test scores are Normal \((\mu=75,\sigma=10)\). A sample of 25 students is taken. Find \(P(\bar X&gt;78)\).</div>
+<div class="soln"><span class="sl">Solution</span>
+<p>\(SE=\dfrac{\sigma}{\sqrt n}=\dfrac{10}{5}=2\). \(z=\dfrac{78-75}{2}=1.5\). \(P(\bar X&gt;78)=1-\Phi(1.5)=1-0.9332=\mathbf{0.0668}\).</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>S3. Sampling distribution of the mean (heights) <span class="qmeta">— 2025 MidSem Regular, Q1b · 2M</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+Adult-male heights have mean 70 in, SD 3 in. A sample of \(n=49\). Find \(P(69&lt;\bar X&lt;71)\). [2]</div>
+<div class="soln"><span class="sl">Solution</span>
+<p>\(SE=3/\sqrt{49}=3/7\approx0.4286\). \(z=\dfrac{\pm1}{0.4286}=\pm2.33\). \(P(69&lt;\bar X&lt;71)=\Phi(2.33)-\Phi(-2.33)=0.9901-0.0099=\mathbf{0.9802}\).</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>S4. 95% confidence interval for a mean <span class="qmeta">— practice (REV Q19)</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+\(n=100\), \(\bar x=50\), \(s=5\). Find the 95% confidence interval for the mean. \((z_{0.025}=1.96)\)</div>
+<div class="soln"><span class="sl">Solution</span>
+<p>\(SE=5/\sqrt{100}=0.5\); margin \(=1.96\times0.5=0.98\). CI \(=50\pm0.98=\mathbf{[49.02,\ 50.98]}\).</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>S5. Does the sampling distribution follow a Binomial? + CLT <span class="qmeta">— 2023 Makeup, Q7 · 3M</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+(a) Population is Binomial; a sample of \(n=45\) has sample mean 10, SD 2. Does the sampling distribution of the mean follow a Binomial? (b) Same with \(n=25\). (c) Population is Normal, sample \(n=9\); discuss the distribution of the sample mean. [3]</div>
+<div class="soln"><span class="sl">Solution</span>
+<p><strong>(a)</strong> If Binomial with these counts, \(np=10\Rightarrow p=10/45\) and SD \(=\sqrt{npq}=\sqrt{45\cdot\tfrac{2}{9}\cdot\tfrac{7}{9}}\approx2.79\neq2\) ⇒ <strong>does not</strong> follow that Binomial. <strong>(b)</strong> \(p=10/25=0.4\), SD \(=\sqrt{25(0.4)(0.6)}=2.45\neq2\) ⇒ <strong>does not</strong>. <strong>(c)</strong> By the CLT, if the population is Normal the sample mean is <strong>Normal for any sample size</strong> (here \(\bar X\sim N(\mu,\sigma^2/9)\)).</p>
+</div>
+</div>
+</details>
+</section>
+
+<hr>
+<!-- ===== END-SEM IN-SCOPE ===== -->
+<section id="qend">
+<h2 class="sec" style="border-color:var(--acc2)">📘 End-Sem (Comprehensive) Questions — within Mid-Sem Syllabus</h2>
+<p class="small">The EC3 papers are dominated by post-mid-sem topics (hypothesis-test procedures, ANOVA, regression, forecasting, GMM) which are <strong>excluded</strong>. Below are the parts that fall in Sessions 1–8 — useful extra practice. Where the source paper gave no key, the standard method is shown.</p>
+
+<details>
+<summary>E1. Joint PDF — \(P(X&gt;Y)\), marginals, independence <span class="qmeta">— 2023 EndSem Regular, Q1c · 5M · S5</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+Joint PDF \(f(x,y)=\dfrac{x+y}{3}\) for \(0&lt;x&lt;2,\ 0&lt;y&lt;1\); 0 otherwise. (i) \(P(X&gt;Y)\). (ii) Marginal \(f_X(x)\). (iii) Marginal \(f_Y(y)\). (iv) Are \(X,Y\) independent?</div>
+<div class="soln"><span class="sl">Solution</span>
+<p>First verify: \(\int_0^2\!\int_0^1\frac{x+y}{3}\,dy\,dx=\frac13\int_0^2(x+\tfrac12)dx=\frac13(2+1)=1\) ✓.</p>
+<p><strong>(ii)</strong> \(f_X(x)=\int_0^1\frac{x+y}{3}dy=\frac{1}{3}\big(x+\tfrac12\big)=\dfrac{2x+1}{6}\) for \(0&lt;x&lt;2\).</p>
+<p><strong>(iii)</strong> \(f_Y(y)=\int_0^2\frac{x+y}{3}dx=\frac{1}{3}(2+2y)=\dfrac{2(1+y)}{3}\) for \(0&lt;y&lt;1\).</p>
+<p><strong>(iv)</strong> \(f_X(x)f_Y(y)\neq f(x,y)\) (a product of a function of \(x\) and a function of \(y\) can't equal \(x+y\)) ⇒ <strong>not independent</strong>.</p>
+<p><strong>(i)</strong> \(P(X&gt;Y)=\displaystyle\int_0^1\!\!\int_y^2\frac{x+y}{3}\,dx\,dy\) (since \(x\) ranges up to 2 and \(y&lt;1\le x\) on most of the region) \(=\frac13\int_0^1\big[\tfrac{x^2}{2}+yx\big]_{y}^{2}dy=\frac13\int_0^1\big(2+2y-\tfrac{3y^2}{2}\big)dy=\frac13\big(2+1-\tfrac12\big)=\mathbf{5/6}\).</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>E2. Binomial — bus schedule reliability <span class="qmeta">— 2023 EndSem Regular, Q1b · 2M · S6</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+If the chance of a bus running on schedule is 0.75, for a day with 10 services calculate the probability that (i) exactly one is late and (ii) at least one is late.</div>
+<div class="soln"><span class="sl">Solution</span>
+<p>Let "late" be the event, \(p=0.25\), \(n=10\), \(X\sim B(10,0.25)\).</p>
+<p><strong>(i)</strong> \(P(X=1)=\binom{10}{1}(0.25)^1(0.75)^9=10(0.25)(0.0751)\approx\mathbf{0.1877}\).</p>
+<p><strong>(ii)</strong> \(P(X\ge1)=1-P(X=0)=1-(0.75)^{10}=1-0.0563=\mathbf{0.9437}\).</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>E3. Poisson MLE — car accidents <span class="qmeta">— 2024 EndSem Regular, Q5b · 4M · S6</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+The number of car accidents per day follows a Poisson distribution. On five days the counts were 4, 2, 5, 3, 6. (i) Find the MLE of the mean number of accidents per day. (ii) Using it, estimate the probability of no accidents on a randomly chosen day.</div>
+<div class="soln"><span class="sl">Solution</span>
+<p><strong>(i)</strong> The MLE of a Poisson mean is the sample mean: \(\hat\lambda=\dfrac{4+2+5+3+6}{5}=\mathbf{4}\).</p>
+<p><strong>(ii)</strong> \(P(X=0)=e^{-\lambda}=e^{-4}\approx\mathbf{0.0183}\).</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>E4. Conditional probability — workplace benefits <span class="qmeta">— 2023 EndSem Regular, Q1a · 3M · S3</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+50% of workers have a retirement plan (R), 60% have health insurance (H), 49% have both. (a) \(P(H\mid R)\). (b) \(P(R\mid H)\). (c) \(P(H^c\mid R)\).</div>
+<div class="soln"><span class="sl">Solution</span>
+<p>\(P(R)=0.5,\ P(H)=0.6,\ P(R\cap H)=0.49\).</p>
+<p><strong>(a)</strong> \(P(H\mid R)=\dfrac{0.49}{0.5}=\mathbf{0.98}\). <strong>(b)</strong> \(P(R\mid H)=\dfrac{0.49}{0.6}\approx\mathbf{0.817}\). <strong>(c)</strong> \(P(H^c\mid R)=1-0.98=\mathbf{0.02}\).</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>E5. Confidence interval — light-bulb lifespan <span class="qmeta">— Mar 2026 EndSem Makeup, Q1b · 2M · S7</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+Light bulbs have mean lifespan 1000 hrs, SD 50 hrs. A sample of 40 bulbs has mean 990 hrs. Calculate a 99% confidence interval for the population mean lifespan.</div>
+<div class="soln"><span class="sl">Solution</span>
+<p>\(n=40\ge30\) so use \(z\); \(z_{0.005}=2.576\). \(SE=\dfrac{50}{\sqrt{40}}=7.906\). Margin \(=2.576\times7.906=20.37\). CI \(=990\pm20.37=\mathbf{(969.6,\ 1010.4)}\) hours.</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>E6. Confidence interval with small sample (\(t\)) — cadence <span class="qmeta">— Feb 2026 EndSem Regular, Q7a · 2M · S7</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+For \(n=20\) healthy men, cadence data given. Calculate a 95% confidence interval for the population mean cadence. (Sample mean \(\bar x\approx0.93\), \(s\approx0.081\).)</div>
+<div class="soln"><span class="sl">Solution</span>
+<p>\(\sigma\) unknown and \(n=20&lt;30\) ⇒ use the \(t\)-distribution, df \(=19\), \(t_{0.025,19}=2.093\). \(SE=\dfrac{0.081}{\sqrt{20}}=0.0181\). Margin \(=2.093\times0.0181=0.038\). CI \(=0.93\pm0.038=\mathbf{(0.892,\ 0.968)}\).</p>
+<p class="small">Key choice: small sample + unknown \(\sigma\) → \(t\), not \(z\).</p>
+</div>
+</div>
+</details>
+</section>
+
+<hr>
+<!-- ===== ASSIGNMENTS ===== -->
+<section id="qassign">
+<h2 class="sec" style="border-color:var(--acc2)">📗 Assignment Questions (solved)</h2>
+<p class="small">Questions from Assignment 1 (current S2-25, all sections) and the past-year Assignments 1 &amp; 2 — these test the exact mid-sem skills. Section-4 of the current assignment has official solutions; others are solved here by the standard method.</p>
+
+<h3>Assignment 1 (current) — Section 4 <span class="tag">official solutions</span></h3>
+<details>
+<summary>A1. Continuous PDF \(f(x)=ax^2\) — \(a\), CDF, mean, variance <span class="qmeta">— Asgn 1, Sec 4, Q1 · 2.5M · S5</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+Given \(f(x)=ax^2,\ 0&lt;x&lt;1\); 0 elsewhere. Find the constant \(a\). Also find the distribution function \(F(x)\), mean and variance of \(X\).</div>
+<div class="soln"><span class="sl">Solution</span>
+<p>Normalize: \(\int_0^1 ax^2dx=\dfrac{a}{3}=1\Rightarrow a=\mathbf{3}\), so \(f(x)=3x^2\).</p>
+<p>CDF: \(F(x)=\int_0^x 3t^2dt=x^3\) (0 for \(x\le0\), 1 for \(x\ge1\)).</p>
+<p>\(E[X]=\int_0^1 x\cdot3x^2dx=\tfrac34=0.75\); \(E[X^2]=\int_0^1 x^2\cdot3x^2dx=\tfrac35\); \(\text{Var}=\tfrac35-\big(\tfrac34\big)^2=\tfrac{3}{80}=\mathbf{0.0375}\).</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>A2. Binomial via Normal approximation — heart-op survivors <span class="qmeta">— Asgn 1, Sec 4, Q2 · 2.5M · S6</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+Find the probability that out of 100 patients, between 84 and 95 inclusive will survive a heart operation, given the chance of survival is 0.9.</div>
+<div class="soln"><span class="sl">Solution</span>
+<p>\(X\sim B(100,0.9)\): \(\mu=np=90\), \(\sigma=\sqrt{npq}=\sqrt{9}=3\). Normal approximation with <strong>continuity correction</strong> for \(84\le X\le95\) ⇒ \(P(83.5&lt;X&lt;95.5)\).</p>
+<p>\(z_1=\dfrac{83.5-90}{3}=-2.17\), \(z_2=\dfrac{95.5-90}{3}=1.83\). \(P=\Phi(1.83)-\Phi(-2.17)=0.9664-0.0150=\mathbf{0.9514}\).</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>A3. Bayes — three boxes of bulbs <span class="qmeta">— Asgn 1, Sec 4, Q3 · 5M · S4</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+Box I: 10 bulbs (4 defective). Box II: 6 bulbs (1 defective). Box III: 8 bulbs (3 defective). A box is chosen at random, then a bulb at random; it is defective. (a) Priors of each box. (b)–(d) \(P(\text{defective}\mid\text{Box } i)\). (e) Posterior \(P(\text{Box }i\mid\text{defective})\).</div>
+<div class="soln"><span class="sl">Solution</span>
+<p><strong>(a)</strong> Priors \(=1/3\) each. <strong>(b–d)</strong> \(P(D|B_I)=4/10=0.4\); \(P(D|B_{II})=1/6\approx0.167\); \(P(D|B_{III})=3/8=0.375\).</p>
+<p>Total: \(P(D)=\tfrac13(0.4+\tfrac16+0.375)=\dfrac{113}{360}\approx0.314\).</p>
+<p><strong>(e)</strong> \(P(B_I|D)=\dfrac{(2/5)(1/3)}{113/360}=\dfrac{48}{113}\approx\mathbf{0.425}\); \(P(B_{II}|D)=\dfrac{20}{113}\approx\mathbf{0.177}\); \(P(B_{III}|D)=\dfrac{45}{113}\approx\mathbf{0.398}\). (Sum \(=1\) ✓.)</p>
+</div>
+</div>
+</details>
+
+<h3>Assignment 1 (current) — Section 1 <span class="tag">worked here</span></h3>
+<details>
+<summary>A4. Combined mean &amp; SD after adding members <span class="qmeta">— Asgn 1, Sec 1, Q1 · 2.5M · S1</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+The mean income per month of a society of 25 members is Rs.350, SD Rs.50. Five more members are admitted with incomes 260, 300, 320, 490, 590. Find the mean and SD of income for the new group of 30 members.</div>
+<div class="soln"><span class="sl">Solution</span>
+<p><strong>Mean:</strong> old sum \(=25\times350=8750\); new five sum \(=260+300+320+490+590=1960\). Total \(=10710\) over 30 ⇒ new mean \(=10710/30=\mathbf{357}\).</p>
+<p><strong>SD:</strong> from old SD, old \(\sum x^2=n(\sigma^2+\bar x^2)=25(2500+122500)=3{,}125{,}000\). New five \(\sum x^2=260^2+300^2+320^2+490^2+590^2=67600+90000+102400+240100+348100=848200\). Total \(\sum x^2=3{,}973{,}200\). New variance \(=\dfrac{3{,}973{,}200}{30}-357^2=132440-127449=4991\Rightarrow\sigma\approx\mathbf{70.6}\) (population form). The spread rose because 490 and 590 are well above the old mean.</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>A5. Bayes — bolt factory (which machine) <span class="qmeta">— Asgn 1, Sec 1, Q2 · 2.5M · S4</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+Machines M₁, M₂, M₃ make 2000, 2500, 4000 bolts/day; defective rates 3%, 4%, 2.5%. A randomly drawn bolt from a day's output is defective. \(P(\text{from }M_2)\)?</div>
+<div class="soln"><span class="sl">Solution</span>
+<p>Priors by output share (total 8500): \(P(M_1)=\tfrac{2000}{8500},P(M_2)=\tfrac{2500}{8500},P(M_3)=\tfrac{4000}{8500}\).</p>
+<p>\(P(D)=\tfrac{2000(0.03)+2500(0.04)+4000(0.025)}{8500}=\tfrac{60+100+100}{8500}=\tfrac{260}{8500}\).</p>
+<p>\(P(M_2\mid D)=\dfrac{100}{260}\approx\mathbf{0.385}\).</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>A6. Valid distribution, \(E[X]\), variance, \(P(X\ge3)\) <span class="qmeta">— Asgn 1, Sec 1, Q3 · 5M · S5</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+FreshMart customers \(X\): 0,1,2,3,4 with \(P(X)\): 0.10, 0.25, 0.35, 0.20, 0.10. (1) Verify it is a valid distribution. (2) Expected number of customers. (3) Variance. (4) \(P(\text{at least 3})\).</div>
+<div class="soln"><span class="sl">Solution</span>
+<p><strong>(1)</strong> All \(\ge0\) and \(0.10+0.25+0.35+0.20+0.10=1\) ✓ valid.</p>
+<p><strong>(2)</strong> \(E[X]=0(0.1)+1(0.25)+2(0.35)+3(0.2)+4(0.1)=\mathbf{1.95}\).</p>
+<p><strong>(3)</strong> \(E[X^2]=0+0.25+1.40+1.80+1.60=5.05\); \(\text{Var}=5.05-1.95^2=\mathbf{1.2475}\).</p>
+<p><strong>(4)</strong> \(P(X\ge3)=0.20+0.10=\mathbf{0.30}\).</p>
+</div>
+</div>
+</details>
+
+<h3>Past-year assignments — representative solved questions</h3>
+<details>
+<summary>A7. Descriptive stats with an outlier (which centre to report) <span class="qmeta">— Past-yr Asgn 1, Sec 1, Q1 · S1</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+Monthly maintenance costs (thousands): 18, 20, 19, 21, 23, 20, 22, 19, 18, 20, 21, 120. (a) mean, median, mode; left- or right-skewed? (b) five-point summary and IQR. (c) which measure (mean/median) should be used for decision-making, and why?</div>
+<div class="soln"><span class="sl">Solution</span>
+<p>Sort: 18,18,19,19,20,20,20,21,21,22,23,120 (n=12). <strong>(a)</strong> Sum \(=341\) ⇒ mean \(\approx28.4\); median \(=(20+20)/2=20\); mode \(=20\). Mean ≫ median ⇒ <strong>right-skewed</strong> (the 120 drags the mean up).</p>
+<p><strong>(b)</strong> \(Q_1=\) median of first six \(=(19+19)/2=19\); \(Q_3=\) median of last six \(=(21+22)/2=21.5\); summary \(=(18,19,20,21.5,120)\); IQR \(=2.5\). Upper fence \(=21.5+3.75=25.25\) ⇒ <strong>120 is an outlier</strong>.</p>
+<p><strong>(c)</strong> Use the <strong>median</strong> (20): it is robust to the 120 outlier, whereas the mean (28.4) misrepresents a typical month.</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>A8. Naive Bayes from a categorical table (subscribe by device) <span class="qmeta">— Past-yr Asgn 1, Sec 2, Q3 · S4</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+Newsletter "Subscribe" by Device Type: V1 Mobile→No, V2 Mobile→Yes, V3 Desktop→Yes, V4 Desktop→No, V5 Tablet→Yes. (i) priors \(P(\text{Yes}),P(\text{No})\); (ii) a new Mobile visitor — Naive Bayes prediction of Subscribe.</div>
+<div class="soln"><span class="sl">Solution</span>
+<p><strong>(i)</strong> Yes: V2,V3,V5 → \(P(\text{Yes})=3/5\); No: V1,V4 → \(P(\text{No})=2/5\).</p>
+<p><strong>(ii)</strong> Likelihoods of Device=Mobile: among Yes, only V2 is Mobile → \(P(\text{Mobile}|\text{Yes})=1/3\); among No, only V1 is Mobile → \(P(\text{Mobile}|\text{No})=1/2\). Scores: Yes \(=\tfrac35\cdot\tfrac13=0.20\); No \(=\tfrac25\cdot\tfrac12=0.20\). <strong>Tie</strong> — with Laplace smoothing (3 device types, \(|V|=3\)): \(P(\text{Mobile}|\text{Yes})=\tfrac{1+1}{3+3}=\tfrac13\), \(P(\text{Mobile}|\text{No})=\tfrac{1+1}{2+3}=\tfrac25\); Yes \(=0.6\cdot0.333=0.20\), No \(=0.4\cdot0.40=0.16\) ⇒ predict <strong>Subscribe = Yes</strong>.</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>A9. Normal distribution — crop yield (counts &amp; top 10%) <span class="qmeta">— Past-yr Asgn 2, Sec 2, P2 · S6</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+Yield per plot is Normal \((\mu=662\) kg\(,\sigma=32\) kg\()\), 1000 plots. (a) number of plots yielding more than 700 kg; (b) number yielding less than 650 kg; (c) the minimum yield of the top 10% of plots.</div>
+<div class="soln"><span class="sl">Solution</span>
+<p><strong>(a)</strong> \(z=\dfrac{700-662}{32}=1.19\); \(P(X&gt;700)=1-\Phi(1.19)=1-0.8830=0.1170\) → \(\approx\mathbf{117}\) plots.</p>
+<p><strong>(b)</strong> \(z=\dfrac{650-662}{32}=-0.375\); \(P(X&lt;650)=\Phi(-0.375)\approx0.354\) → \(\approx\mathbf{354}\) plots.</p>
+<p><strong>(c)</strong> Top 10% ⇒ \(z=1.28\); cut-off \(=662+1.28(32)=662+40.96\approx\mathbf{703}\) kg.</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>A10. Standard error &amp; confidence interval (carpet strength) <span class="qmeta">— Past-yr Asgn 2, Sec 7/8 · S7</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Question (verbatim)</span>
+Carpet tuft bind strength: population mean target 50 kg, \(\sigma=10\) kg, sample \(n=40\), sample mean \(\bar x=52\) kg. (a) standard error of the sample mean; (b) 95% confidence interval; (c) effect of using 98% confidence; (e) sample size for a margin of error of 1 kg at 95%.</div>
+<div class="soln"><span class="sl">Solution</span>
+<p><strong>(a)</strong> \(SE=\dfrac{\sigma}{\sqrt n}=\dfrac{10}{\sqrt{40}}=\mathbf{1.58}\) kg.</p>
+<p><strong>(b)</strong> 95% (\(z=1.96\)): \(52\pm1.96(1.58)=52\pm3.10=\mathbf{(48.9,\ 55.1)}\) kg.</p>
+<p><strong>(c)</strong> 98% (\(z=2.326\)) widens it: \(52\pm2.326(1.58)=52\pm3.68=(48.3,55.7)\) — higher confidence ⇒ wider interval (less precision).</p>
+<p><strong>(e)</strong> \(n=\big(\dfrac{1.96\times10}{1}\big)^2=384.16\Rightarrow n=\mathbf{385}\) (round up).</p>
+</div>
+</div>
+</details>
+</section>
+
+<hr>
+<!-- ===== COMPANION/PRACTICE ===== -->
+<section id="qcomp">
+<h2 class="sec" style="border-color:var(--acc2)">📙 Companion &amp; Practice — Solved Worked Problems</h2>
+<p class="small">High-yield worked examples from Prof. Saurabh's companion docs and the curated practice sets — one or two per session to round out your drilling.</p>
+
+<details>
+<summary>W1. Coefficient of variation — which machine is more consistent? <span class="qmeta">— practice · S1</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Problem</span>
+Machine A: mean 50 mm, SD 2 mm. Machine B: mean 100 mm, SD 3 mm. Which is more consistent?</div>
+<div class="soln"><span class="sl">Solution</span>
+<p>Compare relative spread: \(CV_A=\tfrac{2}{50}\times100\%=4\%\); \(CV_B=\tfrac{3}{100}\times100\%=3\%\). \(3\%&lt;4\%\) ⇒ <strong>Machine B is more consistent</strong> (lower CV). (SD alone would mislead — B's SD is larger but its mean is much larger too.)</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>W2. Mutually exclusive vs independent — \(P(A\cup B)\) <span class="qmeta">— practice · S2</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Problem</span>
+\(P(A)=0.3,\ P(B)=0.4\). Find \(P(A\cup B)\) if (a) mutually exclusive, (b) independent.</div>
+<div class="soln"><span class="sl">Solution</span>
+<p><strong>(a)</strong> ME ⇒ \(P(A\cap B)=0\): \(P(A\cup B)=0.3+0.4=\mathbf{0.7}\). <strong>(b)</strong> Independent ⇒ \(P(A\cap B)=0.3\times0.4=0.12\): \(P(A\cup B)=0.3+0.4-0.12=\mathbf{0.58}\). Different assumptions, different answers.</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>W3. Total probability — noisy channel <span class="qmeta">— companion S3</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Problem</span>
+A channel sends 1 with prob 0.4 (0 with 0.6). If 0 is sent it is received correctly 90% of the time; if 1 is sent, 95%. Find \(P(\text{a 1 is received})\).</div>
+<div class="soln"><span class="sl">Solution</span>
+<p>A received-1 comes from (sent 1, correct) or (sent 0, flipped): \(P(\text{rec }1)=0.4(0.95)+0.6(0.10)=0.38+0.06=\mathbf{0.44}\).</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>W4. Bayes — three coins <span class="qmeta">— practice · S4</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Problem</span>
+Three coins: \(C_1\) fair \((P(H)=0.5)\), \(C_2\) two-headed \((1.0)\), \(C_3\) biased \((0.75)\). Pick one at random and flip → Heads. \(P(\text{it was }C_2)\)?</div>
+<div class="soln"><span class="sl">Solution</span>
+<p>Priors \(1/3\) each. \(P(H)=\tfrac13(0.5+1.0+0.75)=0.75\). \(P(C_2\mid H)=\dfrac{1.0\times\tfrac13}{0.75}=\dfrac{1/3}{3/4}=\mathbf{4/9\approx0.44}\).</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>W5. Continuous PDF — find \(c\), \(P(X&gt;1)\) <span class="qmeta">— practice · S5</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Problem</span>
+\(f(x)=c(4x-2x^2)\) for \(0&lt;x&lt;2\). Find \(c\) and \(P(X&gt;1)\).</div>
+<div class="soln"><span class="sl">Solution</span>
+<p>\(\int_0^2 c(4x-2x^2)dx=c[2x^2-\tfrac{2x^3}{3}]_0^2=c(8-\tfrac{16}{3})=\tfrac{8c}{3}=1\Rightarrow c=\mathbf{3/8}\). \(P(X&gt;1)=\tfrac38\int_1^2(4x-2x^2)dx=\tfrac38[2x^2-\tfrac{2x^3}{3}]_1^2=\tfrac38(\tfrac83-\tfrac43)=\tfrac38\cdot\tfrac43=\mathbf{0.5}\).</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>W6. Joint PMF — \(c\), marginal, conditional <span class="qmeta">— practice · S5</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Problem</span>
+\(P(x,y)=c(x+y)\) for \(x=1,2;\ y=1,2\). Find \(c\), the marginal of \(X\), and \(P(Y=1\mid X=2)\).</div>
+<div class="soln"><span class="sl">Solution</span>
+<p>Cells: \(2c,3c,3c,4c\Rightarrow12c=1\Rightarrow c=\mathbf{1/12}\). Marginal \(P(X{=}1)=5c=5/12,\ P(X{=}2)=7c=7/12\). \(P(Y{=}1\mid X{=}2)=\dfrac{P(2,1)}{P(X{=}2)}=\dfrac{3/12}{7/12}=\mathbf{3/7}\).</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>W7. Poisson via complement; Normal between bounds <span class="qmeta">— practice · S6</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Problem</span>
+(a) \(X\sim\text{Poisson}(4)\): find \(P(X\ge2)\). (b) Salaries \(N(\mu=50\text{k},\sigma=10\text{k})\): \(P(45\text{k}&lt;X&lt;60\text{k})\)?</div>
+<div class="soln"><span class="sl">Solution</span>
+<p><strong>(a)</strong> \(P(0)=e^{-4}=0.0183,\ P(1)=4e^{-4}=0.0733\); \(P(X\ge2)=1-0.0916=\mathbf{0.9084}\).</p>
+<p><strong>(b)</strong> \(z_1=\dfrac{45-50}{10}=-0.5,\ z_2=\dfrac{60-50}{10}=1\); \(P=\Phi(1)-\Phi(-0.5)=0.8413-0.3085=\mathbf{0.5328}\).</p>
+</div>
+</div>
+</details>
+
+<details>
+<summary>W8. Confidence interval &amp; two-sided z reasoning <span class="qmeta">— practice · S7</span></summary>
+<div class="sol">
+<div class="qbox"><span class="ql">Problem</span>
+\(n=100,\ \bar x=50,\ s=5\). Give the 95% CI for the mean and state how it changes at 99%.</div>
+<div class="soln"><span class="sl">Solution</span>
+<p>\(SE=5/10=0.5\). 95% (\(z=1.96\)): \(50\pm0.98=[49.02,50.98]\). At 99% (\(z=2.576\)): \(50\pm1.288=[48.71,51.29]\) — wider, because higher confidence demands a larger margin.</p>
+</div>
+</div>
+</details>
+</section>
+
+<hr>
+<!-- ===== FORMULA SHEET ===== -->
+<section id="formulas">
+<h2 class="sec">🧮 Master Formula Sheet</h2>
+<div class="box formula"><span class="bt">Descriptive (S1)</span>
+\(\bar x=\frac{\sum x}{n}\); \(s^2=\frac{\sum(x-\bar x)^2}{n-1}\); IQR \(=Q_3-Q_1\); outlier fences \(Q_1-1.5\,\text{IQR}\), \(Q_3+1.5\,\text{IQR}\); CV \(=\frac{s}{\bar x}\times100\%\); skew from mean vs median.
+</div>
+<div class="box formula"><span class="bt">Probability (S2–S3)</span>
+\(P(A\cup B)=P(A)+P(B)-P(A\cap B)\); independent \(P(A\cap B)=P(A)P(B)\); \(P(B|A)=\frac{P(A\cap B)}{P(A)}\); total probability \(P(B)=\sum P(A_i)P(B|A_i)\); at-least-one \(=1-P(\text{none})\).
+</div>
+<div class="box formula"><span class="bt">Bayes / Naive Bayes (S4)</span>
+\(P(H|E)=\frac{P(E|H)P(H)}{\sum_i P(E|H_i)P(H_i)}\); NB \(\hat c=\arg\max_c P(c)\prod_i P(x_i|c)\); Laplace \(P(w|c)=\frac{\text{count}+1}{N_c+|V|}\).
+</div>
+<div class="box formula"><span class="bt">Random variables (S5)</span>
+\(\sum f=1\) or \(\int f=1\); \(E[X]=\sum x f\) / \(\int xf\); \(\text{Var}=E[X^2]-(E[X])^2\); \(E[aX+b]=aE[X]+b\), \(\text{Var}(aX+b)=a^2\text{Var}(X)\); independent ⇔ \(f(x,y)=f_X f_Y\); \(F(x)=P(X\le x),\ f=F'\).
+</div>
+<div class="box formula"><span class="bt">Distributions (S6)</span>
+Binomial \(\binom{n}{k}p^k q^{n-k}\), mean \(np\), var \(npq\); Poisson \(\frac{e^{-\lambda}\lambda^k}{k!}\), mean=var=\(\lambda\), \(\lambda=np\); Normal \(z=\frac{x-\mu}{\sigma}\), inverse \(x=\mu+z\sigma\), \(\Phi(-z)=1-\Phi(z)\).
+</div>
+<div class="box formula"><span class="bt">Sampling / CLT / CI (S7)</span>
+\(SE=\frac{\sigma}{\sqrt n}\); \(z=\frac{\bar x-\mu}{\sigma/\sqrt n}\); CI \(=\bar x\pm z_{\alpha/2}\frac{\sigma}{\sqrt n}\) (\(t\) if \(\sigma\) unknown, \(n&lt;30\)); sample size \(n=\big(\frac{z\sigma}{E}\big)^2\) (round up). \(z\): 90%→1.645, 95%→1.96, 99%→2.576.
+</div>
+</section>
+
+<hr>
+<!-- ===== LAST MINUTE ===== -->
+<section id="last">
+<h2 class="sec">🎯 Last-Minute Exam-Hall Card</h2>
+<ol>
+<li><strong>Descriptive:</strong> sort first; \(Q_2\) then split halves for \(Q_1,Q_3\); fences \(\pm1.5\,\text{IQR}\); mean ≫ median ⇒ right-skew, report median.</li>
+<li><strong>"Find \(k\)/\(c\)":</strong> set \(\sum p=1\) (discrete) or \(\int f=1\) (continuous), solve.</li>
+<li><strong>\(E[aX+b]=aE[X]+b\)</strong>, <strong>\(\text{Var}(aX+b)=a^2\text{Var}(X)\)</strong> — the shift never changes variance.</li>
+<li><strong>Bayes:</strong> priors × likelihoods on top, total probability on bottom; rare-disease positives give a <em>low</em> posterior — say why (base rate).</li>
+<li><strong>Naive Bayes:</strong> build vocabulary, use Laplace \(\frac{\text{count}+1}{N_c+|V|}\), compare class scores \(P(c)\prod P(x_i|c)\), argmax. Show both scores.</li>
+<li><strong>Poisson:</strong> \(\lambda=\) rate × exposure; add exposures by adding \(\lambda\); \(P(\ge1)=1-e^{-\lambda}\). Use it to approximate Binomial when \(n\) big, \(p\) small.</li>
+<li><strong>Normal:</strong> standardise \(z=\frac{x-\mu}{\sigma}\), read \(\Phi\); "between" \(=\Phi(z_2)-\Phi(z_1)\); inverse \(x=\mu+z\sigma\) (top 10% → 1.28, top 5% → 1.645).</li>
+<li><strong>CLT/sample mean:</strong> divide \(\sigma\) by \(\sqrt n\) (SE) before computing \(z\).</li>
+<li><strong>CI:</strong> \(\bar x\pm z\,\sigma/\sqrt n\); use \(t\) (df \(n-1\)) when \(\sigma\) unknown &amp; \(n&lt;30\); higher confidence → wider; sample size \(n=(z\sigma/E)^2\), round up.</li>
+<li><strong>Independence checks:</strong> \(P(A\cap B)=P(A)P(B)\)? Mutually exclusive ≠ independent.</li>
+<li><strong>Sanity-check:</strong> probabilities in \([0,1]\), variance \(\ge0\), Bayes posteriors sum to 1, proportions × N ≈ counts.</li>
+<li><strong>Always write the formula, then substitute</strong> — method earns most of the marks even if a Z-table read is slightly off.</li>
+</ol>
+<div class="box tip"><span class="bt">You've got this</span> Every question is one of a handful of recipes you've now drilled. Manage time (~one question per 18–20 min), show your steps, and never leave a part blank — partial credit is real. Good luck, Akash! 🚀</div>
+</section>
+
+<p class="small" style="margin-top:40px;color:#666">Built from Session 1–7 slides + Prof. Saurabh companion docs + all ISM mid-sem (EC2) papers (2023–2026) + in-scope end-sem questions + Assignment 1 (current) &amp; past-year Assignments 1–2 + curated practice sets. A few older answer keys printed only headings; those solutions are reconstructed by the standard method and labelled. The exam normally supplies a Z-table. Math rendered with MathJax — give the page a second to typeset.</p>
+
+<a href="#" class="backtop">↑ Top</a>
+</main>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('themeToggle');
+  var root=document.documentElement;
+  function apply(t){
+    if(t==='light'){root.setAttribute('data-theme','light');btn.textContent='☀️ Light';}
+    else{root.removeAttribute('data-theme');btn.textContent='🌙 Dark';}
+  }
+  var saved=null; try{saved=localStorage.getItem('ism-theme');}catch(e){}
+  apply(saved||'dark');
+  btn.addEventListener('click',function(){
+    var now=root.getAttribute('data-theme')==='light'?'dark':'light';
+    apply(now);
+    try{localStorage.setItem('ism-theme',now);}catch(e){}
+  });
+})();
+</script>
+</body>
+</html>

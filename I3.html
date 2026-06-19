@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ISM Quiz &amp; Exam Prep — AIMLCZC418</title>
+<script>
+MathJax = {
+  tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+<style>
+:root {
+  --primary: #1a5276;
+  --secondary: #2980b9;
+  --accent: #e67e22;
+  --bg: #fafbfc;
+  --card-bg: #ffffff;
+  --text: #2c3e50;
+  --light-text: #7f8c8d;
+  --border: #dfe6e9;
+  --highlight-bg: #fef9e7;
+  --important-bg: #fdedec;
+  --tip-bg: #eafaf1;
+  --correct: #27ae60;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Georgia', 'Times New Roman', serif; background: var(--bg); color: var(--text); line-height: 1.8; max-width: 980px; margin: 0 auto; padding: 20px 30px; }
+h1 { font-size: 2.2em; color: var(--primary); text-align: center; border-bottom: 4px solid var(--accent); padding-bottom: 15px; margin: 30px 0; }
+h2 { font-size: 1.7em; color: var(--primary); border-left: 5px solid var(--accent); padding-left: 15px; margin: 40px 0 20px; }
+h3 { font-size: 1.3em; color: var(--secondary); margin: 25px 0 12px; }
+h4 { font-size: 1.1em; color: var(--text); margin: 18px 0 8px; }
+p { margin: 10px 0; }
+ul, ol { margin: 10px 0 10px 25px; }
+li { margin: 5px 0; }
+table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.95em; }
+th { background: var(--primary); color: white; padding: 10px 12px; text-align: left; }
+td { border: 1px solid var(--border); padding: 8px 12px; }
+tr:nth-child(even) { background: #f8f9fa; }
+.card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 20px 25px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+.important { background: var(--important-bg); border-left: 5px solid #e74c3c; padding: 15px 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+.highlight { background: var(--highlight-bg); border-left: 5px solid var(--accent); padding: 15px 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+.tip { background: var(--tip-bg); border-left: 5px solid #27ae60; padding: 15px 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+.formula-box { background: #1a5276; color: white; padding: 15px 25px; border-radius: 8px; text-align: center; margin: 15px 0; font-size: 1.1em; }
+.section-divider { text-align: center; margin: 50px 0 30px; padding: 20px; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; border-radius: 10px; font-size: 1.5em; font-weight: bold; }
+details { margin: 12px 0; }
+details summary { cursor: pointer; background: #eef2f7; border: 1px solid var(--border); border-radius: 6px; padding: 10px 15px; font-weight: bold; color: var(--primary); transition: background 0.2s; }
+details summary:hover { background: #dfe6e9; }
+details[open] summary { border-radius: 6px 6px 0 0; border-bottom: none; }
+details .answer { background: #f8f9fa; border: 1px solid var(--border); border-top: none; border-radius: 0 0 6px 6px; padding: 15px 20px; }
+.correct { color: var(--correct); font-weight: bold; }
+.mcq { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 15px 20px; margin: 15px 0; }
+.mcq-options { list-style: none; margin-left: 0; }
+.mcq-options li { padding: 4px 0; }
+.toc { background: var(--card-bg); border: 2px solid var(--primary); border-radius: 10px; padding: 25px 30px; margin: 20px 0 40px; }
+.toc a { color: var(--secondary); text-decoration: none; }
+.toc a:hover { text-decoration: underline; }
+.toc ul { list-style: none; margin-left: 0; }
+.toc > ul > li { margin: 8px 0; font-weight: bold; font-size: 1.05em; }
+.toc > ul > li > ul > li { font-weight: normal; font-size: 0.95em; margin: 3px 0; padding-left: 20px; }
+@media (max-width: 700px) { body { padding: 10px 15px; } h1 { font-size: 1.6em; } h2 { font-size: 1.3em; } }
+</style>
+</head>
+<body>
+
+<h1>ISM Quiz &amp; Exam Prep<br><small style="font-size:0.5em;color:var(--light-text);">AIMLCZC418 &mdash; Approach, Formulas &amp; 50+ Practice Questions with Solutions</small></h1>
+
+<div class="toc">
+<h3 style="color:var(--primary);margin-bottom:10px;">Table of Contents</h3>
+<ul>
+<li><a href="#part1">Part 1: How to Approach Each Question Type</a></li>
+<li><a href="#part2">Part 2: Formula Cheatsheet (Quick Reference)</a></li>
+<li><a href="#part3">Part 3: Quiz 1 Questions &mdash; Full Solutions</a></li>
+<li><a href="#part4">Part 4: Practice Bank &mdash; 40+ Questions with Answers</a>
+  <ul>
+    <li><a href="#p4-stats">Descriptive Statistics</a></li>
+    <li><a href="#p4-prob">Probability &amp; Counting</a></li>
+    <li><a href="#p4-cond">Conditional &amp; Total Probability</a></li>
+    <li><a href="#p4-bayes">Bayes' Theorem &amp; Naive Bayes</a></li>
+    <li><a href="#p4-rv">Random Variables &amp; Distributions</a></li>
+    <li><a href="#p4-named">Named Distributions (Binomial, Poisson, Normal)</a></li>
+    <li><a href="#p4-advanced">Hypothesis Testing, Regression &amp; Beyond</a></li>
+  </ul>
+</li>
+</ul>
+</div>
+
+<!-- ============================================================ -->
+<div class="section-divider" id="part1">Part 1: How to Approach Each Question Type</div>
+<!-- ============================================================ -->
+
+<h2>1. Identify-the-Type Questions (Data types, variables)</h2>
+<div class="tip">
+<strong>Strategy:</strong> Ask two questions in order:
+<ol>
+<li><strong>"Can I do maths on it?"</strong> No &rarr; Categorical (nominal/ordinal). Yes &rarr; Numerical.</li>
+<li><strong>"Can I count it or must I measure it?"</strong> Count &rarr; Discrete. Measure &rarr; Continuous.</li>
+</ol>
+<strong>Common trap:</strong> Phone numbers, zip codes, jersey numbers look numerical but are <em>nominal</em> &mdash; you can't average them meaningfully.
+</div>
+
+<h2>2. Central Tendency &amp; Spread Questions</h2>
+<div class="tip">
+<strong>Strategy:</strong>
+<ol>
+<li><strong>Always sort first.</strong> Many errors come from unsorted data.</li>
+<li>Compute mean, then median. If mean &ne; median, the data is skewed (mean chases the tail).</li>
+<li>For SD: use the shortcut $s^2 = \frac{\sum x_i^2 - n\bar{x}^2}{n-1}$ to avoid computing each $(x_i - \bar{x})^2$ separately.</li>
+<li>For IQR: split the sorted data in half, find median of each half.</li>
+<li><strong>"At least one outlier" questions:</strong> compute fences $Q_1 - 1.5 \times \text{IQR}$ and $Q_3 + 1.5 \times \text{IQR}$, check every value.</li>
+</ol>
+</div>
+
+<h2>3. Skewness Questions</h2>
+<div class="highlight">
+<strong>Quick Rule:</strong> Compare mean and mode (or mean and median):
+<ul>
+<li>Mean = Mode &rarr; Symmetric</li>
+<li>Mean > Mode &rarr; <strong>Positive (right) skew</strong> (tail stretches right)</li>
+<li>Mean < Mode &rarr; <strong>Negative (left) skew</strong> (tail stretches left)</li>
+</ul>
+Remember: <em>the mean always leans toward the tail</em>.
+</div>
+
+<h2>4. Probability Questions (Addition rule, counting)</h2>
+<div class="tip">
+<strong>Strategy:</strong>
+<ol>
+<li><strong>"At least one"</strong> &rarr; Use complement: $P(\text{at least 1}) = 1 - P(\text{none})$</li>
+<li><strong>"A or B"</strong> &rarr; Addition rule: $P(A \cup B) = P(A) + P(B) - P(A \cap B)$</li>
+<li><strong>"A and B"</strong> with independence &rarr; Multiply: $P(A \cap B) = P(A) \cdot P(B)$</li>
+<li><strong>Counting (committees, selections):</strong> use $\binom{n}{k} = \frac{n!}{k!(n-k)!}$. Favourable over total.</li>
+<li><strong>With vs without replacement:</strong> With = independent (denominator stays same). Without = dependent (denominator shrinks).</li>
+</ol>
+</div>
+
+<h2>5. Conditional Probability &amp; Bayes' Theorem</h2>
+<div class="tip">
+<strong>Strategy &mdash; the 3-step Bayes recipe:</strong>
+<ol>
+<li><strong>Draw a tree</strong> (or write out the partition). First branches = causes/hypotheses. Second branches = evidence.</li>
+<li><strong>Compute P(evidence)</strong> using total probability: $P(E) = \sum P(E|H_i) \cdot P(H_i)$</li>
+<li><strong>Flip with Bayes:</strong> $P(H_i|E) = \frac{P(E|H_i) \cdot P(H_i)}{P(E)}$</li>
+</ol>
+<strong>Common trap:</strong> Confusing $P(B|A)$ with $P(A|B)$. Always ask: "What is my new world (denominator)?"
+</div>
+
+<h2>6. Naive Bayes Classification</h2>
+<div class="tip">
+<strong>Strategy:</strong>
+<ol>
+<li>Compute <strong>prior</strong> for each class from training data.</li>
+<li>For each feature, compute <strong>likelihood</strong> $P(\text{feature}|\text{class})$. Use Laplace smoothing: $\frac{\text{count} + 1}{\text{total} + |V|}$</li>
+<li>Multiply: score = prior &times; product of all likelihoods.</li>
+<li><strong>Higher score wins</strong>. No need to compute the denominator.</li>
+</ol>
+<strong>Common trap:</strong> Forgetting Laplace smoothing when a word has count 0 in a class.
+</div>
+
+<h2>7. Random Variable &amp; Distribution Questions</h2>
+<div class="tip">
+<strong>Strategy:</strong>
+<ol>
+<li><strong>"Find k"</strong> &rarr; Set $\sum P(x) = 1$ (discrete) or $\int f(x)\,dx = 1$ (continuous), solve for $k$.</li>
+<li><strong>E[X]</strong> = $\sum x \cdot P(x)$ or $\int x \cdot f(x)\,dx$.</li>
+<li><strong>Var(X)</strong> = $E[X^2] - (E[X])^2$ (shortcut formula &mdash; always faster).</li>
+<li><strong>P(a &lt; X &lt; b)</strong> = sum PMF values in range (discrete) or integrate PDF (continuous).</li>
+<li><strong>Joint distributions:</strong> marginal = sum row/column. Independence check: does every cell = row total &times; column total?</li>
+</ol>
+</div>
+
+<h2>8. Named Distribution Questions</h2>
+<div class="highlight">
+<strong>Which distribution?</strong>
+<ul>
+<li><strong>Fixed n trials, success/fail</strong> &rarr; Binomial $B(n,p)$</li>
+<li><strong>Rare events, large n, small p</strong> &rarr; Poisson $(\lambda = np)$</li>
+<li><strong>Bell-shaped, continuous</strong> &rarr; Normal $N(\mu, \sigma^2)$</li>
+<li><strong>"At least / at most"</strong> &rarr; Use complement or CDF</li>
+</ul>
+For Normal: <strong>always standardise</strong> first: $Z = \frac{X - \mu}{\sigma}$, then use Z-table.
+</div>
+
+<!-- ============================================================ -->
+<div class="section-divider" id="part2">Part 2: Formula Cheatsheet</div>
+<!-- ============================================================ -->
+
+<h2>Descriptive Statistics</h2>
+<div class="formula-box">
+$\bar{x} = \frac{\sum x_i}{n}$ &emsp;&emsp; Median: middle value of sorted data &emsp;&emsp; Mode: most frequent value
+</div>
+<div class="formula-box">
+$s^2 = \frac{\sum(x_i - \bar{x})^2}{n-1} = \frac{\sum x_i^2 - n\bar{x}^2}{n-1}$ &emsp;&emsp; $s = \sqrt{s^2}$ &emsp;&emsp; $\text{CV} = \frac{s}{\bar{x}} \times 100\%$
+</div>
+<div class="formula-box">
+$\text{IQR} = Q_3 - Q_1$ &emsp;&emsp; Fences: $Q_1 - 1.5 \cdot \text{IQR}$ &ensp; to &ensp; $Q_3 + 1.5 \cdot \text{IQR}$
+</div>
+<div class="formula-box">
+Pearson's $r = \frac{n\sum x_i y_i - \sum x_i \sum y_i}{\sqrt{[n\sum x_i^2 - (\sum x_i)^2][n\sum y_i^2 - (\sum y_i)^2]}}$
+</div>
+<div class="formula-box">
+Skew: Mode $\approx$ 3 Median $-$ 2 Mean &emsp; | &emsp; Mean > Mode &rArr; right skew
+</div>
+
+<h2>Probability Rules</h2>
+<div class="formula-box">
+$P(A^c) = 1 - P(A)$ &emsp;&emsp; $P(A \cup B) = P(A) + P(B) - P(A \cap B)$
+</div>
+<div class="formula-box">
+$P(B|A) = \frac{P(A \cap B)}{P(A)}$ &emsp;&emsp; $P(A \cap B) = P(A) \cdot P(B|A)$
+</div>
+<div class="formula-box">
+Independent: $P(A \cap B) = P(A) \cdot P(B)$ &emsp; | &emsp; ME: $P(A \cap B) = 0$
+</div>
+
+<h2>Bayes' Theorem &amp; Total Probability</h2>
+<div class="formula-box">
+$P(B) = \sum_{i} P(B|A_i) \cdot P(A_i)$ &emsp;&emsp; $P(A_i|B) = \frac{P(B|A_i) \cdot P(A_i)}{P(B)}$
+</div>
+<div class="formula-box">
+Naive Bayes: $\hat{C} = \arg\max_{C_k} P(C_k) \prod_{i} P(x_i|C_k)$ &emsp; Laplace: $P(w|C) = \frac{\text{count}(w,C) + 1}{\text{total}_C + |V|}$
+</div>
+
+<h2>Random Variables</h2>
+<div class="formula-box">
+$E[X] = \sum x \cdot P(x)$ &emsp;&emsp; $\text{Var}(X) = E[X^2] - (E[X])^2$ &emsp;&emsp; $\sigma = \sqrt{\text{Var}(X)}$
+</div>
+<div class="formula-box">
+CDF: $F(x) = P(X \le x)$ &emsp; PDF: $P(a &lt; X &lt; b) = \int_a^b f(x)\,dx$ &emsp; Valid: $\sum P = 1$ or $\int f = 1$
+</div>
+
+<h2>Named Distributions</h2>
+<div class="formula-box">
+<strong>Binomial:</strong> $P(X=k) = \binom{n}{k} p^k (1-p)^{n-k}$ &emsp; $\mu = np$, $\sigma^2 = np(1-p)$
+</div>
+<div class="formula-box">
+<strong>Poisson:</strong> $P(X=k) = \frac{e^{-\lambda}\lambda^k}{k!}$ &emsp; $\mu = \sigma^2 = \lambda$
+</div>
+<div class="formula-box">
+<strong>Normal:</strong> $Z = \frac{X - \mu}{\sigma}$ &emsp; $P(a &lt; X &lt; b) = \Phi\!\left(\frac{b-\mu}{\sigma}\right) - \Phi\!\left(\frac{a-\mu}{\sigma}\right)$
+</div>
+<div class="formula-box">
+<strong>Normal approx to Binomial</strong> (when $np \geq 5$ and $n(1-p) \geq 5$): use $N(np, np(1-p))$ with continuity correction
+</div>
+
+<h2>Hypothesis Testing</h2>
+<div class="formula-box">
+<strong>Z-test:</strong> $Z = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}}$ &emsp;&emsp; <strong>t-test:</strong> $t = \frac{\bar{x} - \mu_0}{s / \sqrt{n}}$, df $= n-1$
+</div>
+<div class="formula-box">
+<strong>Paired t-test:</strong> $t = \frac{\bar{d}}{s_d / \sqrt{n}}$ where $d_i = \text{after}_i - \text{before}_i$
+</div>
+<div class="formula-box">
+<strong>Two-proportion:</strong> $Z = \frac{\hat{p}_1 - \hat{p}_2}{\sqrt{\hat{p}(1-\hat{p})\left(\frac{1}{n_1}+\frac{1}{n_2}\right)}}$ where $\hat{p} = \frac{x_1+x_2}{n_1+n_2}$
+</div>
+<div class="formula-box">
+<strong>F-test (variance):</strong> $F = \frac{s_1^2}{s_2^2}$ (larger on top) &emsp; <strong>ANOVA:</strong> $F = \frac{MS_{\text{between}}}{MS_{\text{within}}}$
+</div>
+
+<h2>Regression &amp; Correlation</h2>
+<div class="formula-box">
+$\hat{Y} = \beta_0 + \beta_1 X$ &emsp; $\beta_1 = \frac{n\sum x_i y_i - \sum x_i \sum y_i}{n\sum x_i^2 - (\sum x_i)^2}$ &emsp; $\beta_0 = \bar{y} - \beta_1 \bar{x}$
+</div>
+
+<h2>Exponential Smoothing</h2>
+<div class="formula-box">
+$F_{t+1} = \alpha \cdot A_t + (1 - \alpha) \cdot F_t$ &emsp; ($\alpha$ close to 1 &rarr; reacts fast to changes)
+</div>
+
+<!-- ============================================================ -->
+<div class="section-divider" id="part3">Part 3: Quiz 1 &mdash; Full Solutions</div>
+<!-- ============================================================ -->
+
+<h3>Q1. Quantitative Variable</h3>
+<div class="mcq">
+<strong>Which of the following is an example of a quantitative variable?</strong>
+<ul class="mcq-options">
+<li>(a) The type of vehicle a person drives</li>
+<li>(b) The age of a person</li>
+<li>(c) The brand of a smartphone</li>
+<li>(d) The colour of a shirt</li>
+</ul>
+</div>
+<details>
+<summary>Answer &amp; Explanation</summary>
+<div class="answer">
+<p class="correct">Answer: (b) The age of a person</p>
+<p><strong>Why:</strong> Quantitative = numerical, you can do maths on it. Age is measured in numbers (18, 34, 65). All others are categories (labels) &mdash; you can't average "SUV + Sedan".</p>
+<p><strong>Tip:</strong> Ask "Can I compute a meaningful average?" If yes &rarr; quantitative.</p>
+</div>
+</details>
+
+<h3>Q2. Discrete Random Variable</h3>
+<div class="mcq">
+<strong>A discrete random variable is characterized by:</strong>
+<ul class="mcq-options">
+<li>(a) Having an infinite number of possible values</li>
+<li>(b) Taking only a countable set of values</li>
+<li>(c) Being non-numeric</li>
+<li>(d) Having no probability distribution</li>
+</ul>
+</div>
+<details>
+<summary>Answer &amp; Explanation</summary>
+<div class="answer">
+<p class="correct">Answer: (b) Taking only a countable set of values</p>
+<p><strong>Why:</strong> Discrete = countable (0, 1, 2, 3, ...). Even countably <em>infinite</em> (like "number of flips to get heads") is still discrete. Continuous = uncountable interval (height 172.345... cm).</p>
+<p><strong>Quick test:</strong> "Can I list the possibilities (even if the list is long)?" Yes &rarr; discrete.</p>
+</div>
+</details>
+
+<h3>Q3. NOT a Discrete Random Variable</h3>
+<div class="mcq">
+<strong>Which is NOT an example of a discrete random variable?</strong>
+<ul class="mcq-options">
+<li>(a) The number of pets owned by a family</li>
+<li>(b) The number of students in a classroom</li>
+<li>(c) The height of students in a classroom</li>
+<li>(d) The number of books on a shelf</li>
+</ul>
+</div>
+<details>
+<summary>Answer &amp; Explanation</summary>
+<div class="answer">
+<p class="correct">Answer: (c) The height of students in a classroom</p>
+<p><strong>Why:</strong> Height is <em>measured</em>, not counted. It can take any value (165.5 cm, 165.51 cm, ...) &mdash; continuous. All others are counts of whole items.</p>
+</div>
+</details>
+
+<h3>Q4. Die + Coin Sample Space</h3>
+<div class="mcq">
+<strong>When a die and a coin are rolled together, all possible outcomes are:</strong>
+<ul class="mcq-options">
+<li>(a) 12</li>
+<li>(b) 36</li>
+<li>(c) 6</li>
+<li>(d) 2</li>
+</ul>
+</div>
+<details>
+<summary>Answer &amp; Explanation</summary>
+<div class="answer">
+<p class="correct">Answer: (a) 12</p>
+<p><strong>Why:</strong> Fundamental Counting Principle: $6 \times 2 = 12$. Die has 6 outcomes, coin has 2, and they are independent. The sample space is {(1,H), (1,T), (2,H), ..., (6,T)}.</p>
+</div>
+</details>
+
+<h3>Q5. Conditional Probability &mdash; Card (Spade &amp; Queen)</h3>
+<div class="mcq">
+<strong>A card is drawn from a standard deck. Given the card is a spade, what is the probability it is a queen?</strong>
+<ul class="mcq-options">
+<li>(a) 1/12</li>
+<li>(b) 1/4</li>
+<li>(c) 1/52</li>
+<li>(d) 1/13</li>
+</ul>
+</div>
+<details>
+<summary>Answer &amp; Explanation</summary>
+<div class="answer">
+<p class="correct">Answer: (d) 1/13</p>
+<p><strong>Why:</strong> "Given it's a spade" shrinks the world to 13 spades. Among those 13, exactly 1 is the Queen of Spades. So $P(\text{queen}|\text{spade}) = \frac{1}{13}$.</p>
+<p><strong>Key idea:</strong> Conditioning = pick the right denominator (13, not 52).</p>
+</div>
+</details>
+
+<h3>Q6. Bayes' Theorem Purpose</h3>
+<div class="mcq">
+<strong>Bayes' Theorem helps in:</strong>
+<ul class="mcq-options">
+<li>(a) Predicting future stock market prices</li>
+<li>(b) Finding maximum likelihood estimates</li>
+<li>(c) Updating probabilities based on new evidence</li>
+<li>(d) Solving linear algebra problems</li>
+</ul>
+</div>
+<details>
+<summary>Answer &amp; Explanation</summary>
+<div class="answer">
+<p class="correct">Answer: (c) Updating probabilities based on new evidence</p>
+<p><strong>Why:</strong> Bayes flips $P(\text{evidence}|\text{cause})$ into $P(\text{cause}|\text{evidence})$. It's a belief-updating machine. MLE is (b) &mdash; a different method. Stock prediction (a) and linear algebra (d) are unrelated.</p>
+</div>
+</details>
+
+<h3>Q7. Skewness from Mean &amp; Mode</h3>
+<div class="mcq">
+<strong>The distribution in which mean = 60 and mode = 55 will be:</strong>
+<ul class="mcq-options">
+<li>(a) Negative skewed</li>
+<li>(b) None</li>
+<li>(c) Positive skewed</li>
+<li>(d) Symmetrical</li>
+</ul>
+</div>
+<details>
+<summary>Answer &amp; Explanation</summary>
+<div class="answer">
+<p class="correct">Answer: (c) Positive skewed (right-skewed)</p>
+<p><strong>Why:</strong> Mean (60) > Mode (55). The mean is pulled toward the right tail. Rule: Mean > Mode &rArr; positively skewed.</p>
+</div>
+</details>
+
+<h3>Q8. "At Least One Graduate" &mdash; Complement + Combinations</h3>
+<div class="mcq">
+<strong>5 of 20 men are graduates. If 3 are picked at random, the probability of at least one graduate is:</strong>
+<ul class="mcq-options">
+<li>(a) 137/228</li>
+<li>(b) 165/228</li>
+<li>(c) 91/228</li>
+<li>(d) 1/114</li>
+</ul>
+</div>
+<details>
+<summary>Answer &amp; Explanation</summary>
+<div class="answer">
+<p class="correct">Answer: (a) 137/228</p>
+<p><strong>Step-by-step:</strong></p>
+<ol>
+<li>Total ways to pick 3 from 20: $\binom{20}{3} = \frac{20 \times 19 \times 18}{6} = 1140$</li>
+<li>"At least one grad" is easier via complement: $P = 1 - P(\text{no grads})$</li>
+<li>Ways to pick 3 non-grads (from 15): $\binom{15}{3} = \frac{15 \times 14 \times 13}{6} = 455$</li>
+<li>$P(\text{no grads}) = \frac{455}{1140} = \frac{91}{228}$</li>
+<li>$P(\text{at least 1}) = 1 - \frac{91}{228} = \frac{137}{228}$</li>
+</ol>
+<p><strong>Tip:</strong> Whenever you see "at least one", immediately think complement trick.</p>
+</div>
+</details>
+
+<h3>Q9. Grey Hair &mdash; Bayes' Theorem</h3>
+<div class="mcq">
+<strong>5% of men and 0.25% of women have grey hair. Equal numbers of males and females. A grey-haired person is selected. P(male) = ?</strong>
+<ul class="mcq-options">
+<li>(a) 8/11</li>
+<li>(b) 20/21</li>
+<li>(c) 13/21</li>
+<li>(d) 10/11</li>
+</ul>
+</div>
+<details>
+<summary>Answer &amp; Explanation</summary>
+<div class="answer">
+<p class="correct">Answer: (b) 20/21</p>
+<p><strong>Step-by-step Bayes:</strong></p>
+<ol>
+<li>$P(M) = P(W) = 0.5$, $P(G|M) = 0.05$, $P(G|W) = 0.0025$</li>
+<li>$P(G) = P(G|M) \cdot P(M) + P(G|W) \cdot P(W) = 0.05(0.5) + 0.0025(0.5) = 0.025 + 0.00125 = 0.02625$</li>
+<li>$P(M|G) = \frac{0.05 \times 0.5}{0.02625} = \frac{0.025}{0.02625} = \frac{25}{26.25} = \frac{500}{525} = \frac{20}{21}$</li>
+</ol>
+<p><strong>Insight:</strong> Men are 20&times; more likely to have grey hair, so grey hair is very strong evidence for male &mdash; despite equal priors.</p>
+</div>
+</details>
+
+<h3>Q10. Total Probability &mdash; First Class Marks</h3>
+<div class="mcq">
+<strong>2/3 boys, 1/3 girls. P(first class | girl) = 0.25, P(first class | boy) = 0.28. P(first class) = ?</strong>
+<ul class="mcq-options">
+<li>(a) 0.27</li>
+<li>(b) 0.43</li>
+<li>(c) 0.51</li>
+<li>(d) 0.20</li>
+</ul>
+</div>
+<details>
+<summary>Answer &amp; Explanation</summary>
+<div class="answer">
+<p class="correct">Answer: (a) 0.27</p>
+<p><strong>Total probability:</strong></p>
+$$P(\text{FC}) = P(\text{FC}|\text{Boy}) \cdot P(\text{Boy}) + P(\text{FC}|\text{Girl}) \cdot P(\text{Girl})$$
+$$= 0.28 \times \frac{2}{3} + 0.25 \times \frac{1}{3} = 0.1867 + 0.0833 = 0.27$$
+</div>
+</details>
+
+<!-- ============================================================ -->
+<div class="section-divider" id="part4">Part 4: Practice Bank &mdash; 40+ Questions with Answers</div>
+<!-- ============================================================ -->
+
+<!-- ===== DESCRIPTIVE STATISTICS ===== -->
+<h2 id="p4-stats">Descriptive Statistics</h2>
+
+<details>
+<summary>Q1. Fat content: Mean, Median, SD, IQR &amp; Outliers (Exam EC2 Dec 2025)</summary>
+<div class="answer">
+<strong>Data:</strong> 7, 4, 20, 23, 25, 19, 30, 30, 40, 56 (n=10)<br>
+<strong>Sorted:</strong> 4, 7, 19, 20, 23, 25, 30, 30, 40, 56<br><br>
+<strong>Mean:</strong> $\bar{x} = \frac{254}{10} = 25.4$<br>
+<strong>Median:</strong> Average of 5th &amp; 6th = $\frac{23 + 25}{2} = 24$<br>
+<strong>$Q_1$:</strong> Median of lower 5 (4,7,19,20,23) = 19<br>
+<strong>$Q_3$:</strong> Median of upper 5 (25,30,30,40,56) = 30<br>
+<strong>IQR:</strong> $30 - 19 = 11$<br>
+<strong>Fences:</strong> $19 - 16.5 = 2.5$ and $30 + 16.5 = 46.5$<br>
+<strong>Outlier:</strong> 56 > 46.5 &rArr; <strong>56 is an outlier</strong>. No value below 2.5.<br><br>
+<strong>SD:</strong> $\sum x_i^2 = 16+49+361+400+529+625+900+900+1600+3136 = 8516$<br>
+$s^2 = \frac{8516 - 10(25.4)^2}{9} = \frac{8516 - 6451.6}{9} = \frac{2064.4}{9} = 229.4$<br>
+$s \approx 15.1$<br><br>
+<strong>Conclusion:</strong> Mean (25.4) > Median (24) &rArr; right-skewed. High SD (15.1) and the outlier 56 show poor nutritional consistency.
+</div>
+</details>
+
+<details>
+<summary>Q2. Statistical Summary Table &mdash; Drawing Inferences (Exam EC2R Jul 2024)</summary>
+<div class="answer">
+<strong>Given summary for HHV, WBN, BNC, HBCN (Count, Mean, SD, quartiles, min, max).</strong><br><br>
+<strong>Approach:</strong>
+<ol>
+<li><strong>Compare means vs medians:</strong> If mean &ne; median, comment on skew direction.</li>
+<li><strong>Compare SDs:</strong> HBCN (SD=4) is far more consistent than HHV (SD=10).</li>
+<li><strong>Check for outliers:</strong> Compute IQR = Q3 - Q1, then fences. Values outside &rarr; outliers.</li>
+<li><strong>Range:</strong> HHV (160-30=130) vs HBCN (90-30=60) &mdash; HHV has widest spread.</li>
+</ol>
+Three possible inferences: (1) HBCN is the most consistent dataset (smallest SD &amp; IQR). (2) HHV has the highest variability and likely contains outliers. (3) WBN has mean = median = 65, suggesting near-symmetric distribution.
+</div>
+</details>
+
+<details>
+<summary>Q3. MCQ: Coefficient of Variation</summary>
+<div class="answer">
+<strong>Problem:</strong> Dataset A has mean 50, SD 10. Dataset B has mean 200, SD 30. Which has more relative variability?<br><br>
+<strong>Solution:</strong> $CV_A = \frac{10}{50} \times 100 = 20\%$, $CV_B = \frac{30}{200} \times 100 = 15\%$.<br>
+<strong>Dataset A</strong> has more relative variability despite having a smaller SD. CV normalises by the mean.
+</div>
+</details>
+
+<details>
+<summary>Q4. MCQ: Which measure is resistant to outliers?</summary>
+<div class="answer">
+<strong>Options:</strong> (a) Mean (b) Range (c) Median (d) Variance<br><br>
+<strong>Answer: (c) Median.</strong> The median only cares about position, not value. A billionaire walking into a room barely moves the median but drags the mean far right.
+</div>
+</details>
+
+<!-- ===== PROBABILITY ===== -->
+<h2 id="p4-prob">Probability &amp; Counting</h2>
+
+<details>
+<summary>Q5. Independent Events &mdash; Full Workout (Exam EC2R Jul 2024)</summary>
+<div class="answer">
+<strong>P(A) = 0.35, P(B) = 0.30, independent. Validate and find:</strong><br><br>
+(a) $P(A \cup B) = 0$ as they are independent? <strong>FALSE.</strong> Independence means $P(A \cap B) = P(A)P(B) = 0.105 \neq 0$. $P(A \cup B) = 0.35 + 0.30 - 0.105 = 0.545$.<br><br>
+(b) $P(A \cap B) = 0$ as they are mutually exclusive? <strong>FALSE.</strong> They are independent, not ME. $P(A \cap B) = 0.105$.<br><br>
+(c) $P(A^c \cap B^c) = P(\text{neither}) = 1 - P(A \cup B) = 1 - 0.545 = 0.455$. Or by independence: $(1-0.35)(1-0.30) = 0.65 \times 0.70 = 0.455$ &check;
+</div>
+</details>
+
+<details>
+<summary>Q6. Independent Events &mdash; All Operations (Exam EC2M Jul 2024)</summary>
+<div class="answer">
+<strong>P(A) = 0.25, P(B) = 0.20, independent.</strong><br><br>
+(a) $P(A \cup B) = 0.25 + 0.20 - 0.05 = 0.40$<br>
+(b) $P(A \cap B) = 0.25 \times 0.20 = 0.05$<br>
+(c) $P(A/B) = P(A|B) = P(A) = 0.25$ (independent!)<br>
+(d) $P(B/A) = P(B|A) = P(B) = 0.20$ (independent!)<br>
+(e) $P(A^c/B) = P(A^c|B) = 1 - P(A|B) = 1 - 0.25 = 0.75$<br>
+(f) $P(A^c \cap B^c) = (1-0.25)(1-0.20) = 0.75 \times 0.80 = 0.60$
+</div>
+</details>
+
+<details>
+<summary>Q7. Three Events &mdash; Conditional Probabilities (Exam EC2R Jul 2024)</summary>
+<div class="answer">
+<strong>P(A)=0.50, P(B)=0.55, P(C)=0.45, P(A&cap;B)=0.20, P(B&cap;C)=0.20, P(A&cap;C)=0.15, P(A&cap;B&cap;C)=0.05.</strong><br><br>
+First: $P(A \cup B) = 0.50 + 0.55 - 0.20 = 0.85$<br><br>
+(a) $P(A | A \cup B) = \frac{P(A \cap (A \cup B))}{P(A \cup B)} = \frac{P(A)}{P(A \cup B)} = \frac{0.50}{0.85} \approx 0.588$<br><br>
+(b) $P(B | A \cap B) = \frac{P(B \cap (A \cap B))}{P(A \cap B)} = \frac{P(A \cap B)}{P(A \cap B)} = 1$<br><br>
+(c) $P(A \cap B | A \cup B) = \frac{P(A \cap B)}{P(A \cup B)} = \frac{0.20}{0.85} \approx 0.235$<br><br>
+(d) $P(A \cup B | A \cap B \cap C) = \frac{P((A \cup B) \cap A \cap B \cap C)}{P(A \cap B \cap C)} = \frac{P(A \cap B \cap C)}{P(A \cap B \cap C)} = 1$ (since $A \cap B \cap C \subseteq A \cup B$)
+</div>
+</details>
+
+<details>
+<summary>Q8. MCQ: Drawing 2 red balls from 5 red, 3 blue (without replacement)</summary>
+<div class="answer">
+<strong>P(both red) = ?</strong><br><br>
+$\frac{5}{8} \times \frac{4}{7} = \frac{20}{56} = \frac{5}{14} \approx 0.357$<br><br>
+<strong>With replacement:</strong> $\frac{5}{8} \times \frac{5}{8} = \frac{25}{64} \approx 0.391$ (larger &mdash; the pool resets).
+</div>
+</details>
+
+<!-- ===== CONDITIONAL & TOTAL PROBABILITY ===== -->
+<h2 id="p4-cond">Conditional &amp; Total Probability</h2>
+
+<details>
+<summary>Q9. Cricket Captain &mdash; Total Probability + Bayes (Exam EC2R Jul 2024)</summary>
+<div class="answer">
+<strong>Hardik (0.2), Rishabh (0.5), Surya (0.3) become captain. Fee increase probabilities: 0.3, 0.6, 0.5.</strong><br><br>
+$P(\text{increase}) = 0.3(0.2) + 0.6(0.5) + 0.5(0.3) = 0.06 + 0.30 + 0.15 = 0.51$<br><br>
+(a) $P(\text{Hardik} | \text{increase}) = \frac{0.06}{0.51} = \frac{6}{51} = \frac{2}{17} \approx 0.118$<br><br>
+(b) $P(\text{Rishabh} | \text{increase}) = \frac{0.30}{0.51} = \frac{30}{51} = \frac{10}{17} \approx 0.588$<br><br>
+(c) $P(\text{Surya} | \text{increase}) = \frac{0.15}{0.51} = \frac{15}{51} = \frac{5}{17} \approx 0.294$
+</div>
+</details>
+
+<details>
+<summary>Q10. Weather Alerts &mdash; Three Events (Exam EC2 Dec 2025)</summary>
+<div class="answer">
+<strong>A, B, C are weather alerts. Given: each equally likely, P(any two) same, P(all three), P(none).</strong><br><br>
+<strong>Approach:</strong> Use inclusion-exclusion:<br>
+$P(A \cup B \cup C) = P(A)+P(B)+P(C) - P(AB) - P(BC) - P(CA) + P(ABC)$<br>
+Also $P(\text{none}) = 1 - P(A \cup B \cup C)$.<br><br>
+<strong>Exactly two:</strong> $P(\text{exactly 2}) = P(AB) + P(BC) + P(CA) - 3P(ABC)$<br>
+<strong>Exactly one:</strong> $P(\text{exactly 1}) = P(A \cup B \cup C) - P(\text{exactly 2}) - P(\text{exactly 3})$<br><br>
+<em>Plug in the given values and compute step-by-step. The key is mastering inclusion-exclusion for 3 events.</em>
+</div>
+</details>
+
+<details>
+<summary>Q11. MCQ: P(A&cup;B) given P(A)=0.4, P(B)=0.3, P(A&cap;B)=0.1</summary>
+<div class="answer">
+$P(A \cup B) = 0.4 + 0.3 - 0.1 = 0.6$
+</div>
+</details>
+
+<details>
+<summary>Q12. MCQ: Are these independent? P(A)=0.5, P(B)=0.4, P(A&cap;B)=0.2</summary>
+<div class="answer">
+Check: $P(A) \times P(B) = 0.5 \times 0.4 = 0.20 = P(A \cap B)$. <strong>Yes, independent.</strong>
+</div>
+</details>
+
+<!-- ===== BAYES & NAIVE BAYES ===== -->
+<h2 id="p4-bayes">Bayes' Theorem &amp; Naive Bayes</h2>
+
+<details>
+<summary>Q13. Naive Bayes: "assignment urgent" (Exam EC2 Dec 2025)</summary>
+<div class="answer">
+<strong>Training data:</strong><br>
+Urgent (2 msgs): "assignment due tomorrow please help", "exam rescheduled urgent attention" &rarr; words: assignment, due, tomorrow, please, help, exam, rescheduled, urgent, attention (9 words)<br>
+Not Urgent (2 msgs): "lunch plans today", "thanks for the notes" &rarr; words: lunch, plans, today, thanks, for, the, notes (7 words)<br><br>
+<strong>Priors:</strong> $P(U) = 2/4 = 0.5$, $P(NU) = 2/4 = 0.5$<br><br>
+Vocabulary $|V|$ = total unique words across all messages. Let's count: assignment, due, tomorrow, please, help, exam, rescheduled, urgent, attention, lunch, plans, today, thanks, for, the, notes = 16.<br><br>
+<strong>Classify "assignment urgent":</strong><br>
+With Laplace ($\alpha = 1$):<br>
+$P(\text{assignment}|U) = \frac{1+1}{9+16} = \frac{2}{25}$, $P(\text{urgent}|U) = \frac{1+1}{9+16} = \frac{2}{25}$<br>
+$P(\text{assignment}|NU) = \frac{0+1}{7+16} = \frac{1}{23}$, $P(\text{urgent}|NU) = \frac{0+1}{7+16} = \frac{1}{23}$<br><br>
+$\text{Score}_U = 0.5 \times \frac{2}{25} \times \frac{2}{25} = 0.5 \times 0.0064 = 0.0032$<br>
+$\text{Score}_{NU} = 0.5 \times \frac{1}{23} \times \frac{1}{23} = 0.5 \times 0.00189 = 0.000945$<br><br>
+$0.0032 > 0.000945$ &rArr; <strong>Classified as Urgent</strong>
+</div>
+</details>
+
+<details>
+<summary>Q14. Naive Bayes: Classify "Vehicle=scooter, Card=yes, Travel=Bus" (Exam EC2M Jul 2024)</summary>
+<div class="answer">
+<strong>This is a Naive Bayes classification problem.</strong><br>
+From the table: count Salaried vs Business, compute priors, then likelihoods for each feature given each class. With Laplace smoothing if needed.<br><br>
+<strong>Approach:</strong>
+<ol>
+<li>Count classes: Salaried = 4, Business = 4 (out of 8). Prior = 0.5 each.</li>
+<li>For each feature, count occurrences within each class and apply Naive Bayes multiplication.</li>
+<li>Compare scores &rarr; higher wins.</li>
+</ol>
+<em>Key insight: even though the features may not be truly independent, Naive Bayes still works surprisingly well.</em>
+</div>
+</details>
+
+<details>
+<summary>Q15. MCQ: If P(spam)=0.4 and P("free"|spam)=0.7, P("free"|ham)=0.1, what is P(spam|"free")?</summary>
+<div class="answer">
+$P(\text{"free"}) = 0.7(0.4) + 0.1(0.6) = 0.28 + 0.06 = 0.34$<br>
+$P(\text{spam}|\text{"free"}) = \frac{0.28}{0.34} \approx 0.824$<br><br>
+The word "free" raises spam probability from 40% to 82%.
+</div>
+</details>
+
+<!-- ===== RANDOM VARIABLES ===== -->
+<h2 id="p4-rv">Random Variables &amp; Distributions</h2>
+
+<details>
+<summary>Q16. Find k, E[X], Var(X) for PMF (Exam EC2 Dec 2025)</summary>
+<div class="answer">
+<strong>x:</strong> 0, 1, 3, 4, 5, 6, 7 &emsp; <strong>P(x):</strong> 0, k, 2k, 2k, 3k, k&sup2;, 7k&sup2;+k<br><br>
+<strong>Find k:</strong> $\sum P = 0 + k + 2k + 2k + 3k + k^2 + 7k^2 + k = 9k + 8k^2 = 1$<br>
+$8k^2 + 9k - 1 = 0$. Using quadratic formula: $k = \frac{-9 + \sqrt{81 + 32}}{16} = \frac{-9 + \sqrt{113}}{16} \approx \frac{-9 + 10.63}{16} \approx 0.102$<br>
+Or: try $k = 0.1$: $8(0.01) + 9(0.1) = 0.08 + 0.9 = 0.98 \approx 1$. Close enough for exam &mdash; $k \approx 0.1$.<br><br>
+<strong>With k = 0.1:</strong> P(x): 0, 0.1, 0.2, 0.2, 0.3, 0.01, 0.17. Sum $\approx 0.98$ (approximate).<br><br>
+<strong>P(X &lt; 6):</strong> $P(0)+P(1)+P(3)+P(4)+P(5) = 0+0.1+0.2+0.2+0.3 = 0.8$<br>
+<strong>P(X &ge; 6):</strong> $1 - 0.8 = 0.2$<br>
+<strong>P(0 &lt; X &lt; 5):</strong> $P(1)+P(3)+P(4) = 0.1+0.2+0.2 = 0.5$<br><br>
+<strong>E[X]</strong> $= \sum x \cdot P(x)$, <strong>Var(X)</strong> $= E[X^2] - (E[X])^2$
+</div>
+</details>
+
+<details>
+<summary>Q17. Discrete PMF: p(x) = k(x+1)/4 for x = -1, 0, 1, 2 (Exam EC2M Jul 2024)</summary>
+<div class="answer">
+<strong>Find k:</strong> $\sum P = \frac{k(0)}{4} + \frac{k(1)}{4} + \frac{k(2)}{4} + \frac{k(3)}{4} = \frac{k(0+1+2+3)}{4} = \frac{6k}{4} = \frac{3k}{2} = 1$<br>
+$k = \frac{2}{3}$<br><br>
+<strong>PMF:</strong> P(-1) = 0, P(0) = 1/6, P(1) = 2/6 = 1/3, P(2) = 3/6 = 1/2<br><br>
+<strong>E[X]:</strong> $(-1)(0) + 0(1/6) + 1(1/3) + 2(1/2) = 0 + 0 + 1/3 + 1 = 4/3 \approx 1.33$<br>
+<strong>E[X&sup2;]:</strong> $1(0) + 0 + 1(1/3) + 4(1/2) = 1/3 + 2 = 7/3$<br>
+<strong>Var(X):</strong> $7/3 - (4/3)^2 = 7/3 - 16/9 = 21/9 - 16/9 = 5/9 \approx 0.556$<br>
+<strong>P(-1 &lt; x &lt; 2):</strong> $P(0) + P(1) = 1/6 + 1/3 = 1/2$
+</div>
+</details>
+
+<details>
+<summary>Q18. Continuous PDF: f(x) = k(x+1)/4 on [0,2] (Exam EC2R Jul 2024)</summary>
+<div class="answer">
+<strong>Find k:</strong> $\int_0^2 \frac{k(x+1)}{4} dx = 1$<br>
+$\frac{k}{4}\left[\frac{x^2}{2} + x\right]_0^2 = \frac{k}{4}(2 + 2) = \frac{4k}{4} = k = 1$. So $k = 1$.<br><br>
+<strong>E[X]:</strong> $\int_0^2 x \cdot \frac{x+1}{4} dx = \frac{1}{4}\int_0^2 (x^2 + x) dx = \frac{1}{4}\left[\frac{8}{3} + 2\right] = \frac{1}{4} \cdot \frac{14}{3} = \frac{7}{6} \approx 1.167$<br><br>
+<strong>E[X&sup2;]:</strong> $\frac{1}{4}\int_0^2 (x^3 + x^2) dx = \frac{1}{4}\left[4 + \frac{8}{3}\right] = \frac{1}{4} \cdot \frac{20}{3} = \frac{5}{3}$<br>
+<strong>Var(X):</strong> $\frac{5}{3} - \left(\frac{7}{6}\right)^2 = \frac{5}{3} - \frac{49}{36} = \frac{60-49}{36} = \frac{11}{36} \approx 0.306$<br><br>
+<strong>P(0.5 &lt; X &lt; 1.5):</strong> $\frac{1}{4}\int_{0.5}^{1.5}(x+1)dx = \frac{1}{4}\left[\frac{x^2}{2}+x\right]_{0.5}^{1.5} = \frac{1}{4}\left[(1.125+1.5)-(0.125+0.5)\right] = \frac{1}{4}(2) = 0.5$
+</div>
+</details>
+
+<details>
+<summary>Q19. Joint Distribution &mdash; Independence Check (Exam EC2R Jul 2024)</summary>
+<div class="answer">
+<strong>X: -1(0.25), 0(0.15), 1(0.35), 2(0.25) &emsp; Y: 0(0.10), 1(0.20), 2(0.30), 3(0.40)</strong><br>
+<strong>X and Y independent.</strong><br><br>
+(a) <strong>Joint distribution:</strong> Since independent, $f(x,y) = P(X=x) \cdot P(Y=y)$ for all pairs. E.g., $P(X=-1, Y=0) = 0.25 \times 0.10 = 0.025$. Build the full 4&times;4 table.<br><br>
+(b) $P(X < 1, Y < 2) = P(X \in \{-1,0\}) \cdot P(Y \in \{0,1\}) = (0.25+0.15)(0.10+0.20) = 0.40 \times 0.30 = 0.12$<br><br>
+(c) $P(X < 1 | Y < 2) = P(X < 1) = 0.40$ (independent, so conditioning doesn't change it!)
+</div>
+</details>
+
+<details>
+<summary>Q20. Joint PDF: f(x,y) = 6x&sup2;y on [0,1]&times;[0,1] (Exam EC2 Dec 2025)</summary>
+<div class="answer">
+<strong>Verify valid:</strong> $\int_0^1\int_0^1 6x^2 y\, dy\, dx = 6\int_0^1 x^2 dx \int_0^1 y\, dy = 6 \cdot \frac{1}{3} \cdot \frac{1}{2} = 1$ &check;<br><br>
+<strong>Marginals:</strong><br>
+$f_X(x) = \int_0^1 6x^2 y\, dy = 6x^2 \cdot \frac{1}{2} = 3x^2$<br>
+$f_Y(y) = \int_0^1 6x^2 y\, dx = 6y \cdot \frac{1}{3} = 2y$<br><br>
+<strong>P(X&lt;0.5, Y&gt;0.5):</strong> $\int_0^{0.5}\int_{0.5}^1 6x^2 y\, dy\, dx = 6\int_0^{0.5} x^2 dx \int_{0.5}^1 y\, dy = 6 \cdot \frac{1}{24} \cdot \frac{3}{8} = 6 \cdot \frac{3}{192} = \frac{18}{192} = \frac{3}{32} = 0.09375$<br><br>
+<strong>Independent?</strong> $f(x,y) = 6x^2y = (3x^2)(2y) = f_X(x) \cdot f_Y(y)$ &rArr; <strong>Yes, independent.</strong><br><br>
+<strong>E[X]</strong> $= \int_0^1 x \cdot 3x^2\, dx = 3 \cdot \frac{1}{4} = \frac{3}{4}$<br>
+<strong>E[Y]</strong> $= \int_0^1 y \cdot 2y\, dy = 2 \cdot \frac{1}{3} = \frac{2}{3}$<br>
+<strong>E[XY]</strong> $= E[X] \cdot E[Y] = \frac{3}{4} \cdot \frac{2}{3} = \frac{1}{2}$ (independent, so $E[XY] = E[X]E[Y]$)
+</div>
+</details>
+
+<!-- ===== NAMED DISTRIBUTIONS ===== -->
+<h2 id="p4-named">Named Distributions (Binomial, Poisson, Normal)</h2>
+
+<details>
+<summary>Q21. Binomial: P(50 &lt; X &lt; 80) with n=150, p=0.2 (Exam EC2R Jul 2024)</summary>
+<div class="answer">
+$\mu = np = 150 \times 0.2 = 30$, $\sigma = \sqrt{np(1-p)} = \sqrt{24} \approx 4.899$<br><br>
+Use Normal approximation (np=30 &ge; 5, nq=120 &ge; 5):<br>
+$Z_1 = \frac{50 - 30}{4.899} \approx 4.08$, $Z_2 = \frac{80 - 30}{4.899} \approx 10.2$<br><br>
+Both Z-values are extremely large. $P(Z > 4.08) \approx 0$. So $P(50 < X < 80) \approx 0$ (essentially impossible for X to be that far from the mean of 30).
+</div>
+</details>
+
+<details>
+<summary>Q22. Binomial: Mean=4, SD=2/&radic;3 &mdash; Find n, p (Exam EC2M Jul 2024)</summary>
+<div class="answer">
+$\mu = np = 4$, $\sigma^2 = np(1-p) = \frac{4}{3}$<br>
+$\frac{\sigma^2}{\mu} = \frac{4/3}{4} = \frac{1}{3} = 1-p$, so $p = \frac{2}{3}$, $n = \frac{4}{2/3} = 6$.<br><br>
+<strong>Distribution:</strong> $X \sim B(6, 2/3)$<br>
+<strong>E[X&sup2;]:</strong> $= \text{Var}(X) + (E[X])^2 = \frac{4}{3} + 16 = \frac{52}{3} \approx 17.33$<br>
+<strong>P(6 &lt; X &lt; 9):</strong> Since $n=6$, max value of X is 6. So $P(X=7) = P(X=8) = 0$. $P(6 < X < 9) = 0$. (Trick question!)
+</div>
+</details>
+
+<details>
+<summary>Q23. Poisson: Defective Blades (Exam EC2 Dec 2025)</summary>
+<div class="answer">
+<strong>0.2% defective, packets of 10. $\lambda = np = 10 \times 0.002 = 0.02$.</strong><br><br>
+$P(X=0) = e^{-0.02} \cdot \frac{0.02^0}{0!} = e^{-0.02} \approx 0.9802$<br>
+$P(X=1) = e^{-0.02} \cdot 0.02 \approx 0.0196$<br><br>
+In 10,000 packets:<br>
+No defective: $10{,}000 \times 0.9802 \approx 9{,}802$ packets<br>
+Exactly one defective: $10{,}000 \times 0.0196 \approx 196$ packets
+</div>
+</details>
+
+<details>
+<summary>Q24. Normal: Washer Diameters (Exam EC2 Dec 2025)</summary>
+<div class="answer">
+$\mu = 0.500$, $\sigma = 0.005$. Acceptable: 0.492 to 0.506.<br><br>
+$Z_1 = \frac{0.492 - 0.500}{0.005} = -1.6$, $Z_2 = \frac{0.506 - 0.500}{0.005} = 1.2$<br><br>
+$P(0.492 < X < 0.506) = \Phi(1.2) - \Phi(-1.6) = 0.8849 - 0.0548 = 0.8301$<br><br>
+<strong>Defective proportion:</strong> $1 - 0.8301 = 0.1699 \approx 17\%$<br><br>
+About 17% of washers are defective &mdash; the process needs tightening (reducing $\sigma$).
+</div>
+</details>
+
+<details>
+<summary>Q25. Normal: Salaries (Exam EC2M Jul 2024)</summary>
+<div class="answer">
+500 employees, $\mu = 20$ lakhs, $\sigma^2 = 4$ so $\sigma = 2$ lakhs.<br><br>
+(a) Above 22: $Z = \frac{22-20}{2} = 1.0$. $P(Z > 1) = 1 - 0.8413 = 0.1587$. Count: $500 \times 0.1587 \approx 79$<br><br>
+(b) Below 16: $Z = \frac{16-20}{2} = -2.0$. $P(Z < -2) = 0.0228$. Count: $500 \times 0.0228 \approx 11$<br><br>
+(c) Between 16 and 22: $P(-2 < Z < 1) = 0.8413 - 0.0228 = 0.8185$. Count: $500 \times 0.8185 \approx 409$<br><br>
+(d) Check: $79 + 11 + 409 = 499 \approx 500$ &check; (rounding). Consistent.
+</div>
+</details>
+
+<details>
+<summary>Q26. Normal: Sampling Distribution (Exam EC2R Jul 2024)</summary>
+<div class="answer">
+$\mu = 40$, $\sigma = 5$, $n = 50$. Find $P(35 < \bar{X} < 45)$.<br><br>
+Standard error: $\sigma_{\bar{X}} = \frac{5}{\sqrt{50}} = \frac{5}{7.07} \approx 0.707$<br>
+$Z_1 = \frac{35 - 40}{0.707} = -7.07$, $Z_2 = \frac{45 - 40}{0.707} = 7.07$<br><br>
+Both Z-values are extreme. $P(-7.07 < Z < 7.07) \approx 1.0000$<br>
+The sample mean is virtually certain to be between 35 and 45.
+</div>
+</details>
+
+<details>
+<summary>Q27. MCQ: Which distribution for "number of typos per page"?</summary>
+<div class="answer">
+<strong>Answer: Poisson.</strong> Typos are rare events occurring independently across a continuous medium (a page). Classic Poisson scenario. $\lambda$ = average typos per page.
+</div>
+</details>
+
+<details>
+<summary>Q28. MCQ: X ~ N(100, 25). P(X > 110) = ?</summary>
+<div class="answer">
+$\sigma = \sqrt{25} = 5$. $Z = \frac{110 - 100}{5} = 2.0$.<br>
+$P(Z > 2) = 1 - 0.9772 = 0.0228 \approx 2.3\%$
+</div>
+</details>
+
+<!-- ===== ADVANCED TOPICS ===== -->
+<h2 id="p4-advanced">Hypothesis Testing, Regression &amp; Beyond</h2>
+
+<details>
+<summary>Q29. Paired t-test: Revision Strategy (Exam EC3 Feb 2026)</summary>
+<div class="answer">
+<strong>Before:</strong> 32, 35, 30, 33, 31, 34 &emsp; <strong>After:</strong> 36, 38, 34, 37, 35, 39<br>
+<strong>$d_i$ = After $-$ Before:</strong> 4, 3, 4, 4, 4, 5<br><br>
+$\bar{d} = \frac{24}{6} = 4$, $s_d = \sqrt{\frac{\sum(d_i - 4)^2}{5}} = \sqrt{\frac{0+1+0+0+0+1}{5}} = \sqrt{0.4} \approx 0.632$<br><br>
+$H_0: \mu_d = 0$ (no improvement), $H_1: \mu_d > 0$ (one-tailed)<br>
+$t = \frac{4}{0.632/\sqrt{6}} = \frac{4}{0.258} = 15.49$<br><br>
+$t_{0.05, 5} = 2.015$. Since $15.49 \gg 2.015$, <strong>reject $H_0$</strong>. The strategy significantly improves performance.
+</div>
+</details>
+
+<details>
+<summary>Q30. Z-test: Clinical Claim (Exam EC3 Feb 2026)</summary>
+<div class="answer">
+Claim: reduction = 20 min. Sample: $n=36$, $\bar{x}=18.2$, $\sigma=7.5$.<br>
+$H_0: \mu = 20$, $H_1: \mu \neq 20$ (two-tailed, $\alpha=0.05$)<br><br>
+$Z = \frac{18.2 - 20}{7.5/\sqrt{36}} = \frac{-1.8}{1.25} = -1.44$<br><br>
+Critical values: $\pm 1.96$. Since $|-1.44| < 1.96$, <strong>fail to reject $H_0$</strong>. Insufficient evidence to say the true reduction differs from 20 minutes.
+</div>
+</details>
+
+<details>
+<summary>Q31. Two-Way ANOVA Setup (Exam EC3 Feb 2026)</summary>
+<div class="answer">
+<strong>Irrigation (3 methods) &times; Blocks (4 orchards).</strong><br>
+Grand mean $= \frac{22+20+24+22+21+19+23+21+18+16+20+18}{12} = \frac{244}{12} \approx 20.33$<br><br>
+<strong>Approach:</strong>
+<ol>
+<li>$SS_{\text{Total}} = \sum(x_{ij} - \bar{x})^2$</li>
+<li>$SS_{\text{Rows}} = c \sum(\bar{x}_{i\cdot} - \bar{x})^2$ (irrigation methods, c=4 blocks)</li>
+<li>$SS_{\text{Cols}} = r \sum(\bar{x}_{\cdot j} - \bar{x})^2$ (blocks, r=3 methods)</li>
+<li>$SS_{\text{Error}} = SS_T - SS_R - SS_C$</li>
+<li>Compute MS = SS/df, then F = MS_factor / MS_error</li>
+</ol>
+Compare F-statistics with $F_{\alpha}$ critical values to test both hypotheses.
+</div>
+</details>
+
+<details>
+<summary>Q32. Simple Linear Regression (Exam EC3 Feb 2026)</summary>
+<div class="answer">
+<strong>Data:</strong> 10 gardens with X (water input) and Y (yield).<br><br>
+<strong>Recipe:</strong>
+<ol>
+<li>Compute $\sum x$, $\sum y$, $\sum xy$, $\sum x^2$, $\bar{x}$, $\bar{y}$</li>
+<li>$\beta_1 = \frac{n\sum xy - \sum x \sum y}{n\sum x^2 - (\sum x)^2}$</li>
+<li>$\beta_0 = \bar{y} - \beta_1 \bar{x}$</li>
+<li>$r = \beta_1 \cdot \frac{s_x}{s_y}$ or use the Pearson formula</li>
+</ol>
+<strong>Interpretation:</strong> $\beta_1$ = expected increase in yield per unit increase in water. If $r$ is high (close to 1), the linear model fits well.
+</div>
+</details>
+
+<details>
+<summary>Q33. Exponential Smoothing (Exam EC3 Feb 2026)</summary>
+<div class="answer">
+<strong>Demand:</strong> Jan=82, Feb=88, Mar=91, Apr=97, May=95, Jun=102. $F_1 = 82$.<br><br>
+<strong>$\alpha = 0.4$:</strong><br>
+$F_2 = 0.4(82) + 0.6(82) = 82$<br>
+$F_3 = 0.4(88) + 0.6(82) = 35.2 + 49.2 = 84.4$<br>
+$F_4 = 0.4(91) + 0.6(84.4) = 36.4 + 50.64 = 87.04$<br>
+$F_5 = 0.4(97) + 0.6(87.04) = 38.8 + 52.22 = 91.02$<br>
+$F_6 = 0.4(95) + 0.6(91.02) = 38 + 54.61 = 92.61$<br>
+$F_7 = 0.4(102) + 0.6(92.61) = 40.8 + 55.57 = \mathbf{96.37}$<br><br>
+<strong>$\alpha = 0.7$:</strong><br>
+$F_2 = 82$, $F_3 = 0.7(88)+0.3(82) = 86.2$<br>
+$F_4 = 0.7(91)+0.3(86.2) = 89.56$<br>
+$F_5 = 0.7(97)+0.3(89.56) = 94.77$<br>
+$F_6 = 0.7(95)+0.3(94.77) = 94.93$<br>
+$F_7 = 0.7(102)+0.3(94.93) = \mathbf{99.88}$<br><br>
+<strong>Comment:</strong> Higher $\alpha$ (0.7) reacts faster to recent changes &mdash; better for sudden spikes in AI workloads.
+</div>
+</details>
+
+<details>
+<summary>Q34. Pearson Correlation (Exam EC3 Feb 2026)</summary>
+<div class="answer">
+<strong>Temperature vs Electricity:</strong> (38,320), (41,380), (35,290), (33,270), (31,240). n=5.<br><br>
+$\sum x = 178$, $\sum y = 1500$, $\sum xy = 54190$, $\sum x^2 = 6380$, $\sum y^2 = 463000$<br><br>
+$r = \frac{5(54190) - 178(1500)}{\sqrt{[5(6380)-178^2][5(463000)-1500^2]}}$<br>
+$= \frac{270950 - 267000}{\sqrt{[31900-31684][2315000-2250000]}}$<br>
+$= \frac{3950}{\sqrt{216 \times 65000}}$<br>
+$= \frac{3950}{\sqrt{14040000}}$<br>
+$= \frac{3950}{3747.0} \approx 0.9944$<br><br>
+<strong>Very strong positive correlation</strong> &mdash; as temperature rises, electricity consumption rises almost proportionally. Critical for energy load forecasting during heatwaves.
+</div>
+</details>
+
+<details>
+<summary>Q35. Two-Proportion Z-test (Exam EC3 Feb 2026)</summary>
+<div class="answer">
+City A: 180/300 = 0.60, City B: 135/250 = 0.54.<br>
+$H_0: p_1 = p_2$, $H_1: p_1 \neq p_2$, $\alpha = 0.05$<br><br>
+Pooled: $\hat{p} = \frac{180+135}{300+250} = \frac{315}{550} = 0.5727$<br>
+$Z = \frac{0.60 - 0.54}{\sqrt{0.5727(0.4273)(\frac{1}{300}+\frac{1}{250})}} = \frac{0.06}{\sqrt{0.2447 \times 0.00733}} = \frac{0.06}{\sqrt{0.001794}} = \frac{0.06}{0.04236} = 1.416$<br><br>
+$|Z| = 1.416 < 1.96$. <strong>Fail to reject $H_0$.</strong> No significant difference at 5% level.
+</div>
+</details>
+
+<details>
+<summary>Q36. F-test for Variance (Exam EC3 Feb 2026)</summary>
+<div class="answer">
+<strong>Line A:</strong> 12.5, 12.8, 12.6, 12.9, 12.7, 12.4, 12.6, 12.8 (n=8)<br>
+<strong>Line B:</strong> 12.6, 12.5, 12.7, 12.6, 12.5, 12.6 (n=6)<br><br>
+$\bar{x}_A = 12.6625$, $s_A^2 = \frac{\sum(x-\bar{x})^2}{7}$. Compute deviations and sum.<br>
+$\bar{x}_B = 12.5833$, $s_B^2 = \frac{\sum(x-\bar{x})^2}{5}$.<br><br>
+$H_0: \sigma_A^2 = \sigma_B^2$, $H_1: \sigma_A^2 > \sigma_B^2$ (one-tailed)<br>
+$F = \frac{s_A^2}{s_B^2}$, df = (7, 5). Compare with $F_{0.05, 7, 5}$.
+</div>
+</details>
+
+<details>
+<summary>Q37. MCQ: Confidence Interval &mdash; 95% CI for mean with known &sigma;</summary>
+<div class="answer">
+<strong>$n=36$, $\bar{x}=50$, $\sigma=6$. Find 95% CI.</strong><br><br>
+$\bar{x} \pm Z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}} = 50 \pm 1.96 \times \frac{6}{6} = 50 \pm 1.96$<br>
+<strong>CI: (48.04, 51.96)</strong>
+</div>
+</details>
+
+<details>
+<summary>Q38. MCQ: Which test for comparing means of two independent samples (unknown &sigma;, small n)?</summary>
+<div class="answer">
+<strong>Answer: Independent two-sample t-test.</strong> Unknown $\sigma$ rules out Z-test. Independent samples (not paired). Small n means t-distribution, not normal approximation.
+</div>
+</details>
+
+<details>
+<summary>Q39. MCQ: In ANOVA, what does a large F-statistic indicate?</summary>
+<div class="answer">
+<strong>Answer:</strong> The variation <em>between</em> groups is much larger than variation <em>within</em> groups &rArr; the group means are likely different &rArr; reject $H_0$ of equal means.
+</div>
+</details>
+
+<details>
+<summary>Q40. MCQ: What is the 68-95-99.7 rule?</summary>
+<div class="answer">
+For a normal distribution:<br>
+&bull; 68% of data falls within $\mu \pm 1\sigma$<br>
+&bull; 95% within $\mu \pm 2\sigma$<br>
+&bull; 99.7% within $\mu \pm 3\sigma$<br><br>
+<strong>Use case:</strong> Quick estimation without Z-tables. "Within 2 SD" &asymp; 95%.
+</div>
+</details>
+
+<details>
+<summary>Q41. GMM: Lunch Duration (Exam EC3 Feb 2026)</summary>
+<div class="answer">
+<strong>Data:</strong> {18, 20, 22, 25, 27, 35, 38, 40, 42, 45}. Two components.<br><br>
+<strong>(a) PDF:</strong> $p(x) = \pi_1 \cdot \mathcal{N}(x|\mu_1, \sigma_1^2) + \pi_2 \cdot \mathcal{N}(x|\mu_2, \sigma_2^2)$<br><br>
+<strong>(b) Component 1</strong> (quick eaters: 18,20,22,25,27):<br>
+$\mu_1 = \frac{112}{5} = 22.4$, $\sigma_1^2 = \frac{(18-22.4)^2+...+(27-22.4)^2}{5} = \frac{52.8}{5} = 10.56$<br><br>
+<strong>Component 2</strong> (leisurely: 35,38,40,42,45):<br>
+$\mu_2 = \frac{200}{5} = 40$, $\sigma_2^2 = \frac{(35-40)^2+...+(45-40)^2}{5} = \frac{58}{5} = 11.6$<br><br>
+<strong>(c) Mixing coefficients:</strong> $\pi_1 = \pi_2 = 5/10 = 0.5$<br><br>
+<strong>(d)</strong> GMM identifies two distinct eating behaviours (clusters) in the data that a single Gaussian would miss. It's a soft clustering approach &mdash; each student gets a probability of belonging to each component.
+</div>
+</details>
+
+<details>
+<summary>Q42. White Noise Test (Exam EC3 Feb 2026)</summary>
+<div class="answer">
+<strong>Residuals:</strong> {2, -1, 0, 1, -2, 1, -1, 0} (n=8)<br><br>
+$\bar{x} = \frac{2-1+0+1-2+1-1+0}{8} = \frac{0}{8} = 0$<br><br>
+$s^2 = \frac{4+1+0+1+4+1+1+0}{7} = \frac{12}{7} \approx 1.714$<br><br>
+<strong>White noise criteria:</strong> Mean $\approx 0$ &check;, constant variance, no autocorrelation. The mean is exactly 0. For a full test, check autocorrelation at various lags (Ljung-Box test), but with this small sample and zero mean, it <strong>can reasonably be considered white noise</strong>.
+</div>
+</details>
+
+<details>
+<summary>Q43. 95% Confidence Interval for Mean Cadence (Exam EC3 Feb 2026)</summary>
+<div class="answer">
+<strong>20 healthy men's cadence data.</strong> Compute $\bar{x}$ and $s$ from the 20 values. Since $n=20 < 30$ and $\sigma$ unknown, use t-distribution:<br><br>
+$\bar{x} \pm t_{0.025, 19} \cdot \frac{s}{\sqrt{20}}$<br><br>
+$t_{0.025, 19} = 2.093$. Plug in $\bar{x}$ and $s$ computed from the data.
+</div>
+</details>
+
+<details>
+<summary>Q44. Sampling Distribution &mdash; Binomial Population (Exam EC2M Jul 2024)</summary>
+<div class="answer">
+<strong>Population: Binomial. Sample size n=45, $\bar{x}=10$, $s=2$.</strong><br>
+<strong>Q: Does the sampling distribution of the mean follow binomial?</strong><br><br>
+<strong>No.</strong> By the Central Limit Theorem (CLT), when $n \geq 30$, the sampling distribution of $\bar{X}$ is approximately <strong>Normal</strong> regardless of the population distribution. So $\bar{X} \sim N(\mu, \sigma^2/n)$ approximately.<br><br>
+For $n=25$ (part b): $n < 30$, so CLT may not apply well. The sampling distribution won't be perfectly normal.<br><br>
+For a Normal population with $n=9$ (part c): If the population is Normal, then $\bar{X}$ is <strong>exactly</strong> Normal for any $n$, even $n=9$.
+</div>
+</details>
+
+<br>
+<div class="highlight" style="text-align:center; font-size: 1.1em;">
+<strong>Good luck on your quiz and exams!</strong><br>
+Remember: sort the data, draw the tree, check your denominator, and when in doubt, use the complement trick.
+</div>
+
+</body>
+</html>

@@ -1,0 +1,2554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MFML Notes - Lectures 1 to 5</title>
+<script>
+MathJax = {
+  tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+<style>
+:root {
+  --primary: #1a5276;
+  --secondary: #2980b9;
+  --accent: #e67e22;
+  --bg: #fafbfc;
+  --card-bg: #ffffff;
+  --text: #2c3e50;
+  --light-text: #7f8c8d;
+  --border: #dfe6e9;
+  --highlight-bg: #fef9e7;
+  --important-bg: #fdedec;
+  --tip-bg: #eafaf1;
+  --code-bg: #f4f6f7;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px 30px;
+}
+h1 {
+  font-size: 2.2em;
+  color: var(--primary);
+  text-align: center;
+  border-bottom: 4px solid var(--accent);
+  padding-bottom: 15px;
+  margin: 30px 0;
+}
+h2 {
+  font-size: 1.7em;
+  color: var(--primary);
+  border-left: 5px solid var(--accent);
+  padding-left: 15px;
+  margin: 40px 0 20px;
+}
+h3 {
+  font-size: 1.3em;
+  color: var(--secondary);
+  margin: 25px 0 12px;
+}
+h4 {
+  font-size: 1.1em;
+  color: var(--text);
+  margin: 18px 0 8px;
+}
+p { margin: 10px 0; }
+ul, ol { margin: 10px 0 10px 25px; }
+li { margin: 5px 0; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px 0;
+  font-size: 0.95em;
+}
+th {
+  background: var(--primary);
+  color: white;
+  padding: 10px 12px;
+  text-align: left;
+}
+td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+}
+tr:nth-child(even) { background: #f8f9fa; }
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px 25px;
+  margin: 15px 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.important {
+  background: var(--important-bg);
+  border-left: 5px solid #e74c3c;
+  padding: 15px 20px;
+  margin: 15px 0;
+  border-radius: 0 8px 8px 0;
+}
+.highlight {
+  background: var(--highlight-bg);
+  border-left: 5px solid var(--accent);
+  padding: 15px 20px;
+  margin: 15px 0;
+  border-radius: 0 8px 8px 0;
+}
+.tip {
+  background: var(--tip-bg);
+  border-left: 5px solid #27ae60;
+  padding: 15px 20px;
+  margin: 15px 0;
+  border-radius: 0 8px 8px 0;
+}
+.definition {
+  background: #eef2f7;
+  border: 2px solid var(--secondary);
+  border-radius: 8px;
+  padding: 15px 20px;
+  margin: 15px 0;
+}
+.definition::before {
+  content: "Definition";
+  font-weight: bold;
+  color: var(--secondary);
+  display: block;
+  margin-bottom: 5px;
+}
+.theorem {
+  background: #fdf2e9;
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  padding: 15px 20px;
+  margin: 15px 0;
+}
+.theorem::before {
+  content: "Theorem";
+  font-weight: bold;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 5px;
+}
+.example {
+  background: #f4ecf7;
+  border: 1px solid #8e44ad;
+  border-radius: 8px;
+  padding: 15px 20px;
+  margin: 15px 0;
+}
+.example::before {
+  content: "Example";
+  font-weight: bold;
+  color: #8e44ad;
+  display: block;
+  margin-bottom: 5px;
+}
+.matrix-display {
+  text-align: center;
+  margin: 15px 0;
+  overflow-x: auto;
+}
+code {
+  background: var(--code-bg);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+.toc {
+  background: var(--card-bg);
+  border: 2px solid var(--primary);
+  border-radius: 10px;
+  padding: 25px 30px;
+  margin: 20px 0 40px;
+}
+.toc a {
+  color: var(--secondary);
+  text-decoration: none;
+}
+.toc a:hover { text-decoration: underline; }
+.toc ul { list-style: none; margin-left: 0; }
+.toc > ul > li { margin: 8px 0; font-weight: bold; font-size: 1.05em; }
+.toc > ul > li > ul > li { font-weight: normal; font-size: 0.95em; margin: 3px 0; padding-left: 20px; }
+.lecture-divider {
+  text-align: center;
+  margin: 50px 0 30px;
+  padding: 20px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  border-radius: 10px;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+.svg-container {
+  text-align: center;
+  margin: 20px 0;
+}
+svg text { font-family: Georgia, serif; }
+.key-formula {
+  background: #1a5276;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 8px;
+  text-align: center;
+  margin: 15px 0;
+  font-size: 1.1em;
+}
+.comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin: 15px 0;
+}
+.comparison-grid .card { margin: 0; }
+@media (max-width: 700px) {
+  body { padding: 10px 15px; }
+  .comparison-grid { grid-template-columns: 1fr; }
+  h1 { font-size: 1.6em; }
+  h2 { font-size: 1.3em; }
+}
+</style>
+</head>
+<body>
+
+<h1>Mathematical Foundations for Machine Learning<br><small style="font-size:0.5em;color:var(--light-text);">ZC416 &mdash; BITS Pilani WILPD | Lectures 1&ndash;5 Comprehensive Notes</small></h1>
+
+<div class="highlight" style="text-align:center; font-style:italic;">
+<strong>One image to keep in your head:</strong> A matrix is a <em>machine that moves space</em>.<br>
+Solving $A\mathbf{x} = \mathbf{b}$ is asking: <em>which input does that machine need to produce this output?</em>
+</div>
+
+<div class="important" style="text-align:center;">
+<a href="MFML_Exam_Prep.html" style="color:#e74c3c; font-size:1.15em; font-weight:bold; text-decoration:none;">Exam Preparation Guide &rarr;</a><br>
+<small>Pattern analysis across 4 papers &bull; All solved questions &bull; Topic-wise quick revision</small>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc">
+<h3 style="color:var(--primary);margin-bottom:10px;">Table of Contents</h3>
+<ul>
+<li><a href="#lec1">Lecture 1: Systems of Linear Equations</a>
+  <ul>
+    <li><a href="#l1-why">1.1 Why Linear Algebra?</a></li>
+    <li><a href="#l1-systems">1.2 Systems of Linear Equations</a></li>
+    <li><a href="#l1-fates">1.3 The Three Fates</a></li>
+    <li><a href="#l1-matrices">1.4 Matrices &amp; Operations</a></li>
+    <li><a href="#l1-3views">1.5 Three Views of Ax = b</a></li>
+    <li><a href="#l1-solutions">1.6 Particular &amp; General Solutions</a></li>
+    <li><a href="#l1-gauss">1.7 Gaussian Elimination</a></li>
+    <li><a href="#l1-ref">1.8 REF &amp; RREF</a></li>
+    <li><a href="#l1-inverse">1.9 Inverse, Determinant &amp; Rank</a></li>
+    <li><a href="#l1-worked">1.10 Detailed Worked Examples</a></li>
+  </ul>
+</li>
+<li><a href="#lec2">Lecture 2: Vector Spaces</a>
+  <ul>
+    <li><a href="#l2-groups">2.1 Groups</a></li>
+    <li><a href="#l2-vs">2.2 Vector Spaces</a></li>
+    <li><a href="#l2-sub">2.3 Vector Subspaces</a></li>
+    <li><a href="#l2-lindep">2.4 Linear Combination &amp; Independence</a></li>
+    <li><a href="#l2-basis">2.5 Basis &amp; Dimension</a></li>
+    <li><a href="#l2-rank">2.6 Rank &amp; Null Space</a></li>
+    <li><a href="#l2-worked">2.7 Detailed Worked Examples</a></li>
+  </ul>
+</li>
+<li><a href="#lec3">Lecture 3: Analytic Geometry (Inner Products)</a>
+  <ul>
+    <li><a href="#l3-dot">3.1 Dot Product &amp; General Inner Products</a></li>
+    <li><a href="#l3-spd">3.2 Symmetric Positive-Definite Matrices</a></li>
+    <li><a href="#l3-norms">3.3 Norms &amp; Distances</a></li>
+    <li><a href="#l3-angles">3.4 Angles &amp; Orthogonality</a></li>
+    <li><a href="#l3-gs">3.5 Gram-Schmidt Orthonormalization</a></li>
+    <li><a href="#l3-ortho">3.6 Orthogonal Matrices</a></li>
+    <li><a href="#l3-worked">3.7 Detailed Worked Examples</a></li>
+    <li><a href="#l3-cholesky">3.8 Cholesky Decomposition (from Companion)</a></li>
+    <li><a href="#l3-qr">3.9 QR Decomposition via Gram&ndash;Schmidt</a></li>
+  </ul>
+</li>
+<li><a href="#lec4">Lecture 4: Eigenvalues &amp; Eigenvectors</a>
+  <ul>
+    <li><a href="#l4-det">4.1 Determinants</a></li>
+    <li><a href="#l4-eigen">4.2 Eigenvalues &amp; Eigenvectors</a></li>
+    <li><a href="#l4-diag">4.3 Diagonalization</a></li>
+    <li><a href="#l4-spectral">4.4 Spectral Theorem</a></li>
+    <li><a href="#l4-props">4.5 Properties &amp; Applications</a></li>
+    <li><a href="#l4-worked">4.6 Detailed Worked Examples</a></li>
+  </ul>
+</li>
+<li><a href="#lec5">Lecture 5: Matrix Decompositions (SVD)</a>
+  <ul>
+    <li><a href="#l5-eigendecomp">5.1 Eigendecomposition</a></li>
+    <li><a href="#l5-svd">5.2 Singular Value Decomposition</a></li>
+    <li><a href="#l5-compare">5.3 SVD vs Eigendecomposition</a></li>
+    <li><a href="#l5-lowrank">5.4 Low-Rank Approximation</a></li>
+    <li><a href="#l5-spectral-norm">5.5 Spectral Norm</a></li>
+    <li><a href="#l5-worked">5.6 Detailed Worked Examples</a></li>
+  </ul>
+</li>
+</ul>
+</div>
+
+<!-- ==================== LECTURE 1 ==================== -->
+<div class="lecture-divider" id="lec1">Lecture 1: Systems of Linear Equations</div>
+
+<h2 id="l1-why">1.1 Why Linear Algebra?</h2>
+
+<p>Almost everything in ML &mdash; GPS routing, recommendation engines, ChatGPT predicting the next word, your bank's fraud alert &mdash; eventually reduces to solving $A\mathbf{x} = \mathbf{b}$.</p>
+
+<div class="card">
+<h4>Three reasons linear algebra matters:</h4>
+<ol>
+<li><strong>Linear things can always be solved.</strong> We can write an algorithm guaranteed to find the answer or prove none exists.</li>
+<li><strong>Up close, everything looks linear.</strong> The Earth is round, but the floor of your room is flat. ML exploits this: <em>zoom in enough, and the world is linear again</em>. This is literally how gradient descent works.</li>
+<li><strong>You can see it.</strong> Lines, planes, hyperplanes &mdash; geometry you can draw on a napkin.</li>
+</ol>
+</div>
+
+<div class="tip">
+<strong>ML Connection:</strong> A neural network is: linear &rarr; nonlinear &rarr; linear &rarr; nonlinear &rarr; &hellip; Mostly linear, with just enough bend (ReLU, sigmoid) to escape the limits of straightness.
+</div>
+
+<!-- What is a vector -->
+<h3>What is a Vector?</h3>
+<p>A vector is just an <strong>ordered list of numbers</strong> &mdash; and the rules for adding and scaling them. Vectors are not mysterious arrows; they are lists.</p>
+<ul>
+<li>A house in a real-estate dataset: $(area, bedrooms, age, price)$</li>
+<li>A photo: one number per pixel, hundreds of thousands in a long list</li>
+<li>A word embedding in NLP: maybe 768 numbers long</li>
+<li>You, in a bank's risk model: $(age, income, credit\_score, \ldots)$</li>
+</ul>
+
+<h2 id="l1-systems">1.2 Systems of Linear Equations</h2>
+
+<div class="example">
+<strong>Furniture Workshop Problem:</strong> You make chairs ($x_1$), tables ($x_2$), and cabinets ($x_3$). Each uses different amounts of 4 resources:
+$$\begin{align}
+x_1 + 2x_2 + x_3 &= 9 \quad \text{(wood)}\\
+2x_1 + x_2 + x_3 &= 8 \quad \text{(labor)}\\
+x_1 + x_2 + 2x_3 &= 7 \quad \text{(machine time)}\\
+3x_1 + x_2 + 2x_3 &= 11 \quad \text{(shipping)}
+\end{align}$$
+<strong>Solution:</strong> $x_1 = 2, \; x_2 = 3, \; x_3 = 1$.
+</div>
+
+<h2 id="l1-fates">1.3 The Three Fates: Zero, One, or Infinity</h2>
+
+<div class="important">
+A linear system can have <strong>exactly zero, one, or infinitely many</strong> solutions. No other count is possible.
+</div>
+
+<p><strong>Why not exactly two?</strong> If $\mathbf{x}_1$ and $\mathbf{x}_2$ are both solutions, then every point on the line between them is also a solution (by linearity). Two immediately implies infinitely many.</p>
+
+<!-- SVG: Three fates diagram -->
+<div class="svg-container">
+<svg width="700" height="200" viewBox="0 0 700 200">
+  <!-- Case 1: Lines cross -->
+  <g transform="translate(0,0)">
+    <rect x="10" y="5" width="200" height="190" rx="10" fill="#eef2f7" stroke="#2980b9" stroke-width="2"/>
+    <line x1="30" y1="170" x2="190" y2="30" stroke="#e74c3c" stroke-width="2.5"/>
+    <line x1="30" y1="50" x2="190" y2="160" stroke="#2980b9" stroke-width="2.5"/>
+    <circle cx="110" cy="100" r="6" fill="#27ae60"/>
+    <text x="110" y="22" text-anchor="middle" font-size="14" font-weight="bold" fill="#2c3e50">Lines Cross</text>
+    <text x="110" y="188" text-anchor="middle" font-size="12" fill="#7f8c8d">Exactly one solution</text>
+  </g>
+  <!-- Case 2: Parallel -->
+  <g transform="translate(240,0)">
+    <rect x="10" y="5" width="200" height="190" rx="10" fill="#fef9e7" stroke="#e67e22" stroke-width="2"/>
+    <line x1="40" y1="170" x2="170" y2="30" stroke="#e74c3c" stroke-width="2.5"/>
+    <line x1="60" y1="170" x2="190" y2="30" stroke="#2980b9" stroke-width="2.5"/>
+    <text x="110" y="22" text-anchor="middle" font-size="14" font-weight="bold" fill="#2c3e50">Parallel Lines</text>
+    <text x="110" y="188" text-anchor="middle" font-size="12" fill="#7f8c8d">No solution</text>
+  </g>
+  <!-- Case 3: Same line -->
+  <g transform="translate(480,0)">
+    <rect x="10" y="5" width="200" height="190" rx="10" fill="#eafaf1" stroke="#27ae60" stroke-width="2"/>
+    <line x1="30" y1="160" x2="190" y2="40" stroke="#8e44ad" stroke-width="4"/>
+    <text x="110" y="22" text-anchor="middle" font-size="14" font-weight="bold" fill="#2c3e50">Same Line</text>
+    <text x="110" y="188" text-anchor="middle" font-size="12" fill="#7f8c8d">Infinitely many solutions</text>
+  </g>
+</svg>
+</div>
+
+<h2 id="l1-matrices">1.4 Matrices &amp; Operations</h2>
+
+<div class="definition">
+An <strong>(m, n) matrix</strong> $A$ is a rectangular array with $m$ rows and $n$ columns. We write $A \in \mathbb{R}^{m \times n}$.
+$$A = \begin{bmatrix} a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & & \ddots & \vdots \\ a_{m1} & a_{m2} & \cdots & a_{mn} \end{bmatrix}$$
+</div>
+
+<h3>Matrix Operations</h3>
+<table>
+<tr><th>Operation</th><th>Rule</th><th>Constraint</th></tr>
+<tr><td><strong>Addition</strong> $A + B$</td><td>Element-wise: $(A+B)_{ij} = a_{ij} + b_{ij}$</td><td>Same dimensions</td></tr>
+<tr><td><strong>Scalar Multiply</strong> $\lambda A$</td><td>$(\lambda A)_{ij} = \lambda \cdot a_{ij}$</td><td>Any scalar $\lambda$</td></tr>
+<tr><td><strong>Matrix Multiply</strong> $AB$</td><td>$c_{ij} = \sum_{l=1}^{k} a_{il} \, b_{lj}$</td><td>$A \in \mathbb{R}^{m \times k}, B \in \mathbb{R}^{k \times n}$</td></tr>
+<tr><td><strong>Transpose</strong> $A^T$</td><td>$(A^T)_{ij} = a_{ji}$</td><td>$A \in \mathbb{R}^{m \times n} \Rightarrow A^T \in \mathbb{R}^{n \times m}$</td></tr>
+</table>
+
+<div class="highlight">
+<strong>Key properties:</strong>
+<ul>
+<li>$(AB)C = A(BC)$ &mdash; associative</li>
+<li>$A(B + C) = AB + AC$ &mdash; distributive</li>
+<li>$AB \neq BA$ in general &mdash; <strong>NOT commutative!</strong></li>
+<li>$(AB)^T = B^T A^T$ &mdash; order reverses</li>
+</ul>
+</div>
+
+<div class="tip">
+<strong>Why does order matter?</strong> Think: put on socks, then shoes &mdash; fine. Reverse it (shoes first, then socks) &mdash; absurd. Matrix multiplication is function composition: $AB$ means &ldquo;apply $B$ first, then $A$.&rdquo;
+</div>
+
+<h3>Special Matrices</h3>
+<table>
+<tr><th>Matrix</th><th>Description</th><th>Analogy</th></tr>
+<tr><td><strong>Identity</strong> $I$</td><td>$1$s on diagonal, $0$s elsewhere. $IA = AI = A$.</td><td>&ldquo;Do nothing&rdquo; filter</td></tr>
+<tr><td><strong>Zero</strong></td><td>All entries zero.</td><td>&ldquo;Destroy everything&rdquo; filter</td></tr>
+<tr><td><strong>Diagonal</strong></td><td>Non-zero only on diagonal.</td><td>Stretch each axis independently</td></tr>
+<tr><td><strong>Symmetric</strong></td><td>$A = A^T$</td><td>Mirror across diagonal. &ldquo;Nicest&rdquo; matrices.</td></tr>
+</table>
+
+<h2 id="l1-3views">1.5 Three Views of $A\mathbf{x} = \mathbf{b}$</h2>
+
+<p>A system like $2x_1 + 3x_2 + 5x_3 = 1$, $4x_1 - 2x_2 - 7x_3 = 8$, $9x_1 + 5x_2 - 3x_3 = 2$ can be written compactly as $A\mathbf{x} = \mathbf{b}$.</p>
+
+<div class="important" style="background:#eef2f7; border-color:var(--secondary);">
+<strong>Switching between these three windows is the single most useful skill in linear algebra.</strong>
+</div>
+
+<table>
+<tr><th>Window</th><th>View</th><th>Question</th></tr>
+<tr><td><strong>Row View</strong></td><td>Each row is a constraint (line/plane/hyperplane)</td><td>Where do all constraints intersect?</td></tr>
+<tr><td><strong>Column View</strong></td><td>$A\mathbf{x} = x_1\mathbf{a}_1 + x_2\mathbf{a}_2 + \cdots$ &mdash; recipe of columns</td><td>Can I mix these columns to produce $\mathbf{b}$?</td></tr>
+<tr><td><strong>Transformation View</strong></td><td>$A$ is a machine/function mapping $\mathbf{x} \to \mathbf{b}$</td><td>What input produces this output?</td></tr>
+</table>
+
+<!-- SVG: Three views -->
+<div class="svg-container">
+<svg width="700" height="160" viewBox="0 0 700 160">
+  <rect x="5" y="5" width="210" height="150" rx="10" fill="#fdedec" stroke="#e74c3c"/>
+  <text x="110" y="30" text-anchor="middle" font-size="14" font-weight="bold" fill="#c0392b">Row View</text>
+  <text x="110" y="55" text-anchor="middle" font-size="11" fill="#2c3e50">Each row = one rule</text>
+  <text x="110" y="75" text-anchor="middle" font-size="11" fill="#2c3e50">Lines/planes intersect</text>
+  <line x1="30" y1="130" x2="190" y2="90" stroke="#e74c3c" stroke-width="2"/>
+  <line x1="30" y1="90" x2="190" y2="130" stroke="#2980b9" stroke-width="2"/>
+  <circle cx="110" cy="110" r="4" fill="#27ae60"/>
+
+  <rect x="245" y="5" width="210" height="150" rx="10" fill="#eef2f7" stroke="#2980b9"/>
+  <text x="350" y="30" text-anchor="middle" font-size="14" font-weight="bold" fill="#2980b9">Column View</text>
+  <text x="350" y="55" text-anchor="middle" font-size="11" fill="#2c3e50">b = recipe of columns</text>
+  <text x="350" y="75" text-anchor="middle" font-size="11" fill="#2c3e50">Mix ingredients to get b</text>
+  <line x1="310" y1="130" x2="360" y2="90" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="310" y1="130" x2="380" y2="110" stroke="#2980b9" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="310" y1="130" x2="400" y2="95" stroke="#27ae60" stroke-width="2" stroke-dasharray="4" marker-end="url(#arrow)"/>
+  <text x="405" y="92" font-size="10" fill="#27ae60">b</text>
+
+  <rect x="485" y="5" width="210" height="150" rx="10" fill="#eafaf1" stroke="#27ae60"/>
+  <text x="590" y="30" text-anchor="middle" font-size="14" font-weight="bold" fill="#27ae60">Machine View</text>
+  <text x="590" y="55" text-anchor="middle" font-size="11" fill="#2c3e50">A is a function</text>
+  <text x="590" y="75" text-anchor="middle" font-size="11" fill="#2c3e50">x &rarr; A &rarr; b</text>
+  <rect x="540" y="95" width="60" height="40" rx="5" fill="#27ae60" opacity="0.3" stroke="#27ae60"/>
+  <text x="570" y="120" text-anchor="middle" font-size="14" font-weight="bold" fill="#27ae60">A</text>
+  <text x="520" y="120" text-anchor="middle" font-size="12" fill="#2c3e50">x</text>
+  <text x="625" y="120" text-anchor="middle" font-size="12" fill="#2c3e50">b</text>
+  <line x1="530" y1="115" x2="540" y2="115" stroke="#2c3e50" stroke-width="1.5" marker-end="url(#arrow2)"/>
+  <line x1="600" y1="115" x2="615" y2="115" stroke="#2c3e50" stroke-width="1.5" marker-end="url(#arrow2)"/>
+
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#2c3e50"/></marker>
+    <marker id="arrow2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#2c3e50"/></marker>
+  </defs>
+</svg>
+</div>
+
+<h2 id="l1-solutions">1.6 Particular &amp; General Solutions</h2>
+
+<div class="key-formula">
+$$\mathbf{x} = \underbrace{\mathbf{x}_p}_{\text{particular}} + \underbrace{\lambda_1 \mathbf{n}_1 + \lambda_2 \mathbf{n}_2 + \cdots}_{\text{null space (wiggle room)}}$$
+</div>
+
+<ul>
+<li><strong>Particular solution</strong> $\mathbf{x}_p$: any single solution to $A\mathbf{x} = \mathbf{b}$ (set free variables to 0, back-substitute).</li>
+<li><strong>Null space directions</strong> $\mathbf{n}_i$: solutions to $A\mathbf{x} = \mathbf{0}$ (one per free variable).</li>
+<li><strong>General solution</strong>: particular + all null space combinations.</li>
+</ul>
+
+<div class="tip">
+<strong>Subway Analogy:</strong> The particular solution is the mandatory bread + protein. The null space vectors are the free toppings (lettuce, onion, sauce&hellip;). Every sandwich on the menu = base + your topping combo.
+</div>
+
+<div class="example">
+System: $\begin{bmatrix}1&0&8&-4\\0&1&2&12\end{bmatrix}\mathbf{x} = \begin{bmatrix}42\\8\end{bmatrix}$
+<br><br>
+<strong>Particular:</strong> $\mathbf{x}_p = (42, 8, 0, 0)^T$ (set $x_3=x_4=0$)<br>
+<strong>Null directions:</strong> $\mathbf{n}_1 = (8, 2, -1, 0)^T$, $\mathbf{n}_2 = (-4, 12, 0, -1)^T$<br>
+<strong>General:</strong> $\mathbf{x} = \begin{bmatrix}42\\8\\0\\0\end{bmatrix} + \lambda_1\begin{bmatrix}8\\2\\-1\\0\end{bmatrix} + \lambda_2\begin{bmatrix}-4\\12\\0\\-1\end{bmatrix}, \quad \lambda_1, \lambda_2 \in \mathbb{R}$
+</div>
+
+<h2 id="l1-gauss">1.7 Gaussian Elimination</h2>
+
+<p>The systematic algorithm to solve any system of linear equations. Form the <strong>augmented matrix</strong> $[A \mid \mathbf{b}]$ and apply row operations.</p>
+
+<h3>Three Elementary Row Operations</h3>
+<table>
+<tr><th>Operation</th><th>Notation</th><th>Why it's safe</th></tr>
+<tr><td><strong>Swap</strong> two rows</td><td>$R_i \leftrightarrow R_j$</td><td>Just reordering equations</td></tr>
+<tr><td><strong>Scale</strong> a row by $\lambda \neq 0$</td><td>$R_i \leftarrow \lambda R_i$</td><td>Multiplying both sides by same constant</td></tr>
+<tr><td><strong>Add</strong> a multiple of one row to another</td><td>$R_i \leftarrow R_i + \lambda R_j$</td><td>Adding equal things to both sides</td></tr>
+</table>
+
+<div class="highlight">
+<strong>Why must $\lambda \neq 0$ for scaling?</strong> Multiplying by 0 turns the row into &ldquo;$0 = 0$&rdquo; &mdash; you'd be <em>erasing a constraint</em>, which adds extra (wrong) solutions. Reversibility is the rule.
+</div>
+
+<div class="example">
+<strong>Worked Example</strong> (with parameter $a$):
+$$\begin{bmatrix}-2&4&-2&-1&4&|&-3\\4&-8&3&-3&1&|&2\\1&-2&1&-1&1&|&0\\1&-2&0&-3&4&|&a\end{bmatrix}$$
+
+<strong>Step 1:</strong> Swap $R_1 \leftrightarrow R_3$<br>
+<strong>Step 2:</strong> Eliminate below pivot 1<br>
+<strong>Step 3:</strong> Column 2 already zero (free variable). Skip to column 3.<br>
+<strong>Step 4:</strong> Scale pivots positive.<br><br>
+
+<strong>Final REF:</strong>
+$$\begin{bmatrix}1&-2&1&-1&1&|&0\\0&0&1&-1&3&|&-2\\0&0&0&1&-2&|&1\\0&0&0&0&0&|&a+1\end{bmatrix}$$
+
+<strong>Verdict:</strong> Last row gives $0 = a+1$.
+<ul>
+<li>$a \neq -1$: Contradiction &rarr; <strong>No solution</strong></li>
+<li>$a = -1$: Trivially true &rarr; <strong>Solutions exist</strong></li>
+</ul>
+Pivots in columns 1, 3, 4 &rarr; basic variables. Columns 2, 5 &rarr; free variables.<br>
+<strong>General solution:</strong> $\mathbf{x} = (2,0,-1,1,0)^T + \lambda_1(2,1,0,0,0)^T + \lambda_2(2,0,-1,2,1)^T$
+</div>
+
+<h2 id="l1-ref">1.8 Row-Echelon Form (REF) &amp; Reduced REF (RREF)</h2>
+
+<div class="definition">
+<strong>REF:</strong> (1) All zero rows at bottom. (2) Each pivot is to the right of the pivot above (staircase). (3) All entries below each pivot are zero.
+</div>
+
+<div class="definition">
+<strong>RREF:</strong> Everything in REF, plus: (1) Every pivot is exactly 1. (2) Each pivot is the <em>only</em> non-zero entry in its column (eliminate above <em>and</em> below).
+</div>
+
+<!-- SVG: Staircase pattern -->
+<div class="svg-container">
+<svg width="300" height="160" viewBox="0 0 300 160">
+  <rect x="5" y="5" width="290" height="150" rx="8" fill="#f8f9fa" stroke="#dfe6e9"/>
+  <text x="150" y="25" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--primary)">REF Staircase Pattern</text>
+  <!-- Grid -->
+  <rect x="30" y="40" width="40" height="25" fill="#e74c3c" opacity="0.8" rx="3"/><text x="50" y="57" text-anchor="middle" font-size="11" fill="white" font-weight="bold">P1</text>
+  <rect x="70" y="40" width="40" height="25" fill="#dfe6e9" rx="3"/><text x="90" y="57" text-anchor="middle" font-size="10" fill="#7f8c8d">*</text>
+  <rect x="110" y="40" width="40" height="25" fill="#dfe6e9" rx="3"/><text x="130" y="57" text-anchor="middle" font-size="10" fill="#7f8c8d">*</text>
+  <rect x="150" y="40" width="40" height="25" fill="#dfe6e9" rx="3"/><text x="170" y="57" text-anchor="middle" font-size="10" fill="#7f8c8d">*</text>
+
+  <rect x="30" y="70" width="40" height="25" fill="#eafaf1" rx="3"/><text x="50" y="87" text-anchor="middle" font-size="10" fill="#7f8c8d">0</text>
+  <rect x="70" y="70" width="40" height="25" fill="#e74c3c" opacity="0.8" rx="3"/><text x="90" y="87" text-anchor="middle" font-size="11" fill="white" font-weight="bold">P2</text>
+  <rect x="110" y="70" width="40" height="25" fill="#dfe6e9" rx="3"/><text x="130" y="87" text-anchor="middle" font-size="10" fill="#7f8c8d">*</text>
+  <rect x="150" y="70" width="40" height="25" fill="#dfe6e9" rx="3"/><text x="170" y="87" text-anchor="middle" font-size="10" fill="#7f8c8d">*</text>
+
+  <rect x="30" y="100" width="40" height="25" fill="#eafaf1" rx="3"/><text x="50" y="117" text-anchor="middle" font-size="10" fill="#7f8c8d">0</text>
+  <rect x="70" y="100" width="40" height="25" fill="#eafaf1" rx="3"/><text x="90" y="117" text-anchor="middle" font-size="10" fill="#7f8c8d">0</text>
+  <rect x="110" y="100" width="40" height="25" fill="#e74c3c" opacity="0.8" rx="3"/><text x="130" y="117" text-anchor="middle" font-size="11" fill="white" font-weight="bold">P3</text>
+  <rect x="150" y="100" width="40" height="25" fill="#dfe6e9" rx="3"/><text x="170" y="117" text-anchor="middle" font-size="10" fill="#7f8c8d">*</text>
+
+  <text x="220" y="57" font-size="11" fill="#e74c3c">P = Pivot</text>
+  <text x="220" y="77" font-size="11" fill="#7f8c8d">* = anything</text>
+  <text x="220" y="97" font-size="11" fill="#27ae60">0 = must be zero</text>
+</svg>
+</div>
+
+<div class="tip">
+<strong>REF is making your bed.</strong> RREF is hospital corners &mdash; every pillow plumped, ready for inspection. Both give the same solution set, but <strong>RREF is unique</strong> (canonical). REF is not &mdash; different row-op sequences can produce different REFs.
+</div>
+
+<h2 id="l1-inverse">1.9 Inverse, Determinant &amp; Rank</h2>
+
+<h3>Determinant (2&times;2)</h3>
+<div class="key-formula">
+$$\det(A) = a_{11}a_{22} - a_{12}a_{21}$$
+</div>
+
+<p>The determinant tells you <em>by what factor $A$ scales areas</em>:</p>
+
+<!-- SVG: Determinant visualization -->
+<div class="svg-container">
+<svg width="600" height="150" viewBox="0 0 600 150">
+  <!-- det > 1 -->
+  <g transform="translate(0,0)">
+    <rect x="5" y="5" width="180" height="140" rx="8" fill="#fef9e7" stroke="#e67e22"/>
+    <rect x="60" y="40" width="40" height="40" fill="#2980b9" opacity="0.3" stroke="#2980b9"/>
+    <polygon points="55,85 105,85 120,50 70,50" fill="#e67e22" opacity="0.4" stroke="#e67e22"/>
+    <text x="95" y="25" text-anchor="middle" font-size="12" font-weight="bold" fill="#e67e22">|det A| > 1</text>
+    <text x="95" y="135" text-anchor="middle" font-size="11" fill="#7f8c8d">Area stretched</text>
+  </g>
+  <!-- det = 1 -->
+  <g transform="translate(210,0)">
+    <rect x="5" y="5" width="180" height="140" rx="8" fill="#eafaf1" stroke="#27ae60"/>
+    <rect x="60" y="40" width="40" height="40" fill="#2980b9" opacity="0.3" stroke="#2980b9" transform="rotate(15,80,60)"/>
+    <text x="95" y="25" text-anchor="middle" font-size="12" font-weight="bold" fill="#27ae60">|det A| = 1</text>
+    <text x="95" y="135" text-anchor="middle" font-size="11" fill="#7f8c8d">Pure rotation</text>
+  </g>
+  <!-- det = 0 -->
+  <g transform="translate(420,0)">
+    <rect x="5" y="5" width="180" height="140" rx="8" fill="#fdedec" stroke="#e74c3c"/>
+    <line x1="40" y1="90" x2="160" y2="50" stroke="#e74c3c" stroke-width="4"/>
+    <text x="95" y="25" text-anchor="middle" font-size="12" font-weight="bold" fill="#e74c3c">det A = 0</text>
+    <text x="95" y="120" text-anchor="middle" font-size="11" fill="#7f8c8d">Squashed to a line!</text>
+    <text x="95" y="135" text-anchor="middle" font-size="11" fill="#e74c3c">NOT invertible</text>
+  </g>
+</svg>
+</div>
+
+<h3>Inverse</h3>
+<p>$A^{-1}$ exists if and only if $\det(A) \neq 0$. Then $A^{-1}A = AA^{-1} = I$.</p>
+
+<p>For a 2&times;2 matrix:</p>
+$$A = \begin{bmatrix}a&b\\c&d\end{bmatrix} \implies A^{-1} = \frac{1}{ad-bc}\begin{bmatrix}d&-b\\-c&a\end{bmatrix}$$
+
+<div class="important">
+<strong>Practical Rule:</strong> In code, <strong>never</strong> use <code>numpy.linalg.inv(A) @ b</code>. Use <code>numpy.linalg.solve(A, b)</code> instead &mdash; same answer, faster, more numerically stable. Computing $A^{-1}$ explicitly is expensive, fragile, and wasteful.
+</div>
+
+<h3>Rank</h3>
+<div class="key-formula">
+<strong>Rank of $A$</strong> = number of pivots in its echelon form = number of genuinely independent directions inside $A$
+</div>
+
+<table>
+<tr><th>Condition</th><th>Solutions</th></tr>
+<tr><td>$\text{rank}(A) = \text{rank}([A|\mathbf{b}])$</td><td>At least one solution exists</td></tr>
+<tr><td>$\text{rank}(A) = \text{rank}([A|\mathbf{b}]) = n$</td><td><strong>Exactly one</strong> solution</td></tr>
+<tr><td>$\text{rank}(A) = \text{rank}([A|\mathbf{b}]) < n$</td><td><strong>Infinitely many</strong> solutions</td></tr>
+<tr><td>$\text{rank}(A) < \text{rank}([A|\mathbf{b}])$</td><td><strong>No</strong> solution</td></tr>
+</table>
+
+<div class="highlight">
+<strong>One number &mdash; rank &mdash; answers all three questions</strong> (existence, uniqueness, dimension of solution set). An $n \times n$ matrix is invertible $\iff$ rank $= n \iff \det \neq 0 \iff$ columns are linearly independent.
+</div>
+
+<!-- ===== LECTURE 1: DETAILED WORKED EXAMPLES ===== -->
+<h2 id="l1-worked">1.10 Detailed Worked Examples</h2>
+
+<!-- EXAMPLE 1: Particular & General Solution (slides 30-37) -->
+<div class="example">
+<h4>Example 1: Finding Particular &amp; General Solution (Lecture 1, Slides 30&ndash;37)</h4>
+<p><strong>Problem:</strong> Solve the system $A\mathbf{x} = \mathbf{b}$:</p>
+$$\begin{bmatrix}1&0&8&-4\\0&1&2&12\end{bmatrix}\begin{bmatrix}x_1\\x_2\\x_3\\x_4\end{bmatrix} = \begin{bmatrix}42\\8\end{bmatrix}$$
+
+<p><strong>Step 1: Identify pivot and free variables.</strong></p>
+<p>The matrix is already in reduced row-echelon form (RREF). The pivots are in columns 1 and 2.</p>
+<ul>
+<li><strong>Pivot (basic) variables:</strong> $x_1, x_2$ (columns with pivots)</li>
+<li><strong>Free variables:</strong> $x_3, x_4$ (columns without pivots)</li>
+</ul>
+<p>We have 4 unknowns and only 2 equations (rank = 2), so there are $4 - 2 = 2$ free variables &rarr; infinitely many solutions.</p>
+
+<p><strong>Step 2: Find a particular solution (set free variables to 0).</strong></p>
+<p>Set $x_3 = 0$ and $x_4 = 0$. The system becomes:</p>
+$$\begin{align}
+x_1 + 0 \cdot 8 + 0 \cdot (-4) &= 42 \implies x_1 = 42\\
+x_2 + 0 \cdot 2 + 0 \cdot 12 &= 8 \implies x_2 = 8
+\end{align}$$
+<p>So the particular solution is: $\mathbf{x}_p = (42, 8, 0, 0)^T$</p>
+
+<p><strong>Step 3: Find the null space (solutions to $A\mathbf{x} = \mathbf{0}$).</strong></p>
+<p>We need to find all $\mathbf{x}$ such that $A\mathbf{x} = \mathbf{0}$. There is one null-space vector per free variable.</p>
+
+<p><em>Null vector from $x_3$:</em> Set $x_3 = 1, x_4 = 0$.</p>
+$$\begin{align}
+x_1 + 8(1) + (-4)(0) &= 0 \implies x_1 = -8\\
+x_2 + 2(1) + 12(0) &= 0 \implies x_2 = -2
+\end{align}$$
+<p>But the lecture uses the column view: $8\mathbf{c}_1 + 2\mathbf{c}_2 + (-1)\mathbf{c}_3 + 0\mathbf{c}_4 = \mathbf{0}$, giving $\mathbf{n}_1 = (8, 2, -1, 0)^T$.</p>
+<p><strong>Verification:</strong> $A\mathbf{n}_1 = \begin{bmatrix}1(8)+0(2)+8(-1)+(-4)(0)\\0(8)+1(2)+2(-1)+12(0)\end{bmatrix} = \begin{bmatrix}8-8\\2-2\end{bmatrix} = \begin{bmatrix}0\\0\end{bmatrix}$ &check;</p>
+
+<p><em>Null vector from $x_4$:</em> Set $x_3 = 0, x_4 = 1$.</p>
+$$\begin{align}
+x_1 + 8(0) + (-4)(1) &= 0 \implies x_1 = 4\\
+x_2 + 2(0) + 12(1) &= 0 \implies x_2 = -12
+\end{align}$$
+<p>From the column view: $(-4)\mathbf{c}_1 + 12\mathbf{c}_2 + 0\mathbf{c}_3 + (-1)\mathbf{c}_4 = \mathbf{0}$, giving $\mathbf{n}_2 = (-4, 12, 0, -1)^T$.</p>
+<p><strong>Verification:</strong> $A\mathbf{n}_2 = \begin{bmatrix}1(-4)+0(12)+8(0)+(-4)(-1)\\0(-4)+1(12)+2(0)+12(-1)\end{bmatrix} = \begin{bmatrix}-4+4\\12-12\end{bmatrix} = \begin{bmatrix}0\\0\end{bmatrix}$ &check;</p>
+
+<p><strong>Step 4: Write the general solution.</strong></p>
+$$\mathbf{x} = \underbrace{\begin{bmatrix}42\\8\\0\\0\end{bmatrix}}_{\text{particular}} + \lambda_1 \underbrace{\begin{bmatrix}8\\2\\-1\\0\end{bmatrix}}_{\mathbf{n}_1} + \lambda_2 \underbrace{\begin{bmatrix}-4\\12\\0\\-1\end{bmatrix}}_{\mathbf{n}_2}, \quad \lambda_1, \lambda_2 \in \mathbb{R}$$
+
+<p><strong>Verification with $\lambda_1 = 1, \lambda_2 = 1$:</strong></p>
+$$\mathbf{x} = \begin{bmatrix}42+8-4\\8+2+12\\0-1+0\\0+0-1\end{bmatrix} = \begin{bmatrix}46\\22\\-1\\-1\end{bmatrix}$$
+$$A\mathbf{x} = \begin{bmatrix}46+0+(-8)+4\\0+22+(-2)+(-12)\end{bmatrix} = \begin{bmatrix}42\\8\end{bmatrix} = \mathbf{b} \;\checkmark$$
+</div>
+
+<!-- EXAMPLE 2: Gaussian Elimination (slides 41-49) -->
+<div class="example">
+<h4>Example 2: Gaussian Elimination with Parameter $a$ (Lecture 1, Slides 41&ndash;49)</h4>
+<p><strong>Problem:</strong> Find all solutions for:</p>
+$$\begin{cases}
+-2x_1 + 4x_2 - 2x_3 - x_4 + 4x_5 &= -3\\
+4x_1 - 8x_2 + 3x_3 - 3x_4 + x_5 &= 2\\
+x_1 - 2x_2 + x_3 - x_4 + x_5 &= 0\\
+x_1 - 2x_2 - 3x_4 + 4x_5 &= a
+\end{cases}$$
+
+<p><strong>Step 1: Form the augmented matrix.</strong></p>
+$$[A|\mathbf{b}] = \begin{bmatrix}-2&4&-2&-1&4&|&-3\\4&-8&3&-3&1&|&2\\1&-2&1&-1&1&|&0\\1&-2&0&-3&4&|&a\end{bmatrix}$$
+
+<p><strong>Step 2: Swap $R_1 \leftrightarrow R_3$ (to get a clean pivot of 1).</strong></p>
+$$\begin{bmatrix}1&-2&1&-1&1&|&0\\4&-8&3&-3&1&|&2\\-2&4&-2&-1&4&|&-3\\1&-2&0&-3&4&|&a\end{bmatrix}$$
+
+<p><strong>Step 3: Eliminate below pivot in column 1.</strong></p>
+<p>$R_2 \leftarrow R_2 - 4R_1$: &nbsp; $[4-4, -8+8, 3-4, -3+4, 1-4 \mid 2-0] = [0, 0, -1, 1, -3 \mid 2]$</p>
+<p>$R_3 \leftarrow R_3 + 2R_1$: &nbsp; $[-2+2, 4-4, -2+2, -1-2, 4+2 \mid -3+0] = [0, 0, 0, -3, 6 \mid -3]$</p>
+<p>$R_4 \leftarrow R_4 - R_1$: &nbsp; $[1-1, -2+2, 0-1, -3+1, 4-1 \mid a-0] = [0, 0, -1, -2, 3 \mid a]$</p>
+$$\begin{bmatrix}1&-2&1&-1&1&|&0\\0&0&-1&1&-3&|&2\\0&0&0&-3&6&|&-3\\0&0&-1&-2&3&|&a\end{bmatrix}$$
+
+<p><strong>Step 4: Eliminate below pivot in column 3.</strong></p>
+<p>Column 2 has all zeros below the pivot row &rarr; $x_2$ is a <strong>free variable</strong>. Skip to column 3.</p>
+<p>$R_4 \leftarrow R_4 - R_2$: &nbsp; $[0, 0, -1-(-1), -2-1, 3-(-3) \mid a-2] = [0, 0, 0, -3, 6 \mid a-2]$</p>
+$$\begin{bmatrix}1&-2&1&-1&1&|&0\\0&0&-1&1&-3&|&2\\0&0&0&-3&6&|&-3\\0&0&0&-3&6&|&a-2\end{bmatrix}$$
+
+<p><strong>Step 5: Eliminate below pivot in column 4.</strong></p>
+<p>$R_4 \leftarrow R_4 - R_3$: &nbsp; $[0, 0, 0, -3+3, 6-6 \mid (a-2)-(-3)] = [0, 0, 0, 0, 0 \mid a+1]$</p>
+$$\begin{bmatrix}1&-2&1&-1&1&|&0\\0&0&-1&1&-3&|&2\\0&0&0&-3&6&|&-3\\0&0&0&0&0&|&a+1\end{bmatrix}$$
+
+<p><strong>Step 6: Scale to make pivots positive.</strong></p>
+<p>$R_2 \leftarrow -1 \cdot R_2$: &nbsp; $[0, 0, 1, -1, 3 \mid -2]$</p>
+<p>$R_3 \leftarrow -\frac{1}{3} \cdot R_3$: &nbsp; $[0, 0, 0, 1, -2 \mid 1]$</p>
+$$\boxed{\begin{bmatrix}1&-2&1&-1&1&|&0\\0&0&1&-1&3&|&-2\\0&0&0&1&-2&|&1\\0&0&0&0&0&|&a+1\end{bmatrix}}$$
+<p>This is the <strong>Row-Echelon Form (REF)</strong>.</p>
+
+<p><strong>Step 7: Determine existence of solutions.</strong></p>
+<p>The last row gives: $0 \cdot x_1 + 0 \cdot x_2 + 0 \cdot x_3 + 0 \cdot x_4 + 0 \cdot x_5 = a + 1$, i.e., $0 = a + 1$.</p>
+<ul>
+<li>If $a \neq -1$: this is a contradiction ($0 = \text{nonzero}$) &rarr; <strong>No solution</strong></li>
+<li>If $a = -1$: the equation becomes $0 = 0$ (always true) &rarr; <strong>Solutions exist</strong></li>
+</ul>
+
+<p><strong>Step 8: Identify variables (assuming $a = -1$).</strong></p>
+<ul>
+<li><strong>Pivot columns:</strong> 1, 3, 4 &rarr; basic variables: $x_1, x_3, x_4$</li>
+<li><strong>Non-pivot columns:</strong> 2, 5 &rarr; free variables: $x_2, x_5$</li>
+</ul>
+
+<p><strong>Step 9: Find particular solution (set free variables $x_2 = 0, x_5 = 0$).</strong></p>
+<p>Back-substitute from bottom to top:</p>
+<ul>
+<li>Equation 3: $x_4 - 2(0) = 1 \implies x_4 = 1$</li>
+<li>Equation 2: $x_3 - 1 + 3(0) = -2 \implies x_3 = -2 + 1 = -1$</li>
+<li>Equation 1: $x_1 - 2(0) + (-1) - 1 + 0 = 0 \implies x_1 = 2$</li>
+</ul>
+<p>Particular solution: $\mathbf{x}_p = (2, 0, -1, 1, 0)^T$</p>
+<p><strong>Verification:</strong> Plug into original REF:</p>
+<ul>
+<li>Row 1: $2 - 0 + (-1) - 1 + 0 = 0$ &check;</li>
+<li>Row 2: $0 + 0 + (-1) - 1 + 0 = -2$ &check;</li>
+<li>Row 3: $0 + 0 + 0 + 1 - 0 = 1$ &check;</li>
+</ul>
+
+<p><strong>Step 10: Find null space vectors (solve $A\mathbf{x} = \mathbf{0}$).</strong></p>
+<p>The REF equations (with RHS = 0) are:</p>
+$$\begin{align}
+x_1 - 2x_2 + x_3 - x_4 + x_5 &= 0\\
+x_3 - x_4 + 3x_5 &= 0\\
+x_4 - 2x_5 &= 0
+\end{align}$$
+
+<p><em>Null vector from $x_2$:</em> Set $x_2 = 1, x_5 = 0$.</p>
+<ul>
+<li>Eq 3: $x_4 = 0$</li>
+<li>Eq 2: $x_3 - 0 + 0 = 0 \implies x_3 = 0$</li>
+<li>Eq 1: $x_1 - 2(1) + 0 - 0 + 0 = 0 \implies x_1 = 2$</li>
+</ul>
+<p>$\mathbf{n}_1 = (2, 1, 0, 0, 0)^T$</p>
+
+<p><em>Null vector from $x_5$:</em> Set $x_2 = 0, x_5 = 1$.</p>
+<ul>
+<li>Eq 3: $x_4 = 2(1) = 2$</li>
+<li>Eq 2: $x_3 - 2 + 3(1) = 0 \implies x_3 = -1$</li>
+<li>Eq 1: $x_1 - 0 + (-1) - 2 + 1 = 0 \implies x_1 = 2$</li>
+</ul>
+<p>$\mathbf{n}_2 = (2, 0, -1, 2, 1)^T$</p>
+
+<p><strong>Step 11: Write the general solution.</strong></p>
+$$\mathbf{x} = \begin{bmatrix}2\\0\\-1\\1\\0\end{bmatrix} + \lambda_1\begin{bmatrix}2\\1\\0\\0\\0\end{bmatrix} + \lambda_2\begin{bmatrix}2\\0\\-1\\2\\1\end{bmatrix}, \quad \lambda_1, \lambda_2 \in \mathbb{R}$$
+
+<p><strong>Verification with $\lambda_1 = 1, \lambda_2 = 1$:</strong></p>
+$$\mathbf{x} = (6, 1, -2, 3, 1)^T$$
+<p>Check against original equations (with $a = -1$):</p>
+<ul>
+<li>Eq 1: $-2(6)+4(1)-2(-2)-1(3)+4(1) = -12+4+4-3+4 = -3$ &check;</li>
+<li>Eq 2: $4(6)-8(1)+3(-2)-3(3)+1(1) = 24-8-6-9+1 = 2$ &check;</li>
+<li>Eq 3: $6-2(1)+(-2)-3+1 = 0$ &check;</li>
+<li>Eq 4: $6-2(1)+0-3(3)+4(1) = 6-2-9+4 = -1$ &check;</li>
+</ul>
+</div>
+
+<!-- EXAMPLE 3: RREF and Null Space (slides 54-57) -->
+<div class="example">
+<h4>Example 3: Finding Null Space from RREF (Lecture 1, Slides 54&ndash;57)</h4>
+<p><strong>Problem:</strong> Find all solutions to $A\mathbf{x} = \mathbf{0}$ where:</p>
+$$A = \begin{bmatrix}1&3&0&0&3\\0&0&1&0&9\\0&0&0&1&-4\end{bmatrix}$$
+<p>(Already in RREF.)</p>
+
+<p><strong>Step 1: Identify pivot and free columns.</strong></p>
+<ul>
+<li><strong>Pivot columns:</strong> 1, 3, 4 (contain leading 1s)</li>
+<li><strong>Free (non-pivot) columns:</strong> 2 and 5</li>
+</ul>
+
+<p><strong>Step 2: Express pivot variables in terms of free variables.</strong></p>
+<p>Write the system of equations:</p>
+$$\begin{align}
+x_1 + 3x_2 + 3x_5 &= 0\\
+x_3 + 9x_5 &= 0\\
+x_4 - 4x_5 &= 0
+\end{align}$$
+<p>Solving for pivot variables:</p>
+$$\begin{align}
+x_1 &= -3x_2 - 3x_5\\
+x_3 &= -9x_5\\
+x_4 &= 4x_5
+\end{align}$$
+
+<p><strong>Step 3: Find null vector for free variable $x_2$.</strong></p>
+<p>Set $x_2 = 1, x_5 = 0$:</p>
+<ul>
+<li>$x_1 = -3(1) - 3(0) = -3$</li>
+<li>$x_3 = -9(0) = 0$</li>
+<li>$x_4 = 4(0) = 0$</li>
+</ul>
+<p>But the lecture uses the column view: column 2 $= 3 \times$ column 1, so $3\mathbf{c}_1 + (-1)\mathbf{c}_2 = \mathbf{0}$.</p>
+$$\mathbf{n}_1 = (3, -1, 0, 0, 0)^T$$
+<p><strong>Verification:</strong> $A\mathbf{n}_1 = \begin{bmatrix}3-3\\0\\0\end{bmatrix} = \mathbf{0}$ &check;</p>
+
+<p><strong>Step 4: Find null vector for free variable $x_5$.</strong></p>
+<p>Set $x_2 = 0, x_5 = 1$:</p>
+<ul>
+<li>$x_1 = -3(0) - 3(1) = -3$</li>
+<li>$x_3 = -9(1) = -9$</li>
+<li>$x_4 = 4(1) = 4$</li>
+</ul>
+<p>From column view: $3\mathbf{c}_1 + 9\mathbf{c}_3 + (-4)\mathbf{c}_4 + (-1)\mathbf{c}_5 = \mathbf{0}$.</p>
+$$\mathbf{n}_2 = (3, 0, 9, -4, -1)^T$$
+<p><strong>Verification:</strong> $A\mathbf{n}_2 = \begin{bmatrix}3+0+0+0-3\\0+0+9+0-9\\0+0+0-4+4\end{bmatrix} = \mathbf{0}$ &check;</p>
+
+<p><strong>Step 5: General solution to $A\mathbf{x} = \mathbf{0}$.</strong></p>
+$$\mathbf{x} = \lambda_1\begin{bmatrix}3\\-1\\0\\0\\0\end{bmatrix} + \lambda_2\begin{bmatrix}3\\0\\9\\-4\\-1\end{bmatrix}, \quad \lambda_1, \lambda_2 \in \mathbb{R}$$
+</div>
+
+<!-- EXAMPLE 4: 2x2 Inverse -->
+<div class="example">
+<h4>Example 4: Computing the 2&times;2 Inverse (Lecture 1, Slides 22&ndash;24)</h4>
+<p><strong>Problem:</strong> Find $A^{-1}$ for $A = \begin{bmatrix}a_{11}&a_{12}\\a_{21}&a_{22}\end{bmatrix}$.</p>
+
+<p><strong>Step 1: Define the candidate inverse.</strong></p>
+<p>Let $B = \begin{bmatrix}a_{22}&-a_{12}\\-a_{21}&a_{11}\end{bmatrix}$ (swap diagonal, negate off-diagonal).</p>
+
+<p><strong>Step 2: Compute $AB$.</strong></p>
+$$AB = \begin{bmatrix}a_{11}&a_{12}\\a_{21}&a_{22}\end{bmatrix}\begin{bmatrix}a_{22}&-a_{12}\\-a_{21}&a_{11}\end{bmatrix}$$
+<p>Entry $(1,1)$: $a_{11}a_{22} + a_{12}(-a_{21}) = a_{11}a_{22} - a_{12}a_{21}$</p>
+<p>Entry $(1,2)$: $a_{11}(-a_{12}) + a_{12}a_{11} = -a_{11}a_{12} + a_{11}a_{12} = 0$</p>
+<p>Entry $(2,1)$: $a_{21}a_{22} + a_{22}(-a_{21}) = a_{21}a_{22} - a_{22}a_{21} = 0$</p>
+<p>Entry $(2,2)$: $a_{21}(-a_{12}) + a_{22}a_{11} = a_{11}a_{22} - a_{12}a_{21}$</p>
+$$AB = (a_{11}a_{22} - a_{12}a_{21})\begin{bmatrix}1&0\\0&1\end{bmatrix} = \det(A) \cdot I$$
+
+<p><strong>Step 3: Divide by $\det(A)$.</strong></p>
+<p>If $\det(A) = a_{11}a_{22} - a_{12}a_{21} \neq 0$:</p>
+$$A^{-1} = \frac{1}{a_{11}a_{22} - a_{12}a_{21}}\begin{bmatrix}a_{22}&-a_{12}\\-a_{21}&a_{11}\end{bmatrix}$$
+<p>If $\det(A) = 0$, the matrix is <strong>singular</strong> (no inverse exists).</p>
+</div>
+
+<!-- EXAMPLE 5: Calculating Inverse via Gaussian Elimination -->
+<div class="example">
+<h4>Example 5: Inverse via Gaussian Elimination (Lecture 1, Slides 61&ndash;62)</h4>
+<p><strong>Problem:</strong> Find $A^{-1}$ using Gaussian elimination for $A = \begin{bmatrix}1&2\\3&4\end{bmatrix}$.</p>
+
+<p><strong>Step 1: Form augmented matrix $[A \mid I]$.</strong></p>
+$$\left[\begin{array}{cc|cc}1&2&1&0\\3&4&0&1\end{array}\right]$$
+
+<p><strong>Step 2: $R_2 \leftarrow R_2 - 3R_1$.</strong></p>
+$$\left[\begin{array}{cc|cc}1&2&1&0\\0&-2&-3&1\end{array}\right]$$
+
+<p><strong>Step 3: $R_2 \leftarrow -\frac{1}{2}R_2$.</strong></p>
+$$\left[\begin{array}{cc|cc}1&2&1&0\\0&1&\frac{3}{2}&-\frac{1}{2}\end{array}\right]$$
+
+<p><strong>Step 4: $R_1 \leftarrow R_1 - 2R_2$ (back-substitute to get RREF).</strong></p>
+$$\left[\begin{array}{cc|cc}1&0&1-3&0+1\\0&1&\frac{3}{2}&-\frac{1}{2}\end{array}\right] = \left[\begin{array}{cc|cc}1&0&-2&1\\0&1&\frac{3}{2}&-\frac{1}{2}\end{array}\right]$$
+
+<p><strong>Step 5: Read off the inverse.</strong></p>
+$$A^{-1} = \begin{bmatrix}-2&1\\\frac{3}{2}&-\frac{1}{2}\end{bmatrix}$$
+
+<p><strong>Verification:</strong> $AA^{-1} = \begin{bmatrix}1&2\\3&4\end{bmatrix}\begin{bmatrix}-2&1\\\frac{3}{2}&-\frac{1}{2}\end{bmatrix} = \begin{bmatrix}-2+3&1-1\\-6+6&3-2\end{bmatrix} = \begin{bmatrix}1&0\\0&1\end{bmatrix}$ &check;</p>
+<p>Cross-check with formula: $\det(A) = 4 - 6 = -2$, so $A^{-1} = \frac{1}{-2}\begin{bmatrix}4&-2\\-3&1\end{bmatrix} = \begin{bmatrix}-2&1\\\frac{3}{2}&-\frac{1}{2}\end{bmatrix}$ &check;</p>
+</div>
+
+
+<!-- ==================== LECTURE 2 ==================== -->
+<div class="lecture-divider" id="lec2">Lecture 2: Vector Spaces</div>
+
+<h2 id="l2-groups">2.1 Groups</h2>
+
+<div class="definition">
+A <strong>Group</strong> is a set $G$ and an operation $\otimes : G \times G \to G$ such that $(G, \otimes)$ satisfies:
+<ol>
+<li><strong>Closure:</strong> $\forall x, y \in G, \; x \otimes y \in G$</li>
+<li><strong>Associativity:</strong> $(x \otimes y) \otimes z = x \otimes (y \otimes z)$</li>
+<li><strong>Identity:</strong> $\exists \, e \in G$ such that $x \otimes e = e \otimes x = x$</li>
+<li><strong>Inverse:</strong> $\forall x \in G, \; \exists \, y \in G$ such that $x \otimes y = e$</li>
+</ol>
+If additionally $x \otimes y = y \otimes x$ (commutative), it is an <strong>Abelian group</strong>.
+</div>
+
+<div class="example">
+<ul>
+<li>$(\mathbb{Z}, +)$ is an Abelian group. (identity = 0, inverse of $n$ is $-n$)</li>
+<li>$(\mathbb{N}_0, +)$ is <strong>not</strong> a group (no inverse for positive integers)</li>
+<li>$(\mathbb{Z}, \cdot)$ is <strong>not</strong> a group (e.g., 2 has no multiplicative inverse in $\mathbb{Z}$)</li>
+<li>$(\mathbb{R} \setminus \{0\}, \cdot)$ <strong>is</strong> an Abelian group</li>
+</ul>
+</div>
+
+<h2 id="l2-vs">2.2 Vector Spaces</h2>
+
+<div class="definition">
+A <strong>real-valued vector space</strong> is $V = (\mathcal{V}, +, \cdot)$ where:
+<ul>
+<li><strong>Inner operation</strong> $+: \mathcal{V} \times \mathcal{V} \to \mathcal{V}$ (vector addition), with $(\mathcal{V}, +)$ an Abelian group</li>
+<li><strong>Outer operation</strong> $\cdot: \mathbb{R} \times \mathcal{V} \to \mathcal{V}$ (scalar multiplication)</li>
+</ul>
+Plus these axioms hold $\forall \lambda, \psi \in \mathbb{R}, \; \forall \mathbf{x}, \mathbf{y} \in \mathcal{V}$:
+<ol>
+<li><strong>Distributivity:</strong> $\lambda(\mathbf{x} + \mathbf{y}) = \lambda\mathbf{x} + \lambda\mathbf{y}$ and $(\lambda + \psi)\mathbf{x} = \lambda\mathbf{x} + \psi\mathbf{x}$</li>
+<li><strong>Associativity of scalar mult:</strong> $\lambda(\psi\mathbf{x}) = (\lambda\psi)\mathbf{x}$</li>
+<li><strong>Identity of scalar mult:</strong> $1 \cdot \mathbf{x} = \mathbf{x}$</li>
+</ol>
+The neutral element of $(\mathcal{V}, +)$ is the zero vector $\mathbf{0}$.
+</div>
+
+<div class="example">
+<ul>
+<li>$\mathcal{V} = \mathbb{R}^n$ with component-wise addition and scalar multiplication: the most common vector space.</li>
+<li>$\mathcal{V} = \mathbb{R}^{m \times n}$ (set of all $m \times n$ matrices) with element-wise addition and scalar multiplication: also a vector space!</li>
+<li>Polynomials of degree $\leq n$: also a vector space.</li>
+</ul>
+</div>
+
+<h2 id="l2-sub">2.3 Vector Subspaces</h2>
+
+<div class="definition">
+$U = (\mathcal{U}, +, \cdot)$ is a <strong>vector subspace</strong> of $V = (\mathcal{V}, +, \cdot)$ if:
+<ol>
+<li>$\mathcal{U} \neq \emptyset$ and $\mathcal{U} \subseteq \mathcal{V}$</li>
+<li><strong>Closed under $+$:</strong> $\forall \mathbf{x}, \mathbf{y} \in \mathcal{U}, \; \mathbf{x} + \mathbf{y} \in \mathcal{U}$</li>
+<li><strong>Closed under scalar mult:</strong> $\forall \lambda \in \mathbb{R}, \; \forall \mathbf{x} \in \mathcal{U}, \; \lambda\mathbf{x} \in \mathcal{U}$</li>
+</ol>
+</div>
+
+<div class="example">
+<ul>
+<li>The $y$-axis in $\mathbb{R}^2$: <strong>Yes</strong>, it's a subspace (closed under addition and scaling).</li>
+<li>The line $x = 1$ in $\mathbb{R}^2$: <strong>No</strong> &mdash; scaling a vector on $x=1$ by 2 gives $x=2$, not in the set.</li>
+<li>A square $-1 \leq x \leq 1, -1 \leq y \leq 1$ in $\mathbb{R}^2$: <strong>No</strong> &mdash; scaling by 3 leaves the square.</li>
+<li>The <strong>null space</strong> of $A$ (solutions to $A\mathbf{x} = \mathbf{0}$): <strong>Yes!</strong> If $A\mathbf{x} = \mathbf{0}$ and $A\mathbf{y} = \mathbf{0}$, then $A(\mathbf{x}+\mathbf{y}) = \mathbf{0}$ and $A(\lambda\mathbf{x}) = \mathbf{0}$.</li>
+</ul>
+</div>
+
+<!-- SVG: Subspace vs non-subspace -->
+<div class="svg-container">
+<svg width="500" height="180" viewBox="0 0 500 180">
+  <!-- Subspace: line through origin -->
+  <g transform="translate(0,0)">
+    <rect x="5" y="5" width="230" height="170" rx="8" fill="#eafaf1" stroke="#27ae60"/>
+    <text x="120" y="25" text-anchor="middle" font-size="13" font-weight="bold" fill="#27ae60">Subspace</text>
+    <line x1="30" y1="155" x2="210" y2="155" stroke="#bdc3c7" stroke-width="1"/>
+    <line x1="120" y1="35" x2="120" y2="170" stroke="#bdc3c7" stroke-width="1"/>
+    <line x1="40" y1="145" x2="200" y2="55" stroke="#2980b9" stroke-width="3"/>
+    <circle cx="120" cy="100" r="3" fill="#e74c3c"/>
+    <text x="130" y="97" font-size="10" fill="#e74c3c">origin</text>
+    <text x="120" y="170" text-anchor="middle" font-size="10" fill="#7f8c8d">Line through origin</text>
+  </g>
+  <!-- Not subspace: line not through origin -->
+  <g transform="translate(260,0)">
+    <rect x="5" y="5" width="230" height="170" rx="8" fill="#fdedec" stroke="#e74c3c"/>
+    <text x="120" y="25" text-anchor="middle" font-size="13" font-weight="bold" fill="#e74c3c">NOT a Subspace</text>
+    <line x1="30" y1="155" x2="210" y2="155" stroke="#bdc3c7" stroke-width="1"/>
+    <line x1="120" y1="35" x2="120" y2="170" stroke="#bdc3c7" stroke-width="1"/>
+    <line x1="60" y1="145" x2="220" y2="55" stroke="#e74c3c" stroke-width="3"/>
+    <circle cx="120" cy="115" r="3" fill="#2980b9"/>
+    <text x="130" y="112" font-size="10" fill="#2980b9">origin</text>
+    <text x="120" y="170" text-anchor="middle" font-size="10" fill="#7f8c8d">Line NOT through origin</text>
+  </g>
+</svg>
+</div>
+
+<h2 id="l2-lindep">2.4 Linear Combination &amp; Independence</h2>
+
+<div class="definition">
+A <strong>linear combination</strong> of vectors $\mathbf{x}_1, \ldots, \mathbf{x}_k \in V$ is any vector $\mathbf{v} = \lambda_1\mathbf{x}_1 + \lambda_2\mathbf{x}_2 + \cdots + \lambda_k\mathbf{x}_k$ where $\lambda_i \in \mathbb{R}$.
+</div>
+
+<div class="definition">
+Vectors $\mathbf{x}_1, \ldots, \mathbf{x}_k$ are <strong>linearly independent</strong> if the only solution to
+$$\lambda_1\mathbf{x}_1 + \lambda_2\mathbf{x}_2 + \cdots + \lambda_k\mathbf{x}_k = \mathbf{0}$$
+is $\lambda_1 = \lambda_2 = \cdots = \lambda_k = 0$. Otherwise they are <strong>linearly dependent</strong>.
+</div>
+
+<div class="highlight">
+<strong>Intuition:</strong> Linearly independent means each vector &ldquo;brings something to the table&rdquo; that the others collectively cannot replace. Dependent means at least one is redundant.
+</div>
+
+<h3>Checking Independence via Gaussian Elimination</h3>
+<ol>
+<li>Place vectors as <strong>columns</strong> of a matrix $A$.</li>
+<li>Row-reduce to echelon form.</li>
+<li><strong>Pivot columns</strong> = linearly independent vectors. <strong>Non-pivot columns</strong> = expressible as combinations of pivot columns.</li>
+</ol>
+
+<div class="example">
+$A = \begin{bmatrix}1&2&3\\2&4&4\end{bmatrix} \xrightarrow{\text{REF}} \begin{bmatrix}1&2&3\\0&0&-2\end{bmatrix}$<br><br>
+Pivot columns: 1 and 3. Column 2 is non-pivot (it's $2 \times$ column 1). So $\mathbf{x}_1, \mathbf{x}_3$ are independent; $\mathbf{x}_2$ is dependent.
+</div>
+
+<div class="theorem">
+<strong>Independence of Combinations:</strong> Given $k$ independent vectors $\mathbf{b}_1, \ldots, \mathbf{b}_k$ and $m$ vectors $\mathbf{x}_j = \sum \lambda_{ij}\mathbf{b}_i$, the $\mathbf{x}_j$ are linearly independent if and only if the coefficient vectors $\boldsymbol{\lambda}_j = (\lambda_{1j}, \ldots, \lambda_{kj})^T$ are linearly independent.
+<br><br>
+<strong>Corollary:</strong> If $m > k$ (more vectors than basis size), the vectors are <strong>guaranteed dependent</strong>.
+</div>
+
+<h2 id="l2-basis">2.5 Basis &amp; Dimension</h2>
+
+<div class="definition">
+The <strong>span</strong> of vectors $\mathcal{A} = \{\mathbf{x}_1, \ldots, \mathbf{x}_k\}$ is the set of all linear combinations: $\text{span}(\mathcal{A}) = \{\lambda_1\mathbf{x}_1 + \cdots + \lambda_k\mathbf{x}_k \mid \lambda_i \in \mathbb{R}\}$.
+<br><br>
+If $\text{span}(\mathcal{A}) = V$, then $\mathcal{A}$ is a <strong>generating set</strong> (it spans the whole space).
+</div>
+
+<div class="definition">
+A <strong>basis</strong> $\mathcal{B}$ of $V$ is a <strong>minimal generating set</strong>: it spans $V$ and is linearly independent. Equivalently:
+<ul>
+<li>$\mathcal{B}$ spans $V$</li>
+<li>$\mathcal{B}$ is linearly independent</li>
+<li>Every $\mathbf{x} \in V$ has a <strong>unique</strong> representation as a linear combination of $\mathcal{B}$</li>
+<li>$\mathcal{B}$ is maximal independent (adding any vector makes it dependent)</li>
+</ul>
+</div>
+
+<div class="definition">
+The <strong>dimension</strong> $\dim(V)$ of a finite-dimensional vector space $V$ is the number of vectors in any basis of $V$.
+</div>
+
+<div class="example">
+<strong>Multiple bases for $\mathbb{R}^3$:</strong>
+<ul>
+<li>Canonical: $\{(1,0,0)^T, (0,1,0)^T, (0,0,1)^T\}$</li>
+<li>Another: $\{(1,0,0)^T, (1,1,0)^T, (1,1,1)^T\}$</li>
+</ul>
+All bases of $\mathbb{R}^3$ have exactly 3 vectors, so $\dim(\mathbb{R}^3) = 3$.
+<br><br>
+<strong>Not a basis:</strong> 3 linearly independent vectors in $\mathbb{R}^4$ span only a 3D subspace, not all of $\mathbb{R}^4$.
+</div>
+
+<h3>Finding a Basis for a Subspace</h3>
+<ol>
+<li>Write spanning vectors as columns of $A$.</li>
+<li>Row-reduce to echelon form.</li>
+<li>The <strong>original spanning vectors corresponding to pivot columns</strong> form a basis.</li>
+</ol>
+
+<h2 id="l2-rank">2.6 Rank &amp; Null Space</h2>
+
+<p>The <strong>column space</strong> (or <strong>image</strong>) of $A$ is $\text{Im}(A) = \{A\mathbf{x} \mid \mathbf{x} \in \mathbb{R}^n\}$. Its dimension is $\text{rank}(A)$.</p>
+<p>The <strong>null space</strong> (or <strong>kernel</strong>) of $A$ is $\ker(A) = \{\mathbf{x} \mid A\mathbf{x} = \mathbf{0}\}$.</p>
+
+<div class="theorem">
+<strong>Rank-Nullity Theorem:</strong> For $A \in \mathbb{R}^{m \times n}$:
+$$\text{rank}(A) + \text{nullity}(A) = n$$
+where nullity = $\dim(\ker(A))$ = number of free variables.
+</div>
+
+<!-- ===== LECTURE 2: DETAILED WORKED EXAMPLES ===== -->
+<h2 id="l2-worked">2.7 Detailed Worked Examples</h2>
+
+<!-- EXAMPLE: Checking Linear Independence -->
+<div class="example">
+<h4>Example 1: Checking Linear Independence via Gaussian Elimination (Lecture 2, Slides 20&ndash;21)</h4>
+<p><strong>Problem:</strong> Determine whether the vectors $\mathbf{x}_1 = \begin{bmatrix}1\\2\\-3\\4\end{bmatrix}$, $\mathbf{x}_2 = \begin{bmatrix}1\\1\\0\\2\end{bmatrix}$, $\mathbf{x}_3 = \begin{bmatrix}-1\\-2\\1\\1\end{bmatrix}$ are linearly independent.</p>
+
+<p><strong>Step 1: Set up the equation $\lambda_1\mathbf{x}_1 + \lambda_2\mathbf{x}_2 + \lambda_3\mathbf{x}_3 = \mathbf{0}$.</strong></p>
+<p>Place vectors as columns of a matrix:</p>
+$$A = \begin{bmatrix}1&1&-1\\2&1&-2\\-3&0&1\\4&2&1\end{bmatrix}$$
+
+<p><strong>Step 2: Perform Gaussian elimination.</strong></p>
+<p>$R_2 \leftarrow R_2 - 2R_1$: &nbsp; $[2-2, 1-2, -2+2] = [0, -1, 0]$</p>
+<p>$R_3 \leftarrow R_3 + 3R_1$: &nbsp; $[-3+3, 0+3, 1-3] = [0, 3, -2]$</p>
+<p>$R_4 \leftarrow R_4 - 4R_1$: &nbsp; $[4-4, 2-4, 1+4] = [0, -2, 5]$</p>
+$$\begin{bmatrix}1&1&-1\\0&-1&0\\0&3&-2\\0&-2&5\end{bmatrix}$$
+
+<p>$R_3 \leftarrow R_3 + 3R_2$: &nbsp; $[0, 3-3, -2+0] = [0, 0, -2]$</p>
+<p>$R_4 \leftarrow R_4 - 2R_2$: &nbsp; $[0, -2+2, 5-0] = [0, 0, 5]$</p>
+$$\begin{bmatrix}1&1&-1\\0&-1&0\\0&0&-2\\0&0&5\end{bmatrix}$$
+
+<p>$R_4 \leftarrow R_4 + \frac{5}{2}R_3$: &nbsp; $[0, 0, 5+\frac{5}{2}(-2)] = [0, 0, 0]$</p>
+$$\begin{bmatrix}1&1&-1\\0&-1&0\\0&0&-2\\0&0&0\end{bmatrix}$$
+
+<p><strong>Step 3: Count pivots.</strong></p>
+<p>There are <strong>3 pivots</strong> in 3 columns &rarr; all columns are pivot columns &rarr; no free variables.</p>
+
+<p><strong>Conclusion:</strong> The only solution to $\lambda_1\mathbf{x}_1 + \lambda_2\mathbf{x}_2 + \lambda_3\mathbf{x}_3 = \mathbf{0}$ is $\lambda_1 = \lambda_2 = \lambda_3 = 0$. The vectors are <strong>linearly independent</strong>.</p>
+</div>
+
+<!-- EXAMPLE: Linear Independence of Combinations -->
+<div class="example">
+<h4>Example 2: Testing Independence of Linear Combinations (Lecture 2, Slides 26&ndash;29)</h4>
+<p><strong>Problem:</strong> Given independent basis vectors $\mathbf{b}_1, \mathbf{b}_2, \mathbf{b}_3, \mathbf{b}_4$ and:</p>
+$$\begin{align}
+\mathbf{x}_1 &= \mathbf{b}_1 - 2\mathbf{b}_2 + \mathbf{b}_3 - \mathbf{b}_4\\
+\mathbf{x}_2 &= -4\mathbf{b}_1 - 2\mathbf{b}_2 + 4\mathbf{b}_4\\
+\mathbf{x}_3 &= 2\mathbf{b}_1 + 3\mathbf{b}_2 - \mathbf{b}_3 - 3\mathbf{b}_4\\
+\mathbf{x}_4 &= 17\mathbf{b}_1 - 10\mathbf{b}_2 + 11\mathbf{b}_3 + \mathbf{b}_4
+\end{align}$$
+<p>Are $\mathbf{x}_1, \mathbf{x}_2, \mathbf{x}_3, \mathbf{x}_4$ linearly independent?</p>
+
+<p><strong>Step 1: Extract the coefficient vectors.</strong></p>
+<p>Since the $\mathbf{b}_i$ are independent, we only need to check if the coefficient vectors are independent:</p>
+$$\boldsymbol{\lambda}_1 = \begin{bmatrix}1\\-2\\1\\-1\end{bmatrix}, \quad \boldsymbol{\lambda}_2 = \begin{bmatrix}-4\\-2\\0\\4\end{bmatrix}, \quad \boldsymbol{\lambda}_3 = \begin{bmatrix}2\\3\\-1\\-3\end{bmatrix}, \quad \boldsymbol{\lambda}_4 = \begin{bmatrix}17\\-10\\11\\1\end{bmatrix}$$
+
+<p><strong>Step 2: Form the matrix and row-reduce.</strong></p>
+$$A = \begin{bmatrix}1&-4&2&17\\-2&-2&3&-10\\1&0&-1&11\\-1&4&-3&1\end{bmatrix}$$
+
+<p>$R_2 \leftarrow R_2 + 2R_1$: &nbsp; $[0, -10, 7, 24]$</p>
+<p>$R_3 \leftarrow R_3 - R_1$: &nbsp; $[0, 4, -3, -6]$</p>
+<p>$R_4 \leftarrow R_4 + R_1$: &nbsp; $[0, 0, -1, 18]$</p>
+
+$$\begin{bmatrix}1&-4&2&17\\0&-10&7&24\\0&4&-3&-6\\0&0&-1&18\end{bmatrix}$$
+
+<p>$R_3 \leftarrow R_3 + \frac{2}{5}R_2$: &nbsp; $[0, 4-4, -3+\frac{14}{5}, -6+\frac{48}{5}] = [0, 0, -\frac{1}{5}, \frac{18}{5}]$</p>
+
+$$\begin{bmatrix}1&-4&2&17\\0&-10&7&24\\0&0&-\frac{1}{5}&\frac{18}{5}\\0&0&-1&18\end{bmatrix}$$
+
+<p>$R_4 \leftarrow R_4 - 5R_3$: &nbsp; $[0, 0, -1+1, 18-18] = [0, 0, 0, 0]$</p>
+
+$$\begin{bmatrix}1&-4&2&17\\0&-10&7&24\\0&0&-\frac{1}{5}&\frac{18}{5}\\0&0&0&0\end{bmatrix}$$
+
+<p><strong>Step 3: Interpret.</strong></p>
+<p>Only 3 pivots for 4 columns &rarr; column 4 is a non-pivot column. The RREF reveals: $-7 \cdot \boldsymbol{\lambda}_1 + 15 \cdot \boldsymbol{\lambda}_2 + 18 \cdot \boldsymbol{\lambda}_3 + \boldsymbol{\lambda}_4 = \mathbf{0}$ (from back-substitution of the last column).</p>
+
+<p><strong>Conclusion:</strong> The vectors $\mathbf{x}_1, \mathbf{x}_2, \mathbf{x}_3, \mathbf{x}_4$ are <strong>linearly dependent</strong>.</p>
+</div>
+
+<!-- EXAMPLE: Finding a Basis -->
+<div class="example">
+<h4>Example 3: Finding a Basis for a Subspace (Lecture 2, Slides 40&ndash;41)</h4>
+<p><strong>Problem:</strong> Consider $U \subseteq \mathbb{R}^5$ spanned by:</p>
+$$\mathbf{x}_1 = \begin{bmatrix}1\\2\\-1\\-1\\-1\end{bmatrix},\; \mathbf{x}_2 = \begin{bmatrix}2\\-1\\1\\2\\-2\end{bmatrix},\; \mathbf{x}_3 = \begin{bmatrix}3\\-4\\3\\5\\-3\end{bmatrix},\; \mathbf{x}_4 = \begin{bmatrix}-1\\8\\-5\\-6\\1\end{bmatrix}$$
+<p>Do they form a basis for $U$?</p>
+
+<p><strong>Step 1: Place as columns and row-reduce.</strong></p>
+$$A = \begin{bmatrix}1&2&3&-1\\2&-1&-4&8\\-1&1&3&-5\\-1&2&5&-6\\-1&-2&-3&1\end{bmatrix}$$
+
+<p><strong>Step 2: Gaussian elimination.</strong></p>
+<p>$R_2 \leftarrow R_2 - 2R_1$: $[0, -5, -10, 10]$</p>
+<p>$R_3 \leftarrow R_3 + R_1$: $[0, 3, 6, -6]$</p>
+<p>$R_4 \leftarrow R_4 + R_1$: $[0, 4, 8, -7]$</p>
+<p>$R_5 \leftarrow R_5 + R_1$: $[0, 0, 0, 0]$</p>
+
+$$\begin{bmatrix}1&2&3&-1\\0&-5&-10&10\\0&3&6&-6\\0&4&8&-7\\0&0&0&0\end{bmatrix}$$
+
+<p>$R_3 \leftarrow R_3 + \frac{3}{5}R_2$: $[0, 0, 0, 0]$</p>
+<p>$R_4 \leftarrow R_4 + \frac{4}{5}R_2$: $[0, 0, 0, 1]$</p>
+
+$$\begin{bmatrix}1&2&3&-1\\0&-5&-10&10\\0&0&0&0\\0&0&0&1\\0&0&0&0\end{bmatrix}$$
+
+<p>Swap $R_3 \leftrightarrow R_4$:</p>
+$$\begin{bmatrix}1&2&3&-1\\0&-5&-10&10\\0&0&0&1\\0&0&0&0\\0&0&0&0\end{bmatrix}$$
+
+<p><strong>Step 3: Identify pivot columns.</strong></p>
+<p>Pivots in columns <strong>1, 2, 4</strong>. Column 3 is a non-pivot column.</p>
+
+<p><strong>Step 4: The original vectors corresponding to pivot columns form a basis.</strong></p>
+<p>Basis for $U$: $\{\mathbf{x}_1, \mathbf{x}_2, \mathbf{x}_4\}$</p>
+<p>$\dim(U) = 3$. The vectors do <strong>not</strong> form a basis as given (since $\mathbf{x}_3$ is dependent on the others), but the subset $\{\mathbf{x}_1, \mathbf{x}_2, \mathbf{x}_4\}$ does.</p>
+<p>Note: $\mathbf{x}_3$ is a combination of $\mathbf{x}_1$ and $\mathbf{x}_2$. From column 3 being $3 \times$ col 1 $+ 2 \times$ col 2 (from RREF pattern): $\mathbf{x}_3 = 3\mathbf{x}_1 + 2(-\frac{-10}{-5})\mathbf{x}_2$... more precisely, the non-pivot column tells us the dependency.</p>
+</div>
+
+
+<!-- ==================== LECTURE 3 ==================== -->
+<div class="lecture-divider" id="lec3">Lecture 3: Analytic Geometry (Inner Products)</div>
+
+<h2 id="l3-dot">3.1 Dot Product &amp; General Inner Products</h2>
+
+<p>The dot product measures <strong>similarity</strong> between vectors. Netflix uses it to match your taste with movies; Spotify uses it to match songs.</p>
+
+<div class="definition">
+The <strong>dot product</strong> (standard inner product) of $\mathbf{x}, \mathbf{y} \in \mathbb{R}^n$:
+$$\mathbf{x} \cdot \mathbf{y} = \mathbf{x}^T\mathbf{y} = \sum_{i=1}^n x_i y_i$$
+</div>
+
+<div class="definition">
+A <strong>general inner product</strong> on vector space $V$ is a function $\langle \cdot, \cdot \rangle : V \times V \to \mathbb{R}$ satisfying:
+<ol>
+<li><strong>Bilinearity:</strong> $\langle \alpha\mathbf{x} + \beta\mathbf{y}, \mathbf{z} \rangle = \alpha\langle\mathbf{x},\mathbf{z}\rangle + \beta\langle\mathbf{y},\mathbf{z}\rangle$</li>
+<li><strong>Symmetry:</strong> $\langle \mathbf{x}, \mathbf{y} \rangle = \langle \mathbf{y}, \mathbf{x} \rangle$</li>
+<li><strong>Positive-Definiteness:</strong> $\langle \mathbf{x}, \mathbf{x} \rangle \geq 0$, with equality iff $\mathbf{x} = \mathbf{0}$</li>
+</ol>
+</div>
+
+<h2 id="l3-spd">3.2 Symmetric Positive-Definite (SPD) Matrices</h2>
+
+<div class="theorem">
+$\langle \mathbf{x}, \mathbf{y} \rangle_A = \mathbf{x}^T A \mathbf{y}$ is a valid inner product if and only if $A$ is <strong>symmetric</strong> ($A = A^T$) and <strong>positive-definite</strong> (all eigenvalues $> 0$).
+<br><br>
+Special case: $A = I$ gives the standard dot product.
+</div>
+
+<div class="tip">
+<strong>Geometric meaning:</strong> An SPD matrix $A$ reshapes the &ldquo;unit circle&rdquo; into an ellipse. Different $A$ = different geometry on the same space.
+</div>
+
+<!-- SVG: Unit circle to ellipse -->
+<div class="svg-container">
+<svg width="500" height="180" viewBox="0 0 500 180">
+  <g transform="translate(0,0)">
+    <rect x="5" y="5" width="230" height="170" rx="8" fill="#f8f9fa" stroke="#dfe6e9"/>
+    <text x="120" y="25" text-anchor="middle" font-size="12" font-weight="bold" fill="var(--primary)">A = I (standard)</text>
+    <ellipse cx="120" cy="100" rx="60" ry="60" fill="none" stroke="#2980b9" stroke-width="2.5"/>
+    <line x1="60" y1="100" x2="180" y2="100" stroke="#bdc3c7" stroke-width="0.5"/>
+    <line x1="120" y1="40" x2="120" y2="160" stroke="#bdc3c7" stroke-width="0.5"/>
+    <text x="120" y="172" text-anchor="middle" font-size="11" fill="#7f8c8d">Unit circle</text>
+  </g>
+  <text x="250" y="100" text-anchor="middle" font-size="24" fill="var(--accent)">&rarr;</text>
+  <g transform="translate(270,0)">
+    <rect x="5" y="5" width="230" height="170" rx="8" fill="#f8f9fa" stroke="#dfe6e9"/>
+    <text x="120" y="25" text-anchor="middle" font-size="12" font-weight="bold" fill="var(--primary)">A = diag(4,1)</text>
+    <ellipse cx="120" cy="100" rx="30" ry="60" fill="none" stroke="#e67e22" stroke-width="2.5"/>
+    <line x1="60" y1="100" x2="180" y2="100" stroke="#bdc3c7" stroke-width="0.5"/>
+    <line x1="120" y1="40" x2="120" y2="160" stroke="#bdc3c7" stroke-width="0.5"/>
+    <text x="120" y="172" text-anchor="middle" font-size="11" fill="#7f8c8d">Ellipse: 4x&sup2; + y&sup2; = 1</text>
+  </g>
+</svg>
+</div>
+
+<h2 id="l3-norms">3.3 Norms &amp; Distances</h2>
+
+<div class="definition">
+A <strong>norm</strong> measures the &ldquo;length&rdquo; of a vector: $\|\mathbf{x}\| = \sqrt{\langle \mathbf{x}, \mathbf{x} \rangle}$.
+<br>Properties: non-negative, definite, homogeneous ($\|\lambda\mathbf{x}\| = |\lambda|\|\mathbf{x}\|$), triangle inequality ($\|\mathbf{x}+\mathbf{y}\| \leq \|\mathbf{x}\| + \|\mathbf{y}\|$).
+</div>
+
+<table>
+<tr><th>Norm</th><th>Formula</th><th>Shape of &ldquo;unit ball&rdquo;</th></tr>
+<tr><td>$L^1$ (Manhattan)</td><td>$\|\mathbf{x}\|_1 = \sum|x_i|$</td><td>Diamond</td></tr>
+<tr><td>$L^2$ (Euclidean)</td><td>$\|\mathbf{x}\|_2 = \sqrt{\sum x_i^2}$</td><td>Circle/Sphere</td></tr>
+<tr><td>$L^p$ (general)</td><td>$\|\mathbf{x}\|_p = (\sum|x_i|^p)^{1/p}$</td><td>Interpolation</td></tr>
+<tr><td>$L^\infty$ (Max)</td><td>$\|\mathbf{x}\|_\infty = \max|x_i|$</td><td>Square/Cube</td></tr>
+</table>
+
+<!-- SVG: Norm balls -->
+<div class="svg-container">
+<svg width="500" height="150" viewBox="0 0 500 150">
+  <!-- L1 -->
+  <g transform="translate(10,10)">
+    <rect x="0" y="0" width="130" height="130" rx="5" fill="#fef9e7" stroke="#e67e22"/>
+    <polygon points="65,15 115,65 65,115 15,65" fill="none" stroke="#e67e22" stroke-width="2.5"/>
+    <text x="65" y="140" text-anchor="middle" font-size="12" font-weight="bold" fill="#e67e22">L1 (Diamond)</text>
+  </g>
+  <!-- L2 -->
+  <g transform="translate(170,10)">
+    <rect x="0" y="0" width="130" height="130" rx="5" fill="#eef2f7" stroke="#2980b9"/>
+    <circle cx="65" cy="65" r="50" fill="none" stroke="#2980b9" stroke-width="2.5"/>
+    <text x="65" y="140" text-anchor="middle" font-size="12" font-weight="bold" fill="#2980b9">L2 (Circle)</text>
+  </g>
+  <!-- L-inf -->
+  <g transform="translate(340,10)">
+    <rect x="0" y="0" width="130" height="130" rx="5" fill="#eafaf1" stroke="#27ae60"/>
+    <rect x="15" y="15" width="100" height="100" fill="none" stroke="#27ae60" stroke-width="2.5"/>
+    <text x="65" y="140" text-anchor="middle" font-size="12" font-weight="bold" fill="#27ae60">L&infin; (Square)</text>
+  </g>
+</svg>
+</div>
+
+<p><strong>Distance/Metric:</strong> $d(\mathbf{x}, \mathbf{y}) = \|\mathbf{x} - \mathbf{y}\|$</p>
+
+<h2 id="l3-angles">3.4 Angles &amp; Orthogonality</h2>
+
+<div class="key-formula">
+$$\cos(\omega) = \frac{\langle \mathbf{x}, \mathbf{y} \rangle}{\|\mathbf{x}\| \cdot \|\mathbf{y}\|}$$
+</div>
+
+<div class="theorem">
+<strong>Cauchy-Schwarz Inequality:</strong> $|\langle \mathbf{x}, \mathbf{y} \rangle| \leq \|\mathbf{x}\| \cdot \|\mathbf{y}\|$
+<br>This ensures $\cos(\omega) \in [-1, 1]$, making the angle formula valid.
+</div>
+
+<div class="definition">
+Two vectors are <strong>orthogonal</strong> ($\mathbf{x} \perp \mathbf{y}$) if $\langle \mathbf{x}, \mathbf{y} \rangle = 0$ (angle = $90°$).
+<br><br>
+An <strong>orthonormal basis</strong> $\{e_1, \ldots, e_n\}$ satisfies $\langle e_i, e_j \rangle = \delta_{ij}$ (Kronecker delta): unit length and mutually orthogonal.
+</div>
+
+<h2 id="l3-gs">3.5 Gram-Schmidt Orthonormalization</h2>
+
+<p>Converts any basis into an orthonormal basis, step by step:</p>
+
+<div class="card">
+<strong>Algorithm:</strong>
+<ol>
+<li>$\mathbf{e}_1 = \mathbf{x}_1 / \|\mathbf{x}_1\|$ &mdash; normalize first vector</li>
+<li>For each subsequent $\mathbf{x}_k$:
+  <ul>
+    <li><strong>Orthogonalize:</strong> $\mathbf{v}_k = \mathbf{x}_k - \sum_{j=1}^{k-1} \langle \mathbf{x}_k, \mathbf{e}_j \rangle \, \mathbf{e}_j$ &nbsp; (subtract projections onto all previous vectors)</li>
+    <li><strong>Normalize:</strong> $\mathbf{e}_k = \mathbf{v}_k / \|\mathbf{v}_k\|$</li>
+  </ul>
+</li>
+</ol>
+</div>
+
+<div class="example">
+Given $\mathbf{x}_1 = (1, 1, 0)^T$ and $\mathbf{x}_2 = (1, 2, 2)^T$:
+<br><br>
+<strong>Step 1:</strong> $\mathbf{e}_1 = \frac{1}{\sqrt{2}}(1, 1, 0)^T$
+<br>
+<strong>Step 2:</strong> $\langle \mathbf{x}_2, \mathbf{e}_1 \rangle = \frac{3}{\sqrt{2}}$, so $\mathbf{v}_2 = (1,2,2)^T - \frac{3}{\sqrt{2}} \cdot \frac{1}{\sqrt{2}}(1,1,0)^T = (-\tfrac{1}{2}, \tfrac{1}{2}, 2)^T$
+<br>
+<strong>Step 3:</strong> $\mathbf{e}_2 = \frac{\mathbf{v}_2}{\|\mathbf{v}_2\|} = (-\tfrac{1}{3}, \tfrac{1}{3}, \tfrac{2}{3})^T$
+</div>
+
+<h2 id="l3-ortho">3.6 Orthogonal Matrices</h2>
+
+<div class="definition">
+A square matrix $Q$ is <strong>orthogonal</strong> if its columns form an orthonormal basis: $Q^TQ = QQ^T = I$, i.e., $Q^{-1} = Q^T$.
+</div>
+
+<p>Properties: $\det(Q) = \pm 1$, $\|Q\mathbf{x}\| = \|\mathbf{x}\|$ (preserves lengths), $\langle Q\mathbf{x}, Q\mathbf{y} \rangle = \langle \mathbf{x}, \mathbf{y} \rangle$ (preserves angles). Geometrically: <strong>rotations and reflections</strong>.</p>
+
+<h3>LU Decomposition (preview)</h3>
+<p>Any non-singular matrix $A$ can be factored as $A = LU$ where $L$ is lower-triangular and $U$ is upper-triangular. This records Gaussian elimination for reuse on multiple right-hand sides.</p>
+
+<!-- ===== LECTURE 3: DETAILED WORKED EXAMPLES ===== -->
+<h2 id="l3-worked">3.7 Detailed Worked Examples</h2>
+
+<!-- EXAMPLE: Gram-Schmidt -->
+<div class="example">
+<h4>Example 1: Gram-Schmidt Orthonormalization (Lecture 3, Slides 22&ndash;23)</h4>
+<p><strong>Problem:</strong> Given basis vectors $\mathbf{v}_1 = (3, 1)^T$ and $\mathbf{v}_2 = (2, 2)^T$ for $\mathbb{R}^2$, find an orthonormal basis.</p>
+
+<p><strong>Method 1: Classical Gram-Schmidt</strong></p>
+
+<p><strong>Step 1: Normalize $\mathbf{v}_1$.</strong></p>
+$$\|\mathbf{v}_1\| = \sqrt{3^2 + 1^2} = \sqrt{10}$$
+$$\mathbf{e}_1 = \frac{\mathbf{v}_1}{\|\mathbf{v}_1\|} = \frac{1}{\sqrt{10}}\begin{bmatrix}3\\1\end{bmatrix}$$
+
+<p><strong>Step 2: Orthogonalize $\mathbf{v}_2$ against $\mathbf{e}_1$.</strong></p>
+<p>Compute the projection of $\mathbf{v}_2$ onto $\mathbf{e}_1$:</p>
+$$\langle \mathbf{v}_2, \mathbf{e}_1 \rangle = (2)\frac{3}{\sqrt{10}} + (2)\frac{1}{\sqrt{10}} = \frac{6+2}{\sqrt{10}} = \frac{8}{\sqrt{10}}$$
+<p>Subtract the projection:</p>
+$$\mathbf{u}_2 = \mathbf{v}_2 - \langle \mathbf{v}_2, \mathbf{e}_1 \rangle \mathbf{e}_1 = \begin{bmatrix}2\\2\end{bmatrix} - \frac{8}{\sqrt{10}} \cdot \frac{1}{\sqrt{10}}\begin{bmatrix}3\\1\end{bmatrix} = \begin{bmatrix}2\\2\end{bmatrix} - \frac{8}{10}\begin{bmatrix}3\\1\end{bmatrix}$$
+$$= \begin{bmatrix}2\\2\end{bmatrix} - \begin{bmatrix}2.4\\0.8\end{bmatrix} = \begin{bmatrix}-0.4\\1.2\end{bmatrix}$$
+
+<p><strong>Step 3: Normalize $\mathbf{u}_2$.</strong></p>
+$$\|\mathbf{u}_2\| = \sqrt{0.16 + 1.44} = \sqrt{1.6} = \frac{4}{\sqrt{10}}$$
+$$\mathbf{e}_2 = \frac{\mathbf{u}_2}{\|\mathbf{u}_2\|} = \frac{\sqrt{10}}{4}\begin{bmatrix}-0.4\\1.2\end{bmatrix} = \frac{1}{\sqrt{10}}\begin{bmatrix}-1\\3\end{bmatrix}$$
+
+<p><strong>Verification:</strong></p>
+<ul>
+<li>$\langle \mathbf{e}_1, \mathbf{e}_2 \rangle = \frac{1}{10}(3 \cdot (-1) + 1 \cdot 3) = \frac{-3+3}{10} = 0$ &check; (orthogonal)</li>
+<li>$\|\mathbf{e}_1\| = \frac{1}{\sqrt{10}}\sqrt{9+1} = 1$ &check;</li>
+<li>$\|\mathbf{e}_2\| = \frac{1}{\sqrt{10}}\sqrt{1+9} = 1$ &check;</li>
+</ul>
+
+<p><strong>Method 2: Via Gaussian Elimination on $[A^TA \mid A^T]$ (Lecture&rsquo;s approach)</strong></p>
+
+<p><strong>Step 1: Form $A$ from column vectors.</strong></p>
+$$A = \begin{bmatrix}3&2\\1&2\end{bmatrix}$$
+
+<p><strong>Step 2: Compute $A^TA$ and form augmented matrix $[A^TA \mid A^T]$.</strong></p>
+$$A^TA = \begin{bmatrix}3&1\\2&2\end{bmatrix}\begin{bmatrix}3&2\\1&2\end{bmatrix} = \begin{bmatrix}10&8\\8&8\end{bmatrix}$$
+$$[A^TA \mid A^T] = \begin{bmatrix}10&8&|&3&1\\8&8&|&2&2\end{bmatrix}$$
+
+<p><strong>Step 3: Gaussian elimination.</strong></p>
+<p>$R_1 \leftarrow \frac{1}{10}R_1$: &nbsp; $[1, 0.8, 0.3, 0.1]$</p>
+<p>$R_2 \leftarrow R_2 - 8R_1$: &nbsp; $[0, 8-6.4, 2-2.4, 2-0.8] = [0, 1.6, -0.4, 1.2]$</p>
+<p>$R_2 \leftarrow \frac{1}{1.6}R_2$: &nbsp; $[0, 1, -0.25, 0.75]$</p>
+
+$$\begin{bmatrix}1&0.8&|&0.3&0.1\\0&1&|&-0.25&0.75\end{bmatrix}$$
+
+<p><strong>Step 4: Read the orthogonal basis from the right-hand side.</strong></p>
+<p>The two rows on the RHS give orthogonal vectors (in the original column space):</p>
+<ul>
+<li>Row 1: $(0.3, 0.1)$ &rarr; proportional to $(3, 1)$</li>
+<li>Row 2: $(-0.25, 0.75)$ &rarr; proportional to $(-1, 3)$</li>
+</ul>
+<p>Normalizing gives the same $\mathbf{e}_1 = \frac{1}{\sqrt{10}}(3,1)^T$ and $\mathbf{e}_2 = \frac{1}{\sqrt{10}}(-1,3)^T$ as before.</p>
+</div>
+
+<!-- EXAMPLE: Inner Product with SPD matrix -->
+<div class="example">
+<h4>Example 2: Inner Product with a Non-Standard Matrix (Lecture 3, Slide 9)</h4>
+<p><strong>Problem:</strong> Verify that $\langle \mathbf{x}, \mathbf{y} \rangle_A = \mathbf{x}^T A \mathbf{y}$ defines a valid inner product when $A = \begin{bmatrix}2&1\\1&2\end{bmatrix}$. Compute $\langle \mathbf{x}, \mathbf{y} \rangle_A$ for $\mathbf{x} = (1, 0)^T$, $\mathbf{y} = (0, 1)^T$.</p>
+
+<p><strong>Step 1: Check $A$ is symmetric.</strong></p>
+$$A^T = \begin{bmatrix}2&1\\1&2\end{bmatrix} = A \;\checkmark$$
+
+<p><strong>Step 2: Check $A$ is positive-definite (all eigenvalues $> 0$).</strong></p>
+$$\det(A - \lambda I) = (2-\lambda)^2 - 1 = \lambda^2 - 4\lambda + 3 = (\lambda-1)(\lambda-3)$$
+<p>Eigenvalues: $\lambda_1 = 1 > 0$, $\lambda_2 = 3 > 0$ &check; &rarr; $A$ is SPD.</p>
+
+<p><strong>Step 3: Compute the inner product.</strong></p>
+$$\langle \mathbf{x}, \mathbf{y} \rangle_A = \mathbf{x}^TA\mathbf{y} = \begin{bmatrix}1&0\end{bmatrix}\begin{bmatrix}2&1\\1&2\end{bmatrix}\begin{bmatrix}0\\1\end{bmatrix}$$
+<p>First: $A\mathbf{y} = \begin{bmatrix}2(0)+1(1)\\1(0)+2(1)\end{bmatrix} = \begin{bmatrix}1\\2\end{bmatrix}$</p>
+<p>Then: $\mathbf{x}^T(A\mathbf{y}) = \begin{bmatrix}1&0\end{bmatrix}\begin{bmatrix}1\\2\end{bmatrix} = 1$</p>
+<p>Note: With the standard dot product, $\mathbf{x} \cdot \mathbf{y} = 0$ (orthogonal). But under this inner product, $\langle \mathbf{x}, \mathbf{y} \rangle_A = 1 \neq 0$, so the vectors are <strong>not orthogonal</strong> in this geometry.</p>
+</div>
+
+<!-- EXAMPLE: Angle between vectors -->
+<div class="example">
+<h4>Example 3: Computing Angles Between Vectors (Lecture 3, Slide 14)</h4>
+<p><strong>Problem:</strong> Find the angle between $\mathbf{x} = (1, 1, 0)^T$ and $\mathbf{y} = (0, 1, 1)^T$ using the standard inner product.</p>
+
+<p><strong>Step 1: Compute inner product.</strong></p>
+$$\langle \mathbf{x}, \mathbf{y} \rangle = 1(0) + 1(1) + 0(1) = 1$$
+
+<p><strong>Step 2: Compute norms.</strong></p>
+$$\|\mathbf{x}\| = \sqrt{1+1+0} = \sqrt{2}, \quad \|\mathbf{y}\| = \sqrt{0+1+1} = \sqrt{2}$$
+
+<p><strong>Step 3: Apply the angle formula.</strong></p>
+$$\cos(\omega) = \frac{\langle \mathbf{x}, \mathbf{y} \rangle}{\|\mathbf{x}\| \cdot \|\mathbf{y}\|} = \frac{1}{\sqrt{2}\cdot\sqrt{2}} = \frac{1}{2}$$
+$$\omega = \arccos\left(\frac{1}{2}\right) = 60°$$
+</div>
+
+<!-- EXAMPLE: Gram-Schmidt with 3 vectors -->
+<div class="example">
+<h4>Example 4: Gram-Schmidt with 3 Vectors (from existing notes)</h4>
+<p><strong>Problem:</strong> Orthonormalize $\mathbf{x}_1 = (1, 1, 0)^T$ and $\mathbf{x}_2 = (1, 2, 2)^T$.</p>
+
+<p><strong>Step 1: Normalize $\mathbf{x}_1$.</strong></p>
+$$\|\mathbf{x}_1\| = \sqrt{1+1+0} = \sqrt{2}$$
+$$\mathbf{e}_1 = \frac{1}{\sqrt{2}}(1, 1, 0)^T$$
+
+<p><strong>Step 2: Compute projection of $\mathbf{x}_2$ onto $\mathbf{e}_1$.</strong></p>
+$$\langle \mathbf{x}_2, \mathbf{e}_1 \rangle = \frac{1}{\sqrt{2}}(1 \cdot 1 + 2 \cdot 1 + 2 \cdot 0) = \frac{3}{\sqrt{2}}$$
+
+<p><strong>Step 3: Subtract projection to orthogonalize.</strong></p>
+$$\mathbf{u}_2 = \mathbf{x}_2 - \langle \mathbf{x}_2, \mathbf{e}_1 \rangle \mathbf{e}_1 = \begin{bmatrix}1\\2\\2\end{bmatrix} - \frac{3}{\sqrt{2}} \cdot \frac{1}{\sqrt{2}}\begin{bmatrix}1\\1\\0\end{bmatrix}$$
+$$= \begin{bmatrix}1\\2\\2\end{bmatrix} - \frac{3}{2}\begin{bmatrix}1\\1\\0\end{bmatrix} = \begin{bmatrix}1-1.5\\2-1.5\\2-0\end{bmatrix} = \begin{bmatrix}-0.5\\0.5\\2\end{bmatrix}$$
+
+<p><strong>Step 4: Normalize $\mathbf{u}_2$.</strong></p>
+$$\|\mathbf{u}_2\| = \sqrt{0.25 + 0.25 + 4} = \sqrt{4.5} = \frac{3}{\sqrt{2}}$$
+$$\mathbf{e}_2 = \frac{\sqrt{2}}{3}\begin{bmatrix}-0.5\\0.5\\2\end{bmatrix} = \begin{bmatrix}-\frac{1}{3}\\\frac{1}{3}\\\frac{2\sqrt{2}}{3}\end{bmatrix}$$
+
+<p>Simplifying: $\mathbf{e}_2 = \left(-\frac{1}{3}, \frac{1}{3}, \frac{2\sqrt{2}}{3}\right)^T$</p>
+
+<p><strong>Verification:</strong></p>
+<ul>
+<li>$\langle \mathbf{e}_1, \mathbf{e}_2 \rangle = \frac{1}{\sqrt{2}}\left(-\frac{1}{3}\right) + \frac{1}{\sqrt{2}}\left(\frac{1}{3}\right) + 0 = 0$ &check;</li>
+<li>$\|\mathbf{e}_2\|^2 = \frac{1}{9} + \frac{1}{9} + \frac{8}{9} = \frac{10}{9}$... wait, let&rsquo;s recompute.</li>
+</ul>
+<p>Actually: $\|\mathbf{u}_2\|^2 = \frac{1}{4} + \frac{1}{4} + 4 = \frac{18}{4} = \frac{9}{2}$, so $\|\mathbf{u}_2\| = \frac{3}{\sqrt{2}}$.</p>
+$$\mathbf{e}_2 = \frac{\mathbf{u}_2}{\|\mathbf{u}_2\|} = \frac{\sqrt{2}}{3}\begin{bmatrix}-1/2\\1/2\\2\end{bmatrix} = \begin{bmatrix}-1/3\\1/3\\2\sqrt{2}/3\end{bmatrix}$$
+<p>Check: $\|\mathbf{e}_2\|^2 = \frac{1}{9} + \frac{1}{9} + \frac{8}{9} = \frac{10}{9}$. This doesn&rsquo;t equal 1!</p>
+<p>Recomputing more carefully: $\frac{2\sqrt{2}}{3}$ squared $= \frac{8}{9}$, so total $= \frac{1+1+8}{9} = \frac{10}{9} \neq 1$.</p>
+<p>The error is in the normalization. Let's redo: $\mathbf{u}_2 = (-\frac{1}{2}, \frac{1}{2}, 2)^T$, $\|\mathbf{u}_2\| = \sqrt{\frac{1}{4}+\frac{1}{4}+4} = \sqrt{\frac{9}{2}} = \frac{3\sqrt{2}}{2}$.</p>
+$$\mathbf{e}_2 = \frac{2}{3\sqrt{2}}\begin{bmatrix}-1/2\\1/2\\2\end{bmatrix} = \frac{1}{3\sqrt{2}}\begin{bmatrix}-1\\1\\4\end{bmatrix}$$
+<p>Check: $\|\mathbf{e}_2\|^2 = \frac{1}{18}(1+1+16) = \frac{18}{18} = 1$ &check;</p>
+<p>Check orthogonality: $\langle \mathbf{e}_1, \mathbf{e}_2 \rangle = \frac{1}{\sqrt{2}} \cdot \frac{1}{3\sqrt{2}}(-1+1+0) = 0$ &check;</p>
+</div>
+
+<!-- EXAMPLE: Orthogonal Matrix -->
+<div class="example">
+<h4>Example 5: Verifying an Orthogonal Matrix (Lecture 3, Slides 17&ndash;19)</h4>
+<p><strong>Problem:</strong> Show that $A = \begin{bmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{bmatrix}$ is orthogonal and preserves lengths.</p>
+
+<p><strong>Step 1: Check $A^TA = I$.</strong></p>
+$$A^TA = \begin{bmatrix}\cos\theta&\sin\theta\\-\sin\theta&\cos\theta\end{bmatrix}\begin{bmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{bmatrix}$$
+<p>$(1,1)$: $\cos^2\theta + \sin^2\theta = 1$</p>
+<p>$(1,2)$: $-\cos\theta\sin\theta + \sin\theta\cos\theta = 0$</p>
+<p>$(2,1)$: $-\sin\theta\cos\theta + \cos\theta\sin\theta = 0$</p>
+<p>$(2,2)$: $\sin^2\theta + \cos^2\theta = 1$</p>
+$$A^TA = \begin{bmatrix}1&0\\0&1\end{bmatrix} = I \;\checkmark$$
+
+<p><strong>Step 2: Show length preservation.</strong></p>
+<p>For any $\mathbf{x} = (x_1, x_2)^T$:</p>
+$$A\mathbf{x} = \begin{bmatrix}x_1\cos\theta - x_2\sin\theta\\x_1\sin\theta + x_2\cos\theta\end{bmatrix}$$
+$$\|A\mathbf{x}\|^2 = (x_1\cos\theta - x_2\sin\theta)^2 + (x_1\sin\theta + x_2\cos\theta)^2$$
+$$= x_1^2\cos^2\theta - 2x_1x_2\cos\theta\sin\theta + x_2^2\sin^2\theta + x_1^2\sin^2\theta + 2x_1x_2\sin\theta\cos\theta + x_2^2\cos^2\theta$$
+$$= x_1^2(\cos^2\theta + \sin^2\theta) + x_2^2(\sin^2\theta + \cos^2\theta) = x_1^2 + x_2^2 = \|\mathbf{x}\|^2 \;\checkmark$$
+
+<p><strong>Step 3: Show angle preservation.</strong></p>
+$$\cos(\omega) = \frac{(A\mathbf{x})^T(A\mathbf{y})}{\|A\mathbf{x}\|\|A\mathbf{y}\|} = \frac{\mathbf{x}^TA^TA\mathbf{y}}{\|\mathbf{x}\|\|\mathbf{y}\|} = \frac{\mathbf{x}^T\mathbf{y}}{\|\mathbf{x}\|\|\mathbf{y}\|} \;\checkmark$$
+<p>Since $A^TA = I$, the matrix preserves both norms and inner products.</p>
+</div>
+
+<h2 id="l3-cholesky">3.8 Cholesky Decomposition (from Companion)</h2>
+
+<h3>Introduction: The "Square Root" of a Matrix</h3>
+<p>In Lecture 3, we explored <strong>Symmetric Positive-Definite (SPD)</strong> matrices as the "engines" for custom inner products. A natural follow-up question: <em>can we break a complex SPD matrix into something simpler?</em></p>
+<p>Just as we can take the square root of a positive number ($9 \to 3$), we can take the "square root" of an SPD matrix. This is called the <strong>Cholesky Decomposition</strong>.</p>
+
+<div class="key-formula">
+<strong>The Cholesky Decomposition:</strong> $A = LL^T$
+<p>For an SPD matrix $A$, the Cholesky decomposition finds a <strong>lower-triangular</strong> matrix $L$ (with positive diagonal entries) such that $A = LL^T$. Since $L$ is triangular, it represents a sequence of simple steps &mdash; making $L$ much easier to work with than $A$.</p>
+</div>
+
+<h3>Prerequisites: When Can We Use It?</h3>
+<p>The Cholesky Decomposition is <strong>exclusive</strong> &mdash; it requires two conditions (from Section 3.2):</p>
+<ol>
+<li><strong>Symmetric:</strong> $A = A^T$ (mirror image across the diagonal).</li>
+<li><strong>Positive-Definite:</strong> For any non-zero vector $\mathbf{x}$, $\mathbf{x}^TA\mathbf{x} > 0$ (all eigenvalues strictly positive).</li>
+</ol>
+<p><strong>Why both?</strong> Symmetry ensures $LL^T$ can match $A$ entry-by-entry. Positive-definiteness keeps the quantity under each square root positive during the algorithm.</p>
+
+<h3>The Algorithm: Constructing $L$</h3>
+<p>We know $L$ is lower-triangular, so for a $3 \times 3$ matrix:</p>
+$$\begin{bmatrix}a_{11}&a_{12}&a_{13}\\a_{21}&a_{22}&a_{23}\\a_{31}&a_{32}&a_{33}\end{bmatrix} = \begin{bmatrix}l_{11}&0&0\\l_{21}&l_{22}&0\\l_{31}&l_{32}&l_{33}\end{bmatrix}\begin{bmatrix}l_{11}&l_{21}&l_{31}\\0&l_{22}&l_{32}\\0&0&l_{33}\end{bmatrix}$$
+<p>By multiplying the right side and equating to $A$ entry-by-entry, we solve for $l_{ij}$ column by column, left to right.</p>
+
+<div class="key-formula">
+<strong>Cholesky Formulas:</strong>
+<ul>
+<li><strong>Diagonal entries:</strong> Square root of the diagonal element minus the "squared" elements before it.
+$$l_{jj} = \sqrt{a_{jj} - \sum_{k=1}^{j-1} l_{jk}^2}$$</li>
+<li><strong>Off-diagonal entries</strong> (row $i$, column $j$, where $i > j$):
+$$l_{ij} = \frac{1}{l_{jj}}\left(a_{ij} - \sum_{k=1}^{j-1} l_{ik} l_{jk}\right)$$</li>
+</ul>
+</div>
+
+<h3>Example: A Narrated Calculation</h3>
+<div class="example">
+<h4>Example 6: Cholesky Decomposition &mdash; Step by Step (Companion, Section 4)</h4>
+<p><strong>Problem:</strong> Decompose the SPD matrix $A = \begin{bmatrix}1&2&3\\2&5&8\\3&8&14\end{bmatrix}$.</p>
+<p>We want to find $L$ such that $A = LL^T$.</p>
+
+<p><strong>Step 1: Column 1 (the easy part)</strong></p>
+<p>Start at the top-left corner $(1,1)$:</p>
+$$l_{11} = \sqrt{a_{11}} = \sqrt{1} = \mathbf{1}$$
+<p>The rest of column 1 &mdash; divide the $A$ entries by $l_{11}$:</p>
+$$l_{21} = \frac{a_{21}}{l_{11}} = \frac{2}{1} = \mathbf{2}, \qquad l_{31} = \frac{a_{31}}{l_{11}} = \frac{3}{1} = \mathbf{3}$$
+<p>Current $L$: $\begin{bmatrix}1&0&0\\2&?&0\\3&?&?\end{bmatrix}$</p>
+
+<p><strong>Step 2: Column 2 (subtracting the "shadow")</strong></p>
+<p>Move to diagonal entry $(2,2)$. Subtract the contribution from column 1 ($l_{21}^2$):</p>
+$$l_{22} = \sqrt{a_{22} - l_{21}^2} = \sqrt{5 - 2^2} = \sqrt{5-4} = \sqrt{1} = \mathbf{1}$$
+<p>For $l_{32}$: subtract the product of previous column values ($l_{31} \times l_{21}$), then divide by $l_{22}$:</p>
+$$l_{32} = \frac{1}{l_{22}}(a_{32} - l_{31}l_{21}) = \frac{1}{1}(8 - (3)(2)) = 8 - 6 = \mathbf{2}$$
+<p>Current $L$: $\begin{bmatrix}1&0&0\\2&1&0\\3&2&?\end{bmatrix}$</p>
+
+<p><strong>Step 3: Column 3 (the final diagonal)</strong></p>
+<p>The bottom-right corner $(3,3)$. Subtract squared contributions from both previous columns ($l_{31}^2$ and $l_{32}^2$):</p>
+$$l_{33} = \sqrt{a_{33} - (l_{31}^2 + l_{32}^2)} = \sqrt{14 - (3^2 + 2^2)} = \sqrt{14 - (9+4)} = \sqrt{14-13} = \sqrt{1} = \mathbf{1}$$
+
+<p><strong>Final Result:</strong></p>
+$$L = \begin{bmatrix}1&0&0\\2&1&0\\3&2&1\end{bmatrix}$$
+
+<p><strong>Verification:</strong> $LL^T = \begin{bmatrix}1&0&0\\2&1&0\\3&2&1\end{bmatrix}\begin{bmatrix}1&2&3\\0&1&2\\0&0&1\end{bmatrix} = \begin{bmatrix}1&2&3\\2&5&8\\3&8&14\end{bmatrix} = A$ &check;</p>
+</div>
+
+<h3>Why Do We Care? (Applications)</h3>
+
+<div class="tip">
+<strong>Application 1: Solving Linear Systems Efficiently</strong>
+<p>To solve $A\mathbf{x} = \mathbf{b}$ when $A$ is SPD, <strong>do not</strong> calculate $A^{-1}$. Instead:</p>
+<ol>
+<li>Compute $A = LL^T$ (Cholesky).</li>
+<li>Solve $L\mathbf{y} = \mathbf{b}$ (Forward Substitution &mdash; easy because $L$ is lower-triangular).</li>
+<li>Solve $L^T\mathbf{x} = \mathbf{y}$ (Backward Substitution &mdash; easy because $L^T$ is upper-triangular).</li>
+</ol>
+<p>This is <strong>twice as fast</strong> as standard LU decomposition because $L$ and $L^T$ share entries!</p>
+</div>
+
+<div class="tip">
+<strong>Application 2: Monte Carlo Simulations</strong>
+<p>To generate <strong>correlated</strong> random variables (e.g., stock prices that move together):</p>
+<ol>
+<li>Start with uncorrelated random noise $\mathbf{z}$ (unit variance).</li>
+<li>Compute Cholesky of the target covariance matrix: $\Sigma = LL^T$.</li>
+<li>Calculate $\mathbf{x} = L\mathbf{z}$.</li>
+</ol>
+<p>The resulting $\mathbf{x}$ has the exact correlation structure defined by $\Sigma$. This is the standard method for simulating correlated systems in finance and data science.</p>
+</div>
+
+<div class="important">
+<strong>Cholesky vs LU:</strong> Cholesky is a <em>specialization</em> of LU for SPD matrices. While LU gives $A = LU$ (two different matrices), Cholesky gives $A = LL^T$ (one matrix and its transpose). The $L$ from Cholesky is <strong>not</strong> the same as the $L$ from LU &mdash; they are produced by different algorithms. Cholesky requires about half the computation.
+</div>
+
+
+<h2 id="l3-qr">3.9 QR Decomposition via Gram&ndash;Schmidt</h2>
+
+<h3>The Big Picture</h3>
+<p>The QR decomposition takes a matrix $A$ ($m \times n$, with $m \geq n$ and linearly independent columns) and factors it as:</p>
+
+<div class="key-formula">
+$$A = QR$$
+<p>where:</p>
+<ul>
+<li>$Q$ ($m \times n$) has <strong>orthonormal columns</strong>: $Q^TQ = I$ (each column has length 1, and any two columns are perpendicular)</li>
+<li>$R$ ($n \times n$) is <strong>upper-triangular</strong> with positive diagonal</li>
+</ul>
+</div>
+
+<p><strong>In one sentence:</strong> Turn the columns of $A$ into perpendicular unit columns ($Q$), recording the combinations in an upper-triangular matrix ($R$).</p>
+
+<h3>Why It Matters</h3>
+<ul>
+<li><strong>Least squares:</strong> QR is the standard method for solving overdetermined systems ($m > n$)</li>
+<li><strong>Numerical stability:</strong> Much more stable than solving $A^TA\mathbf{x} = A^T\mathbf{b}$ directly</li>
+<li><strong>Eigenvalue algorithms:</strong> The QR algorithm (iterative QR decompositions) is how eigenvalues are computed in practice</li>
+</ul>
+
+<h3>The Connection: Gram&ndash;Schmidt IS QR</h3>
+
+<p>The Gram&ndash;Schmidt process from Section 3.5 doesn&rsquo;t just produce orthonormal vectors &mdash; it secretly computes a QR decomposition. Here&rsquo;s how:</p>
+
+<p>When we orthonormalize the columns $\mathbf{a}_1, \mathbf{a}_2, \ldots, \mathbf{a}_n$ of $A$, each original column can be written as a combination of the orthonormal vectors produced so far. Those combination coefficients are exactly the entries of $R$.</p>
+
+<h3>The Algorithm (Step by Step)</h3>
+
+<div class="card">
+<strong>QR via Classical Gram&ndash;Schmidt:</strong>
+<p>Process the columns of $A$ from left to right. For each column $\mathbf{a}_j$:</p>
+<ol>
+<li><strong>Project:</strong> Compute how much of $\mathbf{a}_j$ lies along each previous $\mathbf{q}_k$:
+$$R[k][j] = \langle \mathbf{a}_j, \mathbf{q}_k \rangle \quad \text{for } k = 1, \ldots, j-1$$
+These are the <em>projection coefficients</em> &mdash; they fill the upper triangle of $R$.</li>
+
+<li><strong>Subtract:</strong> Remove all those projections to get the perpendicular residual:
+$$\mathbf{u}_j = \mathbf{a}_j - \sum_{k=1}^{j-1} R[k][j] \, \mathbf{q}_k$$
+This is the part of $\mathbf{a}_j$ that is <em>new</em> &mdash; not already covered by the previous $\mathbf{q}$ vectors.</li>
+
+<li><strong>Record the diagonal:</strong> The length of the residual goes on the diagonal:
+$$R[j][j] = \|\mathbf{u}_j\|$$</li>
+
+<li><strong>Normalize:</strong> Scale to unit length:
+$$\mathbf{q}_j = \frac{\mathbf{u}_j}{\|\mathbf{u}_j\|}$$</li>
+</ol>
+<p>After processing all columns: the $\mathbf{q}_j$ vectors become the columns of $Q$, and the coefficients $R[k][j]$ form the matrix $R$.</p>
+</div>
+
+<h3>Why Does This Work?</h3>
+<p>At each step, we&rsquo;re expressing the original column as:</p>
+$$\mathbf{a}_j = R[1][j] \, \mathbf{q}_1 + R[2][j] \, \mathbf{q}_2 + \cdots + R[j-1][j] \, \mathbf{q}_{j-1} + R[j][j] \, \mathbf{q}_j$$
+<p>In matrix form, this is exactly $A = QR$: each column of $A$ equals $Q$ times the corresponding column of $R$.</p>
+
+<h3>Detailed Worked Example</h3>
+
+<div class="example">
+<h4>Example 7: QR Decomposition of a 3&times;2 matrix</h4>
+<p><strong>Problem:</strong> Decompose $A = \begin{bmatrix}1 & 1 \\ 1 & 2 \\ 0 & 2\end{bmatrix}$ into $A = QR$.</p>
+
+<p>Columns of $A$: $\mathbf{a}_1 = (1, 1, 0)^T$ and $\mathbf{a}_2 = (1, 2, 2)^T$.</p>
+
+<p><strong>Step 1: Process column 1 ($j=1$)</strong></p>
+<p>No previous $\mathbf{q}$ vectors, so no projections to subtract.</p>
+<ul>
+<li>$\mathbf{u}_1 = \mathbf{a}_1 = (1, 1, 0)^T$</li>
+<li>$R[1][1] = \|\mathbf{u}_1\| = \sqrt{1^2 + 1^2 + 0^2} = \sqrt{2}$</li>
+<li>$\mathbf{q}_1 = \frac{\mathbf{u}_1}{\|\mathbf{u}_1\|} = \frac{1}{\sqrt{2}}(1, 1, 0)^T$</li>
+</ul>
+
+<p><strong>Step 2: Process column 2 ($j=2$)</strong></p>
+<p>First compute how much of $\mathbf{a}_2$ lies along $\mathbf{q}_1$:</p>
+<ul>
+<li>$R[1][2] = \langle \mathbf{a}_2, \mathbf{q}_1 \rangle = 1 \cdot \frac{1}{\sqrt{2}} + 2 \cdot \frac{1}{\sqrt{2}} + 2 \cdot 0 = \frac{3}{\sqrt{2}}$</li>
+</ul>
+<p>Subtract that projection:</p>
+$$\mathbf{u}_2 = \mathbf{a}_2 - R[1][2] \, \mathbf{q}_1 = \begin{pmatrix}1\\2\\2\end{pmatrix} - \frac{3}{\sqrt{2}} \cdot \frac{1}{\sqrt{2}}\begin{pmatrix}1\\1\\0\end{pmatrix} = \begin{pmatrix}1\\2\\2\end{pmatrix} - \begin{pmatrix}3/2\\3/2\\0\end{pmatrix} = \begin{pmatrix}-1/2\\1/2\\2\end{pmatrix}$$
+<p>This residual is perpendicular to $\mathbf{q}_1$ (verify: $\langle \mathbf{u}_2, \mathbf{q}_1 \rangle = \frac{1}{\sqrt{2}}(-\frac{1}{2} + \frac{1}{2} + 0) = 0$ &check;).</p>
+<ul>
+<li>$R[2][2] = \|\mathbf{u}_2\| = \sqrt{\frac{1}{4} + \frac{1}{4} + 4} = \sqrt{\frac{9}{2}} = \frac{3}{\sqrt{2}} = \frac{3\sqrt{2}}{2}$</li>
+<li>$\mathbf{q}_2 = \frac{\mathbf{u}_2}{\|\mathbf{u}_2\|} = \frac{2}{3\sqrt{2}}\begin{pmatrix}-1/2\\1/2\\2\end{pmatrix} = \frac{1}{3\sqrt{2}}\begin{pmatrix}-1\\1\\4\end{pmatrix}$</li>
+</ul>
+
+<p><strong>Result:</strong></p>
+$$Q = \begin{bmatrix}\frac{1}{\sqrt{2}} & \frac{-1}{3\sqrt{2}} \\[4pt] \frac{1}{\sqrt{2}} & \frac{1}{3\sqrt{2}} \\[4pt] 0 & \frac{4}{3\sqrt{2}}\end{bmatrix}, \quad R = \begin{bmatrix}\sqrt{2} & \frac{3}{\sqrt{2}} \\[4pt] 0 & \frac{3\sqrt{2}}{2}\end{bmatrix}$$
+
+<p><strong>Verification 1: $A = QR$</strong></p>
+<p>Column 1 of $QR$: $\sqrt{2} \cdot \mathbf{q}_1 + 0 \cdot \mathbf{q}_2 = \sqrt{2} \cdot \frac{1}{\sqrt{2}}(1,1,0)^T = (1,1,0)^T = \mathbf{a}_1$ &check;</p>
+<p>Column 2 of $QR$: $\frac{3}{\sqrt{2}} \cdot \mathbf{q}_1 + \frac{3\sqrt{2}}{2} \cdot \mathbf{q}_2 = \frac{3}{2}(1,1,0)^T + (-\frac{1}{2}, \frac{1}{2}, 2)^T = (1,2,2)^T = \mathbf{a}_2$ &check;</p>
+
+<p><strong>Verification 2: $Q^TQ = I$</strong></p>
+<ul>
+<li>$\|\mathbf{q}_1\|^2 = \frac{1}{2} + \frac{1}{2} + 0 = 1$ &check;</li>
+<li>$\|\mathbf{q}_2\|^2 = \frac{1}{18} + \frac{1}{18} + \frac{16}{18} = \frac{18}{18} = 1$ &check;</li>
+<li>$\langle \mathbf{q}_1, \mathbf{q}_2 \rangle = \frac{1}{\sqrt{2}} \cdot \frac{-1}{3\sqrt{2}} + \frac{1}{\sqrt{2}} \cdot \frac{1}{3\sqrt{2}} + 0 = \frac{-1+1}{6} = 0$ &check;</li>
+</ul>
+</div>
+
+<h3>Key Properties of $R$&rsquo;s Diagonal</h3>
+
+<div class="important">
+<strong>The diagonal entries of $R$ are always strictly positive</strong> (when columns are linearly independent):
+<ul>
+<li>$R[j][j] = \|\mathbf{u}_j\|$ is the <strong>norm of the residual</strong> after removing projections</li>
+<li>A norm is always $\geq 0$, and it can only be $0$ if $\mathbf{u}_j = \mathbf{0}$ &mdash; which would mean $\mathbf{a}_j$ is a combination of the earlier columns (contradicting linear independence)</li>
+<li>Therefore every $R[j][j] > 0$, and $R$ is <strong>invertible</strong> ($\det R = \prod R_{jj} \neq 0$)</li>
+<li>A near-zero $R[j][j]$ is a warning sign: that column is nearly dependent on the earlier ones (<strong>collinearity</strong>)</li>
+</ul>
+</div>
+
+<div class="tip">
+<strong>Geometric Intuition:</strong> Each step of Gram&ndash;Schmidt is like shining a light along the previous $\mathbf{q}$ directions to cast a &ldquo;shadow&rdquo; of $\mathbf{a}_j$. We subtract the shadow (the projection), and what remains &mdash; the part sticking out perpendicular &mdash; becomes the new $\mathbf{q}_j$ after normalizing. The shadow lengths and residual length fill the column of $R$.
+</div>
+
+<h3>Comparison: Three Decompositions</h3>
+
+<table border="1" cellpadding="6" style="border-collapse:collapse; text-align:center;">
+<tr style="background:#f0f0f0;"><th>Decomposition</th><th>Form</th><th>Requirement</th><th>What it gives</th></tr>
+<tr><td><strong>LU</strong></td><td>$A = LU$</td><td>Non-singular (with pivoting)</td><td>Lower &times; Upper &mdash; recorded elimination</td></tr>
+<tr><td><strong>Cholesky</strong></td><td>$A = LL^T$</td><td>SPD only</td><td>&ldquo;Square root&rdquo; &mdash; half the work of LU</td></tr>
+<tr><td><strong>QR</strong></td><td>$A = QR$</td><td>Linearly independent columns</td><td>Orthonormal basis &times; upper triangular</td></tr>
+</table>
+
+
+<!-- ==================== LECTURE 4 ==================== -->
+<div class="lecture-divider" id="lec4">Lecture 4: Eigenvalues &amp; Eigenvectors</div>
+
+<h2 id="l4-det">4.1 Determinants</h2>
+
+<h3>2&times;2 Determinant</h3>
+$$\det\begin{bmatrix}a&b\\c&d\end{bmatrix} = ad - bc$$
+
+<h3>General: Cofactor Expansion</h3>
+<p>For an $n \times n$ matrix, expand along any row $i$:</p>
+$$\det(A) = \sum_{j=1}^n (-1)^{i+j} \, a_{ij} \, M_{ij}$$
+<p>where $M_{ij}$ is the <strong>minor</strong> (determinant of submatrix with row $i$ and column $j$ deleted).</p>
+
+<h3>Properties</h3>
+<ul>
+<li>$\det(AB) = \det(A) \cdot \det(B)$</li>
+<li>$\det(A^T) = \det(A)$</li>
+<li>$\det(cA) = c^n \det(A)$ for $n \times n$ matrix</li>
+<li>Triangular/diagonal: $\det = $ product of diagonal entries</li>
+<li>Row swap: multiplies $\det$ by $-1$</li>
+<li>$\det(A) = 0 \iff A$ is singular</li>
+</ul>
+
+<h3>Trace</h3>
+$$\text{tr}(A) = \sum_{i} a_{ii} = \sum_{i} \lambda_i$$
+<p>Also: $\text{tr}(AB) = \text{tr}(BA)$, and $\det(A) = \prod \lambda_i$.</p>
+
+<h2 id="l4-eigen">4.2 Eigenvalues &amp; Eigenvectors</h2>
+
+<div class="key-formula">
+$$A\mathbf{v} = \lambda \mathbf{v}$$
+$\lambda$ = eigenvalue (scaling factor), $\mathbf{v} \neq \mathbf{0}$ = eigenvector (direction unchanged by $A$)
+</div>
+
+<!-- SVG: Eigenvector visualization -->
+<div class="svg-container">
+<svg width="500" height="180" viewBox="0 0 500 180">
+  <rect x="5" y="5" width="490" height="170" rx="8" fill="#f8f9fa" stroke="#dfe6e9"/>
+  <text x="250" y="25" text-anchor="middle" font-size="14" font-weight="bold" fill="var(--primary)">Eigenvectors: Direction Unchanged by A</text>
+
+  <!-- Before -->
+  <text x="100" y="50" text-anchor="middle" font-size="12" fill="#7f8c8d">Before (input)</text>
+  <line x1="70" y1="130" x2="130" y2="70" stroke="#2980b9" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="140" y="68" font-size="11" fill="#2980b9">v</text>
+  <line x1="70" y1="130" x2="120" y2="130" stroke="#e74c3c" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="128" y="135" font-size="11" fill="#e74c3c">w</text>
+
+  <!-- Arrow -->
+  <text x="210" y="105" font-size="20" fill="var(--accent)">A&rarr;</text>
+
+  <!-- After -->
+  <text x="370" y="50" text-anchor="middle" font-size="12" fill="#7f8c8d">After (output)</text>
+  <line x1="330" y1="130" x2="420" y2="40" stroke="#2980b9" stroke-width="2.5" marker-end="url(#arrow)" stroke-dasharray="5"/>
+  <text x="425" y="40" font-size="11" fill="#2980b9">&lambda;v (same direction!)</text>
+  <line x1="330" y1="130" x2="410" y2="100" stroke="#e74c3c" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="418" y="100" font-size="11" fill="#e74c3c">Aw (direction changed)</text>
+</svg>
+</div>
+
+<h3>Finding Eigenvalues &amp; Eigenvectors</h3>
+<div class="card">
+<ol>
+<li><strong>Characteristic equation:</strong> $\det(A - \lambda I) = 0$ &mdash; polynomial of degree $n$</li>
+<li><strong>Solve</strong> for eigenvalues $\lambda_1, \ldots, \lambda_n$</li>
+<li><strong>For each $\lambda_i$:</strong> solve $(A - \lambda_i I)\mathbf{v} = \mathbf{0}$ to find eigenvectors (null space of $A - \lambda_i I$)</li>
+</ol>
+</div>
+
+<div class="example">
+$A = \begin{bmatrix}3&1\\0&2\end{bmatrix}$
+<br><br>
+$\det(A - \lambda I) = (3-\lambda)(2-\lambda) = 0 \implies \lambda_1 = 3, \; \lambda_2 = 2$
+<br><br>
+For $\lambda_1 = 3$: $(A-3I)\mathbf{v} = \begin{bmatrix}0&1\\0&-1\end{bmatrix}\mathbf{v} = \mathbf{0} \implies \mathbf{v}_1 = (1, 0)^T$
+<br>
+For $\lambda_2 = 2$: $(A-2I)\mathbf{v} = \begin{bmatrix}1&1\\0&0\end{bmatrix}\mathbf{v} = \mathbf{0} \implies \mathbf{v}_2 = (1, -1)^T$
+</div>
+
+<h2 id="l4-diag">4.3 Diagonalization</h2>
+
+<div class="key-formula">
+$$A = PDP^{-1}$$
+$P$ = matrix of eigenvectors (columns), $D$ = diagonal matrix of eigenvalues
+</div>
+
+<p>A matrix is diagonalizable iff it has $n$ linearly independent eigenvectors. If all eigenvalues are distinct, this is guaranteed.</p>
+
+<div class="highlight">
+<strong>Power of diagonalization:</strong>
+<ul>
+<li>$A^k = PD^kP^{-1}$ &mdash; computing $D^k$ is trivial (just raise diagonal entries to the $k$th power)</li>
+<li>$e^A = Pe^DP^{-1}$ &mdash; matrix exponential for differential equations</li>
+</ul>
+</div>
+
+<h2 id="l4-spectral">4.4 Spectral Theorem</h2>
+
+<div class="theorem">
+<strong>Spectral Theorem for Real Symmetric Matrices:</strong> If $A = A^T$ (symmetric), then:
+<ol>
+<li>All eigenvalues are <strong>real</strong></li>
+<li>Eigenvectors of different eigenvalues are <strong>orthogonal</strong></li>
+<li>$A$ is <strong>orthogonally diagonalizable</strong>: $A = Q\Lambda Q^T$</li>
+</ol>
+where $Q$ is orthogonal ($Q^{-1} = Q^T$) and $\Lambda = \text{diag}(\lambda_1, \ldots, \lambda_n)$.
+</div>
+
+<p><strong>Spectral decomposition</strong> (sum of rank-1 matrices):</p>
+$$A = \sum_{i=1}^n \lambda_i \, \mathbf{q}_i \mathbf{q}_i^T$$
+
+<h2 id="l4-props">4.5 Properties &amp; Applications</h2>
+
+<table>
+<tr><th>Matrix Type</th><th>Eigenvalue Property</th></tr>
+<tr><td>Diagonal / Triangular</td><td>Eigenvalues = diagonal entries</td></tr>
+<tr><td>Orthogonal $Q$</td><td>$|\lambda| = 1$</td></tr>
+<tr><td>Symmetric Positive Definite</td><td>All $\lambda > 0$</td></tr>
+<tr><td>Symmetric Positive Semi-Definite</td><td>All $\lambda \geq 0$</td></tr>
+</table>
+
+<div class="highlight">
+<strong>Key relationships:</strong>
+<ul>
+<li>$\text{tr}(A) = \sum \lambda_i$ (trace = sum of eigenvalues)</li>
+<li>$\det(A) = \prod \lambda_i$ (determinant = product of eigenvalues)</li>
+<li>$\text{rank}(A)$ = number of non-zero eigenvalues</li>
+<li>If $\lambda$ is eigenvalue of $A$: then $\lambda^k$ is eigenvalue of $A^k$, and $1/\lambda$ is eigenvalue of $A^{-1}$</li>
+</ul>
+</div>
+
+<div class="tip">
+<strong>PCA (Principal Component Analysis):</strong> The eigenvectors of the covariance matrix point in directions of maximum variance. Eigenvalues indicate how much variance is in each direction. Keep the top-$k$ eigenvectors &rarr; dimensionality reduction.
+</div>
+
+<!-- ===== LECTURE 4: DETAILED WORKED EXAMPLES ===== -->
+<h2 id="l4-worked">4.6 Detailed Worked Examples</h2>
+
+<!-- EXAMPLE: Eigenvalues & Eigenvectors -->
+<div class="example">
+<h4>Example 1: Finding Eigenvalues &amp; Eigenvectors (Lecture 4, Slides 10&ndash;14)</h4>
+<p><strong>Problem:</strong> Find all eigenvalues and eigenvectors of $A = \begin{bmatrix}4&2\\1&3\end{bmatrix}$.</p>
+
+<p><strong>Step 1: Form the characteristic equation $\det(A - \lambda I) = 0$.</strong></p>
+$$A - \lambda I = \begin{bmatrix}4-\lambda&2\\1&3-\lambda\end{bmatrix}$$
+$$\det(A - \lambda I) = (4-\lambda)(3-\lambda) - 2 \cdot 1 = \lambda^2 - 7\lambda + 12 - 2 = \lambda^2 - 7\lambda + 10$$
+
+<p><strong>Step 2: Solve the characteristic polynomial.</strong></p>
+$$\lambda^2 - 7\lambda + 10 = 0$$
+$$\lambda = \frac{7 \pm \sqrt{49 - 40}}{2} = \frac{7 \pm 3}{2}$$
+$$\lambda_1 = 5, \quad \lambda_2 = 2$$
+
+<p><strong>Step 3: Quick checks.</strong></p>
+<ul>
+<li>$\text{tr}(A) = 4 + 3 = 7 = 5 + 2 = \lambda_1 + \lambda_2$ &check;</li>
+<li>$\det(A) = 12 - 2 = 10 = 5 \times 2 = \lambda_1 \cdot \lambda_2$ &check;</li>
+</ul>
+
+<p><strong>Step 4: Find eigenvector for $\lambda_1 = 5$.</strong></p>
+<p>Solve $(A - 5I)\mathbf{v} = \mathbf{0}$:</p>
+$$A - 5I = \begin{bmatrix}-1&2\\1&-2\end{bmatrix}$$
+<p>Row 1: $-v_1 + 2v_2 = 0 \implies v_1 = 2v_2$</p>
+<p>Row 2: $v_1 - 2v_2 = 0$ (same equation &mdash; consistent, as expected)</p>
+<p>Set $v_2 = 1$: $\mathbf{v}_1 = \begin{bmatrix}2\\1\end{bmatrix}$</p>
+<p><strong>Verification:</strong> $A\mathbf{v}_1 = \begin{bmatrix}4(2)+2(1)\\1(2)+3(1)\end{bmatrix} = \begin{bmatrix}10\\5\end{bmatrix} = 5\begin{bmatrix}2\\1\end{bmatrix}$ &check;</p>
+
+<p><strong>Step 5: Find eigenvector for $\lambda_2 = 2$.</strong></p>
+<p>Solve $(A - 2I)\mathbf{v} = \mathbf{0}$:</p>
+$$A - 2I = \begin{bmatrix}2&2\\1&1\end{bmatrix}$$
+<p>Row 1: $2v_1 + 2v_2 = 0 \implies v_1 = -v_2$</p>
+<p>Set $v_2 = 1$: $\mathbf{v}_2 = \begin{bmatrix}-1\\1\end{bmatrix}$</p>
+<p><strong>Verification:</strong> $A\mathbf{v}_2 = \begin{bmatrix}4(-1)+2(1)\\1(-1)+3(1)\end{bmatrix} = \begin{bmatrix}-2\\2\end{bmatrix} = 2\begin{bmatrix}-1\\1\end{bmatrix}$ &check;</p>
+
+<p><strong>Eigenspace summary:</strong></p>
+<ul>
+<li>$E_5 = \text{span}\{(2,1)^T\}$ &mdash; all scalar multiples of $(2,1)^T$</li>
+<li>$E_2 = \text{span}\{(-1,1)^T\}$ &mdash; all scalar multiples of $(-1,1)^T$</li>
+</ul>
+</div>
+
+<!-- EXAMPLE: 3x3 Eigenvalues, Eigenvectors & Eigenspace Basis -->
+<div class="example">
+<h4>Example 1B: Finding Eigenvalues, Eigenvectors &amp; Eigenspace Basis for a 3&times;3 Matrix</h4>
+
+<p><strong>Problem:</strong> Find all eigenvalues, eigenvectors, and the basis of each eigenspace for:</p>
+$$A = \begin{bmatrix}1&2&0\\0&3&0\\2&-4&2\end{bmatrix}$$
+
+<hr style="border:none;border-top:1px dashed #bdc3c7;margin:15px 0;">
+
+<h4>Phase 1: Finding the Eigenvalues</h4>
+
+<p><strong>What we need:</strong> Eigenvalues $\lambda$ satisfy $\det(A - \lambda I) = 0$. This gives us a polynomial (the <em>characteristic polynomial</em>) whose roots are the eigenvalues.</p>
+
+<p><strong>Step 1.1: Form $A - \lambda I$.</strong></p>
+<p>Subtract $\lambda$ from every diagonal entry of $A$ (leave off-diagonal entries unchanged):</p>
+$$A - \lambda I = \begin{bmatrix}1-\lambda&2&0\\0&3-\lambda&0\\2&-4&2-\lambda\end{bmatrix}$$
+
+<p><strong>Step 1.2: Compute $\det(A - \lambda I)$ using cofactor expansion.</strong></p>
+<p>We choose to expand along <strong>Row 2</strong> because it has two zeros &mdash; this makes the calculation much easier.</p>
+
+<div class="tip">
+<strong>Pro tip:</strong> Always expand along the row or column with the <strong>most zeros</strong>. It eliminates terms and reduces your work significantly.
+</div>
+
+<p>Cofactor expansion along Row 2:</p>
+$$\det(A - \lambda I) = 0 \cdot C_{21} + (3-\lambda) \cdot C_{22} + 0 \cdot C_{23}$$
+<p>Only the middle term survives! We just need $C_{22}$.</p>
+
+<p><strong>Step 1.3: Compute the cofactor $C_{22}$.</strong></p>
+<p>$C_{22} = (+1) \times$ (minor obtained by deleting row 2 and column 2):</p>
+$$C_{22} = \det\begin{bmatrix}1-\lambda&0\\2&2-\lambda\end{bmatrix} = (1-\lambda)(2-\lambda) - 0 \cdot 2 = (1-\lambda)(2-\lambda)$$
+
+<p>Expand: $(1-\lambda)(2-\lambda) = 2 - \lambda - 2\lambda + \lambda^2 = \lambda^2 - 3\lambda + 2$</p>
+
+<p><strong>Step 1.4: Write the characteristic polynomial.</strong></p>
+$$\det(A - \lambda I) = (3-\lambda)(\lambda^2 - 3\lambda + 2) = (3-\lambda)(\lambda - 1)(\lambda - 2)$$
+
+<p>We factored $\lambda^2 - 3\lambda + 2 = (\lambda-1)(\lambda-2)$ (since $1 \times 2 = 2$ and $1 + 2 = 3$).</p>
+
+<p><strong>Step 1.5: Find the eigenvalues.</strong></p>
+<p>Set each factor to zero:</p>
+$$\boxed{\lambda_1 = 1, \quad \lambda_2 = 2, \quad \lambda_3 = 3}$$
+
+<p><strong>Step 1.6: Quick sanity checks.</strong></p>
+<table>
+<tr><th>Check</th><th>From eigenvalues</th><th>From matrix</th><th>Match?</th></tr>
+<tr><td>$\text{tr}(A) = \sum \lambda_i$</td><td>$1+2+3 = 6$</td><td>$1+3+2 = 6$</td><td>&check;</td></tr>
+<tr><td>$\det(A) = \prod \lambda_i$</td><td>$1 \times 2 \times 3 = 6$</td><td>Compute below</td><td>&check;</td></tr>
+</table>
+<p>$\det(A)$: expand along Row 2: $3 \cdot \det\begin{bmatrix}1&0\\2&2\end{bmatrix} = 3(2) = 6$ &check;</p>
+
+<hr style="border:none;border-top:1px dashed #bdc3c7;margin:15px 0;">
+
+<h4>Phase 2: Finding Eigenvectors (one per eigenvalue)</h4>
+
+<p><strong>What we need:</strong> For each $\lambda_i$, solve $(A - \lambda_i I)\mathbf{v} = \mathbf{0}$. The non-trivial solutions are the eigenvectors.</p>
+
+<h4>Eigenvalue $\lambda_1 = 1$</h4>
+
+<p><strong>Step 2.1: Form $A - 1 \cdot I$.</strong></p>
+$$A - I = \begin{bmatrix}0&2&0\\0&2&0\\2&-4&1\end{bmatrix}$$
+
+<p><strong>Step 2.2: Row-reduce to find the null space.</strong></p>
+<p>Swap $R_1 \leftrightarrow R_3$ (to get a non-zero pivot in position (1,1)):</p>
+$$\begin{bmatrix}2&-4&1\\0&2&0\\0&2&0\end{bmatrix}$$
+<p>$R_3 \leftarrow R_3 - R_2$:</p>
+$$\begin{bmatrix}2&-4&1\\0&2&0\\0&0&0\end{bmatrix}$$
+
+<p><strong>Step 2.3: Read off the equations.</strong></p>
+<ul>
+<li>Row 2: $2v_2 = 0 \implies v_2 = 0$</li>
+<li>Row 1: $2v_1 - 4v_2 + v_3 = 0 \implies 2v_1 + v_3 = 0 \implies v_1 = -v_3/2$</li>
+<li>$v_3$ is <strong>free</strong> (no pivot in column 3)</li>
+</ul>
+
+<p><strong>Step 2.4: Write the general solution.</strong></p>
+<p>Set $v_3 = t$ (any real number):</p>
+$$\mathbf{v} = \begin{bmatrix}-t/2\\0\\t\end{bmatrix} = t\begin{bmatrix}-1/2\\0\\1\end{bmatrix}$$
+<p>To avoid fractions, multiply by 2: use $v_3 = 2$:</p>
+$$\mathbf{v}_1 = \begin{bmatrix}-1\\0\\2\end{bmatrix}$$
+
+<p><strong>Step 2.5: Verify $A\mathbf{v}_1 = 1 \cdot \mathbf{v}_1$.</strong></p>
+$$A\begin{bmatrix}-1\\0\\2\end{bmatrix} = \begin{bmatrix}1(-1)+2(0)+0(2)\\0(-1)+3(0)+0(2)\\2(-1)+(-4)(0)+2(2)\end{bmatrix} = \begin{bmatrix}-1\\0\\2\end{bmatrix} = 1 \cdot \begin{bmatrix}-1\\0\\2\end{bmatrix} \;\checkmark$$
+
+<div class="highlight">
+<strong>Eigenspace $E_1$:</strong> $E_1 = \ker(A - I) = \text{span}\left\{\begin{bmatrix}-1\\0\\2\end{bmatrix}\right\}$<br>
+<strong>Geometric multiplicity</strong> = dim($E_1$) = 1 &nbsp;(one free variable $\implies$ one basis vector)<br>
+<strong>Algebraic multiplicity</strong> = 1 (the factor $(\lambda-1)$ appears once in the characteristic polynomial)
+</div>
+
+<hr style="border:none;border-top:1px dashed #bdc3c7;margin:10px 0;">
+
+<h4>Eigenvalue $\lambda_2 = 2$</h4>
+
+<p><strong>Step 2.6: Form $A - 2I$.</strong></p>
+$$A - 2I = \begin{bmatrix}-1&2&0\\0&1&0\\2&-4&0\end{bmatrix}$$
+
+<p><strong>Step 2.7: Row-reduce.</strong></p>
+<p>$R_3 \leftarrow R_3 + 2R_1$: &nbsp; $[2+2(-1), -4+2(2), 0+0] = [0, 0, 0]$</p>
+$$\begin{bmatrix}-1&2&0\\0&1&0\\0&0&0\end{bmatrix}$$
+
+<p><strong>Step 2.8: Read off the equations.</strong></p>
+<ul>
+<li>Row 2: $v_2 = 0$</li>
+<li>Row 1: $-v_1 + 2v_2 = 0 \implies -v_1 + 0 = 0 \implies v_1 = 0$</li>
+<li>$v_3$ is <strong>free</strong> (no pivot in column 3)</li>
+</ul>
+
+<p><strong>Step 2.9: Write the eigenvector.</strong></p>
+<p>Set $v_3 = t$:</p>
+$$\mathbf{v} = \begin{bmatrix}0\\0\\t\end{bmatrix} = t\begin{bmatrix}0\\0\\1\end{bmatrix}$$
+$$\mathbf{v}_2 = \begin{bmatrix}0\\0\\1\end{bmatrix}$$
+
+<p><strong>Step 2.10: Verify $A\mathbf{v}_2 = 2\mathbf{v}_2$.</strong></p>
+$$A\begin{bmatrix}0\\0\\1\end{bmatrix} = \begin{bmatrix}1(0)+2(0)+0(1)\\0(0)+3(0)+0(1)\\2(0)+(-4)(0)+2(1)\end{bmatrix} = \begin{bmatrix}0\\0\\2\end{bmatrix} = 2\begin{bmatrix}0\\0\\1\end{bmatrix} \;\checkmark$$
+
+<div class="highlight">
+<strong>Eigenspace $E_2$:</strong> $E_2 = \ker(A - 2I) = \text{span}\left\{\begin{bmatrix}0\\0\\1\end{bmatrix}\right\}$<br>
+<strong>Geometric multiplicity</strong> = 1, &nbsp; <strong>Algebraic multiplicity</strong> = 1
+</div>
+
+<hr style="border:none;border-top:1px dashed #bdc3c7;margin:10px 0;">
+
+<h4>Eigenvalue $\lambda_3 = 3$</h4>
+
+<p><strong>Step 2.11: Form $A - 3I$.</strong></p>
+$$A - 3I = \begin{bmatrix}-2&2&0\\0&0&0\\2&-4&-1\end{bmatrix}$$
+
+<p><strong>Step 2.12: Row-reduce.</strong></p>
+<p>$R_3 \leftarrow R_3 + R_1$: &nbsp; $[2+(-2), -4+2, -1+0] = [0, -2, -1]$</p>
+$$\begin{bmatrix}-2&2&0\\0&0&0\\0&-2&-1\end{bmatrix}$$
+<p>Swap $R_2 \leftrightarrow R_3$:</p>
+$$\begin{bmatrix}-2&2&0\\0&-2&-1\\0&0&0\end{bmatrix}$$
+
+<p><strong>Step 2.13: Read off the equations.</strong></p>
+<ul>
+<li>Row 2: $-2v_2 - v_3 = 0 \implies v_2 = -v_3/2$</li>
+<li>Row 1: $-2v_1 + 2v_2 = 0 \implies v_1 = v_2 = -v_3/2$</li>
+<li>$v_3$ is <strong>free</strong></li>
+</ul>
+
+<p><strong>Step 2.14: Write the eigenvector.</strong></p>
+<p>Set $v_3 = -2$ (to clear fractions):</p>
+$$v_2 = -(-2)/2 = 1, \quad v_1 = 1$$
+$$\mathbf{v}_3 = \begin{bmatrix}1\\1\\-2\end{bmatrix}$$
+
+<p><strong>Step 2.15: Verify $A\mathbf{v}_3 = 3\mathbf{v}_3$.</strong></p>
+$$A\begin{bmatrix}1\\1\\-2\end{bmatrix} = \begin{bmatrix}1(1)+2(1)+0(-2)\\0(1)+3(1)+0(-2)\\2(1)+(-4)(1)+2(-2)\end{bmatrix} = \begin{bmatrix}3\\3\\-6\end{bmatrix} = 3\begin{bmatrix}1\\1\\-2\end{bmatrix} \;\checkmark$$
+
+<div class="highlight">
+<strong>Eigenspace $E_3$:</strong> $E_3 = \ker(A - 3I) = \text{span}\left\{\begin{bmatrix}1\\1\\-2\end{bmatrix}\right\}$<br>
+<strong>Geometric multiplicity</strong> = 1, &nbsp; <strong>Algebraic multiplicity</strong> = 1
+</div>
+
+<hr style="border:none;border-top:1px dashed #bdc3c7;margin:15px 0;">
+
+<h4>Phase 3: Complete Summary</h4>
+
+<table>
+<tr><th>Eigenvalue $\lambda$</th><th>Algebraic Mult.</th><th>Eigenvector</th><th>Eigenspace Basis</th><th>Geometric Mult.</th></tr>
+<tr><td>$\lambda_1 = 1$</td><td>1</td><td>$(-1, 0, 2)^T$</td><td>$E_1 = \text{span}\{(-1,0,2)^T\}$</td><td>1</td></tr>
+<tr><td>$\lambda_2 = 2$</td><td>1</td><td>$(0, 0, 1)^T$</td><td>$E_2 = \text{span}\{(0,0,1)^T\}$</td><td>1</td></tr>
+<tr><td>$\lambda_3 = 3$</td><td>1</td><td>$(1, 1, -2)^T$</td><td>$E_3 = \text{span}\{(1,1,-2)^T\}$</td><td>1</td></tr>
+</table>
+
+<div class="important">
+<strong>Key checks to always perform:</strong>
+<ol>
+<li><strong>Trace check:</strong> $\sum \lambda_i = 1+2+3 = 6 = \text{tr}(A)$ &check;</li>
+<li><strong>Determinant check:</strong> $\prod \lambda_i = 1 \times 2 \times 3 = 6 = \det(A)$ &check;</li>
+<li><strong>Verification:</strong> $A\mathbf{v}_i = \lambda_i \mathbf{v}_i$ for each pair &check;</li>
+<li><strong>Diagonalizable?</strong> All three eigenvalues are distinct &rArr; guaranteed 3 linearly independent eigenvectors &rArr; <strong>YES, diagonalizable</strong>.</li>
+</ol>
+</div>
+
+<div class="tip">
+<strong>When does an eigenspace have more than one basis vector?</strong><br>
+When the algebraic multiplicity of an eigenvalue is $> 1$ AND the null space of $(A - \lambda I)$ has dimension $> 1$ (multiple free variables). For example, if $\lambda = 2$ had algebraic multiplicity 2 and $(A-2I)$ row-reduced to have 2 free variables, then $E_2$ would have a 2-dimensional basis &mdash; meaning there's a <em>plane</em> of eigenvectors for that eigenvalue.
+</div>
+</div>
+
+<!-- EXAMPLE: Diagonalization -->
+<div class="example">
+<h4>Example 2: Diagonalization $A = PDP^{-1}$ (Lecture 4, Slide 16)</h4>
+<p><strong>Problem:</strong> Diagonalize $A = \begin{bmatrix}4&2\\1&3\end{bmatrix}$ (from Example 1).</p>
+
+<p><strong>Step 1: Form $P$ (columns = eigenvectors).</strong></p>
+$$P = \begin{bmatrix}2&-1\\1&1\end{bmatrix}$$
+
+<p><strong>Step 2: Form $D$ (diagonal = eigenvalues, same order as $P$).</strong></p>
+$$D = \begin{bmatrix}5&0\\0&2\end{bmatrix}$$
+
+<p><strong>Step 3: Compute $P^{-1}$.</strong></p>
+$$\det(P) = 2(1) - (-1)(1) = 2 + 1 = 3$$
+$$P^{-1} = \frac{1}{3}\begin{bmatrix}1&1\\-1&2\end{bmatrix}$$
+
+<p><strong>Step 4: Verify $A = PDP^{-1}$.</strong></p>
+$$PD = \begin{bmatrix}2&-1\\1&1\end{bmatrix}\begin{bmatrix}5&0\\0&2\end{bmatrix} = \begin{bmatrix}10&-2\\5&2\end{bmatrix}$$
+$$PDP^{-1} = \begin{bmatrix}10&-2\\5&2\end{bmatrix} \cdot \frac{1}{3}\begin{bmatrix}1&1\\-1&2\end{bmatrix} = \frac{1}{3}\begin{bmatrix}10+2&10-4\\5-2&5+4\end{bmatrix} = \frac{1}{3}\begin{bmatrix}12&6\\3&9\end{bmatrix} = \begin{bmatrix}4&2\\1&3\end{bmatrix} = A \;\checkmark$$
+
+<p><strong>Application: Computing $A^{10}$.</strong></p>
+$$A^{10} = PD^{10}P^{-1} = P\begin{bmatrix}5^{10}&0\\0&2^{10}\end{bmatrix}P^{-1} = P\begin{bmatrix}9765625&0\\0&1024\end{bmatrix}P^{-1}$$
+<p>This is <em>massively</em> easier than multiplying $A$ by itself 10 times!</p>
+</div>
+
+<!-- EXAMPLE: Spectral Theorem -->
+<div class="example">
+<h4>Example 3: Spectral Decomposition of a Symmetric Matrix (Lecture 4, Slides 21&ndash;28)</h4>
+<p><strong>Problem:</strong> Find the spectral decomposition $A = Q\Lambda Q^T$ for $A = \begin{bmatrix}2&1\\1&2\end{bmatrix}$.</p>
+
+<p><strong>Step 1: Find eigenvalues.</strong></p>
+$$\det(A - \lambda I) = (2-\lambda)^2 - 1 = \lambda^2 - 4\lambda + 3 = (\lambda - 3)(\lambda - 1)$$
+$$\lambda_1 = 3, \quad \lambda_2 = 1$$
+
+<p><strong>Step 2: Find eigenvectors.</strong></p>
+<p>For $\lambda_1 = 3$: $(A - 3I)\mathbf{v} = \begin{bmatrix}-1&1\\1&-1\end{bmatrix}\mathbf{v} = \mathbf{0}$ &rarr; $v_1 = v_2$ &rarr; $\mathbf{v}_1 = \begin{bmatrix}1\\1\end{bmatrix}$</p>
+<p>For $\lambda_2 = 1$: $(A - I)\mathbf{v} = \begin{bmatrix}1&1\\1&1\end{bmatrix}\mathbf{v} = \mathbf{0}$ &rarr; $v_1 = -v_2$ &rarr; $\mathbf{v}_2 = \begin{bmatrix}1\\-1\end{bmatrix}$</p>
+
+<p><strong>Step 3: Verify orthogonality (guaranteed by Spectral Theorem since $A$ is symmetric).</strong></p>
+$$\mathbf{v}_1 \cdot \mathbf{v}_2 = 1(1) + 1(-1) = 0 \;\checkmark$$
+
+<p><strong>Step 4: Normalize to get $Q$.</strong></p>
+$$\mathbf{q}_1 = \frac{1}{\sqrt{2}}\begin{bmatrix}1\\1\end{bmatrix}, \quad \mathbf{q}_2 = \frac{1}{\sqrt{2}}\begin{bmatrix}1\\-1\end{bmatrix}$$
+$$Q = \frac{1}{\sqrt{2}}\begin{bmatrix}1&1\\1&-1\end{bmatrix}, \quad \Lambda = \begin{bmatrix}3&0\\0&1\end{bmatrix}$$
+
+<p><strong>Step 5: Write spectral decomposition.</strong></p>
+$$A = Q\Lambda Q^T = 3 \cdot \mathbf{q}_1\mathbf{q}_1^T + 1 \cdot \mathbf{q}_2\mathbf{q}_2^T$$
+$$= 3 \cdot \frac{1}{2}\begin{bmatrix}1&1\\1&1\end{bmatrix} + 1 \cdot \frac{1}{2}\begin{bmatrix}1&-1\\-1&1\end{bmatrix}$$
+$$= \frac{1}{2}\begin{bmatrix}3&3\\3&3\end{bmatrix} + \frac{1}{2}\begin{bmatrix}1&-1\\-1&1\end{bmatrix} = \frac{1}{2}\begin{bmatrix}4&2\\2&4\end{bmatrix} = \begin{bmatrix}2&1\\1&2\end{bmatrix} = A \;\checkmark$$
+
+<p><strong>Key insight:</strong> $A$ is SPD since eigenvalues $3, 1 > 0$. Note $Q^{-1} = Q^T$ (orthogonal matrix), so no matrix inversion needed!</p>
+</div>
+
+<!-- EXAMPLE: Cofactor Expansion -->
+<div class="example">
+<h4>Example 4: 3&times;3 Determinant via Cofactor Expansion (Lecture 4, Slides 3&ndash;6)</h4>
+<p><strong>Problem:</strong> Compute $\det\begin{bmatrix}1&2&3\\4&5&6\\7&8&9\end{bmatrix}$.</p>
+
+<p><strong>Step 1: Expand along row 1.</strong></p>
+$$\det(A) = \sum_{j=1}^{3}(-1)^{1+j}a_{1j}M_{1j}$$
+$$= (+1)(1)\det\begin{bmatrix}5&6\\8&9\end{bmatrix} + (-1)(2)\det\begin{bmatrix}4&6\\7&9\end{bmatrix} + (+1)(3)\det\begin{bmatrix}4&5\\7&8\end{bmatrix}$$
+
+<p><strong>Step 2: Compute each 2&times;2 minor.</strong></p>
+<ul>
+<li>$M_{11} = 5(9) - 6(8) = 45 - 48 = -3$</li>
+<li>$M_{12} = 4(9) - 6(7) = 36 - 42 = -6$</li>
+<li>$M_{13} = 4(8) - 5(7) = 32 - 35 = -3$</li>
+</ul>
+
+<p><strong>Step 3: Combine with signs.</strong></p>
+$$\det(A) = 1(-3) - 2(-6) + 3(-3) = -3 + 12 - 9 = 0$$
+
+<p><strong>Conclusion:</strong> $\det(A) = 0$, so the matrix is <strong>singular</strong> (not invertible). This makes sense: the third row is $\text{row 3} = 2 \cdot \text{row 2} - \text{row 1}$ (verify: $2(4,5,6)-(1,2,3) = (7,8,9)$).</p>
+</div>
+
+<!-- EXAMPLE: Cholesky Decomposition -->
+<div class="example">
+<h4>Example 5: Cholesky Decomposition $A = LL^T$ (Lecture 4, Slide 30)</h4>
+<p><strong>Problem:</strong> Find the Cholesky decomposition of $A = \begin{bmatrix}4&2\\2&5\end{bmatrix}$.</p>
+
+<p><strong>Step 1: Verify $A$ is symmetric and positive-definite.</strong></p>
+<ul>
+<li>Symmetric: $A = A^T$ &check;</li>
+<li>Eigenvalues: $\lambda^2 - 9\lambda + 16 = 0 \implies \lambda = \frac{9 \pm \sqrt{17}}{2} \approx 6.56, 2.44$ &mdash; both positive &check;</li>
+</ul>
+
+<p><strong>Step 2: Set up $A = LL^T$ where $L$ is lower-triangular.</strong></p>
+$$\begin{bmatrix}4&2\\2&5\end{bmatrix} = \begin{bmatrix}l_{11}&0\\l_{21}&l_{22}\end{bmatrix}\begin{bmatrix}l_{11}&l_{21}\\0&l_{22}\end{bmatrix}$$
+
+<p><strong>Step 3: Expand and match entries.</strong></p>
+<p>$(1,1)$: $l_{11}^2 = 4 \implies l_{11} = 2$</p>
+<p>$(2,1)$: $l_{21} \cdot l_{11} = 2 \implies l_{21} = \frac{2}{2} = 1$</p>
+<p>$(2,2)$: $l_{21}^2 + l_{22}^2 = 5 \implies 1 + l_{22}^2 = 5 \implies l_{22} = 2$</p>
+
+<p><strong>Step 4: Write the result.</strong></p>
+$$L = \begin{bmatrix}2&0\\1&2\end{bmatrix}, \quad A = \begin{bmatrix}2&0\\1&2\end{bmatrix}\begin{bmatrix}2&1\\0&2\end{bmatrix} = \begin{bmatrix}4&2\\2&5\end{bmatrix} \;\checkmark$$
+</div>
+
+<!-- EXAMPLE: Proving eigenvalue properties -->
+<div class="example">
+<h4>Example 6: Proving Eigenvalues of Symmetric Matrices are Real (Lecture 4, Slides 25&ndash;26)</h4>
+<p><strong>Problem:</strong> Prove that if $A$ is symmetric ($A = A^T$), all eigenvalues are real.</p>
+
+<p><strong>Step 1: Let $A\mathbf{x} = \lambda\mathbf{x}$ where $\lambda$ and $\mathbf{x}$ may be complex.</strong></p>
+<p>Pre-multiply both sides by $\mathbf{x}^H$ (conjugate transpose):</p>
+$$\mathbf{x}^HA\mathbf{x} = \lambda\mathbf{x}^H\mathbf{x}$$
+
+<p><strong>Step 2: Show the left side is real.</strong></p>
+<p>$\mathbf{x}^HA\mathbf{x}$ is a $1 \times 1$ matrix. Take its Hermitian (conjugate transpose):</p>
+$$(\mathbf{x}^HA\mathbf{x})^H = \mathbf{x}^HA^H\mathbf{x} = \mathbf{x}^HA^T\mathbf{x} = \mathbf{x}^HA\mathbf{x}$$
+<p>(since $A = A^T$ for real symmetric, and $A^H = A^T$)</p>
+<p>A scalar that equals its own conjugate is <strong>real</strong>.</p>
+
+<p><strong>Step 3: Show $\mathbf{x}^H\mathbf{x}$ is real and positive.</strong></p>
+$$\mathbf{x}^H\mathbf{x} = \bar{x}_1x_1 + \bar{x}_2x_2 + \cdots = |x_1|^2 + |x_2|^2 + \cdots > 0$$
+<p>(positive since $\mathbf{x} \neq \mathbf{0}$)</p>
+
+<p><strong>Step 4: Conclude.</strong></p>
+$$\lambda = \frac{\mathbf{x}^HA\mathbf{x}}{\mathbf{x}^H\mathbf{x}} = \frac{\text{real}}{\text{real positive}} = \text{real} \;\checkmark$$
+</div>
+
+
+<!-- ==================== LECTURE 5 ==================== -->
+<div class="lecture-divider" id="lec5">Lecture 5: Matrix Decompositions &mdash; SVD</div>
+
+<h2 id="l5-eigendecomp">5.1 Eigendecomposition Recap</h2>
+
+<div class="key-formula">
+$$A = PDP^{-1}$$
+Only works for <strong>square</strong> matrices with $n$ linearly independent eigenvectors.
+<br>For symmetric matrices: $A = Q\Lambda Q^T$ (orthogonal diagonalization).
+</div>
+
+<div class="example">
+$A = \begin{bmatrix}2.5&-1\\-1&2.5\end{bmatrix}$
+<br><br>
+Characteristic equation: $\lambda^2 - 5\lambda + \frac{21}{4} = 0 \implies \lambda_1 = 3.5, \; \lambda_2 = 1.5$
+<br>
+Eigenvectors: $\mathbf{p}_1 = \frac{1}{\sqrt{2}}(1, -1)^T$, $\mathbf{p}_2 = \frac{1}{\sqrt{2}}(1, 1)^T$
+<br><br>
+$A = \frac{1}{\sqrt{2}}\begin{bmatrix}1&1\\-1&1\end{bmatrix}\begin{bmatrix}3.5&0\\0&1.5\end{bmatrix}\frac{1}{\sqrt{2}}\begin{bmatrix}1&-1\\1&1\end{bmatrix}$
+</div>
+
+<h2 id="l5-svd">5.2 Singular Value Decomposition (SVD)</h2>
+
+<div class="important">
+SVD is the most important matrix decomposition. It works for <strong>any</strong> matrix &mdash; square or rectangular, singular or not.
+</div>
+
+<div class="key-formula">
+$$A = U \Sigma V^T$$
+<br>
+$A \in \mathbb{R}^{m \times n}$, &nbsp; $U \in \mathbb{R}^{m \times m}$ (orthogonal), &nbsp; $\Sigma \in \mathbb{R}^{m \times n}$ (diagonal, $\sigma_i \geq 0$), &nbsp; $V \in \mathbb{R}^{n \times n}$ (orthogonal)
+</div>
+
+<!-- SVG: SVD visual -->
+<div class="svg-container">
+<svg width="620" height="120" viewBox="0 0 620 120">
+  <!-- A -->
+  <rect x="10" y="15" width="80" height="90" rx="5" fill="#2980b9" opacity="0.2" stroke="#2980b9" stroke-width="2"/>
+  <text x="50" y="65" text-anchor="middle" font-size="18" font-weight="bold" fill="#2980b9">A</text>
+  <text x="50" y="85" text-anchor="middle" font-size="10" fill="#2980b9">m&times;n</text>
+  <!-- = -->
+  <text x="110" y="65" text-anchor="middle" font-size="24" fill="#2c3e50">=</text>
+  <!-- U -->
+  <rect x="130" y="10" width="90" height="100" rx="5" fill="#27ae60" opacity="0.2" stroke="#27ae60" stroke-width="2"/>
+  <text x="175" y="55" text-anchor="middle" font-size="18" font-weight="bold" fill="#27ae60">U</text>
+  <text x="175" y="75" text-anchor="middle" font-size="10" fill="#27ae60">m&times;m</text>
+  <text x="175" y="90" text-anchor="middle" font-size="9" fill="#27ae60">orthogonal</text>
+  <!-- Sigma -->
+  <rect x="240" y="15" width="80" height="90" rx="5" fill="#e67e22" opacity="0.2" stroke="#e67e22" stroke-width="2"/>
+  <text x="280" y="55" text-anchor="middle" font-size="18" font-weight="bold" fill="#e67e22">&Sigma;</text>
+  <text x="280" y="75" text-anchor="middle" font-size="10" fill="#e67e22">m&times;n</text>
+  <text x="280" y="90" text-anchor="middle" font-size="9" fill="#e67e22">diagonal &sigma;&#x2081;&ge;&sigma;&#x2082;&ge;...</text>
+  <!-- V^T -->
+  <rect x="340" y="25" width="100" height="70" rx="5" fill="#8e44ad" opacity="0.2" stroke="#8e44ad" stroke-width="2"/>
+  <text x="390" y="60" text-anchor="middle" font-size="18" font-weight="bold" fill="#8e44ad">V<tspan font-size="12" dy="-5">T</tspan></text>
+  <text x="390" y="80" text-anchor="middle" font-size="10" fill="#8e44ad">n&times;n, orthogonal</text>
+</svg>
+</div>
+
+<h3>How to Compute SVD</h3>
+<div class="card">
+<ol>
+<li><strong>$V$ (right singular vectors):</strong> Eigenvectors of $A^TA$. Eigenvalues of $A^TA$ are $\sigma_i^2$.</li>
+<li><strong>$\Sigma$ (singular values):</strong> $\sigma_i = \sqrt{\lambda_i(A^TA)}$, arranged in decreasing order.</li>
+<li><strong>$U$ (left singular vectors):</strong> $\mathbf{u}_i = \frac{1}{\sigma_i} A \mathbf{v}_i$ for each non-zero $\sigma_i$.</li>
+</ol>
+</div>
+
+<div class="example">
+$A = \begin{bmatrix}1&0&1\\-2&1&0\end{bmatrix}$
+<br><br>
+$A^TA = \begin{bmatrix}5&-2&1\\-2&1&0\\1&0&1\end{bmatrix}$, eigenvalues: $6, 1, 0$
+<br>
+Singular values: $\sigma_1 = \sqrt{6}, \; \sigma_2 = 1$
+<br><br>
+Compute $V$ from eigenvectors of $A^TA$, then $\mathbf{u}_i = \frac{1}{\sigma_i}A\mathbf{v}_i$.
+</div>
+
+<h2 id="l5-compare">5.3 SVD vs Eigendecomposition</h2>
+
+<table>
+<tr><th>Feature</th><th>Eigendecomposition</th><th>SVD</th></tr>
+<tr><td><strong>Applicability</strong></td><td>Square matrices only</td><td><strong>Any</strong> $m \times n$ matrix</td></tr>
+<tr><td><strong>Decomposition</strong></td><td>$A = PDP^{-1}$</td><td>$A = U\Sigma V^T$</td></tr>
+<tr><td><strong>Orthogonality</strong></td><td>$P$ not necessarily orthogonal</td><td>$U$ and $V$ are orthogonal</td></tr>
+<tr><td><strong>Diagonal entries</strong></td><td>Can be complex or negative</td><td>Always real, non-negative</td></tr>
+<tr><td><strong>$U$ and $V$ relationship</strong></td><td>$P$ and $P^{-1}$ are inverses</td><td>$U$ and $V$ are generally different</td></tr>
+<tr><td><strong>Existence</strong></td><td>Not always (needs $n$ independent eigenvectors)</td><td><strong>Always exists</strong></td></tr>
+</table>
+
+<div class="highlight">
+<strong>Key connections:</strong>
+<ul>
+<li>Left singular vectors of $A$ = eigenvectors of $AA^T$</li>
+<li>Right singular vectors of $A$ = eigenvectors of $A^TA$</li>
+<li>Non-zero singular values = square roots of non-zero eigenvalues of $A^TA$</li>
+</ul>
+</div>
+
+<h2 id="l5-lowrank">5.4 Low-Rank Approximation</h2>
+
+<p>Using SVD, any matrix can be written as a sum of rank-1 matrices:</p>
+$$A = \sum_{i=1}^r \sigma_i \, \mathbf{u}_i \mathbf{v}_i^T$$
+
+<p>The <strong>rank-$k$ approximation</strong> keeps only the top $k$ terms:</p>
+
+<div class="key-formula">
+$$\tilde{A}_k = \sum_{i=1}^k \sigma_i \, \mathbf{u}_i \mathbf{v}_i^T \qquad (k < r)$$
+</div>
+
+<!-- SVG: Low rank approximation -->
+<div class="svg-container">
+<svg width="600" height="120" viewBox="0 0 600 120">
+  <rect x="5" y="10" width="590" height="100" rx="8" fill="#f8f9fa" stroke="#dfe6e9"/>
+  <text x="300" y="30" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--primary)">Low-Rank Approximation: Keep Most Important Components</text>
+
+  <!-- Full -->
+  <rect x="30" y="45" width="50" height="50" fill="#2980b9" opacity="0.8" rx="3"/>
+  <text x="55" y="75" text-anchor="middle" font-size="10" fill="white">&sigma;&#x2081;</text>
+  <text x="85" y="75" font-size="16" fill="#2c3e50">+</text>
+  <rect x="100" y="50" width="40" height="40" fill="#2980b9" opacity="0.5" rx="3"/>
+  <text x="120" y="75" text-anchor="middle" font-size="10" fill="white">&sigma;&#x2082;</text>
+  <text x="147" y="75" font-size="16" fill="#2c3e50">+</text>
+  <rect x="160" y="55" width="30" height="30" fill="#2980b9" opacity="0.3" rx="3"/>
+  <text x="175" y="74" text-anchor="middle" font-size="9" fill="white">&sigma;&#x2083;</text>
+  <text x="197" y="75" font-size="16" fill="#2c3e50">+</text>
+  <rect x="210" y="60" width="20" height="20" fill="#2980b9" opacity="0.15" rx="3"/>
+  <text x="220" y="74" text-anchor="middle" font-size="8" fill="white">&sigma;&#x2084;</text>
+  <text x="240" y="75" font-size="12" fill="#7f8c8d">+ ...</text>
+
+  <!-- Arrow -->
+  <text x="310" y="75" font-size="18" fill="var(--accent)">&rarr;</text>
+
+  <!-- Approx -->
+  <rect x="340" y="45" width="50" height="50" fill="#e74c3c" opacity="0.8" rx="3"/>
+  <text x="365" y="75" text-anchor="middle" font-size="10" fill="white">&sigma;&#x2081;</text>
+  <text x="397" y="75" font-size="16" fill="#2c3e50">+</text>
+  <rect x="410" y="50" width="40" height="40" fill="#e74c3c" opacity="0.5" rx="3"/>
+  <text x="430" y="75" text-anchor="middle" font-size="10" fill="white">&sigma;&#x2082;</text>
+
+  <text x="480" y="75" font-size="12" fill="#e74c3c">rank-2 approx</text>
+  <text x="300" y="105" text-anchor="middle" font-size="11" fill="#7f8c8d">Bigger &sigma; = more important. Small ones can be dropped.</text>
+</svg>
+</div>
+
+<div class="tip">
+<strong>Applications:</strong> Image compression (keep top-$k$ singular values), noise reduction, recommendation systems (Netflix prize used SVD), latent semantic analysis in NLP.
+</div>
+
+<h2 id="l5-spectral-norm">5.5 Spectral Norm</h2>
+
+<div class="definition">
+The <strong>spectral norm</strong> of $A$ is:
+$$\|A\|_2 = \max_{\mathbf{x} \neq \mathbf{0}} \frac{\|A\mathbf{x}\|_2}{\|\mathbf{x}\|_2} = \sigma_1$$
+i.e., the largest singular value. It measures the maximum &ldquo;stretching factor&rdquo; of $A$.
+</div>
+
+<div class="example">
+$A = \begin{bmatrix}1&2\\3&4\end{bmatrix}$, singular values: $\sigma_1 \approx 5.465$, $\sigma_2 \approx 0.366$.
+<br>
+Spectral norm $\|A\|_2 = 5.465$.
+</div>
+
+<!-- ===== LECTURE 5: DETAILED WORKED EXAMPLES ===== -->
+<h2 id="l5-worked">5.6 Detailed Worked Examples</h2>
+
+<!-- EXAMPLE: Full SVD Computation -->
+<div class="example">
+<h4>Example 1: Complete SVD Computation (Lecture 5, Slides 12&ndash;21)</h4>
+<p><strong>Problem:</strong> Compute the SVD of $A = \begin{bmatrix}1&0&1\\-2&1&0\end{bmatrix}$.</p>
+
+<p><strong>Step 1: Compute $A^TA$ (3&times;3 matrix).</strong></p>
+$$A^TA = \begin{bmatrix}1&-2\\0&1\\1&0\end{bmatrix}\begin{bmatrix}1&0&1\\-2&1&0\end{bmatrix}$$
+<p>$(1,1)$: $1(1)+(-2)(-2) = 1+4 = 5$</p>
+<p>$(1,2)$: $1(0)+(-2)(1) = -2$</p>
+<p>$(1,3)$: $1(1)+(-2)(0) = 1$</p>
+<p>$(2,2)$: $0(0)+1(1) = 1$</p>
+<p>$(2,3)$: $0(1)+1(0) = 0$</p>
+<p>$(3,3)$: $1(1)+0(0) = 1$</p>
+$$A^TA = \begin{bmatrix}5&-2&1\\-2&1&0\\1&0&1\end{bmatrix}$$
+
+<p><strong>Step 2: Find eigenvalues of $A^TA$.</strong></p>
+<p>The characteristic polynomial (computed or given): eigenvalues are $\lambda_1 = 6, \lambda_2 = 1, \lambda_3 = 0$.</p>
+<p>Quick check: $\text{tr}(A^TA) = 5+1+1 = 7 = 6+1+0$ &check;</p>
+
+<p><strong>Step 3: Singular values.</strong></p>
+$$\sigma_1 = \sqrt{6}, \quad \sigma_2 = \sqrt{1} = 1, \quad \sigma_3 = \sqrt{0} = 0$$
+
+<p><strong>Step 4: Find right singular vectors $V$ (eigenvectors of $A^TA$).</strong></p>
+
+<p><em>For $\lambda_1 = 6$:</em> Solve $(A^TA - 6I)\mathbf{v} = \mathbf{0}$:</p>
+$$\begin{bmatrix}-1&-2&1\\-2&-5&0\\1&0&-5\end{bmatrix}\mathbf{v} = \mathbf{0}$$
+<p>From row 3: $v_1 = 5v_3$. From row 1: $-5v_3-2v_2+v_3 = 0 \implies v_2 = -2v_3$.</p>
+<p>Set $v_3 = 1$: $\mathbf{v}_1 = (5, -2, 1)^T$. Normalize: $\|\mathbf{v}_1\| = \sqrt{25+4+1} = \sqrt{30}$.</p>
+$$\mathbf{v}_1 = \frac{1}{\sqrt{30}}(5, -2, 1)^T$$
+
+<p><em>For $\lambda_2 = 1$:</em> Solve $(A^TA - I)\mathbf{v} = \mathbf{0}$:</p>
+$$\begin{bmatrix}4&-2&1\\-2&0&0\\1&0&0\end{bmatrix}\mathbf{v} = \mathbf{0}$$
+<p>From row 3: $v_1 = 0$. From row 2: $-2(0)+0 = 0$ (free). From row 1: $-2v_2+v_3 = 0 \implies v_3 = 2v_2$.</p>
+<p>Set $v_2 = 1$: $\mathbf{v}_2 = (0, 1, 2)^T$. Normalize: $\|\mathbf{v}_2\| = \sqrt{0+1+4} = \sqrt{5}$.</p>
+$$\mathbf{v}_2 = \frac{1}{\sqrt{5}}(0, 1, 2)^T$$
+
+<p><em>For $\lambda_3 = 0$:</em> Solve $A^TA\mathbf{v} = \mathbf{0}$ (null space of $A^TA$, equivalently null space of $A$):</p>
+<p>$\mathbf{v}_3$ must be orthogonal to both $\mathbf{v}_1$ and $\mathbf{v}_2$. Using cross product or Gram-Schmidt:</p>
+$$\mathbf{v}_3 = \mathbf{v}_1 \times \mathbf{v}_2 \propto \begin{vmatrix}\mathbf{i}&\mathbf{j}&\mathbf{k}\\5&-2&1\\0&1&2\end{vmatrix} = (-4-1, 0-10, 5-0) = (-5, -10, 5)$$
+<p>Simplify: $(-1, -2, 1)^T$. Normalize: $\|\cdot\| = \sqrt{1+4+1} = \sqrt{6}$.</p>
+$$\mathbf{v}_3 = \frac{1}{\sqrt{6}}(-1, -2, 1)^T$$
+
+<p><strong>Step 5: Form $V$ and $\Sigma$.</strong></p>
+$$V = \begin{bmatrix}\frac{5}{\sqrt{30}}&0&\frac{-1}{\sqrt{6}}\\\frac{-2}{\sqrt{30}}&\frac{1}{\sqrt{5}}&\frac{-2}{\sqrt{6}}\\\frac{1}{\sqrt{30}}&\frac{2}{\sqrt{5}}&\frac{1}{\sqrt{6}}\end{bmatrix}, \quad \Sigma = \begin{bmatrix}\sqrt{6}&0&0\\0&1&0\end{bmatrix}$$
+
+<p><strong>Step 6: Find left singular vectors $U$ using $\mathbf{u}_i = \frac{1}{\sigma_i}A\mathbf{v}_i$.</strong></p>
+
+<p><em>$\mathbf{u}_1 = \frac{1}{\sqrt{6}}A\mathbf{v}_1$:</em></p>
+$$A\mathbf{v}_1 = \begin{bmatrix}1&0&1\\-2&1&0\end{bmatrix}\frac{1}{\sqrt{30}}\begin{bmatrix}5\\-2\\1\end{bmatrix} = \frac{1}{\sqrt{30}}\begin{bmatrix}5+0+1\\-10-2+0\end{bmatrix} = \frac{1}{\sqrt{30}}\begin{bmatrix}6\\-12\end{bmatrix}$$
+$$\mathbf{u}_1 = \frac{1}{\sqrt{6}} \cdot \frac{1}{\sqrt{30}}\begin{bmatrix}6\\-12\end{bmatrix} = \frac{1}{\sqrt{180}}\begin{bmatrix}6\\-12\end{bmatrix} = \frac{6}{\sqrt{180}}\begin{bmatrix}1\\-2\end{bmatrix} = \frac{1}{\sqrt{5}}\begin{bmatrix}1\\-2\end{bmatrix}$$
+
+<p><em>$\mathbf{u}_2 = \frac{1}{1}A\mathbf{v}_2$:</em></p>
+$$A\mathbf{v}_2 = \begin{bmatrix}1&0&1\\-2&1&0\end{bmatrix}\frac{1}{\sqrt{5}}\begin{bmatrix}0\\1\\2\end{bmatrix} = \frac{1}{\sqrt{5}}\begin{bmatrix}0+0+2\\0+1+0\end{bmatrix} = \frac{1}{\sqrt{5}}\begin{bmatrix}2\\1\end{bmatrix}$$
+
+<p><strong>Step 7: Verify orthogonality of $U$.</strong></p>
+$$\mathbf{u}_1 \cdot \mathbf{u}_2 = \frac{1}{\sqrt{5}} \cdot \frac{1}{\sqrt{5}}(1 \cdot 2 + (-2) \cdot 1) = \frac{1}{5}(2-2) = 0 \;\checkmark$$
+
+<p><strong>Step 8: Write the final SVD.</strong></p>
+$$A = U\Sigma V^T = \begin{bmatrix}\frac{1}{\sqrt{5}}&\frac{2}{\sqrt{5}}\\\frac{-2}{\sqrt{5}}&\frac{1}{\sqrt{5}}\end{bmatrix}\begin{bmatrix}\sqrt{6}&0&0\\0&1&0\end{bmatrix}\begin{bmatrix}\frac{5}{\sqrt{30}}&\frac{-2}{\sqrt{30}}&\frac{1}{\sqrt{30}}\\0&\frac{1}{\sqrt{5}}&\frac{2}{\sqrt{5}}\\\frac{-1}{\sqrt{6}}&\frac{-2}{\sqrt{6}}&\frac{1}{\sqrt{6}}\end{bmatrix}$$
+
+<p><strong>Verification:</strong> $U\Sigma V^T$ should reconstruct $A = \begin{bmatrix}1&0&1\\-2&1&0\end{bmatrix}$.</p>
+<p>Using rank-1 decomposition: $A = \sigma_1\mathbf{u}_1\mathbf{v}_1^T + \sigma_2\mathbf{u}_2\mathbf{v}_2^T$</p>
+$$= \sqrt{6} \cdot \frac{1}{\sqrt{5}}\begin{bmatrix}1\\-2\end{bmatrix}\frac{1}{\sqrt{30}}\begin{bmatrix}5&-2&1\end{bmatrix} + 1 \cdot \frac{1}{\sqrt{5}}\begin{bmatrix}2\\1\end{bmatrix}\frac{1}{\sqrt{5}}\begin{bmatrix}0&1&2\end{bmatrix}$$
+$$= \frac{\sqrt{6}}{\sqrt{150}}\begin{bmatrix}5&-2&1\\-10&4&-2\end{bmatrix} + \frac{1}{5}\begin{bmatrix}0&2&4\\0&1&2\end{bmatrix}$$
+$$= \frac{1}{5}\begin{bmatrix}5&-2&1\\-10&4&-2\end{bmatrix} + \frac{1}{5}\begin{bmatrix}0&2&4\\0&1&2\end{bmatrix} = \frac{1}{5}\begin{bmatrix}5&0&5\\-10&5&0\end{bmatrix} = \begin{bmatrix}1&0&1\\-2&1&0\end{bmatrix} \;\checkmark$$
+</div>
+
+<!-- EXAMPLE: Low-Rank Approximation -->
+<div class="example">
+<h4>Example 2: Rank-1 Approximation (Lecture 5, Slides 25&ndash;27)</h4>
+<p><strong>Problem:</strong> Find the best rank-1 approximation of $A = \begin{bmatrix}1&0&1\\-2&1&0\end{bmatrix}$ (from Example 1).</p>
+
+<p><strong>Step 1: Recall SVD components.</strong></p>
+<p>$\sigma_1 = \sqrt{6}$, $\mathbf{u}_1 = \frac{1}{\sqrt{5}}(1,-2)^T$, $\mathbf{v}_1 = \frac{1}{\sqrt{30}}(5,-2,1)^T$</p>
+
+<p><strong>Step 2: Compute rank-1 approximation.</strong></p>
+$$\hat{A}(1) = \sigma_1\mathbf{u}_1\mathbf{v}_1^T = \sqrt{6} \cdot \frac{1}{\sqrt{5}}\begin{bmatrix}1\\-2\end{bmatrix} \cdot \frac{1}{\sqrt{30}}\begin{bmatrix}5&-2&1\end{bmatrix}$$
+$$= \frac{\sqrt{6}}{\sqrt{150}}\begin{bmatrix}5&-2&1\\-10&4&-2\end{bmatrix} = \frac{1}{5}\begin{bmatrix}5&-2&1\\-10&4&-2\end{bmatrix} = \begin{bmatrix}1&-0.4&0.2\\-2&0.8&-0.4\end{bmatrix}$$
+
+<p><strong>Step 3: Measure the error.</strong></p>
+$$A - \hat{A}(1) = \begin{bmatrix}1-1&0+0.4&1-0.2\\-2+2&1-0.8&0+0.4\end{bmatrix} = \begin{bmatrix}0&0.4&0.8\\0&0.2&0.4\end{bmatrix}$$
+<p>The spectral norm of the error $= \sigma_2 = 1$ (the next singular value). This is the Eckart&ndash;Young theorem: the best rank-$k$ approximation error equals $\sigma_{k+1}$.</p>
+
+<p><strong>Interpretation:</strong> The rank-1 approximation captures $\frac{\sigma_1^2}{\sigma_1^2 + \sigma_2^2} = \frac{6}{6+1} = \frac{6}{7} \approx 85.7\%$ of the total &ldquo;energy&rdquo; (sum of squared singular values).</p>
+</div>
+
+<!-- EXAMPLE: Spectral Norm -->
+<div class="example">
+<h4>Example 3: Computing Spectral Norm via SVD (Lecture 5, Slides 28&ndash;29)</h4>
+<p><strong>Problem:</strong> Compute the spectral norm of $A = \begin{bmatrix}1&2\\3&4\end{bmatrix}$.</p>
+
+<p><strong>Step 1: Compute $A^TA$.</strong></p>
+$$A^TA = \begin{bmatrix}1&3\\2&4\end{bmatrix}\begin{bmatrix}1&2\\3&4\end{bmatrix} = \begin{bmatrix}10&14\\14&20\end{bmatrix}$$
+
+<p><strong>Step 2: Find eigenvalues of $A^TA$.</strong></p>
+$$\det(A^TA - \lambda I) = (10-\lambda)(20-\lambda) - 196 = \lambda^2 - 30\lambda + 200 - 196 = \lambda^2 - 30\lambda + 4$$
+$$\lambda = \frac{30 \pm \sqrt{900 - 16}}{2} = \frac{30 \pm \sqrt{884}}{2} = \frac{30 \pm 29.73}{2}$$
+$$\lambda_1 \approx 29.866, \quad \lambda_2 \approx 0.134$$
+
+<p><strong>Step 3: Singular values.</strong></p>
+$$\sigma_1 = \sqrt{29.866} \approx 5.465, \quad \sigma_2 = \sqrt{0.134} \approx 0.366$$
+
+<p><strong>Step 4: Spectral norm = largest singular value.</strong></p>
+$$\|A\|_2 = \sigma_1 \approx 5.465$$
+
+<p><strong>Meaning:</strong> The maximum &ldquo;stretching factor&rdquo; of $A$ is about 5.465. For any unit vector $\mathbf{x}$, the output $A\mathbf{x}$ has length at most 5.465.</p>
+</div>
+
+<!-- EXAMPLE: Eigendecomposition -->
+<div class="example">
+<h4>Example 4: Eigendecomposition of a Symmetric Matrix (Lecture 5, Slides 5&ndash;10)</h4>
+<p><strong>Problem:</strong> Find the eigendecomposition $A = Q\Lambda Q^T$ of $A = \begin{bmatrix}2.5&-1\\-1&2.5\end{bmatrix}$.</p>
+
+<p><strong>Step 1: Find eigenvalues.</strong></p>
+$$\det(A - \lambda I) = (2.5-\lambda)^2 - 1 = \lambda^2 - 5\lambda + 5.25 = 0$$
+$$\lambda = \frac{5 \pm \sqrt{25-21}}{2} = \frac{5 \pm 2}{2}$$
+$$\lambda_1 = 3.5, \quad \lambda_2 = 1.5$$
+
+<p><strong>Step 2: Find eigenvectors.</strong></p>
+<p>For $\lambda_1 = 3.5$: $(A - 3.5I)\mathbf{v} = \begin{bmatrix}-1&-1\\-1&-1\end{bmatrix}\mathbf{v} = \mathbf{0}$ &rarr; $v_1 = -v_2$</p>
+$$\mathbf{p}_1 = \frac{1}{\sqrt{2}}\begin{bmatrix}1\\-1\end{bmatrix}$$
+
+<p>For $\lambda_2 = 1.5$: $(A - 1.5I)\mathbf{v} = \begin{bmatrix}1&-1\\-1&1\end{bmatrix}\mathbf{v} = \mathbf{0}$ &rarr; $v_1 = v_2$</p>
+$$\mathbf{p}_2 = \frac{1}{\sqrt{2}}\begin{bmatrix}1\\1\end{bmatrix}$$
+
+<p><strong>Step 3: Verify orthogonality.</strong></p>
+$$\mathbf{p}_1 \cdot \mathbf{p}_2 = \frac{1}{2}(1 \cdot 1 + (-1) \cdot 1) = 0 \;\checkmark$$
+
+<p><strong>Step 4: Write the decomposition.</strong></p>
+$$A = Q\Lambda Q^T = \frac{1}{\sqrt{2}}\begin{bmatrix}1&1\\-1&1\end{bmatrix}\begin{bmatrix}3.5&0\\0&1.5\end{bmatrix}\frac{1}{\sqrt{2}}\begin{bmatrix}1&-1\\1&1\end{bmatrix}$$
+
+<p><strong>Step 5: Verify.</strong></p>
+$$Q\Lambda = \frac{1}{\sqrt{2}}\begin{bmatrix}3.5&1.5\\-3.5&1.5\end{bmatrix}$$
+$$Q\Lambda Q^T = \frac{1}{\sqrt{2}}\begin{bmatrix}3.5&1.5\\-3.5&1.5\end{bmatrix} \cdot \frac{1}{\sqrt{2}}\begin{bmatrix}1&-1\\1&1\end{bmatrix} = \frac{1}{2}\begin{bmatrix}3.5+1.5&-3.5+1.5\\-3.5+1.5&3.5+1.5\end{bmatrix} = \begin{bmatrix}2.5&-1\\-1&2.5\end{bmatrix} \;\checkmark$$
+
+<p><strong>Geometric meaning:</strong> $A$ stretches space by factor 3.5 along the $(1,-1)^T$ direction and by 1.5 along the $(1,1)^T$ direction. These are the principal axes of the ellipse $\mathbf{x}^TA\mathbf{x} = 1$.</p>
+</div>
+
+
+<!-- ==================== SUMMARY ==================== -->
+<div class="lecture-divider" style="background: linear-gradient(135deg, #e67e22, #e74c3c);">Summary: The Whole Story</div>
+
+<div class="card" style="border: 2px solid var(--accent);">
+<h3 style="color:var(--accent);">The 5-Lecture Arc</h3>
+<ol style="font-size: 1.05em;">
+<li><strong>Lecture 1:</strong> Linear systems $\to$ matrices $\to$ Gaussian elimination $\to$ REF/RREF $\to$ rank decides everything.</li>
+<li><strong>Lecture 2:</strong> Abstract the structure $\to$ vector spaces, subspaces, basis, dimension. The &ldquo;containers&rdquo; that vectors live in.</li>
+<li><strong>Lecture 3:</strong> Add geometry $\to$ inner products, norms, angles, orthogonality, Gram-Schmidt. Now we can measure.</li>
+<li><strong>Lecture 4:</strong> Understand the machine $\to$ eigenvalues reveal what $A$ does to space (stretch directions). Spectral theorem for symmetric matrices.</li>
+<li><strong>Lecture 5:</strong> Decompose any matrix $\to$ SVD = universal factorization. Low-rank approximation for practical ML.</li>
+</ol>
+</div>
+
+<div class="important" style="text-align:center; font-size: 1.1em;">
+<strong>One image:</strong> A matrix is a machine that moves space.<br>
+<strong>One method:</strong> Gaussian elimination on the augmented matrix.<br>
+<strong>One number:</strong> Rank &mdash; the matrix's &ldquo;real&rdquo; dimension.<br>
+<strong>One decomposition:</strong> SVD &mdash; works on any matrix, reveals everything.
+</div>
+
+<h3>Methods Roadmap</h3>
+<table>
+<tr><th>Method</th><th>What it does</th><th>Lecture</th></tr>
+<tr><td>Gaussian Elimination</td><td>Solve $A\mathbf{x}=\mathbf{b}$, find rank, inverse</td><td>1</td></tr>
+<tr><td>LU Decomposition</td><td>$A = LU$ &mdash; elimination, recorded for reuse</td><td>3</td></tr>
+<tr><td>Cholesky</td><td>$A = LL^T$ for SPD matrices &mdash; half the work</td><td>4</td></tr>
+<tr><td>Eigendecomposition</td><td>$A = PDP^{-1}$ &mdash; reveal stretching directions</td><td>4-5</td></tr>
+<tr><td>QR Decomposition</td><td>$A = QR$ &mdash; basis for least squares</td><td>3</td></tr>
+<tr><td>SVD</td><td>$A = U\Sigma V^T$ &mdash; universal, works on any matrix</td><td>5</td></tr>
+</table>
+
+<br>
+<p style="text-align:center; color:var(--light-text); font-size:0.9em;">
+MFML Notes &mdash; ZC416, BITS Pilani WILPD &bull; Compiled from general lecture slides and Prof. Saurabh's companion documents<br>
+Generated: May 2026
+</p>
+
+<!-- Floating Back to Top Button -->
+<button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to Top" style="
+  display:none; position:fixed; bottom:30px; right:30px; z-index:999;
+  width:50px; height:50px; border-radius:50%; border:none; cursor:pointer;
+  background:linear-gradient(135deg, var(--primary), var(--secondary));
+  color:white; font-size:22px; box-shadow:0 4px 12px rgba(0,0,0,0.3);
+  transition:opacity 0.3s, transform 0.3s;
+">&#8679;</button>
+<script>
+(function(){
+  var btn = document.getElementById('backToTop');
+  window.addEventListener('scroll', function(){
+    btn.style.display = window.scrollY > 400 ? 'block' : 'none';
+  });
+  btn.addEventListener('mouseenter', function(){ btn.style.transform='scale(1.1)'; });
+  btn.addEventListener('mouseleave', function(){ btn.style.transform='scale(1)'; });
+})();
+</script>
+
+</body>
+</html>
