@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>DNN Final Study Guide – AIML ZG511 (Sessions 1–8)</title>
+  <style>
+  :root {
+    --bg:#fafaf8; --paper:#ffffff; --text:#1e293b; --muted:#64748b;
+    --accent:#1d4ed8; --accent-soft:#eff6ff;
+    --green:#16a34a; --green-bg:#f0fdf4; --green-bd:#bbf7d0;
+    --amber:#b45309; --amber-bg:#fffbeb; --amber-bd:#fcd34d;
+    --red:#dc2626; --red-bg:#fef2f2; --red-bd:#fecaca;
+    --purple:#7c3aed; --purple-bg:#f5f3ff; --purple-bd:#c4b5fd;
+    --border:#e2e8f0; --sidebar-w:278px; --radius:10px;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth;font-size:16px}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.75;color:var(--text);background:var(--bg)}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  #progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#1d4ed8,#7c3aed);width:0%;z-index:9999;transition:width .1s}
+
+  .page{display:flex;min-height:100vh}
+
+  #sidebar{width:var(--sidebar-w);flex-shrink:0;background:var(--paper);border-right:1px solid var(--border);position:sticky;top:0;height:100vh;overflow-y:auto;padding:1rem .85rem 2.5rem;font-size:.78rem}
+  #sidebar .brand{font-weight:800;font-size:.9rem;color:var(--text);margin-bottom:.1rem}
+  #sidebar .brand-sub{font-size:.7rem;color:var(--muted);margin-bottom:1rem}
+  #sidebar nav h3{font-size:.62rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:1.1rem 0 .25rem;font-weight:700}
+  #sidebar ol{list-style:none;padding:0;margin:0}
+  #sidebar li{margin:.08rem 0}
+  #sidebar li a{display:block;padding:.2rem .5rem;border-radius:5px;color:var(--text);line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:background .15s,color .15s}
+  #sidebar li a:hover,#sidebar li a.active{background:var(--accent-soft);color:var(--accent);text-decoration:none}
+
+  #content{flex:1;min-width:0;max-width:980px;padding:2.5rem 3rem 5rem;background:var(--paper)}
+
+  .hero{background:linear-gradient(135deg,#1e3a8a 0%,#1d4ed8 60%,#7c3aed 100%);color:#fff;padding:2rem 2.2rem;border-radius:var(--radius);margin-bottom:2rem}
+  .hero h1{margin:0 0 .5rem;font-size:1.8rem;color:#fff;border:none;line-height:1.2}
+  .hero .meta{font-size:.87rem;opacity:.85;margin:0}
+  .hero .tag{display:inline-block;background:rgba(255,255,255,.2);padding:.2rem .7rem;border-radius:99px;font-size:.78rem;margin-top:.7rem;font-weight:600}
+
+  h1,h2,h3,h4{scroll-margin-top:1.2rem;line-height:1.3}
+  h2{font-size:1.4rem;margin-top:3rem;margin-bottom:.6rem;padding-bottom:.4rem;border-bottom:2px solid var(--border);color:#1e293b}
+  h2.mod{background:#eef2ff;border:none;border-left:5px solid #6366f1;padding:.8rem 1.2rem;margin-top:4rem;margin-bottom:.4rem;font-size:1.15rem;color:#3730a3;border-radius:0 var(--radius) var(--radius) 0}
+  h3{font-size:1.07rem;margin-top:1.8rem;margin-bottom:.35rem;color:#334155}
+  h4{font-size:.97rem;margin-top:1.2rem;color:#475569}
+  p{margin:.85em 0}
+  ul,ol{padding-left:1.5em;margin:.7em 0}
+  li{margin:.3em 0}
+  hr{border:none;border-top:1px solid var(--border);margin:2.5rem 0}
+
+  .callout{border-radius:0 var(--radius) var(--radius) 0;padding:.9rem 1.2rem 1rem;margin:1.1rem 0;border-left-width:5px;border-left-style:solid}
+  .callout-label{font-size:.73rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;display:flex;align-items:center;gap:.35rem;margin-bottom:.55rem}
+  .callout p,.callout ul,.callout ol{font-size:.94rem;margin-bottom:.45rem}
+  .callout ul,.callout ol{padding-left:1.3em}
+  .callout p:last-child,.callout ul:last-child{margin-bottom:0}
+
+  .concept{background:var(--accent-soft);border-color:var(--accent)}
+  .concept .callout-label{color:var(--accent)}
+  .worked{background:var(--amber-bg);border-color:#d97706}
+  .worked .callout-label{color:var(--amber)}
+  .worked .step{margin:.5rem 0;padding:.4rem .7rem;background:rgba(255,255,255,.6);border-radius:6px;font-size:.92rem}
+  .worked .step strong{color:#92400e}
+  .tip{background:var(--purple-bg);border-color:var(--purple)}
+  .tip .callout-label{color:var(--purple)}
+  .warn{background:var(--red-bg);border-color:var(--red)}
+  .warn .callout-label{color:var(--red)}
+  .key{background:var(--green-bg);border-color:var(--green)}
+  .key .callout-label{color:var(--green)}
+
+  .fb{background:#f1f5f9;border:1px solid #cbd5e1;border-radius:var(--radius);padding:.9rem 1.2rem;margin:.8rem 0;font-family:"Courier New",monospace;font-size:.91rem;line-height:2;overflow-x:auto}
+  .fb .r{padding:.1rem 0}
+  .fb .n{color:#475569;font-weight:700;min-width:160px;display:inline-block}
+
+  .reveal-btn{display:inline-block;background:var(--accent);color:#fff;font-size:.82rem;font-weight:600;padding:.3rem .9rem;border-radius:99px;cursor:pointer;border:none;margin:.5rem 0;transition:background .15s}
+  .reveal-btn:hover{background:#1e40af}
+  .sol{display:none;background:#f8fafc;border:1px solid var(--border);border-radius:var(--radius);padding:.9rem 1.1rem;margin-top:.5rem;font-size:.93rem}
+  .sol.open{display:block}
+
+  table{width:100%;border-collapse:collapse;margin:1.1em 0;font-size:.88rem}
+  th,td{border:1px solid var(--border);padding:.5rem .7rem;text-align:left;vertical-align:top}
+  th{background:#f1f5f9;font-weight:600;color:#334155}
+  tr:nth-child(even) td{background:#fafbfd}
+
+  code{background:#f1f5f9;padding:.15em .4em;border-radius:4px;font-size:.88em;font-family:"Courier New",monospace}
+  pre{background:#1e293b;color:#e2e8f0;padding:1rem 1.2rem;border-radius:var(--radius);overflow-x:auto;font-size:.88rem;line-height:1.65}
+
+  .g2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0}
+  .card{background:#f8fafc;border:1px solid var(--border);border-radius:var(--radius);padding:.9rem 1.1rem}
+  .card h4{margin-top:0;color:var(--accent)}
+
+  @media(max-width:860px){#sidebar{display:none}#content{padding:1.5rem 1.2rem 3rem}.g2{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="page">
+
+<!-- ═══ SIDEBAR ═══ -->
+<aside id="sidebar">
+  <div class="brand">DNN Study Guide</div>
+  <div class="brand-sub">AIML ZG511 · Sessions 1–8 (Till CNN)</div>
+  <nav>
+    <h3>Overview</h3>
+    <ol>
+      <li><a href="#overview">Course Overview</a></li>
+      <li><a href="#exam-map">Exam Blueprint</a></li>
+    </ol>
+    <h3>Session 1 — Intro to DL</h3>
+    <ol>
+      <li><a href="#s1-what">What is Deep Learning?</a></li>
+      <li><a href="#s1-4comp">4 Core Components</a></li>
+      <li><a href="#s1-tasks">Learning Tasks</a></li>
+    </ol>
+    <h3>Session 2 — Perceptron</h3>
+    <ol>
+      <li><a href="#s2-neuron">Artificial Neuron</a></li>
+      <li><a href="#s2-perceptron">Perceptron & Gates</a></li>
+      <li><a href="#s2-pla">Learning Algorithm</a></li>
+      <li><a href="#s2-xor">XOR Problem</a></li>
+    </ol>
+    <h3>Session 3 — Regression</h3>
+    <ol>
+      <li><a href="#s3-model">Single Neuron Model</a></li>
+      <li><a href="#s3-mse">MSE Loss</a></li>
+      <li><a href="#s3-gd">Gradient Descent</a></li>
+      <li><a href="#s3-variants">GD Variants</a></li>
+    </ol>
+    <h3>Session 4 — Classification</h3>
+    <ol>
+      <li><a href="#s4-binary">Binary: Sigmoid + BCE</a></li>
+      <li><a href="#s4-sgd">SGD for Logistic</a></li>
+      <li><a href="#s4-multi">Multi-class: Softmax</a></li>
+      <li><a href="#s4-minibatch">Mini-batch SGD</a></li>
+      <li><a href="#s4-metrics">Evaluation Metrics</a></li>
+    </ol>
+    <h3>Session 5–6 — DFNN</h3>
+    <ol>
+      <li><a href="#s5-mlp">Why Hidden Layers?</a></li>
+      <li><a href="#s5-act">Activation Functions</a></li>
+      <li><a href="#s5-forward">Forward Propagation</a></li>
+      <li><a href="#s5-backprop">Backpropagation</a></li>
+      <li><a href="#s5-depth">Depth vs Width</a></li>
+      <li><a href="#s5-debug">Debugging Guide</a></li>
+    </ol>
+    <h3>Session 6–7 — CNN</h3>
+    <ol>
+      <li><a href="#s6-why">Why CNNs?</a></li>
+      <li><a href="#s6-conv">Convolution</a></li>
+      <li><a href="#s6-pool">Pooling</a></li>
+      <li><a href="#s6-archs">Deep CNN Architectures</a></li>
+      <li><a href="#s6-transfer">Transfer Learning</a></li>
+    </ol>
+    <h3>Quick Reference</h3>
+    <ol>
+      <li><a href="#formulas">Formula Sheet</a></li>
+      <li><a href="#param">Parameter Counting</a></li>
+      <li><a href="#design">Design Checklist</a></li>
+    </ol>
+  </nav>
+</aside>
+
+<!-- ═══ MAIN CONTENT ═══ -->
+<main id="content">
+
+<div class="hero">
+  <h1>Deep Neural Networks — Final Study Guide</h1>
+  <p class="meta">AIML ZG511 · BITS Pilani WILP · Sessions 1–8 (Introduction to CNN)</p>
+  <span class="tag">MidSem: Closed Book · 30% · 100 Marks · 2 Hours</span>
+  <span class="tag" style="margin-left:.5rem">EndSem: Open Book · 40% · 120 Marks</span>
+</div>
+
+<!-- ═══ OVERVIEW ═══ -->
+<h2 id="overview">Course Overview</h2>
+<p>Every module in this course follows the same <strong>4-component framework</strong>. Mastering this framework lets you answer nearly any exam question:</p>
+<div class="fb">
+  <div class="r"><span class="n">1. Data</span>What we learn from (features x, labels y)</div>
+  <div class="r"><span class="n">2. Model</span>How we transform input to output (architecture + parameters W, b)</div>
+  <div class="r"><span class="n">3. Objective</span>How bad the model is (loss function — lower = better)</div>
+  <div class="r"><span class="n">4. Algorithm</span>How we improve the model (gradient descent variants)</div>
+</div>
+
+<h2 id="exam-map">Exam Blueprint (based on past papers 2022–2026)</h2>
+<table>
+  <thead><tr><th>Question Type</th><th>Weight</th><th>Key Topics</th></tr></thead>
+  <tbody>
+    <tr><td>Numerical Computation</td><td>Very High</td><td>Perceptron update, gradient descent, forward pass, backprop, softmax, CNN dimensions</td></tr>
+    <tr><td>Parameter Counting</td><td>High</td><td>DFNN total weights, Conv layer params, FC layer params</td></tr>
+    <tr><td>Code Completion (Python)</td><td>High</td><td>Perceptron, linear regression, logistic regression, DFNN forward/backward</td></tr>
+    <tr><td>Architecture Design</td><td>High</td><td>Specify neurons, activations, loss, optimizer for a given task</td></tr>
+    <tr><td>Conceptual Short Answer</td><td>Medium</td><td>Why ReLU, vanishing gradients, overfitting, metric choice</td></tr>
+    <tr><td>Business/Evaluation Cases</td><td>Medium</td><td>Model A vs Model B, accuracy paradox, cost tradeoffs</td></tr>
+  </tbody>
+</table>
+
+<!-- ═══ SESSION 1 ═══ -->
+<h2 class="mod" id="s1-what">Session 1: Introduction to Deep Learning</h2>
+
+<h3>What is Deep Learning?</h3>
+<div class="callout concept">
+  <div class="callout-label">📌 Core Definition</div>
+  <p><strong>Deep Learning</strong> = A subfield of Machine Learning that learns <em>successive layers of increasingly meaningful representations</em> from data using multi-layer neural networks.</p>
+  <ul>
+    <li><strong>AI ⊃ ML ⊃ DL</strong> — DL is one technique for implementing ML</li>
+    <li>"Deep" = number of layers (depth of representations)</li>
+    <li>Knowledge stored in <strong>connection weights (parameters)</strong>, not hand-crafted rules</li>
+  </ul>
+</div>
+
+<h3>Why Deep Learning? — The Three Drivers</h3>
+<div class="g2">
+  <div class="card">
+    <h4>Data</h4>
+    <ul>
+      <li>Massive amounts of labelled unstructured data (images, text, audio, video)</li>
+      <li>Cheap high-quality sensors, cheap storage</li>
+      <li>Data = D = {X, t} with N examples, d features</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h4>Compute + Algorithms</h4>
+    <ul>
+      <li>Cheap GPUs, distributed clusters</li>
+      <li>Automated feature generation (vs manual)</li>
+      <li>Scalable, better optimization algorithms</li>
+    </ul>
+  </div>
+</div>
+
+<h3 id="s1-4comp">The 4 Core Components of Every DL Problem</h3>
+<table>
+  <thead><tr><th>#</th><th>Component</th><th>Description</th><th>Example</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td><strong>Data</strong></td><td>Examples with features and labels</td><td>D = {X, t}, N examples, d features each</td></tr>
+    <tr><td>2</td><td><strong>Model</strong></td><td>Transforms input → prediction</td><td>Neural network with weights W and biases b</td></tr>
+    <tr><td>3</td><td><strong>Objective Function</strong></td><td>Measures how bad the model is (lower = better) = loss function</td><td>MSE, Binary Cross-Entropy, Categorical Cross-Entropy</td></tr>
+    <tr><td>4</td><td><strong>Learning Algorithm</strong></td><td>Searches for best parameters to minimize loss</td><td>Gradient Descent (batch, SGD, mini-batch)</td></tr>
+  </tbody>
+</table>
+
+<h3 id="s1-tasks">Supervised Learning Tasks</h3>
+<table>
+  <thead><tr><th>Task</th><th>Question</th><th>Output</th><th>Loss</th></tr></thead>
+  <tbody>
+    <tr><td>Regression</td><td>How much / how many?</td><td>Continuous value y ∈ ℝ</td><td>MSE</td></tr>
+    <tr><td>Binary Classification</td><td>Class 0 or class 1?</td><td>y ∈ {0, 1}</td><td>Binary Cross-Entropy</td></tr>
+    <tr><td>Multi-class Classification</td><td>Which of K classes?</td><td>y ∈ {1, …, K}</td><td>Categorical Cross-Entropy</td></tr>
+    <tr><td>Sequence Learning</td><td>Translate / transcribe / tag?</td><td>Sequence output</td><td>Task-specific</td></tr>
+  </tbody>
+</table>
+
+<div class="callout tip">
+  <div class="callout-label">🎯 Exam Tip</div>
+  <p>When a question asks you to "design a system", always state all 4 components explicitly: input dimension, architecture, loss function, and optimization algorithm. This gets full marks for design questions.</p>
+</div>
+
+<!-- ═══ SESSION 2 ═══ -->
+<h2 class="mod" id="s2-neuron">Session 2: Artificial Neuron and Perceptron</h2>
+
+<h3>Biological vs Artificial Neuron</h3>
+<table>
+  <thead><tr><th>Biological</th><th>Artificial</th></tr></thead>
+  <tbody>
+    <tr><td>Dendrites receive signals</td><td>Inputs x<sub>1</sub>, …, x<sub>d</sub></td></tr>
+    <tr><td>Synaptic strengths</td><td>Weights w<sub>1</sub>, …, w<sub>d</sub></td></tr>
+    <tr><td>Cell body sums + processes</td><td>Weighted sum z = w<sup>T</sup>x</td></tr>
+    <tr><td>Axon fires or not</td><td>Activation function f(z)</td></tr>
+    <tr><td>Complex biochemical, analog</td><td>Simple math model, digital</td></tr>
+  </tbody>
+</table>
+
+<h3>Artificial Neuron — Mathematical Model</h3>
+<div class="fb">
+  <div class="r"><span class="n">Pre-activation z:</span> z = w<sub>0</sub> + w<sub>1</sub>x<sub>1</sub> + w<sub>2</sub>x<sub>2</sub> + … + w<sub>d</sub>x<sub>d</sub> = w<sup>T</sup>x  (bias w<sub>0</sub> has input x<sub>0</sub>=1)</div>
+  <div class="r"><span class="n">Output ŷ:</span> ŷ = f(z)   where f is the activation function</div>
+  <div class="r"><span class="n">Parameters:</span> Weights w<sub>i</sub> (importance of each feature) + bias w<sub>0</sub></div>
+</div>
+
+<h3 id="s2-perceptron">Perceptron — Simplest Artificial Neuron</h3>
+<div class="callout concept">
+  <div class="callout-label">📌 Perceptron (Rosenblatt, 1958)</div>
+  <p>A perceptron uses the <strong>step activation function</strong>:</p>
+  <p>ŷ = 1 if z ≥ 0,  ŷ = 0 if z &lt; 0</p>
+  <p>It creates a <strong>linear decision boundary</strong> (hyperplane) in feature space.</p>
+</div>
+
+<h4>Logic Gate Examples</h4>
+<table>
+  <thead><tr><th>Gate</th><th>w<sub>0</sub> (bias)</th><th>w<sub>1</sub></th><th>w<sub>2</sub></th><th>Verify (1,1)</th></tr></thead>
+  <tbody>
+    <tr><td>AND</td><td>−1.5</td><td>1</td><td>1</td><td>z = −1.5+1+1 = 0.5 ≥ 0 → ŷ=1 ✓</td></tr>
+    <tr><td>OR</td><td>−0.5</td><td>1</td><td>1</td><td>z = −0.5+1+1 = 1.5 ≥ 0 → ŷ=1 ✓</td></tr>
+    <tr><td>NOT</td><td>0.5</td><td>−1</td><td>—</td><td>z = 0.5−1 = −0.5 &lt; 0 → ŷ=0 ✓</td></tr>
+    <tr><td>NAND</td><td>1.5</td><td>−1</td><td>−1</td><td>z = 1.5−1−1 = −0.5 &lt; 0 → ŷ=0 ✓</td></tr>
+    <tr><td>XOR</td><td colspan="4" style="color:#dc2626">❌ CANNOT be represented — not linearly separable</td></tr>
+  </tbody>
+</table>
+
+<h3 id="s2-pla">Perceptron Learning Algorithm</h3>
+<div class="fb">
+  <div class="r"><span class="n">Error:</span> e = y − ŷ  (0 if correct, +1 or −1 if wrong)</div>
+  <div class="r"><span class="n">Update rule:</span> w<sub>i</sub> ← w<sub>i</sub> + η × e × x<sub>i</sub>  for all i (including bias: x<sub>0</sub>=1)</div>
+  <div class="r"><span class="n">No update:</span> if e = 0 (prediction correct), weights stay the same</div>
+  <div class="r"><span class="n">η:</span> learning rate (step size, e.g. 0.1 or 1)</div>
+</div>
+
+<div class="callout worked">
+  <div class="callout-label">✏️ Perceptron Update — Step by Step</div>
+  <p>Given: w = [0.5, 0.3, −0.4]<sup>T</sup>, x<sub>data</sub> = [1, 2], y = 1, η = 0.1</p>
+  <div class="step"><strong>Step 1 — Construct full input:</strong> x = [1, 1, 2]<sup>T</sup>  (prepend x<sub>0</sub>=1 for bias)</div>
+  <div class="step"><strong>Step 2 — Pre-activation z:</strong> (0.5)(1) + (0.3)(1) + (−0.4)(2) = 0.5 + 0.3 − 0.8 = <strong>0.0</strong></div>
+  <div class="step"><strong>Step 3 — Prediction ŷ:</strong> z = 0.0 ≥ 0 → <strong>ŷ = 1</strong></div>
+  <div class="step"><strong>Step 4 — Error:</strong> e = 1 − 1 = <strong>0</strong>  → No weight update needed</div>
+</div>
+
+<div class="callout worked">
+  <div class="callout-label">✏️ Perceptron Update — With Misclassification</div>
+  <p>Given: w = [0.5, −0.5, 0.5]<sup>T</sup>, x<sub>data</sub> = [2, 4], y = 0, η = 0.2</p>
+  <div class="step"><strong>z:</strong> 0.5(1) + (−0.5)(2) + 0.5(4) = 0.5 − 1.0 + 2.0 = <strong>1.5</strong></div>
+  <div class="step"><strong>ŷ:</strong> 1.5 ≥ 0 → <strong>ŷ = 1</strong></div>
+  <div class="step"><strong>Error:</strong> e = 0 − 1 = <strong>−1</strong>  (misclassified!)</div>
+  <div class="step"><strong>Δw:</strong> 0.2 × (−1) × [1, 2, 4]<sup>T</sup> = [−0.2, −0.4, −0.8]<sup>T</sup></div>
+  <div class="step"><strong>w<sup>new</sup>:</strong> [0.5−0.2, −0.5−0.4, 0.5−0.8]<sup>T</sup> = <strong>[0.3, −0.9, −0.3]<sup>T</sup></strong></div>
+</div>
+
+<h3 id="s2-xor">XOR Problem — Fundamental Limitation</h3>
+<div class="callout warn">
+  <div class="callout-label">⚠️ Critical — Why Perceptron Fails on XOR</div>
+  <ul>
+    <li>XOR: (0,0)→0, (0,1)→1, (1,0)→1, (1,1)→0</li>
+    <li>Plot on 2D: the class-0 and class-1 points <strong>cannot be separated by a straight line</strong></li>
+    <li>Perceptron decision boundary is always a <strong>linear hyperplane</strong></li>
+    <li>XOR is <strong>not linearly separable</strong> → perceptron sticks at 50% accuracy forever</li>
+    <li><strong>Solution:</strong> Multi-Layer Perceptron with hidden layers + non-linear activations</li>
+  </ul>
+</div>
+
+<div class="callout concept">
+  <div class="callout-label">📌 Linearly Separable Data</div>
+  <p>Two sets of data points are linearly separable in n-dimensional space if they can be separated by an (n−1)-dimensional hyperplane. AND and OR are linearly separable; XOR is not.</p>
+</div>
+
+<!-- ═══ SESSION 3 ═══ -->
+<h2 class="mod" id="s3-model">Session 3: Linear Neural Networks for Regression</h2>
+
+<h3>Single Neuron for Regression</h3>
+<p>For regression, the output is a <strong>continuous value</strong>. Use a single neuron with an <strong>identity activation</strong> f(z) = z:</p>
+
+<div class="fb">
+  <div class="r"><span class="n">Prediction:</span> ŷ = w<sub>0</sub> + w<sub>1</sub>x<sub>1</sub> + … + w<sub>d</sub>x<sub>d</sub> = w<sup>T</sup>x</div>
+  <div class="r"><span class="n">Vectorized:</span> Ŷ = Xw  (X is the N×(d+1) design matrix, first column all 1s for bias)</div>
+  <div class="r"><span class="n">Identity f(z)=z:</span> derivative = 1 everywhere, gradient flows unchanged</div>
+</div>
+
+<h3 id="s3-mse">MSE Loss Function</h3>
+<div class="fb">
+  <div class="r"><span class="n">Per example:</span> ℓ(i) = (ŷ<sup>(i)</sup> − y<sup>(i)</sup>)<sup>2</sup></div>
+  <div class="r"><span class="n">MSE Loss J(w):</span> J = (1/N) × Σ<sub>i</sub> (ŷ<sup>(i)</sup> − y<sup>(i)</sup>)<sup>2</sup></div>
+  <div class="r"><span class="n">Vector form:</span> J = (1/N) × ‖Xw − y‖<sup>2</sup></div>
+</div>
+
+<p><strong>Why MSE?</strong> Differentiable everywhere → easy to optimize. Convex for linear model → single global minimum. Penalizes large errors (quadratic). Maximum likelihood under Gaussian noise assumption.</p>
+
+<h3 id="s3-gd">Gradient Descent</h3>
+<div class="fb">
+  <div class="r"><span class="n">Gradient:</span> ∇J(w) = (2/N) × X<sup>T</sup>(Xw − y) = (2/N) × X<sup>T</sup>(Ŷ − y)</div>
+  <div class="r"><span class="n">Update rule:</span> w<sup>(t+1)</sup> = w<sup>(t)</sup> − η × ∇J(w<sup>(t)</sup>)</div>
+  <div class="r"><span class="n">Intuition:</span> Move downhill on the error surface toward the minimum</div>
+</div>
+
+<div class="callout worked">
+  <div class="callout-label">✏️ Full Gradient Descent Example</div>
+  <p>Data: (Area=10, Price=150), (Area=20, Price=250) | Initial: w<sub>0</sub>=50, w<sub>1</sub>=8, η=0.01</p>
+  <div class="step"><strong>Predictions:</strong> ŷ<sub>A</sub> = 50 + 8(10) = 130 &nbsp;|&nbsp; ŷ<sub>B</sub> = 50 + 8(20) = 210</div>
+  <div class="step"><strong>Errors (ŷ−y):</strong> e<sub>A</sub> = 130−150 = −20 &nbsp;|&nbsp; e<sub>B</sub> = 210−250 = −40</div>
+  <div class="step"><strong>MSE Loss:</strong> J = (1/2)[(−20)²+(−40)²] = (400+1600)/2 = 1000</div>
+  <div class="step"><strong>∇w<sub>0</sub></strong> = (2/2)[(−20×1)+(−40×1)] = −60</div>
+  <div class="step"><strong>∇w<sub>1</sub></strong> = (2/2)[(−20×10)+(−40×20)] = −1000</div>
+  <div class="step"><strong>Updated weights:</strong> w<sub>0</sub> = 50 − 0.01(−60) = <strong>50.6</strong> &nbsp;|&nbsp; w<sub>1</sub> = 8 − 0.01(−1000) = <strong>18.0</strong></div>
+</div>
+
+<h3>Evaluation Metrics for Regression</h3>
+<div class="fb">
+  <div class="r"><span class="n">MSE:</span> (1/N) Σ(ŷ−y)²</div>
+  <div class="r"><span class="n">RMSE:</span> √MSE  (same units as target)</div>
+  <div class="r"><span class="n">MAE:</span> (1/N) Σ|ŷ−y|  (robust to outliers)</div>
+  <div class="r"><span class="n">R² Score:</span> 1 − Σ(y−ŷ)²/Σ(y−ȳ)²  (1=perfect, 0=mean baseline, can be negative)</div>
+</div>
+
+<h3 id="s3-variants">Gradient Descent Variants</h3>
+<table>
+  <thead><tr><th>Variant</th><th>Batch Size</th><th>Pros</th><th>Cons</th></tr></thead>
+  <tbody>
+    <tr><td>Batch GD</td><td>All N examples</td><td>Accurate gradient, stable path to minimum</td><td>Slow per update, memory-heavy for large N</td></tr>
+    <tr><td>Stochastic GD (SGD)</td><td>1 example per update</td><td>Very fast, can escape local minima, online learning</td><td>Noisy, oscillates, sensitive to learning rate</td></tr>
+    <tr><td><strong>Mini-batch SGD</strong></td><td>B examples (32–256)</td><td>Best of both worlds, GPU-efficient (vectorized ops)</td><td>Extra hyperparameter (batch size)</td></tr>
+  </tbody>
+</table>
+
+<div class="callout key">
+  <div class="callout-label">✅ Feature Scaling = Faster Convergence</div>
+  <p>Without scaling: error surface is an elongated ellipse → gradient zigzags → slow convergence, requires tiny η. With scaling (z-score normalization): error surface is nearly circular → direct path to minimum → faster convergence, higher η allowed.</p>
+  <p><strong>Always normalize features before training!</strong> z = (x − μ) / σ</p>
+</div>
+
+<!-- ═══ SESSION 4 ═══ -->
+<h2 class="mod" id="s4-binary">Session 4: Linear Neural Networks for Classification</h2>
+
+<h3>Binary Classification — The Problem</h3>
+<p>Goal: predict y ∈ {0, 1}. Cannot use linear regression output directly (can go below 0 or above 1). Need a function that maps any real number to a probability in (0, 1).</p>
+
+<h3>Sigmoid Activation + BCE Loss</h3>
+<div class="fb">
+  <div class="r"><span class="n">Sigmoid σ(z):</span> σ(z) = 1 / (1 + e<sup>−z</sup>)  &nbsp;|&nbsp; Range: (0, 1)</div>
+  <div class="r"><span class="n">At z=0:</span> σ(0) = 0.5 (uncertain)</div>
+  <div class="r"><span class="n">z → +∞:</span> σ → 1 (confident class 1)</div>
+  <div class="r"><span class="n">z → −∞:</span> σ → 0 (confident class 0)</div>
+  <div class="r"><span class="n">Derivative:</span> σ'(z) = σ(z)(1 − σ(z))  &nbsp;|&nbsp; Max value = 0.25 at z=0</div>
+  <div class="r"><span class="n">BCE Loss:</span> L = −[y log(ŷ) + (1−y) log(1−ŷ)]</div>
+  <div class="r"><span class="n">Gradient ∂L/∂z:</span> ŷ − y  (just the prediction error — elegant!)</div>
+  <div class="r"><span class="n">Weight gradient:</span> ∇<sub>w</sub>L = (ŷ − y) × x</div>
+  <div class="r"><span class="n">Decision:</span> Predict class 1 if ŷ ≥ threshold (default 0.5)</div>
+</div>
+
+<div class="callout key">
+  <div class="callout-label">✅ Why Sigmoid + BCE are Always Paired</div>
+  <p>Via chain rule: ∂L/∂z = (∂L/∂ŷ)(∂ŷ/∂z) = [−y/ŷ + (1−y)/(1−ŷ)] × σ(z)(1−σ(z)) = ŷ − y. The gradient is simply the prediction error — clean, stable, avoids saturation issues that plague other pairings.</p>
+</div>
+
+<div class="callout worked">
+  <div class="callout-label">✏️ Logistic Regression — One SGD Step</div>
+  <p>w = [0, 0.6, 0.8]<sup>T</sup> (bias, credit, income), x = [0.7, 0.5], y = 1, η = 0.1</p>
+  <div class="step"><strong>z:</strong> 0(1) + 0.6(0.7) + 0.8(0.5) = 0 + 0.42 + 0.40 = <strong>0.82</strong></div>
+  <div class="step"><strong>ŷ = σ(0.82):</strong> 1/(1 + e<sup>−0.82</sup>) = 1/(1 + 0.4404) ≈ <strong>0.694</strong></div>
+  <div class="step"><strong>Error:</strong> ŷ − y = 0.694 − 1 = <strong>−0.306</strong></div>
+  <div class="step"><strong>∇w<sub>1</sub>:</strong> (−0.306)(0.7) = <strong>−0.2142</strong></div>
+  <div class="step"><strong>w<sub>1</sub><sup>new</sup>:</strong> 0.6 − 0.1(−0.2142) = 0.6 + 0.02142 = <strong>0.6214</strong></div>
+</div>
+
+<h3 id="s4-sgd">Stochastic Gradient Descent (SGD) for Logistic Regression</h3>
+<div class="fb">
+  <div class="r"><span class="n">SGD:</span> Use ONE random example per update (instead of all N)</div>
+  <div class="r"><span class="n">Algorithm:</span> For each epoch: shuffle data → for each example (x<sup>(i)</sup>, y<sup>(i)</sup>):</div>
+  <div class="r">&nbsp;&nbsp;&nbsp;1. Compute ŷ<sup>(i)</sup> = σ(w<sup>T</sup>x<sup>(i)</sup>)</div>
+  <div class="r">&nbsp;&nbsp;&nbsp;2. Gradient = (ŷ<sup>(i)</sup> − y<sup>(i)</sup>) x<sup>(i)</sup></div>
+  <div class="r">&nbsp;&nbsp;&nbsp;3. w ← w − η × gradient</div>
+  <div class="r"><span class="n">Advantage:</span> Much faster per iteration; noise helps escape local minima</div>
+</div>
+
+<h3 id="s4-multi">Multi-class Classification — Softmax Regression</h3>
+<p>For K classes: use K output neurons + softmax activation to produce a valid probability distribution:</p>
+
+<div class="fb">
+  <div class="r"><span class="n">Logits z<sub>k</sub>:</span> z<sub>k</sub> = w<sub>k</sub><sup>T</sup>x  (one weight vector per class)</div>
+  <div class="r"><span class="n">Softmax ŷ<sub>k</sub>:</span> ŷ<sub>k</sub> = e<sup>z<sub>k</sub></sup> / Σ<sub>j=1</sub><sup>K</sup> e<sup>z<sub>j</sub></sup></div>
+  <div class="r"><span class="n">Properties:</span> All ŷ<sub>k</sub> ∈ (0,1)  and  Σ<sub>k</sub> ŷ<sub>k</sub> = 1  (valid probability distribution)</div>
+  <div class="r"><span class="n">CCE Loss:</span> L = −Σ<sub>k</sub> y<sub>k</sub> log(ŷ<sub>k</sub>)  using one-hot labels y</div>
+  <div class="r"><span class="n">Prediction:</span> class = argmax<sub>k</sub>(ŷ<sub>k</sub>)  (highest probability class)</div>
+  <div class="r"><span class="n">One-hot:</span> Class 2 of 4 → y = [0, 1, 0, 0]<sup>T</sup></div>
+</div>
+
+<div class="callout worked">
+  <div class="callout-label">✏️ Softmax Numerical Calculation</div>
+  <p>Logits z = [2.0, 1.0, 0.5], True class = 0 (one-hot y = [1, 0, 0])</p>
+  <div class="step"><strong>Exponentials:</strong> e<sup>2.0</sup> = 7.389 &nbsp;|&nbsp; e<sup>1.0</sup> = 2.718 &nbsp;|&nbsp; e<sup>0.5</sup> = 1.649</div>
+  <div class="step"><strong>Sum:</strong> 7.389 + 2.718 + 1.649 = <strong>11.756</strong></div>
+  <div class="step"><strong>Probabilities:</strong> ŷ = [7.389/11.756, 2.718/11.756, 1.649/11.756] = [<strong>0.629</strong>, 0.231, 0.140]</div>
+  <div class="step"><strong>Prediction:</strong> argmax = class 0 ✓ (matches true label)</div>
+  <div class="step"><strong>CCE Loss:</strong> L = −[1×log(0.629) + 0 + 0] = −(−0.464) = <strong>0.464</strong></div>
+</div>
+
+<h3 id="s4-minibatch">Mini-batch SGD (Standard in Deep Learning)</h3>
+<table>
+  <thead><tr><th>Batch Size</th><th>Speed</th><th>Stability</th><th>Generalization</th></tr></thead>
+  <tbody>
+    <tr><td>Small (32–64)</td><td>Fast iterations, more updates</td><td>Noisy, less stable</td><td>Often better (escapes sharp minima)</td></tr>
+    <tr><td>Medium (128–256)</td><td>Good balance</td><td>Stable</td><td>Standard choice</td></tr>
+    <tr><td>Large (512–1024)</td><td>Faster per-epoch</td><td>Very stable, smooth gradients</td><td>May generalize worse (sharp minima)</td></tr>
+  </tbody>
+</table>
+
+<h3 id="s4-metrics">Evaluation Metrics for Classification</h3>
+<div class="fb">
+  <div class="r"><span class="n">Confusion Matrix:</span></div>
+  <div class="r">&nbsp;&nbsp;TP = predicted positive, actually positive</div>
+  <div class="r">&nbsp;&nbsp;TN = predicted negative, actually negative</div>
+  <div class="r">&nbsp;&nbsp;FP = predicted positive, actually negative (Type I error)</div>
+  <div class="r">&nbsp;&nbsp;FN = predicted negative, actually positive (Type II error)</div>
+  <div class="r"><span class="n">Accuracy:</span> (TP + TN) / (TP + TN + FP + FN)</div>
+  <div class="r"><span class="n">Precision:</span> TP / (TP + FP)  ← of all predicted positives, how many are actually positive?</div>
+  <div class="r"><span class="n">Recall:</span> TP / (TP + FN)  ← of all actual positives, how many did we catch?</div>
+  <div class="r"><span class="n">F1 Score:</span> 2 × (Precision × Recall) / (Precision + Recall)</div>
+</div>
+
+<div class="callout warn">
+  <div class="callout-label">⚠️ Accuracy Paradox — Very Common Exam Question</div>
+  <p><strong>Scenario:</strong> 99,000 legitimate transactions + 1,000 fraudulent ones. A model that always predicts "legitimate" gets 99% accuracy but 0% fraud recall — it's useless!</p>
+  <ul>
+    <li><strong>Use Recall</strong> when false negatives are costly (disease detection: don't miss sick patients)</li>
+    <li><strong>Use Precision</strong> when false positives are costly (spam: don't mark real emails as spam)</li>
+    <li><strong>Use F1</strong> for imbalanced datasets where you need balance between precision and recall</li>
+    <li><strong>Threshold:</strong> Lowering threshold → more positives predicted → higher recall, lower precision</li>
+  </ul>
+</div>
+
+<!-- ═══ SESSION 5–6 ═══ -->
+<h2 class="mod" id="s5-mlp">Sessions 5–6: Deep Feedforward Neural Networks (DFNN / MLP)</h2>
+
+<h3>Why We Need Hidden Layers</h3>
+<div class="callout concept">
+  <div class="callout-label">📌 The Key Insight</div>
+  <ul>
+    <li>Single neuron (no hidden layers): can only create <strong>linear decision boundaries</strong> → fails on XOR, complex patterns</li>
+    <li>Adding hidden layers with non-linear activations → can learn <strong>non-linear</strong> decision boundaries</li>
+    <li><strong>Universal Approximation Theorem</strong> (Cybenko, 1989): A single hidden layer with sufficient neurons can approximate <em>any</em> continuous function on a compact domain</li>
+    <li>In practice: deep networks are more <strong>parameter-efficient</strong> than wide shallow networks</li>
+  </ul>
+</div>
+
+<h3 id="s5-act">Activation Functions — Complete Reference</h3>
+<table>
+  <thead><tr><th>Function</th><th>Formula</th><th>Range</th><th>Gradient</th><th>Use</th><th>Issue</th></tr></thead>
+  <tbody>
+    <tr><td>Sigmoid</td><td>1/(1+e<sup>−z</sup>)</td><td>(0,1)</td><td>σ(1−σ) max 0.25</td><td>Binary output only</td><td>Vanishing gradients, not zero-centred</td></tr>
+    <tr><td>Tanh</td><td>(e<sup>z</sup>−e<sup>−z</sup>)/(e<sup>z</sup>+e<sup>−z</sup>)</td><td>(−1,1)</td><td>1−tanh<sup>2</sup>(z)</td><td>Small networks, zero-centred</td><td>Vanishing gradients in deep nets</td></tr>
+    <tr><td><strong>ReLU</strong> ⭐</td><td>max(0, z)</td><td>[0,∞)</td><td>1 if z&gt;0, else 0</td><td><strong>Default for hidden layers</strong></td><td>Dying ReLU (neuron stuck at 0)</td></tr>
+    <tr><td>Leaky ReLU</td><td>max(αz, z), α=0.01</td><td>(−∞,∞)</td><td>1 if z&gt;0, α if z≤0</td><td>Deep hidden layers</td><td>Extra hyperparameter α</td></tr>
+    <tr><td>Softmax</td><td>e<sup>z<sub>k</sub></sup>/Σe<sup>z<sub>j</sub></sup></td><td>(0,1)</td><td>–</td><td>Multi-class output layer</td><td>Not for hidden layers</td></tr>
+  </tbody>
+</table>
+
+<div class="callout key">
+  <div class="callout-label">✅ Why ReLU is Default for Hidden Layers</div>
+  <ol>
+    <li><strong>No vanishing gradient:</strong> For z &gt; 0, gradient = 1 exactly → flows unchanged through deep networks</li>
+    <li><strong>Computationally cheap:</strong> Just max(0,z) — no exponentials, no divisions</li>
+    <li><strong>Sparse activation:</strong> ~50% neurons output 0 → more efficient representations, closer to biological neurons</li>
+    <li><strong>Caveat — Dying ReLU:</strong> If a neuron's input is always negative, gradient = 0 permanently → neuron stops learning. Fix: use Leaky ReLU</li>
+  </ol>
+</div>
+
+<h4>Output Layer Activation — How to Choose</h4>
+<table>
+  <thead><tr><th>Task</th><th>Output Activation</th><th>Loss Function</th></tr></thead>
+  <tbody>
+    <tr><td>Regression</td><td>Identity (linear) f(z)=z</td><td>MSE</td></tr>
+    <tr><td>Binary Classification</td><td>Sigmoid</td><td>Binary Cross-Entropy (BCE)</td></tr>
+    <tr><td>Multi-class Classification</td><td>Softmax</td><td>Categorical Cross-Entropy (CCE)</td></tr>
+  </tbody>
+</table>
+
+<h3 id="s5-forward">Forward Propagation — Layer by Layer</h3>
+<p>For an L-layer DFNN, each layer l has weight matrix W<sup>[l]</sup> and bias b<sup>[l]</sup>:</p>
+
+<div class="fb">
+  <div class="r"><span class="n">Input:</span> H<sup>[0]</sup> = X  (the raw input)</div>
+  <div class="r"><span class="n">For each layer l = 1 to L:</span></div>
+  <div class="r">&nbsp;&nbsp;Pre-activation: Z<sup>[l]</sup> = H<sup>[l−1]</sup> W<sup>[l]</sup> + b<sup>[l]</sup></div>
+  <div class="r">&nbsp;&nbsp;Activation: H<sup>[l]</sup> = f<sup>[l]</sup>(Z<sup>[l]</sup>)  [ReLU for hidden, task-specific for output]</div>
+  <div class="r"><span class="n">Output:</span> ŷ = H<sup>[L]</sup></div>
+</div>
+
+<div class="callout worked">
+  <div class="callout-label">✏️ Complete Forward Pass — 2-Layer DFNN</div>
+  <p>Input x = [0.5, 0.8]<sup>T</sup> | W<sup>[1]</sup> = [[1.0, 0.5],[−0.5, 1.5]], b<sup>[1]</sup> = [0.2, −0.3]<sup>T</sup></p>
+  <p>w<sup>[2]</sup> = [1.2, 0.8], b<sup>[2]</sup> = 0.1 | True label: y = 1</p>
+  <div class="step"><strong>Z<sup>[1]</sup><sub>1</sub>:</strong> (1.0)(0.5) + (0.5)(0.8) + 0.2 = 0.5 + 0.4 + 0.2 = <strong>1.1</strong></div>
+  <div class="step"><strong>Z<sup>[1]</sup><sub>2</sub>:</strong> (−0.5)(0.5) + (1.5)(0.8) − 0.3 = −0.25 + 1.2 − 0.3 = <strong>0.65</strong></div>
+  <div class="step"><strong>H<sup>[1]</sup> = ReLU([1.1, 0.65]):</strong> Both positive → <strong>[1.1, 0.65]</strong> (no change)</div>
+  <div class="step"><strong>Z<sup>[2]</sup>:</strong> (1.2)(1.1) + (0.8)(0.65) + 0.1 = 1.32 + 0.52 + 0.1 = <strong>1.94</strong></div>
+  <div class="step"><strong>ŷ = σ(1.94):</strong> 1/(1+e<sup>−1.94</sup>) ≈ <strong>0.874</strong>  (predicted churn probability)</div>
+  <div class="step"><strong>BCE Loss (y=1):</strong> L = −log(0.874) ≈ <strong>0.135</strong></div>
+</div>
+
+<h3 id="s5-backprop">Backpropagation</h3>
+<div class="callout concept">
+  <div class="callout-label">📌 Chain Rule — How Backprop Works</div>
+  <p>Backprop efficiently computes ∂J/∂W for <em>all</em> layers using the chain rule, flowing gradients backward from output to input.</p>
+</div>
+
+<div class="fb">
+  <div class="r"><span class="n">Output error δ<sup>[L]</sup>:</span> δ<sup>[L]</sup> = ŷ − y  (for sigmoid+BCE or softmax+CCE)</div>
+  <div class="r"><span class="n">Hidden error:</span> δ<sup>[l]</sup> = (δ<sup>[l+1]</sup> W<sup>[l+1]T</sup>) ⊙ f'(Z<sup>[l]</sup>)  [⊙ = elementwise multiply]</div>
+  <div class="r"><span class="n">ReLU derivative:</span> f'(z) = 1 if z &gt; 0, else 0  (applied elementwise)</div>
+  <div class="r"><span class="n">Weight gradient:</span> ∂J/∂W<sup>[l]</sup> = H<sup>[l−1]T</sup> δ<sup>[l]</sup> / N</div>
+  <div class="r"><span class="n">Bias gradient:</span> ∂J/∂b<sup>[l]</sup> = mean(δ<sup>[l]</sup>)</div>
+  <div class="r"><span class="n">Weight update:</span> W<sup>[l]</sup> ← W<sup>[l]</sup> − η × ∂J/∂W<sup>[l]</sup></div>
+</div>
+
+<div class="callout warn">
+  <div class="callout-label">⚠️ Vanishing Gradient Problem</div>
+  <ul>
+    <li><strong>Cause:</strong> Sigmoid/Tanh derivatives are small (max 0.25, max 1.0 respectively). Backprop multiplies these at every layer via chain rule → gradients decay exponentially in early layers</li>
+    <li><strong>Effect:</strong> Early layers stop learning (∂J/∂W ≈ 0), network is effectively shallow</li>
+    <li><strong>Fix 1 — ReLU:</strong> Derivative = 1 for positive inputs → gradient flows unchanged</li>
+    <li><strong>Fix 2 — Residual connections (ResNet):</strong> y = F(x) + x → gradient highways bypass layers</li>
+    <li><strong>Fix 3 — Batch Normalization:</strong> Normalizes activations → prevents gradient collapse</li>
+    <li><strong>Fix 4 — Proper initialization:</strong> Xavier (sigmoid/tanh) or He (ReLU)</li>
+  </ul>
+</div>
+
+<h3 id="s5-depth">Depth vs Width — Design Decisions</h3>
+<div class="g2">
+  <div class="card">
+    <h4>Deeper (More Layers)</h4>
+    <ul>
+      <li>Learns hierarchical features</li>
+      <li>More expressive per parameter</li>
+      <li>Better generalization</li>
+      <li>Risk: vanishing/exploding gradients</li>
+      <li>Harder to optimize</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h4>Wider (More Neurons/Layer)</h4>
+    <ul>
+      <li>More parallel features per layer</li>
+      <li>Higher capacity, easier to train</li>
+      <li>Risk: overfitting with limited data</li>
+      <li>Better for very wide data</li>
+    </ul>
+  </div>
+</div>
+
+<h4>Parameter Counting for DFNN</h4>
+<div class="fb">
+  <div class="r"><span class="n">Per FC layer:</span> (n<sub>in</sub> × n<sub>out</sub>) + n<sub>out</sub>  [weights + biases]</div>
+  <div class="r"><span class="n">Example:</span> Input(784) → H1(200) → H2(100) → Output(10)</div>
+  <div class="r">&nbsp;&nbsp;Layer 1: 784 × 200 + 200 = 157,000</div>
+  <div class="r">&nbsp;&nbsp;Layer 2: 200 × 100 + 100 = 20,100</div>
+  <div class="r">&nbsp;&nbsp;Output:  100 × 10 + 10 = 1,010</div>
+  <div class="r">&nbsp;&nbsp;Total: <strong>178,110 parameters</strong></div>
+  <div class="r"><span class="n">Biases only:</span> If no bias, omit the +n<sub>out</sub> term</div>
+</div>
+
+<h3 id="s5-debug">Training Diagnostic Guide</h3>
+<table>
+  <thead><tr><th>Symptom</th><th>Diagnosis</th><th>Fix</th></tr></thead>
+  <tbody>
+    <tr><td>Loss = NaN or Inf</td><td>Numerical instability</td><td>Decrease η, normalize inputs, clip gradients</td></tr>
+    <tr><td>Loss not decreasing</td><td>η too small, or bug in code</td><td>Increase η; verify gradient computation</td></tr>
+    <tr><td>Loss oscillating wildly</td><td>η too large</td><td>Decrease η; use learning rate schedule</td></tr>
+    <tr><td>Val loss ↑, Train loss ↓</td><td>Overfitting</td><td>Dropout, L2 regularization, more data, early stop</td></tr>
+    <tr><td>Both losses high</td><td>Underfitting</td><td>Larger network, more epochs, better features</td></tr>
+    <tr><td>Gradients → 0 in early layers</td><td>Vanishing gradients</td><td>Use ReLU, residual connections, batch norm</td></tr>
+    <tr><td>Gradients → ∞</td><td>Exploding gradients</td><td>Gradient clipping, lower η</td></tr>
+  </tbody>
+</table>
+
+<!-- ═══ SESSION 6–7: CNN ═══ -->
+<h2 class="mod" id="s6-why">Sessions 6–8: Convolutional Neural Networks (CNN)</h2>
+
+<h3>Why CNNs for Images?</h3>
+<div class="callout concept">
+  <div class="callout-label">📌 Three Key Properties CNNs Exploit</div>
+  <ul>
+    <li><strong>Locality:</strong> Nearby pixels are related → use local receptive fields (kernels)</li>
+    <li><strong>Translation Invariance:</strong> A cat is a cat anywhere in the image → weight sharing (same kernel slides across image)</li>
+    <li><strong>Hierarchy:</strong> Low-level features (edges) → mid-level (shapes) → high-level (objects)</li>
+  </ul>
+  <p>A flat fully-connected layer on a 224×224×3 image = 150,528 inputs → enormous parameter count. CNNs share weights across positions → far fewer parameters.</p>
+</div>
+
+<h3 id="s6-conv">Convolution Operation</h3>
+<div class="fb">
+  <div class="r"><span class="n">Output size:</span> ⌊(n<sub>in</sub> + 2P − K) / S⌋ + 1</div>
+  <div class="r"><span class="n">n<sub>in</sub> = input size, P = padding, K = kernel size, S = stride</span></div>
+  <div class="r"><span class="n">Same padding:</span> Set P = (K−1)/2 to keep output same size as input (with S=1)</div>
+  <div class="r"><span class="n">Valid (no padding):</span> P = 0 → output shrinks by (K−1)</div>
+  <div class="r"><span class="n">Parameters:</span> (K × K × C<sub>in</sub> × C<sub>out</sub>) + C<sub>out</sub>  [weights + one bias per filter]</div>
+  <div class="r"><span class="n">Output channels:</span> = number of filters = C<sub>out</sub></div>
+</div>
+
+<div class="callout worked">
+  <div class="callout-label">✏️ CNN Dimension Calculation</div>
+  <p>Input: 128×128×3 (H×W×C<sub>in</sub>). Conv(32 filters, kernel 5×5, stride 1, padding 2)</p>
+  <div class="step"><strong>Output H/W:</strong> ⌊(128 + 2(2) − 5) / 1⌋ + 1 = ⌊(128 + 4 − 5) / 1⌋ + 1 = 127 + 1 = <strong>128</strong> (same padding)</div>
+  <div class="step"><strong>Output depth:</strong> <strong>32</strong> channels (one per filter)</div>
+  <div class="step"><strong>Output shape:</strong> 128 × 128 × 32</div>
+  <div class="step"><strong>Parameters:</strong> 5×5×3×32 + 32 = 2,400 + 32 = <strong>2,432</strong></div>
+  <p style="margin-top:.7rem">After MaxPool(2×2, stride 2): Output = ⌊(128 − 2)/2⌋ + 1 = 64 → <strong>64 × 64 × 32</strong></p>
+</div>
+
+<div class="callout worked">
+  <div class="callout-label">✏️ CNN Multi-Layer Tracking (Exam favourite)</div>
+  <p>Input: 192×256×1. Architecture: Conv2d(1→5, k=3, s=1, p=1) → MaxPool(2,2) → Conv2d(5→10, k=5, s=1, p=0) → MaxPool(2,2) → Conv2d(10→20, k=2, s=2, p=0) → MaxPool(5,2) → Flatten → FC(?,6)</p>
+  <div class="step"><strong>Conv1:</strong> ⌊(192+2−3)/1⌋+1 = 192 → 192×256×5</div>
+  <div class="step"><strong>Pool1:</strong> ⌊(192−2)/2⌋+1 = 96 → <strong>96×128×5</strong></div>
+  <div class="step"><strong>Conv2:</strong> ⌊(96−5)/1⌋+1 = 92 → <strong>92×124×10</strong></div>
+  <div class="step"><strong>Pool2:</strong> ⌊(92−2)/2⌋+1 = 46 → <strong>46×62×10</strong></div>
+  <div class="step"><strong>Conv3:</strong> ⌊(46−2)/2⌋+1 = 23 → <strong>23×31×20</strong></div>
+  <div class="step"><strong>Pool3:</strong> ⌊(23−5)/2⌋+1 = 10 → <strong>10×14×20</strong></div>
+  <div class="step"><strong>Flatten:</strong> 10×14×20 = <strong>2,800</strong></div>
+  <div class="step"><strong>FC params:</strong> 2800×6 + 6 = <strong>16,806</strong></div>
+  <div class="step"><strong>Conv1 params:</strong> 3×3×1×5 + 5 = 45+5 = <strong>50</strong></div>
+</div>
+
+<h3 id="s6-pool">Pooling Layers</h3>
+<table>
+  <thead><tr><th>Type</th><th>Operation</th><th>Best For</th><th>Parameters</th></tr></thead>
+  <tbody>
+    <tr><td><strong>MaxPool</strong></td><td>Takes maximum in window</td><td>Edges, high-contrast features, translation invariance</td><td>0 (fixed operation)</td></tr>
+    <tr><td><strong>AvgPool</strong></td><td>Takes average in window</td><td>Textures, gradual patterns, noise robustness</td><td>0 (fixed operation)</td></tr>
+    <tr><td><strong>Global AvgPool</strong></td><td>Single average over entire feature map</td><td>Replace large FC layers (e.g., H×W×C → C)</td><td>0</td></tr>
+  </tbody>
+</table>
+
+<h4>1×1 Convolution</h4>
+<p>A 1×1 conv changes the number of channels without changing spatial dimensions. Used to: (1) reduce channel depth before expensive 3×3 ops (bottleneck), (2) add non-linearity, (3) combine channel information.</p>
+
+<h3 id="s6-archs">Deep CNN Architectures</h3>
+<table>
+  <thead><tr><th>Architecture</th><th>Key Innovation</th><th>Key Numbers</th></tr></thead>
+  <tbody>
+    <tr><td><strong>LeNet</strong></td><td>First practical CNN (LeCun, 1998)</td><td>Conv+Pool+FC for MNIST digits</td></tr>
+    <tr><td><strong>AlexNet</strong></td><td>Deep CNN on GPU, won ImageNet 2012</td><td>5 conv + 3 FC; ReLU; Dropout; Data augmentation</td></tr>
+    <tr><td><strong>VGGNet</strong> (VGG16/19)</td><td>Deep with only 3×3 kernels</td><td>16–19 layers; 2–3 conv then pool pattern</td></tr>
+    <tr><td><strong>GoogLeNet / Inception</strong></td><td>Inception module (parallel filters)</td><td>1×1, 3×3, 5×5 in parallel; 1×1 bottleneck for efficiency</td></tr>
+    <tr><td><strong>ResNet</strong></td><td>Residual connections (skip connections)</td><td>y = F(x) + x; enables 50–152+ layers; solved degradation problem</td></tr>
+  </tbody>
+</table>
+
+<div class="callout key">
+  <div class="callout-label">✅ ResNet Skip Connections — Why They Work</div>
+  <ul>
+    <li>Without skip connections: gradient vanishes through many layers → early layers don't learn</li>
+    <li>With skip connection y = F(x) + x: gradient can flow directly via the identity path</li>
+    <li>∂L/∂x = ∂L/∂y × (∂F/∂x + 1) — the +1 ensures gradient never vanishes completely</li>
+    <li>Also solves the degradation problem: deeper networks can be harder to optimize (worse accuracy even on training set)</li>
+  </ul>
+</div>
+
+<h3 id="s6-transfer">Transfer Learning</h3>
+<div class="callout concept">
+  <div class="callout-label">📌 Transfer Learning — Definition</div>
+  <p>Use a model pre-trained on a large dataset (e.g., ResNet-50 on ImageNet 1000 classes) as a starting point for a different but related task.</p>
+</div>
+
+<h4>Why Transfer Learning?</h4>
+<ul>
+  <li><strong>Small dataset:</strong> Training from scratch overfits; pre-trained features generalize better</li>
+  <li><strong>Related tasks:</strong> Low-level features (edges, textures) are reusable across tasks</li>
+  <li><strong>Faster training:</strong> Only fine-tune the final layers instead of training all from scratch</li>
+  <li><strong>Less compute:</strong> No need for large GPU clusters to train full model</li>
+</ul>
+
+<h4>Fine-Tuning Strategy</h4>
+<table>
+  <thead><tr><th>Strategy</th><th>Frozen Layers</th><th>Trained Layers</th><th>Use When</th></tr></thead>
+  <tbody>
+    <tr><td>Feature Extraction</td><td>All pre-trained layers frozen</td><td>Only new head (FC layers)</td><td>Very small dataset, very similar task</td></tr>
+    <tr><td>Partial Fine-Tuning</td><td>Early layers frozen</td><td>Later layers + new head</td><td>Medium dataset, somewhat similar task</td></tr>
+    <tr><td>Full Fine-Tuning</td><td>None frozen</td><td>All layers</td><td>Large dataset, different domain</td></tr>
+  </tbody>
+</table>
+
+<div class="callout worked">
+  <div class="callout-label">✏️ Transfer Learning Parameter Calculation</div>
+  <p>ResNet-50 original: final FC layer is 2048 → 1000. Replace with 2048 → 512 → 7 (with Dropout p=0.5)</p>
+  <div class="step"><strong>Parameters removed (original FC):</strong> 2048 × 1000 + 1000 = <strong>2,049,000</strong></div>
+  <div class="step"><strong>New layer 1 (2048→512):</strong> 2048 × 512 + 512 = 1,048,576 + 512 = <strong>1,049,088</strong></div>
+  <div class="step"><strong>New layer 2 (512→7):</strong> 512 × 7 + 7 = 3,584 + 7 = <strong>3,591</strong></div>
+  <div class="step"><strong>Parameters added:</strong> 1,049,088 + 3,591 = <strong>1,052,679</strong></div>
+  <div class="step"><strong>Net change:</strong> 1,052,679 − 2,049,000 = <strong>−996,321</strong> (fewer params!)</div>
+</div>
+
+<div class="callout tip">
+  <div class="callout-label">🎯 Exam Tips for CNN Questions</div>
+  <ul>
+    <li><strong>Always track shape as (H, W, C)</strong> after each conv and pool layer</li>
+    <li><strong>Padding "same":</strong> output size = input size (with s=1)</li>
+    <li><strong>Padding "valid":</strong> no padding — output shrinks</li>
+    <li><strong>After flatten:</strong> size = H × W × C → must match FC input exactly</li>
+    <li><strong>FC params dominate:</strong> typically 99%+ of total params in classic CNNs — reason to use GAP</li>
+    <li><strong>Conv layer bias count:</strong> = number of output filters (one bias per filter, not per weight)</li>
+  </ul>
+</div>
+
+<!-- ═══ FORMULA QUICK REFERENCE ═══ -->
+<h2 id="formulas">Formula Quick Reference</h2>
+
+<div class="fb">
+  <div class="r"><strong>PERCEPTRON</strong></div>
+  <div class="r">z = w<sup>T</sup>x  |  ŷ = 1 if z≥0 else 0  |  Δw = η(y−ŷ)x</div>
+  <div class="r">&nbsp;</div>
+  <div class="r"><strong>LINEAR REGRESSION</strong></div>
+  <div class="r">ŷ = Xw  |  J = (1/N)‖Xw−y‖²  |  ∇J = (2/N)X<sup>T</sup>(Xw−y)  |  w ← w − η∇J</div>
+  <div class="r">&nbsp;</div>
+  <div class="r"><strong>SIGMOID &amp; BCE</strong></div>
+  <div class="r">σ(z) = 1/(1+e<sup>−z</sup>)  |  σ'(z) = σ(1−σ)  |  L = −[y log ŷ + (1−y) log(1−ŷ)]</div>
+  <div class="r">∂L/∂z = ŷ−y  |  ∇<sub>w</sub>L = (ŷ−y)x</div>
+  <div class="r">&nbsp;</div>
+  <div class="r"><strong>SOFTMAX &amp; CCE</strong></div>
+  <div class="r">ŷ<sub>k</sub> = e<sup>z<sub>k</sub></sup>/Σe<sup>z<sub>j</sub></sup>  |  L = −Σ<sub>k</sub> y<sub>k</sub> log ŷ<sub>k</sub>  |  argmax<sub>k</sub>(ŷ<sub>k</sub>) = prediction</div>
+  <div class="r">&nbsp;</div>
+  <div class="r"><strong>RELU</strong></div>
+  <div class="r">f(z) = max(0,z)  |  f'(z) = 1 if z&gt;0 else 0  |  Leaky: f(z) = max(αz,z), α=0.01</div>
+  <div class="r">&nbsp;</div>
+  <div class="r"><strong>BACKPROPAGATION</strong></div>
+  <div class="r">δ<sup>[L]</sup> = ŷ−y  |  δ<sup>[l]</sup> = (δ<sup>[l+1]</sup>W<sup>[l+1]T</sup>) ⊙ f'(Z<sup>[l]</sup>)</div>
+  <div class="r">∂J/∂W<sup>[l]</sup> = H<sup>[l−1]T</sup>δ<sup>[l]</sup>/N  |  W<sup>[l]</sup> ← W<sup>[l]</sup> − η × ∂J/∂W<sup>[l]</sup></div>
+  <div class="r">&nbsp;</div>
+  <div class="r"><strong>CNN OUTPUT SIZE</strong></div>
+  <div class="r">⌊(n + 2P − K) / S⌋ + 1  |  Conv params = K×K×C<sub>in</sub>×C<sub>out</sub> + C<sub>out</sub></div>
+  <div class="r"><strong>DFNN PARAMS</strong></div>
+  <div class="r">Per layer = (n<sub>in</sub> × n<sub>out</sub>) + n<sub>out</sub></div>
+</div>
+
+<h2 id="param">Parameter Counting Cheat Sheet</h2>
+<table>
+  <thead><tr><th>Layer</th><th>Formula</th><th>Quick Example</th></tr></thead>
+  <tbody>
+    <tr><td>Dense / FC</td><td>(n<sub>in</sub> × n<sub>out</sub>) + n<sub>out</sub></td><td>784→200: 784×200+200 = 157,000</td></tr>
+    <tr><td>Conv2D</td><td>(K×K×C<sub>in</sub>×C<sub>out</sub>) + C<sub>out</sub></td><td>3×3 conv, 3→32: 3×3×3×32+32 = 896</td></tr>
+    <tr><td>MaxPool / AvgPool</td><td>0</td><td>No learnable parameters</td></tr>
+    <tr><td>Batch Norm</td><td>2 × C (γ and β per channel)</td><td>32 channels: 64 params</td></tr>
+    <tr><td>Flatten</td><td>0</td><td>H×W×C elements → 1D vector</td></tr>
+  </tbody>
+</table>
+
+<h2 id="design">Architecture Design Checklist</h2>
+<div class="callout key">
+  <div class="callout-label">✅ When Asked to Design a Network</div>
+  <ol>
+    <li><strong>Input layer:</strong> Specify dimension (e.g., 4 features, 784 pixels, 128×128×3 image)</li>
+    <li><strong>Hidden layers:</strong> Number of layers, neurons per layer, activation function (ReLU default)</li>
+    <li><strong>Output layer:</strong> Neurons = number of classes (or 1 for regression/binary), activation based on task</li>
+    <li><strong>Loss function:</strong> MSE (regression), BCE (binary classification), CCE (multi-class)</li>
+    <li><strong>Optimizer:</strong> Mini-batch SGD or Adam (batch size 32–256, η = 0.001–0.01)</li>
+    <li><strong>Justify each choice</strong> with task-specific reasoning</li>
+  </ol>
+</div>
+
+<div class="callout tip">
+  <div class="callout-label">🎯 Final Exam Strategies</div>
+  <ul>
+    <li><strong>MidSem is Closed Book:</strong> Memorize key formulas (sigmoid, BCE gradient, softmax, CNN output formula)</li>
+    <li><strong>Show all steps</strong> in numerical problems — partial credit is available</li>
+    <li><strong>For code blanks:</strong> Check variable shapes; numpy dot/matmul is your friend</li>
+    <li><strong>For design:</strong> Always specify all 4 components; use task-specific language</li>
+    <li><strong>For conceptual:</strong> Use keywords like "linear separability", "vanishing gradient", "probabilistic interpretation", "weight sharing"</li>
+    <li><strong>Sanity check:</strong> CNN output size should never be negative or fractional</li>
+  </ul>
+</div>
+
+</main>
+</div>
+
+<script>
+const bar = document.getElementById('progress-bar');
+window.addEventListener('scroll', () => {
+  const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+  bar.style.width = Math.min(pct, 100) + '%';
+});
+const links = document.querySelectorAll('#sidebar nav a');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      links.forEach(l => l.classList.remove('active'));
+      const a = document.querySelector(`#sidebar a[href="#${e.target.id}"]`);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+document.querySelectorAll('h2[id], h3[id]').forEach(el => obs.observe(el));
+document.querySelectorAll('.reveal-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const box = btn.nextElementSibling;
+    box.classList.toggle('open');
+    btn.textContent = box.classList.contains('open') ? 'Hide Solution' : 'Show Solution';
+  });
+});
+</script>
+</body>
+</html>

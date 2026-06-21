@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>DNN Practice Problems – Sessions 1–8 (Past Papers 2022–2026)</title>
+  <style>
+  :root {
+    --bg:#fafaf8; --paper:#fff; --text:#1e293b; --muted:#64748b;
+    --accent:#1d4ed8; --accent-soft:#eff6ff;
+    --green:#16a34a; --green-bg:#f0fdf4; --green-bd:#bbf7d0;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --red:#dc2626; --red-bg:#fef2f2;
+    --purple:#7c3aed; --purple-bg:#f5f3ff;
+    --border:#e2e8f0; --sidebar-w:260px; --radius:10px;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth;font-size:15px}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.7;color:var(--text);background:var(--bg)}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  #pb{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#1d4ed8,#7c3aed);width:0%;z-index:9999;transition:width .1s}
+  .page{display:flex;min-height:100vh}
+  #sidebar{width:var(--sidebar-w);flex-shrink:0;background:var(--paper);border-right:1px solid var(--border);position:sticky;top:0;height:100vh;overflow-y:auto;padding:1rem .85rem 2.5rem;font-size:.77rem}
+  #sidebar .brand{font-weight:800;font-size:.88rem;color:var(--text);margin-bottom:.1rem}
+  #sidebar .brand-sub{font-size:.68rem;color:var(--muted);margin-bottom:1rem}
+  #sidebar nav h3{font-size:.6rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:1rem 0 .2rem;font-weight:700}
+  #sidebar ol{list-style:none;padding:0;margin:0}
+  #sidebar li{margin:.08rem 0}
+  #sidebar li a{display:block;padding:.2rem .5rem;border-radius:5px;color:var(--text);line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:background .15s,color .15s}
+  #sidebar li a:hover,#sidebar li a.active{background:var(--accent-soft);color:var(--accent);text-decoration:none}
+  #content{flex:1;min-width:0;max-width:980px;padding:2.5rem 3rem 5rem;background:var(--paper)}
+  .hero{background:linear-gradient(135deg,#1e3a8a,#1d4ed8 60%,#7c3aed);color:#fff;padding:2rem 2.2rem;border-radius:var(--radius);margin-bottom:2rem}
+  .hero h1{margin:0 0 .5rem;font-size:1.75rem;color:#fff;border:none;line-height:1.2}
+  .hero .meta{font-size:.87rem;opacity:.85;margin:0}
+  .hero .tag{display:inline-block;background:rgba(255,255,255,.2);padding:.2rem .7rem;border-radius:99px;font-size:.75rem;margin-top:.7rem;font-weight:600}
+  h2{font-size:1.35rem;margin-top:3.5rem;margin-bottom:.6rem;padding-bottom:.4rem;border-bottom:2px solid var(--border);color:#1e293b;scroll-margin-top:1rem}
+  h2.sec{background:#eef2ff;border:none;border-left:5px solid #6366f1;padding:.75rem 1.1rem;margin-top:4rem;font-size:1.1rem;color:#3730a3;border-radius:0 var(--radius) var(--radius) 0}
+  h3{font-size:1.02rem;margin-top:2rem;margin-bottom:.3rem;color:#334155}
+  p{margin:.8em 0}
+  ul,ol{padding-left:1.5em;margin:.6em 0}
+  li{margin:.3em 0}
+
+  .q-card{border:1px solid var(--border);border-radius:var(--radius);margin:1.4rem 0;overflow:hidden}
+  .q-header{padding:.6rem 1rem;display:flex;align-items:center;gap:.7rem;font-size:.78rem;font-weight:700}
+  .qh-blue{background:#dbeafe;color:#1d4ed8}
+  .qh-amber{background:#fef3c7;color:#b45309}
+  .qh-green{background:#dcfce7;color:#16a34a}
+  .qh-purple{background:#ede9fe;color:#7c3aed}
+  .qh-red{background:#fee2e2;color:#dc2626}
+  .q-body{padding:.9rem 1.1rem}
+  .q-body p{font-size:.93rem}
+  .q-body ul,
+  .q-body ol{font-size:.93rem}
+
+  .reveal-btn{display:inline-block;background:var(--accent);color:#fff;font-size:.8rem;font-weight:600;padding:.3rem .9rem;border-radius:99px;cursor:pointer;border:none;margin:.6rem 0 .2rem;transition:background .15s}
+  .reveal-btn:hover{background:#1e40af}
+  .sol{display:none;background:#f8fafc;border:1px solid var(--border);border-left:4px solid var(--green);border-radius:0 var(--radius) var(--radius) 0;padding:.9rem 1.1rem;margin-top:.5rem;font-size:.9rem}
+  .sol.open{display:block}
+  .sol .step{margin:.4rem 0;padding:.35rem .6rem;background:rgba(255,255,255,.7);border-radius:5px;font-size:.89rem}
+  .sol .step strong{color:#166534}
+
+  .fb{font-family:"Courier New",monospace;font-size:.82rem;background:#f1f5f9;border:1px solid #cbd5e1;border-radius:6px;padding:.55rem .7rem;margin:.5rem 0;line-height:1.9;overflow-x:auto}
+
+  table{width:100%;border-collapse:collapse;margin:1em 0;font-size:.87rem}
+  th,td{border:1px solid var(--border);padding:.45rem .6rem;text-align:left;vertical-align:top}
+  th{background:#f1f5f9;font-weight:600;color:#334155}
+  tr:nth-child(even) td{background:#fafbfd}
+
+  .marks{float:right;background:#1d4ed8;color:#fff;font-size:.72rem;padding:.1rem .5rem;border-radius:99px;font-weight:700}
+  .year-tag{font-size:.7rem;background:#e0e7ff;color:#4338ca;padding:.1rem .45rem;border-radius:5px;font-weight:600}
+  .difficulty{font-size:.7rem;padding:.1rem .45rem;border-radius:5px;font-weight:600}
+  .d-easy{background:#dcfce7;color:#15803d}
+  .d-med{background:#fef3c7;color:#b45309}
+  .d-hard{background:#fee2e2;color:#dc2626}
+
+  code{background:#f1f5f9;padding:.12em .38em;border-radius:4px;font-size:.86em;font-family:"Courier New",monospace}
+  pre{background:#1e293b;color:#e2e8f0;padding:.9rem 1.1rem;border-radius:var(--radius);overflow-x:auto;font-size:.83rem;line-height:1.65}
+
+  @media(max-width:860px){#sidebar{display:none}#content{padding:1.5rem 1.2rem 3rem}}
+  </style>
+</head>
+<body>
+<div id="pb"></div>
+<div class="page">
+
+<!-- ═══ SIDEBAR ═══ -->
+<aside id="sidebar">
+  <div class="brand">DNN Practice Problems</div>
+  <div class="brand-sub">Sessions 1–8 · Past Papers 2022–2026</div>
+  <nav>
+    <h3>Module 1 — Intro</h3>
+    <ol><li><a href="#m1">Core Components</a></li></ol>
+    <h3>Module 2 — Perceptron</h3>
+    <ol>
+      <li><a href="#p-num">Numerical Updates</a></li>
+      <li><a href="#p-logic">Logic Gates</a></li>
+      <li><a href="#p-xor">XOR &amp; Limitations</a></li>
+      <li><a href="#p-code">Code Completion</a></li>
+    </ol>
+    <h3>Module 3 — Regression</h3>
+    <ol>
+      <li><a href="#r-gd">Gradient Descent</a></li>
+      <li><a href="#r-eval">Evaluation</a></li>
+      <li><a href="#r-code">Code Completion</a></li>
+    </ol>
+    <h3>Module 4 — Classification</h3>
+    <ol>
+      <li><a href="#c-bin">Binary (Sigmoid)</a></li>
+      <li><a href="#c-softmax">Softmax</a></li>
+      <li><a href="#c-metrics">Metrics &amp; Cases</a></li>
+      <li><a href="#c-code">Code Completion</a></li>
+    </ol>
+    <h3>Module 5–6 — DFNN</h3>
+    <ol>
+      <li><a href="#d-forward">Forward Pass</a></li>
+      <li><a href="#d-backprop">Backpropagation</a></li>
+      <li><a href="#d-design">Architecture Design</a></li>
+      <li><a href="#d-code">Code Completion</a></li>
+    </ol>
+    <h3>Module 6–8 — CNN</h3>
+    <ol>
+      <li><a href="#cn-dims">Dimensions</a></li>
+      <li><a href="#cn-params">Parameter Counting</a></li>
+      <li><a href="#cn-arch">Architecture Qs</a></li>
+      <li><a href="#cn-transfer">Transfer Learning</a></li>
+    </ol>
+    <h3>Mixed / Comprehensive</h3>
+    <ol>
+      <li><a href="#mix">Mixed Problems</a></li>
+    </ol>
+  </nav>
+</aside>
+
+<!-- ═══ CONTENT ═══ -->
+<main id="content">
+
+<div class="hero">
+  <h1>DNN Practice Problems</h1>
+  <p class="meta">AIML ZG511 · BITS Pilani WILP · Based on Past Papers 2022–2026</p>
+  <span class="tag">Sessions 1–8 (Till CNN)</span>
+  <span class="tag" style="margin-left:.5rem">MidSem &amp; EndSem Level</span>
+  <span class="tag" style="margin-left:.5rem">Click "Show Solution" to reveal answers</span>
+</div>
+
+<p>All problems are drawn from or adapted from <strong>actual BITS Pilani DNN exam papers</strong> (2022–2026). Problems are marked with <span class="year-tag">Year</span> and difficulty <span class="difficulty d-easy">Easy</span> <span class="difficulty d-med">Medium</span> <span class="difficulty d-hard">Hard</span>.</p>
+
+<!-- ═══════════════════════════════ MODULE 1 ═══════════════════════════════ -->
+<h2 class="sec" id="m1">Module 1 — Introduction: 4 Core Components</h2>
+
+<div class="q-card">
+  <div class="q-header qh-blue"><span class="year-tag">2024 EndSem</span><span class="difficulty d-easy">Easy</span> Q1. Bird Classification System <span class="marks">2 M</span></div>
+  <div class="q-body">
+    <p>A company wants to build an application to classify which bird species is shown in an image. List and explain the individual steps you would follow to solve this problem using deep learning (end-to-end pipeline).</p>
+    <button class="reveal-btn">Show Solution</button>
+    <div class="sol">
+      <p><strong>Task type:</strong> Supervised multi-class image classification</p>
+      <div class="step"><strong>Step 1 — Data:</strong> Collect a large, labelled dataset of bird images (one label per species). Split into train / validation / test sets.</div>
+      <div class="step"><strong>Step 2 — Model:</strong> Use transfer learning (e.g., ResNet-50 pre-trained on ImageNet). Replace final FC layer with new layers matching number of bird species.</div>
+      <div class="step"><strong>Step 3 — Objective:</strong> Categorical Cross-Entropy loss (multi-class classification task).</div>
+      <div class="step"><strong>Step 4 — Algorithm:</strong> Mini-batch SGD or Adam optimizer. Fine-tune on bird dataset. Monitor validation accuracy to prevent overfitting.</div>
+      <div class="step"><strong>Evaluation:</strong> Report accuracy (balanced classes) or F1 per species if imbalanced.</div>
+      <p><strong>Key ingredients:</strong> labelled dataset, appropriate loss, backpropagation for gradient, weight update algorithm, evaluation metric.</p>
+    </div>
+  </div>
+</div>
+
+<div class="q-card">
+  <div class="q-header qh-blue"><span class="year-tag">2024 MidSem</span><span class="difficulty d-easy">Easy</span> Q2. COVID vs Multi-Disease System <span class="marks">4 M</span></div>
+  <div class="q-body">
+    <p>A medical diagnostics company is building two AI systems:</p>
+    <ul>
+      <li><strong>Model A:</strong> Detects if a patient has COVID-19 or not (binary)</li>
+      <li><strong>Model B:</strong> Classifies patients into one of five disease categories</li>
+    </ul>
+    <p>(a) Justify shallow vs deep network for each model. (b) Which loss function suits each? Justify. (c) What is the role of Softmax in Model B? (d) Can Softmax be used in Model A?</p>
+    <button class="reveal-btn">Show Solution</button>
+    <div class="sol">
+      <div class="step"><strong>(a) Model A — Shallow:</strong> Binary classification has a simpler decision boundary; a few layers with sigmoid suffice. Model B — Deep: 5-class, higher complexity, needs hierarchical features → more layers.</div>
+      <div class="step"><strong>(b) Loss functions:</strong> Model A: Binary Cross-Entropy (BCE) — designed for y ∈ {0,1} problems. Model B: Categorical Cross-Entropy (CCE) — handles multi-class probability distribution.</div>
+      <div class="step"><strong>(c) Role of Softmax in B:</strong> Converts raw logits (any real numbers) to a valid probability distribution where all values ∈ (0,1) and sum to 1. Enables argmax for final class prediction.</div>
+      <div class="step"><strong>(d) Softmax in Model A:</strong> Not needed — with 2 classes, Softmax reduces to Sigmoid. Using Sigmoid (1 output neuron) is simpler and equivalent. Softmax would require 2 output neurons unnecessarily.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ MODULE 2: PERCEPTRON ═══════════════════════════════ -->
+<h2 class="sec" id="p-num">Module 2 — Perceptron: Numerical Updates</h2>
+
+<div class="q-card">
+  <div class="q-header qh-amber"><span class="year-tag">Dec 2025 MidSem</span><span class="difficulty d-easy">Easy</span> Q3. Perceptron Single Step <span class="marks">6 M</span></div>
+  <div class="q-body">
+    <p>Consider a perceptron with 2 input features. Current weights: w = [w<sub>0</sub>, w<sub>1</sub>, w<sub>2</sub>]<sup>T</sup> = [0.5, 0.3, −0.4]<sup>T</sup> where w<sub>0</sub> is the bias.</p>
+    <p>A training example: x<sub>1</sub> = 1, x<sub>2</sub> = 2, true label y = 1, learning rate η = 0.1. Step activation: 1 if z ≥ 0, else 0.</p>
+    <p>Compute: (i) weighted sum z, (ii) predicted output ŷ, (iii) updated weights (if misclassified).</p>
+    <button class="reveal-btn">Show Solution</button>
+    <div class="sol">
+      <div class="step"><strong>Full input vector:</strong> x = [1, 1, 2]<sup>T</sup>  (x<sub>0</sub> = 1 for bias)</div>
+      <div class="step"><strong>(i) z:</strong> w<sup>T</sup>x = (0.5)(1) + (0.3)(1) + (−0.4)(2) = 0.5 + 0.3 − 0.8 = <strong>0.0</strong></div>
+      <div class="step"><strong>(ii) ŷ:</strong> z = 0.0 ≥ 0 → <strong>ŷ = 1</strong></div>
+      <div class="step"><strong>(iii) Error:</strong> e = y − ŷ = 1 − 1 = <strong>0</strong> → Prediction is correct. <strong>No weight update needed.</strong></div>
+      <p>Weights remain: [0.5, 0.3, −0.4]<sup>T</sup></p>
+    </div>
+  </div>
+</div>
+
+<div class="q-card">
+  <div class="q-header qh-amber"><span class="year-tag">Jan 2026 Makeup</span><span class="difficulty d-med">Medium</span> Q4. Perceptron with Misclassification <span class="marks">6 M</span></div>
+  <div class="q-body">
+    <p>Weights: w = [0.5, −0.5, 0.5]<sup>T</sup>, input x<sub>data</sub> = [2, 4], true label y = 0, η = 0.2. Step activation: 1 if z ≥ 0, else 0.</p>
+    <p>Perform one complete training step: compute z, ŷ, error, and updated weights.</p>
+    <button class="reveal-btn">Show Solution</button>
+    <div class="sol">
+      <div class="step"><strong>Full input:</strong> x = [1, 2, 4]<sup>T</sup></div>
+      <div class="step"><strong>z:</strong> (0.5)(1) + (−0.5)(2) + (0.5)(4) = 0.5 − 1.0 + 2.0 = <strong>1.5</strong></div>
+      <div class="step"><strong>ŷ:</strong> 1.5 ≥ 0 → <strong>ŷ = 1</strong></div>
+      <div class="step"><strong>Error:</strong> e = y − ŷ = 0 − 1 = <strong>−1</strong>  (misclassified!)</div>
+      <div class="step"><strong>Δw:</strong> η × e × x = 0.2 × (−1) × [1, 2, 4]<sup>T</sup> = [−0.2, −0.4, −0.8]<sup>T</sup></div>
+      <div class="step"><strong>w<sup>new</sup>:</strong> [0.5, −0.5, 0.5]<sup>T</sup> + [−0.2, −0.4, −0.8]<sup>T</sup> = <strong>[0.3, −0.9, −0.3]<sup>T</sup></strong></div>
+    </div>
+  </div>
+</div>
+
+<div class="q-card">
+  <div class="q-header qh-amber"><span class="year-tag">2024 MidSem</span><span class="difficulty d-hard">Hard</span> Q5. NAND Gate — Full Epoch (Bipolar) <span class="marks">5 M</span></div>
+  <div class="q-body">
+    <p>Implement a perceptron for a NAND gate using bipolar representation (±1). Initial weights: w<sub>0</sub>=w<sub>1</sub>=w<sub>2</sub>=0. η=1. Activation: y=sign(z). Update: Δw<sub>i</sub>=η(t−y)x<sub>i</sub>.</p>
+    <table>
+      <thead><tr><th>x<sub>1</sub></th><th>x<sub>2</sub></th><th>Target t</th></tr></thead>
+      <tbody>
+        <tr><td>−1</td><td>−1</td><td>1</td></tr>
+        <tr><td>−1</td><td>1</td><td>1</td></tr>
+        <tr><td>1</td><td>−1</td><td>1</td></tr>
+        <tr><td>1</td><td>1</td><td>−1</td></tr>
+      </tbody>
+    </table>
+    <p>Run one full epoch and find the final weight vector. Verify by checking all inputs.</p>
+    <button class="reveal-btn">Show Solution</button>
+    <div class="sol">
+      <p><strong>Initial w = [0, 0, 0]</strong>, x<sub>0</sub>=1 always, learning rate η=1</p>
+      <div class="step"><strong>Row 1 (−1,−1,t=1):</strong> z=0(1)+0(−1)+0(−1)=0 → sign(0)=+1=y. Error=1−1=0. No update.</div>
+      <div class="step"><strong>Row 2 (−1,1,t=1):</strong> z=0 → y=+1. Error=0. No update.</div>
+      <div class="step"><strong>Row 3 (1,−1,t=1):</strong> z=0 → y=+1. Error=0. No update.</div>
+      <div class="step"><strong>Row 4 (1,1,t=−1):</strong> z=0 → y=+1. Error=−1−1=−2. Δw=1×(−2)×[1,1,1]=[−2,−2,−2]. w=[−2,−2,−2].</div>
+      <p><strong>Final w = [−2, −2, −2]</strong></p>
+      <p><strong>Verification:</strong></p>
+      <div class="step">(−1,−1): z=−2+(−2)(−1)+(−2)(−1)=−2+2+2=2 → sign=+1 ✓ (target=1)</div>
+      <div class="step">(−1,1): z=−2+2−2=−2 → sign=−1 ✓ (target=1) — Wait, sign(−2)=−1 ≠ 1. Need another epoch in practice. But final weights after 1 epoch = [−2,−2,−2].</div>
+      <p style="color:#b45309;font-size:.86rem"><strong>Note:</strong> One epoch may not converge. The algorithm needs multiple epochs. After epoch 1, w=[−2,−2,−2].</p>
+    </div>
+  </div>
+</div>
+
+<h2 id="p-xor">Module 2 — Perceptron: XOR Problem &amp; Limitations</h2>
+
+<div class="q-card">
+  <div class="q-header qh-amber"><span class="year-tag">Jan 2026 Makeup</span><span class="difficulty d-med">Medium</span> Q6. XOR Linear Separability <span class="marks">6 M</span></div>
+  <div class="q-body">
+    <p>XOR function: (0,0)→0, (1,1)→0, (0,1)→1, (1,0)→1. Class 0 points: (0,0) and (1,1). Class 1 points: (0,1) and (1,0).</p>
+    <p>(i) Attempt to draw a straight line separating class 0 from class 1. Can you? Explain why or why not.</p>
+    <p>(ii) What fundamental limitation of the perceptron does this reveal?</p>
+    <p>(iii) Why does OR converge in 4 epochs but AND in 6 epochs, while XOR never converges?</p>
+    <button class="reveal-btn">Show Solution</button>
+    <div class="sol">
+      <div class="step"><strong>(i) Cannot separate:</strong> Class 0 points are at (0,0) and (1,1) — the diagonal. Class 1 points are at (0,1) and (1,0) — the other diagonal. No single straight line can put all class-0 on one side and all class-1 on the other. The two classes alternate in a checkerboard pattern.</div>
+      <div class="step"><strong>(ii) Limitation:</strong> A perceptron can only create a linear decision boundary (a hyperplane w<sup>T</sup>x = 0). Since XOR is not linearly separable, a single perceptron cannot solve it regardless of how many epochs it trains. It will always get stuck at 50% accuracy (two examples will always be misclassified).</div>
+      <div class="step"><strong>(iii) OR vs AND convergence:</strong> OR has 3 positive examples and only 1 negative — the decision boundary can be found quickly because most updates push in the same direction. AND has only 1 positive and 3 negatives — it takes more updates to correctly isolate the single positive corner. XOR: no linear boundary exists → convergence is impossible (perceptron oscillates forever).</div>
+      <p><strong>Solution to XOR:</strong> Multi-Layer Perceptron (MLP) with at least one hidden layer and non-linear activation can solve XOR.</p>
+    </div>
+  </div>
+</div>
+
+<h2 id="p-code">Module 2 — Perceptron: Code Completion</h2>
+
+<div class="q-card">
+  <div class="q-header qh-amber"><span class="year-tag">Dec 2025 MidSem</span><span class="difficulty d-med">Medium</span> Q7. Perceptron Training Code <span class="marks">5 M</span></div>
+  <div class="q-body">
+    <p>Complete the Python code for perceptron training (write only the expression for each blank):</p>
+    <pre>import numpy as np
+
+def perceptron_train(X, y, learning_rate=0.1, epochs=10):
+    """ X: (N x d) with bias, y: (N,) labels {0,1} """
+    N, d = X.shape
+    weights = np.zeros(d)
+
+    for epoch in range(epochs):
+        for i in range(N):
+            z = ____________    # Blank 1
+            y_pred = 1 if z >= 0 else 0
+
+            if y_pred != y[i]:
+                error = ____________    # Blank 2
+                weights = weights + ____________    # Blank 3
+    return weights
+
+X = np.array([[1,0,0],[1,0,1],[1,1,0],[1,1,1]])
+y = np.array([0, 0, 0, 1])  # AND gate
+w = perceptron_train(X, y)
+preds = ____________    # Blank 4
+acc = ____________      # Blank 5</pre>
+    <button class="reveal-btn">Show Solution</button>
+    <div class="sol">
+      <div class="step"><strong>Blank 1:</strong> <code>np.dot(X[i], weights)</code>  — weighted sum of inputs</div>
+      <div class="step"><strong>Blank 2:</strong> <code>y[i] - y_pred</code>  — error = target − prediction</div>
+      <div class="step"><strong>Blank 3:</strong> <code>learning_rate * error * X[i]</code>  — weight update rule</div>
+      <div class="step"><strong>Blank 4:</strong> <code>(np.dot(X, w) >= 0).astype(int)</code>  — apply step function to all examples</div>
+      <div class="step"><strong>Blank 5:</strong> <code>np.mean(preds == y)</code>  — fraction of correct predictions</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ MODULE 3: REGRESSION ═══════════════════════════════ -->
+<h2 class="sec" id="r-gd">Module 3 — Regression: Gradient Descent</h2>
+
+<div class="q-card">
+  <div class="q-header qh-green"><span class="year-tag">Dec 2025 MidSem</span><span class="difficulty d-med">Medium</span> Q8. Batch Gradient Descent — Full Step <span class="marks">6 M</span></div>
+  <div class="q-body">
+    <p>A linear regression model predicts house price (in $1000s) from area (in 100s sq ft).</p>
+    <table>
+      <thead><tr><th>Bias (x<sub>0</sub>)</th><th>Area (x<sub>1</sub>)</th><th>Price (y)</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>10</td><td>150</td></tr>
+        <tr><td>1</td><td>20</td><td>250</td></tr>
+      </tbody>
+    </table>
+    <p>Current weights: w<sub>0</sub>=50, w<sub>1</sub>=8. Learning rate η=0.01. Perform one complete batch gradient descent iteration: (i) predictions, (ii) MSE loss, (iii) gradient, (iv) updated weights.</p>
+    <button class="reveal-btn">Show Solution</button>
+    <div class="sol">
+      <div class="step"><strong>(i) Predictions:</strong> ŷ<sub>A</sub> = 50 + 8(10) = <strong>130</strong> | ŷ<sub>B</sub> = 50 + 8(20) = <strong>210</strong></div>
+      <div class="step"><strong>Errors:</strong> e<sub>A</sub> = 130 − 150 = −20 | e<sub>B</sub> = 210 − 250 = −40</div>
+      <div class="step"><strong>(ii) MSE Loss:</strong> J = (1/2)[(−20)² + (−40)²] = (400 + 1600)/2 = <strong>1000</strong></div>
+      <div class="step"><strong>(iii) Gradient (factor 2/N = 2/2 = 1):</strong></div>
+      <div class="step">∇w<sub>0</sub> = Σ e<sub>i</sub>·x<sub>0</sub> = (−20)(1) + (−40)(1) = <strong>−60</strong></div>
+      <div class="step">∇w<sub>1</sub> = Σ e<sub>i</sub>·x<sub>1</sub> = (−20)(10) + (−40)(20) = −200 − 800 = <strong>−1000</strong></div>
+      <div class="step"><strong>(iv) Updated weights:</strong> w<sub>0</sub><sup>new</sup> = 50 − 0.01(−60) = <strong>50.6</strong> | w<sub>1</sub><sup>new</sup> = 8 − 0.01(−1000) = <strong>18.0</strong></div>
+    </div>
+  </div>
+</div>
+
+<div class="q-card">
+  <div class="q-header qh-green"><span class="year-tag">Jan 2026 Makeup</span><span class="difficulty d-med">Medium</span> Q9. Effect of Learning Rate <span class="marks">6 M</span></div>
+  <div class="q-body">
+    <p>Gradient computed as ∇J = [5, 30, 35]<sup>T</sup>. Current weights w = [20, 8, 5]<sup>T</sup>.</p>
+    <p>(i) Perform weight update with η = 0.01. (ii) Perform update with η = 1.0. (iii) What potential problems does η = 1.0 cause? Explain with reference to convergence.</p>
+    <button class="reveal-btn">Show Solution</button>
+    <div class="sol">
+      <div class="step"><strong>(i) η = 0.01:</strong> w<sup>new</sup> = [20, 8, 5] − 0.01×[5, 30, 35] = [20−0.05, 8−0.3, 5−0.35] = <strong>[19.95, 7.7, 4.65]</strong></div>
+      <div class="step"><strong>(ii) η = 1.0:</strong> w<sup>new</sup> = [20, 8, 5] − 1.0×[5, 30, 35] = <strong>[15, −22, −30]</strong></div>
+      <div class="step"><strong>(iii) Problems with large η:</strong> The step is too large — the update overshoots the minimum. Instead of moving downhill, the parameters jump to the other side of the error surface and climb up. This causes oscillation around the minimum and can even cause divergence (loss increases with each step). Rule of thumb: start with η = 0.001–0.01 and reduce if loss oscillates.</div>
+    </div>
+  </div>
+</div>
+
+<h2 id="r-eval">Module 3 — Regression: Evaluation &amp; Feature Scaling</h2>
+
+<div class="q-card">
+  <div class="q-header qh-green"><span class="year-tag">Dec 2025 MidSem</span><span class="difficulty d-med">Medium</span> Q10. Predicted Salary &amp; RMSE Interpretation <span class="marks">6 M</span></div>
+  <div class="q-body">
+    <p>A linear regression model predicts salary: w<sub>0</sub>=30,000 (bias), w<sub>1</sub>=2,500 (education years), w<sub>2</sub>=3,000 (experience years).</p>
+    <p>(i) Calculate predicted salary for 4 years education, 2 years experience. Is it reasonable for entry-level?</p>
+    <p>(ii) RMSE on test set = $2,236 (from MSE=5,000,000). Is this acceptable? Explain.</p>
+    <p>(iii) Model A (2 features, RMSE=35,000) vs Model B (15 features, RMSE=28,000). Which should a real estate company deploy on their public website?</p>
+    <button class="reveal-btn">Show Solution</button>
+    <div class="sol">
+      <div class="step"><strong>(i) Salary:</strong> ŷ = 30,000 + 2,500(4) + 3,000(2) = 30,000 + 10,000 + 6,000 = <strong>$46,000/year</strong>. For entry-level with limited education, this is on the low-to-moderate end, which seems reasonable in many markets.</div>
+      <div class="step"><strong>(ii) RMSE = $2,236:</strong> This means the model is off by about $2,236 on average. For typical salaries of $30k–$100k, this is a 2–7% error range. Generally acceptable for an automated system, especially if predictions guide rather than dictate salary decisions.</div>
+      <div class="step"><strong>(iii) Model A (deploy):</strong> The 20% improvement in RMSE ($7,000) from B may not justify the complexity. More importantly, Model A is interpretable — customers can verify "your home is valued at X because of area Y and location Z". In real estate, buyer trust and transparency are critical. Some regions also require explainable automated valuations legally. Model A is recommended despite lower accuracy.</div>
+    </div>
+  </div>
+</div>
+
+<h2 id="r-code">Module 3 — Regression: Code Completion</h2>
+
+<div class="q-card">
+  <div class="q-header qh-green"><span class="year-tag">Dec 2025 MidSem</span><span class="difficulty d-med">Medium</span> Q11. Batch Gradient Descent Code <span class="marks">5 M</span></div>
+  <div class="q-body">
+    <p>Complete the code for batch gradient descent linear regression:</p>
+    <pre>def train_linear(X, y, lr=0.01, epochs=100):
+    """ X: (N x d) with bias, y: (N,) targets """
+    N, d = X.shape
+    weights = np.random.randn(d) * 0.01
+
+    for epoch in range(epochs):
+        y_pred = ____________    # Blank 1
+        loss = ____________      # Blank 2
+        error = y_pred - y
+        gradient = ____________  # Blank 3
+        weights = ____________   # Blank 4
+
+        if epoch % 20 == 0:
+            print(f"Epoch {epoch}, Loss: {loss:.4f}")
+    return weights
+
+X = np.array([[1,1],[1,2],[1,3]])
+y = np.array([2, 4, 5])
+w = ____________    # Blank 5</pre>
+    <button class="reveal-btn">Show Solution</button>
+    <div class="sol">
+      <div class="step"><strong>Blank 1:</strong> <code>np.dot(X, weights)</code> — vectorized predictions for all N examples</div>
+      <div class="step"><strong>Blank 2:</strong> <code>np.mean((y_pred - y)**2)</code> — MSE loss</div>
+      <div class="step"><strong>Blank 3:</strong> <code>np.dot(X.T, error) / N</code> — gradient = (2/N)X<sup>T</sup>e, factor 2 often absorbed into lr</div>
+      <div class="step"><strong>Blank 4:</strong> <code>weights - lr * gradient</code> — gradient descent update</div>
+      <div class="step"><strong>Blank 5:</strong> <code>train_linear(X, y)</code> — call the training function</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ MODULE 4: CLASSIFICATION ═══════════════════════════════ -->
+<h2 class="sec" id="c-bin">Module 4 — Binary Classification: Sigmoid + BCE</h2>
+
+<div class="q-card">
+  <div class="q-header qh-blue"><span class="year-tag">Dec 2025 MidSem</span><span class="difficulty d-med">Medium</span> Q12. Logistic Regression — One SGD Step <span class="marks">6 M</span></div>
+  <div class="q-body">
+    <p>A binary classifier for loan approval. Weights: w<sub>0</sub>=0 (bias), w<sub>1</sub>=0.6 (credit score), w<sub>2</sub>=0.8 (income). η=0.1. One training example: credit=0.7, income=0.5, label=approve (y=1).</p>
+    <p>Calculate: (i) weighted sum z, (ii) predicted probability ŷ = σ(z), (iii) gradient, (iv) updated weights.</p>
+    <button class="reveal-btn">Show Solution</button>
+    <div class="sol">
+      <div class="step"><strong>(i) z:</strong> 0(1) + 0.6(0.7) + 0.8(0.5) = 0 + 0.42 + 0.40 = <strong>0.82</strong></div>
+      <div class="step"><strong>(ii) ŷ = σ(0.82):</strong> 1/(1 + e<sup>−0.82</sup>) = 1/(1 + 0.4404) = <strong>0.6942</strong></div>
+      <div class="step"><strong>(iii) Gradient = (ŷ − y)x:</strong> Error = 0.6942 − 1 = −0.3058</div>
+      <div class="step">∇w<sub>0</sub> = (−0.3058)(1) = −0.3058</div>
+      <div class="step">∇w<sub>1</sub> = (−0.3058)(0.7) = −0.2141</div>
+      <div class="step">∇w<sub>2</sub> = (−0.3058)(0.5) = −0.1529</div>
+      <div class="step"><strong>(iv) Updated weights:</strong> w<sub>0</sub> = 0 − 0.1(−0.3058) = <strong>0.0306</strong> | w<sub>1</sub> = 0.6 − 0.1(−0.2141) = <strong>0.6214</strong> | w<sub>2</sub> = 0.8 − 0.1(−0.1529) = <strong>0.8153</strong></div>
+    </div>
+  </div>
+</div>
+
+<div class="q-card">
+  <div class="q-header qh-blue"><span class="year-tag">Dec 2025 MidSem</span><span class="difficulty d-med">Medium</span> Q13. Threshold &amp; Medical Diagnosis Case <span class="marks">6 M</span></div>
+  <div class="q-body">
+    <p>A medical system detects disease. 1000 patients: 50 diseased, 950 healthy. Results: TP=40, FN=10, FP=95, TN=855.</p>
+    <p>(i) Calculate overall accuracy. Why is 89% accuracy misleading here? What would a naive "always predict healthy" classifier get?</p>
+    <p>(ii) For life-threatening disease detection, why is Recall more critical than Precision? What happens to FP and FN if threshold is lowered from 0.5 to 0.3?</p>
+    <button class="reveal-btn">Show Solution</button>
+    <div class="sol">
+      <div class="step"><strong>(i) Accuracy:</strong> (40+855)/1000 = 895/1000 = <strong>89.5%</strong></div>
+      <div class="step"><strong>Why misleading:</strong> A "naive" classifier that always predicts healthy gets 950/1000 = 95% accuracy — better! But it catches 0 diseases. The class imbalance makes accuracy worthless: 95% of patients are healthy, so predicting "always healthy" is 95% accurate but clinically useless.</div>
+      <div class="step"><strong>(ii) Recall is critical:</strong> Missing a disease (FN) could mean a patient goes untreated and dies. False positives (FP) cause unnecessary tests — costly and stressful, but not life-threatening. In life-or-death diagnosis: "better safe than sorry" → maximize recall.</div>
+      <div class="step"><strong>Lowering threshold 0.5 → 0.3:</strong> More patients predicted positive → FP increases (more healthy patients flagged) → FN decreases (fewer sick patients missed). Recall goes up, Precision goes down.</div>
+    </div>
+  </div>
+</div>
+
+<h2 id="c-softmax">Module 4 — Multi-class: Softmax</h2>
+
+<div class="q-card">
+  <div class="q-header qh-purple"><span class="year-tag">Dec 2025 MidSem</span><span class="difficulty d-med">Medium</span> Q14. Softmax Calculation + CCE Loss <span class="marks">6 M</span></div>
+  <div class="q-body">
+    <p>A 3-class sentiment classifier produces logits z = [2.0, 1.0, 0.5]<sup>T</sup> for classes (negative, neutral, positive). True class = neutral (class 1). One-hot y = [0, 1, 0]<sup>T</sup>.</p>
+    <p>(i) Compute softmax probabilities ŷ<sub>0</sub>, ŷ<sub>1</sub>, ŷ<sub>2</sub>. Show sum in denominator.</p>
+    <p>(ii) Compute Categorical Cross-Entropy loss: L = −Σ<sub>k</sub> y<sub>k</sub> log(ŷ<sub>k</sub>).</p>
+    <p>(iii) Which class does the model predict? Is it correct?</p>
+    <button class="reveal-btn">Show Solution</button>
+    <div class="sol">
+      <div class="step"><strong>(i) Exponentials:</strong> e<sup>2.0</sup> = 7.389 | e<sup>1.0</sup> = 2.718 | e<sup>0.5</sup> = 1.649</div>
+      <div class="step"><strong>Sum:</strong> 7.389 + 2.718 + 1.649 = <strong>11.756</strong></div>
+      <div class="step"><strong>Softmax probabilities:</strong> ŷ<sub>0</sub> = 7.389/11.756 = <strong>0.628</strong> | ŷ<sub>1</sub> = 2.718/11.756 = <strong>0.231</strong> | ŷ<sub>2</sub> = 1.649/11.756 = <strong>0.140</strong></div>
+      <div class="step"><strong>Check:</strong> 0.628 + 0.231 + 0.140 = 0.999 ≈ 1 ✓</div>
+      <div class="step"><strong>(ii) CCE Loss:</strong> L = −[0×log(0.628) + 1×log(0.231) + 0×log(0.140)] = −log(0.231) = −(−1.464) = <strong>1.464</strong></div>
+      <div class="step"><strong>(iii) Prediction:</strong> argmax(ŷ) = class 0 (probability 0.628 is highest) → predicts "negative". True class is "neutral" (class 1) → <strong>Incorrect prediction.</strong></div>
+      <p>High loss of 1.464 reflects confident wrong prediction — model strongly believes negative, but truth is neutral.</p>
+    </div>
+  </div>
+</div>
+
+<h2 id="c-metrics">Module 4 — Evaluation Metrics &amp; Business Cases</h2>
+
+<div class="q-card">
+  <div class="q-header qh-purple"><span class="year-tag">Dec 2025 MidSem</span><span class="difficulty d-hard">Hard</span> Q15. Confusion Matrix — Precision, Recall, F1 <span class="marks">6 M</span></div>
+  <div class="q-body">
+    <p>An image classifier for 3 animal classes. Confusion matrix on 1000 test images:</p>
+    <table>
+      <thead><tr><th></th><th>Pred Cat</th><th>Pred Dog</th><th>Pred Bird</th><th>Total</th></tr></thead>
+      <tbody>
+        <tr><td><strong>True Cat</strong></td><td>280</td><td>15</td><td>5</td><td>300</td></tr>
+        <tr><td><strong>True Dog</strong></td><td>20</td><td>350</td><td>30</td><td>400</td></tr>
+        <tr><td><strong>True Bird</strong></td><td>10</td><td>40</td><td>250</td><td>300</td></tr>
+      </tbody>
+    </table>
+    <p>(i) Calculate Precision and Recall for the "Bird" class. Identify TP, FP, FN.</p>
+    <p>(ii) What does the high confusion between Bird → Dog suggest? Does 88% overall accuracy guarantee good per-class performance?</p>
+    <button class="reveal-btn">Show Solution</button>
+    <div class="sol">
+      <div class="step"><strong>(i) For Bird class:</strong></div>
+      <div class="step">TP = 250 (true birds correctly predicted as bird)</div>
+      <div class="step">FP = 5 + 30 = 35 (cats predicted as bird + dogs predicted as bird)</div>
+      <div class="step">FN = 10 + 40 = 50 (true birds predicted as cat + predicted as dog)</div>
+      <div class="step"><strong>Precision:</strong> 250/(250+35) = 250/285 = <strong>0.877 (87.7%)</strong></div>
+      <div class="step"><strong>Recall:</strong> 250/(250+50) = 250/300 = <strong>0.833 (83.3%)</strong></div>
+      <div class="step"><strong>(ii) Bird→Dog confusion:</strong> 40 out of 50 bird errors are predicted as dog. This suggests the model has learned features that are shared between birds and dogs — likely background/texture (e.g., outdoor scenes) rather than shape-specific features. It's a serious problem: 1 in 7 birds is misclassified as a dog.</div>
+      <div class="step"><strong>Overall accuracy 88%:</strong> Does NOT guarantee good per-class performance. Dogs have 87.5% recall (350/400), birds 83.3%, cats 93.3%. High overall accuracy can hide weak performance on specific classes, especially if one class dominates the dataset.</div>
+    </div>
+  </div>
+</div>
+
+<div class="q-card">
+  <div class="q-header qh-purple"><span class="year-tag">Dec 2025 MidSem</span><span class="difficulty d-hard">Hard</span> Q16. Fraud Detection — Model Selection with Cost Analysis <span class="marks">3 M</span></div>
+  <div class="q-body">
+    <p>10,000 transactions: 9,500 legitimate, 500 fraudulent. Each missed fraud costs $100; each flagged transaction costs $10 investigation.</p>
+    <ul>
+      <li><strong>Model A:</strong> 95% accuracy, detects 60% fraud (300/500 caught), 3 features</li>
+      <li><strong>Model B:</strong> 96% accuracy, detects 75% fraud (375/500 caught), 20 features</li>
+    </ul>
+    <p>Evaluate which model to deploy. Consider: (i) business impact of 15% fraud detection improvement, (ii) whether 1% accuracy gain justifies Model B's complexity, (iii) whether extra features are worth it.</p>
+    <button class="reveal-btn">Show Solution</button>
+    <div class="sol">
+      <div class="step"><strong>Model A cost:</strong> 200 missed frauds × $100 = $20,000 | FP cost depends on threshold but accept as stated.</div>
+      <div class="step"><strong>Model B cost:</strong> 125 missed frauds × $100 = $12,500 + additional investigations × $10.</div>
+      <div class="step"><strong>Revenue difference:</strong> Model B catches 75 more frauds × $100 = $7,500 more savings. This is a clear financial benefit.</div>
+      <div class="step"><strong>(i) 15% fraud detection improvement:</strong> Catching 75 more frauds is significant — $7,500 in prevented losses per round. At scale, this compounds dramatically.</div>
+      <div class="step"><strong>(ii) 1% accuracy gain:</strong> In isolation, negligible. But the real gain is in recall (60% → 75%), not accuracy.</div>
+      <div class="step"><strong>(iii) Recommendation: Deploy Model B.</strong> The 20 features add meaningful predictive power beyond simple statistics. The $7,500 fraud prevention per cycle likely justifies both the feature engineering cost and the marginal complexity increase. Accuracy is a misleading metric here — recall is what matters for fraud detection.</div>
+    </div>
+  </div>
+</div>
+
+<h2 id="c-code">Module 4 — Classification: Code Completion</h2>
+
+<div class="q-card">
+  <div class="q-header qh-purple"><span class="year-tag">Dec 2025 MidSem</span><span class="difficulty d-med">Medium</span> Q17. Mini-batch Logistic Regression Code <span class="marks">5 M</span></div>
+  <div class="q-body">
+    <pre>def sigmoid(z):
+    return ____________    # Blank 1
+
+def train_logistic(X, y, batch_size=32, lr=0.01, epochs=100):
+    N, d = X.shape
+    weights = np.zeros(d)
+    for epoch in range(epochs):
+        indices = np.random.permutation(N)
+        for i in range(0, N, batch_size):
+            idx = indices[i:i+batch_size]
+            X_batch, y_batch = X[idx], y[idx]
+            z = np.dot(X_batch, weights)
+            y_pred = ____________    # Blank 2
+            gradient = ____________  # Blank 3
+            weights = ____________   # Blank 4
+    return weights
+
+def predict(X, weights):
+    return ____________    # Blank 5</pre>
+    <button class="reveal-btn">Show Solution</button>
+    <div class="sol">
+      <div class="step"><strong>Blank 1:</strong> <code>1 / (1 + np.exp(-z))</code></div>
+      <div class="step"><strong>Blank 2:</strong> <code>sigmoid(z)</code></div>
+      <div class="step"><strong>Blank 3:</strong> <code>np.dot(X_batch.T, (y_pred - y_batch)) / len(idx)</code></div>
+      <div class="step"><strong>Blank 4:</strong> <code>weights - lr * gradient</code></div>
+      <div class="step"><strong>Blank 5:</strong> <code>(sigmoid(np.dot(X, weights)) >= 0.5).astype(int)</code></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ MODULE 5–6: DFNN ═══════════════════════════════ -->
+<h2 class="sec" id="d-forward">Modules 5–6 — DFNN: Forward Propagation</h2>
+
+<div class="q-card">
+  <div class="q-header qh-blue"><span class="year-tag">Dec 2025 MidSem</span><span class="difficulty d-hard">Hard</span> Q18. Complete 2-Layer DFNN Forward Pass <span class="marks">6 M</span></div>
+  <div class="q-body">
+    <p>2-layer DFNN for binary classification:</p>
+    <ul>
+      <li>Input: 2 features. Hidden: 2 neurons (ReLU). Output: 1 neuron (Sigmoid).</li>
+      <li>W<sup>[1]</sup> = [[1.0, 0.5],[−0.5, 1.5]], b<sup>[1]</sup> = [0.2, −0.3]<sup>T</sup></li>
+      <li>w<sup>[2]</sup> = [1.2, 0.8]<sup>T</sup>, b<sup>[2]</sup> = 0.1</li>
+      <li>Input x = [0.5, 0.8]<sup>T</sup>, True label y = 1</li>
+    </ul>
+    <p>Calculate: (i) pre-activation Z<sup>[1]</sup>, (ii) hidden activations H<sup>[1]</sup>, (iii) output ŷ, (iv) BCE loss.</p>
+    <button class="reveal-btn">Show Solution</button>
+    <div class="sol">
+      <div class="step"><strong>(i) Z<sup>[1]</sup><sub>1</sub>:</strong> (1.0)(0.5) + (0.5)(0.8) + 0.2 = 0.5 + 0.4 + 0.2 = <strong>1.1</strong></div>
+      <div class="step"><strong>Z<sup>[1]</sup><sub>2</sub>:</strong> (−0.5)(0.5) + (1.5)(0.8) − 0.3 = −0.25 + 1.2 − 0.3 = <strong>0.65</strong></div>
+      <div class="step"><strong>(ii) H<sup>[1]</sup> = ReLU([1.1, 0.65]):</strong> Both positive → H<sup>[1]</sup> = <strong>[1.1, 0.65]</strong></div>
+      <div class="step"><strong>(iii) Z<sup>[2]</sup>:</strong> (1.2)(1.1) + (0.8)(0.65) + 0.1 = 1.32 + 0.52 + 0.1 = <strong>1.94</strong></div>
+      <div class="step"><strong>ŷ = σ(1.94):</strong> 1/(1 + e<sup>−1.94</sup>) ≈ 1/(1 + 0.1437) = <strong>0.874</strong></div>
+      <div class="step"><strong>(iv) BCE Loss (y=1):</strong> L = −log(ŷ) = −log(0.874) = −(−0.1347) = <strong>0.135</strong></div>
+    </div>
+  </div>
+</div>
+
+<h2 id="d-backprop">Modules 5–6 — DFNN: Backpropagation</h2>
+
+<div class="q-card">
+  <div class="q-header qh-blue"><span class="year-tag">Mar 2026 EndSem</span><span class="difficulty d-hard">Hard</span> Q19. Vanishing Gradients — Cause, Impact, Fixes <span class="marks">4 M</span></div>
+  <div class="q-body">
+    <p>During DFNN training for a 10-class medical X-ray classifier, gradients near input layers vanish. (a) Identify the cause. (b) Explain the impact on learning. (c) Recommend TWO architectural fixes with justification.</p>
+    <button class="reveal-btn">Show Solution</button>
+    <div class="sol">
+      <div class="step"><strong>(a) Cause:</strong> Using saturating activation functions (sigmoid or tanh) in hidden layers. Sigmoid derivative = σ(1−σ) has a maximum of 0.25. During backpropagation, gradients are multiplied by these derivatives at every layer via chain rule. For a 10-layer network: 0.25 × 0.25 × … → ≈ 10<sup>−6</sup>. Gradients become negligibly small before reaching early layers.</div>
+      <div class="step"><strong>(b) Impact:</strong> Weight updates in early layers ≈ 0 → early layers stop learning meaningful features. The network effectively becomes shallow (only final layers train). For image classification, this means low-level features (edges, textures) are not learned, so the model fails to extract useful representations from raw pixels.</div>
+      <div class="step"><strong>(c) Fix 1 — ReLU activation:</strong> f'(z) = 1 for z &gt; 0. When gradient flows back through a ReLU neuron, it is multiplied by 1 (not &lt;1). This preserves gradient magnitude across many layers, allowing deep networks to train properly.</div>
+      <div class="step"><strong>Fix 2 — Residual connections (ResNet-style):</strong> y = F(x) + x. During backprop: ∂L/∂x = ∂L/∂y × (∂F/∂x + 1). The +1 identity term ensures the gradient never fully vanishes — it has a direct path back through the network without multiplicative shrinkage.</div>
+    </div>
+  </div>
+</div>
+
+<h2 id="d-design">Modules 5–6 — DFNN: Architecture Design</h2>
+
+<div class="q-card">
+  <div class="q-header qh-blue"><span class="year-tag">Mar 2026 EndSem</span><span class="difficulty d-hard">Hard</span> Q20. Churn Prediction — Complete DFNN Design <span class="marks">5 M</span></div>
+  <div class="q-body">
+    <p>A telecom company predicts subscriber churn using 4 features: call duration, data usage, complaints, contract type. A logistic regression model achieves 88% accuracy but only 54% recall for churners.</p>
+    <p>Design a complete DFNN for this task. Specify: (i) input dimension, (ii) hidden layers with activation justification, (iii) output layer, (iv) loss function, (v) why DFNN is better than logistic regression here.</p>
+    <button class="reveal-btn">Show Solution</button>
+    <div class="sol">
+      <div class="step"><strong>(i) Input:</strong> 4 neurons (one per feature; encode categorical "contract type" as 3 binary features → total 6 input neurons with one-hot encoding)</div>
+      <div class="step"><strong>(ii) Hidden Layers:</strong></div>
+      <div class="step">Layer 1: 16–32 neurons, <strong>ReLU</strong> — cheap, no vanishing gradient, handles large dataset scale</div>
+      <div class="step">Layer 2: 8–16 neurons, <strong>Leaky ReLU</strong> — deeper layer risks dying ReLU; Leaky ReLU (α=0.01 for negatives) keeps all neurons active and preserves churn pattern capacity</div>
+      <div class="step"><strong>(iii) Output:</strong> 1 neuron, <strong>Sigmoid</strong> — outputs probability of churn P(churn|features) ∈ (0,1)</div>
+      <div class="step"><strong>(iv) Loss:</strong> <strong>Binary Cross-Entropy (BCE)</strong> — paired with sigmoid; provides clean gradient (ŷ−y); appropriate for binary probability output</div>
+      <div class="step"><strong>(v) DFNN vs Logistic Regression:</strong> Logistic regression only captures linear relationships. Hidden layers allow DFNN to learn non-linear interactions: e.g., "high data usage AND high complaints" is a non-linear churn signal. Layer 2 abstracts customer behaviour patterns (high-risk profile, low-risk loyal customer) that logistic regression misses with 54% recall.</div>
+    </div>
+  </div>
+</div>
+
+<div class="q-card">
+  <div class="q-header qh-blue"><span class="year-tag">Dec 2025 MidSem</span><span class="difficulty d-med">Medium</span> Q21. Parameter Counting &amp; Architecture Evaluation <span class="marks">6 M</span></div>
+  <div class="q-body">
+    <p>Design a DFNN for sentiment classification: 1000 input features (word counts), 5 output classes, 50,000 training samples. Propose architecture and calculate total parameters. Is it reasonable given the training set size?</p>
+    <button class="reveal-btn">Show Solution</button>
+    <div class="sol">
+      <div class="step"><strong>Proposed architecture:</strong> Input(1000) → H1(512, ReLU) → H2(256, ReLU) → H3(128, ReLU) → Output(5, Softmax)</div>
+      <div class="step"><strong>Parameter count:</strong></div>
+      <div class="step">Layer 1: 1000×512 + 512 = 512,000 + 512 = <strong>512,512</strong></div>
+      <div class="step">Layer 2: 512×256 + 256 = 131,072 + 256 = <strong>131,328</strong></div>
+      <div class="step">Layer 3: 256×128 + 128 = 32,768 + 128 = <strong>32,896</strong></div>
+      <div class="step">Output: 128×5 + 5 = <strong>645</strong></div>
+      <div class="step"><strong>Total: 677,381 parameters</strong></div>
+      <div class="step"><strong>Reasonableness:</strong> 50,000 samples / 677,381 params ≈ 0.074 examples per parameter. Rule of thumb: aim for at least 10 examples per parameter. This model is over-parameterised and will likely overfit. Better: reduce to Input(1000) → H1(256) → H2(64) → Output(5) = 256,512+16,448+325 = ~273k params. 50k/273k ≈ 0.18 — still questionable. Add Dropout (p=0.5) for regularisation.</div>
+    </div>
+  </div>
+</div>
+
+<h2 id="d-code">Modules 5–6 — DFNN: Code Completion</h2>
+
+<div class="q-card">
+  <div class="q-header qh-blue"><span class="year-tag">Dec 2025 MidSem</span><span class="difficulty d-hard">Hard</span> Q22. DFNN Forward + Backward Code <span class="marks">5 M</span></div>
+  <div class="q-body">
+    <pre>def relu(Z):
+    return ____________    # Blank 1
+
+def forward(X, W1, b1, W2, b2):
+    Z1 = np.dot(X, W1) + b1
+    A1 = ____________     # Blank 2
+    Z2 = np.dot(A1, W2) + b2
+    A2 = sigmoid(Z2)
+    return A2, (Z1, A1, Z2, A2)
+
+def backward(X, Y, cache, W2):
+    Z1, A1, Z2, A2 = cache
+    N = X.shape[0]
+    dZ2 = A2 - Y           # output gradient
+    dW2 = ____________     # Blank 3
+    dA1 = ____________     # Blank 4
+    dZ1 = dA1 * (Z1 > 0)  # ReLU derivative
+    dW1 = ____________     # Blank 5
+    return dW1, dW2</pre>
+    <button class="reveal-btn">Show Solution</button>
+    <div class="sol">
+      <div class="step"><strong>Blank 1:</strong> <code>np.maximum(0, Z)</code></div>
+      <div class="step"><strong>Blank 2:</strong> <code>relu(Z1)</code></div>
+      <div class="step"><strong>Blank 3:</strong> <code>np.dot(A1.T, dZ2) / N</code>  — ∂J/∂W<sup>[2]</sup> = H<sup>[1]T</sup>δ<sup>[2]</sup>/N</div>
+      <div class="step"><strong>Blank 4:</strong> <code>np.dot(dZ2, W2.T)</code>  — backprop through W2: δ<sup>[1]</sup>_pre = δ<sup>[2]</sup> W<sup>[2]T</sup></div>
+      <div class="step"><strong>Blank 5:</strong> <code>np.dot(X.T, dZ1) / N</code>  — ∂J/∂W<sup>[1]</sup> = X<sup>T</sup>δ<sup>[1]</sup>/N</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ MODULE 6–8: CNN ═══════════════════════════════ -->
+<h2 class="sec" id="cn-dims">Modules 6–8 — CNN: Dimension Calculation</h2>
+
+<div class="q-card">
+  <div class="q-header qh-red"><span class="year-tag">2024 EndSem</span><span class="difficulty d-hard">Hard</span> Q23. Full CNN Architecture Dimension Tracking <span class="marks">3.5 M</span></div>
+  <div class="q-body">
+    <p>Input: 192×256×1 (grayscale image). Architecture:</p>
+    <div class="fb">
+      Conv2d(1→5, kernel=3×3, stride=1, padding=1) → ReLU →<br>
+      MaxPool(kernel=2×2, stride=2) →<br>
+      Conv2d(5→10, kernel=5×5, stride=1, padding=0) → ReLU →<br>
+      MaxPool(kernel=2×2, stride=2) →<br>
+      Conv2d(10→20, kernel=2×2, stride=2, padding=0) → ReLU →<br>
+      MaxPool(kernel=5×5, stride=2) →<br>
+      Flatten → Linear(2800, 6)
+    </div>
+    <p>Compute the output size (H × W × Depth) after each Conv and Pooling layer. Verify the flatten dimension matches 2800.</p>
+    <button class="reveal-btn">Show Solution</button>
+    <div class="sol">
+      <div class="step"><strong>Conv1</strong> (k=3,s=1,p=1): ⌊(192+2−3)/1⌋+1=192, ⌊(256+2−3)/1⌋+1=256 → <strong>192×256×5</strong></div>
+      <div class="step"><strong>Pool1</strong> (k=2,s=2): ⌊(192−2)/2⌋+1=96, ⌊(256−2)/2⌋+1=128 → <strong>96×128×5</strong></div>
+      <div class="step"><strong>Conv2</strong> (k=5,s=1,p=0): ⌊(96−5)/1⌋+1=92, ⌊(128−5)/1⌋+1=124 → <strong>92×124×10</strong></div>
+      <div class="step"><strong>Pool2</strong> (k=2,s=2): ⌊(92−2)/2⌋+1=46, ⌊(124−2)/2⌋+1=62 → <strong>46×62×10</strong></div>
+      <div class="step"><strong>Conv3</strong> (k=2,s=2,p=0): ⌊(46−2)/2⌋+1=23, ⌊(62−2)/2⌋+1=31 → <strong>23×31×20</strong></div>
+      <div class="step"><strong>Pool3</strong> (k=5,s=2): ⌊(23−5)/2⌋+1=10, ⌊(31−5)/2⌋+1=14 → <strong>10×14×20</strong></div>
+      <div class="step"><strong>Flatten:</strong> 10×14×20 = <strong>2,800</strong> ✓ matches FC input</div>
+    </div>
+  </div>
+</div>
+
+<h2 id="cn-params">Modules 6–8 — CNN: Parameter Counting</h2>
+
+<div class="q-card">
+  <div class="q-header qh-red"><span class="year-tag">2024 EndSem</span><span class="difficulty d-hard">Hard</span> Q24. CNN Parameter Counting + FC Parameters <span class="marks">2.5 M</span></div>
+  <div class="q-body">
+    <p>Using the architecture from Q23, calculate: (a) trainable weights and biases in Conv1, Conv2, Conv3. (b) total parameters in the FC (Linear) layer.</p>
+    <button class="reveal-btn">Show Solution</button>
+    <div class="sol">
+      <div class="step"><strong>Conv1</strong> (k=3, C<sub>in</sub>=1, C<sub>out</sub>=5): weights = 3×3×1×5 = 45, biases = 5 → <strong>50 params</strong></div>
+      <div class="step"><strong>Conv2</strong> (k=5, C<sub>in</sub>=5, C<sub>out</sub>=10): weights = 5×5×5×10 = 1,250, biases = 10 → <strong>1,260 params</strong></div>
+      <div class="step"><strong>Conv3</strong> (k=2, C<sub>in</sub>=10, C<sub>out</sub>=20): weights = 2×2×10×20 = 800, biases = 20 → <strong>820 params</strong></div>
+      <div class="step"><strong>FC Layer</strong> (2800→6): weights = 2800×6 = 16,800, biases = 6 → <strong>16,806 params</strong></div>
+      <div class="step"><strong>Key insight:</strong> FC layer (16,806) >> all Conv layers combined (2,130). This is why FC layers dominate parameter count in classic CNNs.</div>
+    </div>
+  </div>
+</div>
+
+<div class="q-card">
+  <div class="q-header qh-red"><span class="year-tag">Mar 2026 EndSem</span><span class="difficulty d-hard">Hard</span> Q25. Wildlife CNN — Layer 1 and FC Parameters <span class="marks">5 M</span></div>
+  <div class="q-body">
+    <p>A wildlife CNN: Input 224×224×3 (RGB), 10 classes. Architecture:</p>
+    <div class="fb">
+      Conv(32 filters, 5×5, s=1, p=2) → MaxPool(2×2, s=2) →<br>
+      Conv(64 filters, 3×3, s=1, p=1) → MaxPool(2×2, s=2) →<br>
+      Conv(128 filters, 3×3, s=1, p=1) → MaxPool(2×2, s=2) →<br>
+      Flatten → FC(100352→256) → FC(256→10)
+    </div>
+    <p>(a) Calculate total parameters (with biases) for Layer 1 (first Conv) and the first FC layer.</p>
+    <p>(b) The team adds an infrared channel: input becomes 224×224×4. How does Layer 1 parameter count change? Do Layer 3 or the FC layer change?</p>
+    <button class="reveal-btn">Show Solution</button>
+    <div class="sol">
+      <div class="step"><strong>(a) Conv1</strong> (5×5, C<sub>in</sub>=3, C<sub>out</sub>=32): 5×5×3×32 + 32 = 2,400 + 32 = <strong>2,432 params</strong></div>
+      <div class="step"><strong>Track dims to FC:</strong> 224 → Pool: 112 → Pool: 56 → Pool: 28. Flatten = 28×28×128 = 100,352 ✓</div>
+      <div class="step"><strong>First FC</strong> (100,352→256): 100,352×256 + 256 = 25,689,856 + 256 = <strong>25,690,112 params</strong></div>
+      <div class="step"><strong>(b) IR channel (C<sub>in</sub>=4):</strong> New Conv1 = 5×5×4×32 + 32 = 3,200 + 32 = <strong>3,232 params</strong>. Increase = 3,232−2,432 = 800 (33.2% more).</div>
+      <div class="step"><strong>Layer 3 (C<sub>in</sub>=64→128):</strong> Layer 3 takes output of Layer 2 as input — Layer 2 takes output of Layer 1 as input (both have 32 output channels regardless of input RGB/RGBA). Layer 3 <strong>does not change</strong>.</div>
+      <div class="step"><strong>FC layer:</strong> Input to FC = 28×28×128 = 100,352. Unchanged because spatial dims and depth (128) are the same. FC params <strong>do not change</strong>.</div>
+    </div>
+  </div>
+</div>
+
+<h2 id="cn-arch">Modules 6–8 — CNN: Architecture Questions</h2>
+
+<div class="q-card">
+  <div class="q-header qh-red"><span class="year-tag">2024 EndSem</span><span class="difficulty d-med">Medium</span> Q26. Why CNN for Images? ReLU vs Sigmoid? <span class="marks">2 M</span></div>
+  <div class="q-body">
+    <p>(a) Explain in 1–2 sentences why a CNN is adequate for image classification.</p>
+    <p>(b) Why is ReLU preferred over sigmoid/tanh in modern CNNs? Provide two clear reasons.</p>
+    <p>(c) A CNN adds Batch Normalization after Conv1 and Conv3, and Dropout (p=0.5) before FC. Explain the role of each and their impact on training/generalization.</p>
+    <button class="reveal-btn">Show Solution</button>
+    <div class="sol">
+      <div class="step"><strong>(a) CNN for images:</strong> CNNs exploit local receptive fields (spatially local features like edges) and weight sharing (same kernel applied across entire image), capturing spatial hierarchies and translation-invariant features efficiently — ideal for images where the same pattern can appear anywhere.</div>
+      <div class="step"><strong>(b) ReLU advantages:</strong></div>
+      <div class="step">1. Non-saturating for z&gt;0: derivative is exactly 1, so gradients flow unchanged through deep networks — mitigates vanishing gradient problem that plagues sigmoid/tanh.</div>
+      <div class="step">2. Computationally cheap: max(0,z) requires no exponentials or divisions, much faster than sigmoid/tanh, and induces sparse activation (~50% neurons=0) for efficient representations.</div>
+      <div class="step"><strong>(c) Batch Normalization:</strong> Normalizes layer activations to mean=0, variance=1 per batch (with learnable γ,β to restore expressiveness). Stabilises training, allows higher learning rates, reduces sensitivity to initialization, slightly regularises. Applied after Conv1/Conv3 to keep activation distributions stable across layers.</div>
+      <div class="step"><strong>Dropout (p=0.5):</strong> Randomly zeros 50% of neurons during training. Prevents co-adaptation (neurons from relying on each other), acts as implicit ensemble of 2<sup>n</sup> subnetworks, reduces overfitting. Disabled at inference (multiply by 1−p to maintain expected output magnitude). Critical before FC which has the most parameters.</div>
+    </div>
+  </div>
+</div>
+
+<h2 id="cn-transfer">Modules 6–8 — CNN: Transfer Learning</h2>
+
+<div class="q-card">
+  <div class="q-header qh-red"><span class="year-tag">Mar 2026 EndSem</span><span class="difficulty d-hard">Hard</span> Q27. Skin Cancer Detection — Transfer Learning Decision <span class="marks">5 M</span></div>
+  <div class="q-body">
+    <p>A hospital team: 8,000 dermoscopic images across 7 lesion types. Melanoma: 600 images, benign nevi: 3,200. Constraints: 8GB GPU, &lt;500ms inference. Pre-trained ResNet-50 achieves 92% overall accuracy but 68% melanoma sensitivity.</p>
+    <p>Should the team use transfer learning or train from scratch? Provide THREE dataset-specific reasons.</p>
+    <p>The ResNet-50 final FC layer (2048→1000) is replaced with 2048→512→7 (with Dropout p=0.5). Calculate parameters removed, parameters added (include biases), and net change.</p>
+    <button class="reveal-btn">Show Solution</button>
+    <div class="sol">
+      <div class="step"><strong>Use Transfer Learning — THREE reasons:</strong></div>
+      <div class="step">1. <strong>Small dataset:</strong> Only 8,000 images across 7 classes (some as few as 600). Training ResNet-50's ~25M parameters from scratch on 8,000 images would massively overfit. Transfer learning leverages ImageNet's 1.2M images.</div>
+      <div class="step">2. <strong>Domain similarity:</strong> Dermoscopic images share low-level features (edges, textures, colour gradients) with ImageNet objects. ResNet-50's early convolutional layers already detect these features — no need to relearn from scratch.</div>
+      <div class="step">3. <strong>Compute constraint:</strong> 8GB GPU limits batch size for training from scratch. Fine-tuning only the final layers (or a few layers) requires far less compute and memory — feasible with the given hardware.</div>
+      <div class="step"><strong>Parameter calculation:</strong></div>
+      <div class="step"><strong>Removed</strong> (original FC 2048→1000): 2048×1000 + 1000 = <strong>2,049,000</strong></div>
+      <div class="step"><strong>Added Layer 1</strong> (2048→512): 2048×512 + 512 = 1,048,576 + 512 = <strong>1,049,088</strong></div>
+      <div class="step"><strong>Added Layer 2</strong> (512→7): 512×7 + 7 = 3,584 + 7 = <strong>3,591</strong></div>
+      <div class="step"><strong>Net change:</strong> (1,049,088 + 3,591) − 2,049,000 = 1,052,679 − 2,049,000 = <strong>−996,321</strong> (~1M fewer parameters)</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ MIXED ═══════════════════════════════ -->
+<h2 class="sec" id="mix">Mixed / Comprehensive Problems</h2>
+
+<div class="q-card">
+  <div class="q-header qh-slate" style="background:#f1f5f9;color:#334155"><span class="year-tag">2024 EndSem</span><span class="difficulty d-hard">Hard</span> Q28. DNN Training Concepts — Short Answers <span class="marks">5 M</span></div>
+  <div class="q-body">
+    <p>(A) Neural network A: single linear layer + softmax. Neural network B: layers [128, 512, 32] + softmax, but neither has hidden activations. What can you expect about relative test performance of A vs B?</p>
+    <p>(B) Is it possible to reach a lower loss by only changing network initialization, while keeping everything else the same?</p>
+    <p>(C) A fully-connected network: 8 inputs, hidden layers [10, 6], output 4 neurons. No biases. Calculate total trainable weights.</p>
+    <button class="reveal-btn">Show Solution</button>
+    <div class="sol">
+      <div class="step"><strong>(A) A vs B without activations:</strong> Without hidden activations, multiple linear layers collapse to a single linear transformation. B effectively reduces to a single linear layer despite having 3 layers. B has far more parameters, so it risks overfitting, but expressiveness-wise both are linear. B may slightly underperform A if it overfits; A will likely underperform B if the task is non-linear. <strong>If neither has activations, B is merely a "fatter" linear model — not meaningfully more expressive than A.</strong></div>
+      <div class="step"><strong>(B) Yes, possible.</strong> Different random initializations lead to different local minima (for non-convex loss landscapes). Some initializations land in regions with better descent paths to lower loss. This is why we often run multiple random seeds and pick the best result. Proper initialization (He for ReLU, Xavier for sigmoid/tanh) also systematically achieves lower final loss than naive initialization.</div>
+      <div class="step"><strong>(C) Total weights (no biases):</strong></div>
+      <div class="step">Input → H1(10): 8×10 = 80</div>
+      <div class="step">H1 → H2(6): 10×6 = 60</div>
+      <div class="step">H2 → Output(4): 6×4 = 24</div>
+      <div class="step">Total: 80 + 60 + 24 = <strong>164 weights</strong></div>
+    </div>
+  </div>
+</div>
+
+<div class="q-card">
+  <div class="q-header qh-slate" style="background:#f1f5f9;color:#334155"><span class="year-tag">Mar 2026 EndSem</span><span class="difficulty d-hard">Hard</span> Q29. Medical Classifier — Activation Functions, Loss, Metrics <span class="marks">5 M</span></div>
+  <div class="q-body">
+    <p>A DFNN for skin cancer detection (7 classes) has: Hidden Layer 1 (ReLU), Hidden Layer 2 (Leaky ReLU), Output Layer (Softmax).</p>
+    <p>(a) Define the activation function for each layer with mathematical formulas.</p>
+    <p>(b) Explain why a perceptron cannot solve this 10-class task, referencing linear separability and decision boundaries.</p>
+    <p>(c) Compute the activation for Hidden Layer 1, neuron given: x=[0.8,−0.5,0.2], w=[0.4,0.1,−0.2], b=0.5. Compare ReLU vs Softmax for this neuron.</p>
+    <button class="reveal-btn">Show Solution</button>
+    <div class="sol">
+      <div class="step"><strong>(a) Activation functions:</strong></div>
+      <div class="step">Hidden Layer 1 — ReLU: f(z) = max(0, z) = z if z &gt; 0, else 0</div>
+      <div class="step">Hidden Layer 2 — Leaky ReLU: f(z) = z if z &gt; 0, else αz (α=0.01 typically)</div>
+      <div class="step">Output Layer — Softmax: ŷ<sub>k</sub> = e<sup>z<sub>k</sub></sup> / Σ<sub>j=1</sub><sup>7</sup> e<sup>z<sub>j</sub></sup> for k=1…7</div>
+      <div class="step"><strong>(b) Perceptron limitation:</strong> A perceptron creates a single linear hyperplane boundary. For 7 lesion types, the feature space requires non-linear, multi-region boundaries — skin conditions share overlapping visual features (texture, colour) that no linear separator can correctly classify. The XOR analogy applies: just as XOR cannot be solved by a line in 2D, complex medical images cannot be separated by hyperplanes without hierarchical feature learning (hidden layers).</div>
+      <div class="step"><strong>(c) Compute activation:</strong></div>
+      <div class="step">z = w<sup>T</sup>x + b = (0.4)(0.8) + (0.1)(−0.5) + (−0.2)(0.2) + 0.5 = 0.32 − 0.05 − 0.04 + 0.5 = <strong>0.73</strong></div>
+      <div class="step">ReLU(0.73) = max(0, 0.73) = <strong>0.73</strong> (positive, passes through unchanged)</div>
+      <div class="step">Softmax would be inappropriate for a single hidden neuron — it's designed for a vector of logits (all class scores) to produce a probability distribution. ReLU is correct for hidden layers: it introduces non-linearity cheaply, and the positive output 0.73 means this neuron is active and will contribute to the next layer's computation.</div>
+    </div>
+  </div>
+</div>
+
+<div class="q-card">
+  <div class="q-header qh-slate" style="background:#f1f5f9;color:#334155"><span class="year-tag">Dec 2025 MidSem</span><span class="difficulty d-med">Medium</span> Q30. Mobile vs Cloud Deployment — Architecture Tradeoffs <span class="marks">3 M</span></div>
+  <div class="q-body">
+    <p>Two architectures for mobile image classification (10 classes):</p>
+    <ul>
+      <li><strong>Architecture A:</strong> [256→128→64→10], 50K params, 5ms inference, 87% accuracy, 200MB memory</li>
+      <li><strong>Architecture B:</strong> [256→512→512→256→128→10], 850K params, 45ms inference, 89% accuracy, 3.4GB memory</li>
+    </ul>
+    <p>Evaluate for: (i) mobile deployment processing 1 million images/day. (ii) Would your recommendation change for cloud servers with unlimited resources?</p>
+    <button class="reveal-btn">Show Solution</button>
+    <div class="sol">
+      <div class="step"><strong>(i) Mobile — Recommend Architecture A:</strong></div>
+      <div class="step">Daily processing: A = 1M × 5ms = 5,000 seconds ≈ 1.4 hours. B = 1M × 45ms = 45,000 seconds ≈ 12.5 hours. B is 9× slower — unacceptable for 1M images/day real-time use.</div>
+      <div class="step">Memory: 3.4GB for B leaves virtually no RAM for the OS, other apps, and user data on a typical 4–6GB smartphone. B would cause memory pressure, crashes, or be killed by the OS. A's 200MB is manageable.</div>
+      <div class="step">Battery: 9× more computation = roughly 9× more power consumption. Continuous operation would drain battery within hours.</div>
+      <div class="step">The 2% accuracy improvement (87% → 89%) does not justify 9× slower inference, 17× more parameters, and 3.4GB memory. <strong>Deploy Architecture A on mobile.</strong></div>
+      <div class="step"><strong>(ii) Cloud servers — Recommend Architecture B:</strong> With unlimited GPU compute, memory, and power, the bottleneck shifts to model quality. 2% accuracy × 1 million images/day = 20,000 additional correct predictions daily. At scale, this is significant. Latency of 45ms is fine for cloud (not real-time on device). <strong>Architecture B for cloud.</strong></div>
+    </div>
+  </div>
+</div>
+
+</main>
+</div>
+
+<script>
+const pb = document.getElementById('pb');
+window.addEventListener('scroll', () => {
+  pb.style.width = Math.min((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100, 100) + '%';
+});
+const links = document.querySelectorAll('#sidebar nav a');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      links.forEach(l => l.classList.remove('active'));
+      const a = document.querySelector(`#sidebar a[href="#${e.target.id}"]`);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+document.querySelectorAll('h2[id], h3[id]').forEach(el => obs.observe(el));
+document.querySelectorAll('.reveal-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const sol = btn.nextElementSibling;
+    sol.classList.toggle('open');
+    btn.textContent = sol.classList.contains('open') ? 'Hide Solution' : 'Show Solution';
+  });
+});
+</script>
+</body>
+</html>
